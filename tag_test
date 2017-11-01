@@ -1,0 +1,25 @@
+url: https://api.kikakeyboard.com/v1/utils/get_app_config?key=sticker2&
+cycle_times: 1
+#web0
+#url: http://54.70.186.123:8080/backend-content-sending/popup?
+keys: ['duid']
+data:
+  app: ['kika','ikey','pro']
+  kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR', 'in_ID']
+  duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
+          '920b56e9cadd743bfbbcb4126937e789']
+assert:
+#  返回码(只能第一层)
+#  code : {'key':'errorCode','value':0}
+#  字段格式
+#  data_format : {"errorCode":'Str',"errorMsg":'Str',"data":{'tag':'&&&'}}
+#  数据检查
+  data_content : {
+        'es&adad79631d9339915e3be1c9e783e82d&kika':"'popupdelay': 600",
+        'es&a2bb5434f3541bf5aa64186ec8c2b77f&kika':"'popupdelay': 200",
+        'es&920b56e9cadd743bfbbcb4126937e789&kika':"'popupdelay': 400"
+        }
+other:
+  version: 2043
+  way: online
+
