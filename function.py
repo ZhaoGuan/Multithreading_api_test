@@ -35,15 +35,32 @@ class Http_Test:
             self.data = None
         try:
             self.other = self.config['other']
-            self.version = self.other['version']
-            self.way = self.other['way']
-            if self.version == None:
-                self.version = 2043
-            if self.way == None:
-                self.way = 'online'
         except:
             self.version = 2043
             self.way = 'online'
+            self.host = 'api.kikakeyboard.com'
+        try:
+            self.other = self.config['other']
+            self.version = self.other['version']
+            if self.version == None:
+                self.version = 2043
+        except:
+                self.version = 2043
+        try:
+            self.other = self.config['other']
+            self.way = self.other['way']
+            if self.way == None:
+                self.way = 'online'
+        except:
+            self.way = 'online'
+        try:
+            self.other = self.config['other']
+            self.host = self.other['host']
+        except:
+            if self.way == 'test':
+                self.host = 'api-dev.kikakeyboard.com'
+            else:
+                self.host = 'api.kikakeyboard.com'
         try:
             self.Assert = self.config['assert']
         except:
@@ -163,7 +180,7 @@ class Http_Test:
             header = {'Accept-Charset': 'UTF-8',
                       'Kika-Install-Time': '1505198889124',
                       'Connection': 'Keep-Alive',
-                      'Host': 'api.kikakeyboard.com',
+                      'Host': self.host,
                       'Accept-Language': '%s' % use_lang[0],
                       'User-Agent': '%s/%s (%s/%s) Country/%s Language/%s System/android Version/23 Screen/480' % (
                           package_name, version, duid, app_key, use_lang[1], use_lang[2]),
@@ -176,7 +193,7 @@ class Http_Test:
             header = {'Accept-Charset': 'UTF-8',
                       'Kika-Install-Time': '1505198889124',
                       'Connection': 'Keep-Alive',
-                      'Host': 'api-dev.kikakeyboard.com',
+                      'Host': self.host,
                       'Accept-Language': '%s' % use_lang[0],
                       'User-Agent': '%s/%s (%s/%s) Country/%s Language/%s System/android Version/23 Screen/480' % (
                           package_name, version, duid, app_key, use_lang[1], use_lang[2]),
@@ -311,15 +328,16 @@ class Http_Test:
                 key_result = [g for g in keys if g in str(data_list)]
                 if len(key_result) == len(keys):
                     try:
-                        print(Assert_data_content[i])
                         check = json.loads(Assert_data_content[i])
                         print('!!!!!!!!!!!!!!!!!!!!!!!!')
                         data_content_result = self.response_diff_list(check, response)
                     except:
                         check = Assert_data_content[i]
-                        if str(check) in str(response):
+                        if check in str(response):
                             data_content_result = True
                         else:
+                            print(str(check))
+                            print(str(response))
                             data_content_result = False
             else:
                 for e in data.values():
@@ -363,7 +381,7 @@ class Http_Test:
             if Assert_data_content != None:
                 data_content_result = self.data_content(data, Assert_data_content, response_data)
                 if data_content_result == False:
-                    reason.append('接口数据格式错误,返回格式为:' + response.text)
+                    reason.append('接口数据错误,返回数据为:' + response.text)
         except:
             # print('非JSON')
             pass
@@ -386,6 +404,7 @@ class Http_Test:
             app = data['app']
             header = self.set_header(duid, app=app, version=self.version, lang=lang, way=self.way)
             url = self.url_mosaic(data)
+            print(header)
             response = requests.request('get', url, headers=header)
         self.asser_api(data, response, fail)
         self.all_response(data, response)

@@ -19,4 +19,5 @@ assert:
 other:
   version: 2043
   way: online
+  host : www.baidu.com
 

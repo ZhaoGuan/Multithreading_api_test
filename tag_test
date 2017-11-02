@@ -15,11 +15,11 @@ assert:
 #  data_format : {"errorCode":'Str',"errorMsg":'Str',"data":{'tag':'&&&'}}
 #  数据检查
   data_content : {
-        'es&adad79631d9339915e3be1c9e783e82d&kika':"'popupdelay': 600",
-        'es&a2bb5434f3541bf5aa64186ec8c2b77f&kika':"'popupdelay': 200",
-        'es&920b56e9cadd743bfbbcb4126937e789&kika':"'popupdelay': 400"
+        'es&adad79631d9339915e3be1c9e783e82d&kika':"'popupdelay': 500",
+        'es&a2bb5434f3541bf5aa64186ec8c2b77f&kika':"'popupdelay': 400",
+        'es&920b56e9cadd743bfbbcb4126937e789&kika':"'popupdelay': 600"
         }
 other:
   version: 2043
   way: online
-
+  host:
