@@ -20,6 +20,53 @@ def config_reader(Yaml_file):
     return yx
 
 
+# 随机udid值
+def random_duid():
+    all_world = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+                 'u', 'v', 'w', 'x', 'y', 'z']
+    world = random.sample(all_world, 5)
+    result_world = ''
+    for i in world:
+        result_world += i
+    m = hashlib.md5()
+    m.update(result_world.encode('utf-8'))
+    MD5 = m.hexdigest()
+    # print(MD5)
+    return MD5
+
+
+# popup分组计算
+def sum_duid(duid):
+    sum_result = 0
+    a_ = []
+    for i in duid:
+        # print(i)
+        d = int(i, 16)
+        # print(d)
+        a_.append(d)
+        sum_result += int(d)
+        # print(sum_result)
+    return sum_result
+
+
+# 根据取模数确认分组
+def which_group(way, duid):
+    duid_value = sum_duid(duid)
+    group = duid_value % int(way)
+    # print('取模结果：')
+    # print(group)
+    return group
+
+
+# 获取对应取模值的duid
+def get_duid_in_way(way, result):
+    while True:
+        duid = random_duid()
+        if which_group(way, duid) == result:
+            break
+    return duid
+
+
 class Http_Test:
     def __init__(self, config):
         self.config = config
@@ -45,7 +92,7 @@ class Http_Test:
             if self.version == None:
                 self.version = 2043
         except:
-                self.version = 2043
+            self.version = 2043
         try:
             self.other = self.config['other']
             self.way = self.other['way']
@@ -65,40 +112,6 @@ class Http_Test:
             self.Assert = self.config['assert']
         except:
             self.Assert = None
-
-    # popup分组计算
-    def sum_duid(self, duid):
-        sum_result = 0
-        a_ = []
-        for i in duid:
-            # print(i)
-            d = int(i, 16)
-            # print(d)
-            a_.append(d)
-            sum_result += int(d)
-            # print(sum_result)
-        return sum_result
-
-    def which_group(self, duid):
-        duid_value = self.sum_duid(duid)
-        group = duid_value % 4
-        print('取模结果：')
-        print(group)
-        return group
-
-    # 随机udid值
-    def random_duid(self):
-        all_world = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
-                     'u', 'v', 'w', 'x', 'y', 'z']
-        world = random.sample(all_world, 5)
-        result_world = ''
-        for i in world:
-            result_world += i
-        m = hashlib.md5()
-        m.update(result_world.encode('utf-8'))
-        MD5 = m.hexdigest()
-        print(MD5)
-        return MD5
 
     # 根据udid获取sign
     def get_sign(self, app, version, duid):
@@ -327,18 +340,20 @@ class Http_Test:
                 data_list = list(data.values())
                 key_result = [g for g in keys if g in str(data_list)]
                 if len(key_result) == len(keys):
-                    try:
-                        check = json.loads(Assert_data_content[i])
-                        print('!!!!!!!!!!!!!!!!!!!!!!!!')
-                        data_content_result = self.response_diff_list(check, response)
-                    except:
-                        check = Assert_data_content[i]
-                        if check in str(response):
-                            data_content_result = True
-                        else:
-                            print(str(check))
-                            print(str(response))
-                            data_content_result = False
+                    # try:
+                    #     check = json.loads('Assert_data_content[i]')
+                    #     print('&&&&&&&&&&&&&&&&')
+                    #     data_content_result = self.response_diff_list(check, response)
+                    # except:
+                    #     print(check)
+                    #     print(response)
+                    check = Assert_data_content[i]
+                    if check in str(response):
+                        data_content_result = True
+                    else:
+                        print(str(check))
+                        print(str(response))
+                        data_content_result = False
             else:
                 for e in data.values():
                     if i in e:
@@ -404,7 +419,7 @@ class Http_Test:
             app = data['app']
             header = self.set_header(duid, app=app, version=self.version, lang=lang, way=self.way)
             url = self.url_mosaic(data)
-            print(header)
+            # print(header)
             response = requests.request('get', url, headers=header)
         self.asser_api(data, response, fail)
         self.all_response(data, response)
@@ -492,7 +507,6 @@ class Http_Test:
         queue = Queue(4)
         start_time = time.time()
         fail = []
-        all_data = []
         proc = []
         cycle = int(self.cycle_times / process_number)
         if cycle < 1:
@@ -509,14 +523,13 @@ class Http_Test:
                 e.join()
             for g in range(process_number):
                 for f in queue.get():
-                    for h in f[0]:
-                        all_data.append(h)
-                    for n in f[1]:
-                        fail.append(n)
+                    fail.append(f)
             print('结束时间:')
             print(int(time.time() - p_start_time))
         print('共用时:')
         print(int(time.time() - start_time))
+        print('有误的配置内容数量:')
+        print(len(fail))
         print('有误的配置内容:')
         print(fail)
         print('所有返回的数量:')
@@ -576,5 +589,5 @@ if __name__ == "__main__":
     test = Http_Test(config)
     # test.c_process(10)
     # print(time.time())
-    # test.process(single_quantity=10)
-    test.Multithreading_api()
+    test.process(single_quantity=10)
+    # test.Multithreading_api()
