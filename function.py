@@ -80,6 +80,12 @@ class Http_Test:
             self.data = self.config['data']
         except:
             self.data = None
+        # version处理
+        try:
+            if self.data['version'] == None:
+                self.data.pop('version')
+        except:
+            pass
         try:
             self.other = self.config['other']
         except:
@@ -215,21 +221,20 @@ class Http_Test:
         config_data = self.data
         data_keys = self.data.keys()
         for i in data_keys:
-            if config_data[i] != None:
-                if len(all_data) == 0:
-                    for f in config_data[i]:
-                        all_data.append({i: f})
-                else:
-                    temp_all = []
-                    for e in config_data[i]:
-                        temp = copy.deepcopy(all_data)
-                        for f in temp:
-                            f.update({i: e})
-                            if 'version' not in f.keys():
-                                f.update({'version': self.version})
-                        for g in temp:
-                            temp_all.append(g)
-                        all_data = temp_all
+            if len(all_data) == 0:
+                for f in config_data[i]:
+                    all_data.append({i: f})
+            else:
+                temp_all = []
+                for e in config_data[i]:
+                    temp = copy.deepcopy(all_data)
+                    for f in temp:
+                        f.update({i: e})
+                        if 'version' not in f.keys():
+                            f.update({'version': self.version})
+                    for g in temp:
+                        temp_all.append(g)
+                all_data = temp_all
         # print(all_data)
         # print(len(all_data))
         return all_data
@@ -244,7 +249,7 @@ class Http_Test:
             else:
                 url = url + i + '=' + data[i]
         if 'duid' in url:
-            sign = self.get_sign(version=self.version, duid=data['duid'], app=data['app'])
+            sign = self.get_sign(version=data['version'], duid=data['duid'], app=data['app'])
             re_sign = 'sign=' + sign
             duid = 'duid=' + data['duid']
             url = url.replace(duid, re_sign)
@@ -367,8 +372,8 @@ class Http_Test:
                     if check_value == self.response_value(check_key, response):
                         data_content_result = True
                     else:
-                        print(str(check))
-                        print(str(response))
+                        # print(str(check))
+                        # print(str(response))
                         data_content_result = False
             else:
                 for e in data.values():
@@ -381,8 +386,8 @@ class Http_Test:
                         if check_value == self.response_value(check_key, response):
                             data_content_result = True
                         else:
-                            print(str(check))
-                            print(str(response))
+                            # print(str(check))
+                            # print(str(response))
                             data_content_result = False
         return data_content_result
 
@@ -440,7 +445,7 @@ class Http_Test:
             lang = data['kb_lang']
             duid = data['duid']
             app = data['app']
-            version = data['version']
+            version = int(data['version'])
             header = self.set_header(duid, app=app, version=version, lang=lang, way=self.way)
             url = self.url_mosaic(data)
             # print(header)
@@ -607,12 +612,12 @@ class Http_Test:
 
 if __name__ == "__main__":
     # config = config_reader('./c')
-    config = config_reader('./test_case')
-    # config = config_reader('./tag_test')
+    # config = config_reader('./test_case')
+    config = config_reader('./tag_test')
     # print(config)
     test = Http_Test(config)
-    print(test.url_keys_data())
+    # print(len(test.url_keys_data()))
     # test.c_process(10)
     # print(time.time())
     # test.process(single_quantity=10)
-    # test.Multithreading_api()
+    test.Multithreading_api()
