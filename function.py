@@ -86,13 +86,13 @@ class Http_Test:
             self.version = 2043
             self.way = 'online'
             self.host = 'api.kikakeyboard.com'
-        try:
-            self.other = self.config['other']
-            self.version = self.other['version']
-            if self.version == None:
-                self.version = 2043
-        except:
-            self.version = 2043
+        # try:
+        #     self.other = self.config['other']
+        #     self.version = self.other['version']
+        #     if self.version == None:
+        #         self.version = 2043
+        # except:
+        #     self.version = 2043
         try:
             self.other = self.config['other']
             self.way = self.other['way']
@@ -112,6 +112,8 @@ class Http_Test:
             self.Assert = self.config['assert']
         except:
             self.Assert = None
+        # 默认version
+        self.version = 2043
 
     # 根据udid获取sign
     def get_sign(self, app, version, duid):
@@ -229,6 +231,8 @@ class Http_Test:
                     temp = copy.deepcopy(all_data)
                     for f in temp:
                         f.update({i: e})
+                        if 'version' not in f.keys():
+                            f.update({'version':self.version})
                     for g in temp:
                         temp_all.append(g)
                 all_data = temp_all
@@ -330,6 +334,27 @@ class Http_Test:
             diff_result = False
         return diff_result
 
+    # response字段获取
+    def response_value(self, key_value, response):
+        if "&" in str(key_value):
+            key_value = key_value.split('&')
+        else:
+            pass
+        for i in key_value:
+            # 遇到list进行处理
+            try:
+                i = int(i)
+            except:
+                pass
+            # 对层级错误进行报错
+            try:
+                response = response[i]
+            except Exception as e:
+                print('不存在字段，内容报错:')
+                print(i)
+                print(e)
+        return response
+
     # 对应字段返回对应值
     def data_content(self, data, Assert_data_content, response):
         data_content_result = True
@@ -340,15 +365,12 @@ class Http_Test:
                 data_list = list(data.values())
                 key_result = [g for g in keys if g in str(data_list)]
                 if len(key_result) == len(keys):
-                    # try:
-                    #     check = json.loads('Assert_data_content[i]')
-                    #     print('&&&&&&&&&&&&&&&&')
-                    #     data_content_result = self.response_diff_list(check, response)
-                    # except:
-                    #     print(check)
-                    #     print(response)
                     check = Assert_data_content[i]
-                    if check in str(response):
+                    check_key_get = json.loads(check).keys()
+                    check_key = [g for g in check_key_get][0]
+                    check_data_get = json.loads(check).values()
+                    check_value = [z for z in check_data_get][0]
+                    if check_value == self.response_value(check_key, response):
                         data_content_result = True
                     else:
                         print(str(check))
@@ -357,9 +379,16 @@ class Http_Test:
             else:
                 for e in data.values():
                     if i in e:
-                        if Assert_data_content[i] in str(response):
+                        check = Assert_data_content[i]
+                        check_key_get = json.loads(check).keys()
+                        check_key = [g for g in check_key_get][0]
+                        check_data_get = json.loads(check).values()
+                        check_value = [z for z in check_data_get][0]
+                        if check_value == self.response_value(check_key, response):
                             data_content_result = True
                         else:
+                            print(str(check))
+                            print(str(response))
                             data_content_result = False
         return data_content_result
 
@@ -417,7 +446,8 @@ class Http_Test:
             lang = data['kb_lang']
             duid = data['duid']
             app = data['app']
-            header = self.set_header(duid, app=app, version=self.version, lang=lang, way=self.way)
+            version = data['version']
+            header = self.set_header(duid, app=app, version=version, lang=lang, way=self.way)
             url = self.url_mosaic(data)
             # print(header)
             response = requests.request('get', url, headers=header)
@@ -583,11 +613,11 @@ class Http_Test:
 
 if __name__ == "__main__":
     # config = config_reader('./c')
-    # config = config_reader('./test_case')
-    config = config_reader('./tag_test')
+    config = config_reader('./test_case')
+    # config = config_reader('./tag_test')
     # print(config)
     test = Http_Test(config)
-    # test.c_process(10)
+    test.c_process(10)
     # print(time.time())
-    test.process(single_quantity=10)
+    # test.process(single_quantity=10)
     # test.Multithreading_api()
