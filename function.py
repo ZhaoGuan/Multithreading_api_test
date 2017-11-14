@@ -358,37 +358,48 @@ class Http_Test:
     def data_content(self, data, Assert_data_content, response):
         data_content_result = True
         for i in list(Assert_data_content.keys()):
-            if '&' in i:
-                i_ = i.split('&')
-                keys = [f for f in i_]
-                data_list = list(data.values())
-                key_result = [g for g in keys if g in str(data_list)]
-                if len(key_result) == len(keys):
-                    check = Assert_data_content[i]
-                    check_key_get = json.loads(check).keys()
-                    check_key = [g for g in check_key_get][0]
-                    check_data_get = json.loads(check).values()
-                    check_value = [z for z in check_data_get][0]
-                    if check_value == self.response_value(check_key, response):
-                        data_content_result = True
-                    else:
-                        # print(str(check))
-                        # print(str(response))
-                        data_content_result = False
-            else:
-                for e in data.values():
-                    if i in e:
-                        check = Assert_data_content[i]
-                        check_key_get = json.loads(check).keys()
+            try:
+                check = Assert_data_content[i]
+                check = json.loads(check)
+                if '&' in i:
+                    i_ = i.split('&')
+                    keys = [f for f in i_]
+                    data_list = list(data.values())
+                    key_result = [g for g in keys if g in str(data_list)]
+                    if len(key_result) == len(keys):
+                        check_key_get = check.keys()
                         check_key = [g for g in check_key_get][0]
-                        check_data_get = json.loads(check).values()
-                        check_value = [z for z in check_data_get][0]
-                        if check_value == self.response_value(check_key, response):
+                        check_value_get = check.values()
+                        check_value = [z for z in check_value_get][0]
+                        if '&' in check_value:
+                            check_value = check_value.split('&')
+                        if str(self.response_value(check_key, response)) in str(check_value):
                             data_content_result = True
                         else:
                             # print(str(check))
                             # print(str(response))
                             data_content_result = False
+                else:
+                    if i in list(data.values()):
+                        # check = Assert_data_content[i]
+                        # check = json.loads(check)
+                        check_key_get = check.keys()
+                        check_key = [g for g in check_key_get][0]
+                        check_value_get = check.values()
+                        check_value = [z for z in check_value_get][0]
+                        if '&' in check_value:
+                            check_value = check_value.split('&')
+                        if str(self.response_value(check_key, response)) in str(check_value):
+                            data_content_result = True
+                        else:
+                            # print(str(check))
+                            # print(str(response))
+                            data_content_result = False
+            except Exception as e:
+                print('data_content数据检查,数据格式有误')
+                print(Assert_data_content[i])
+                print(e)
+                data_content_result = False
         return data_content_result
 
     # 检查

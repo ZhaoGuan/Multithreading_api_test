@@ -17,7 +17,8 @@ assert:
   data_format : {"errorCode":'Int',"errorMsg":'Str',"data":{'tag':'&&&'}}
 #  数据检查
 #  前面的值是对应的维度，后面的字典内容key是对应值的路径，value是对应应该出现的值
-  data_content : {'ikey':'{"data&popup_duration":5000}','kika':'{"data&stickers&0&popup_duration":5000}','pro':'{"data&stickers&0&popup_duration":5000}'}
+#  填写内容验证遵守json格式，数据使用""
+  data_content : {'ikey':'{"data&popup_duration":"5000&400"}','kika':'{"data&stickers&0&popup_duration":"5000"}','pro':'{"data&stickers&0&popup_duration":"5000"}'}
 other:
   way: online
   host :

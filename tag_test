@@ -8,7 +8,7 @@ data:
   kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR', 'in_ID']
   duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
           '920b56e9cadd743bfbbcb4126937e789']
-  version : [2174,2444]
+  version :
 assert:
 #  返回码(只能第一层)
   code : {'key':'errorCode','value':0}
@@ -16,9 +16,9 @@ assert:
 #  data_format : {"errorCode":'Str',"errorMsg":'Str',"data":{'tag':'&&&'}}
 #  数据检查
   data_content : {
-        'es&adad79631d9339915e3be1c9e783e82d&kika':'{"data&popupdelay":500}',
-        'es&a2bb5434f3541bf5aa64186ec8c2b77f&kika':'{"data&popupdelay":400}',
-        'es&920b56e9cadd743bfbbcb4126937e789&kika':'{"data&popupdelay":600}'
+        'es&adad79631d9339915e3be1c9e783e82d&kika':'{"data&popupdelay":"500"}',
+        'es&a2bb5434f3541bf5aa64186ec8c2b77f&kika':'{"data&popupdelay":"400"}',
+        'es&920b56e9cadd743bfbbcb4126937e789&kika':'{"data&popupdelay":"600"}'
         }
 other:
   way: online
