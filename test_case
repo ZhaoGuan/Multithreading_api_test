@@ -9,7 +9,7 @@ data:
   tag : ['ok']
   duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
           '920b56e9cadd743bfbbcb4126937e789']
-#  version: [2043,2044]
+  version:
 assert:
 #  返回码(只能第一层)
   code : {'key':'errorCode','value':0}

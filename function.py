@@ -86,13 +86,6 @@ class Http_Test:
             self.version = 2043
             self.way = 'online'
             self.host = 'api.kikakeyboard.com'
-        # try:
-        #     self.other = self.config['other']
-        #     self.version = self.other['version']
-        #     if self.version == None:
-        #         self.version = 2043
-        # except:
-        #     self.version = 2043
         try:
             self.other = self.config['other']
             self.way = self.other['way']
@@ -222,20 +215,21 @@ class Http_Test:
         config_data = self.data
         data_keys = self.data.keys()
         for i in data_keys:
-            if len(all_data) == 0:
-                for f in config_data[i]:
-                    all_data.append({i: f})
-            else:
-                temp_all = []
-                for e in config_data[i]:
-                    temp = copy.deepcopy(all_data)
-                    for f in temp:
-                        f.update({i: e})
-                        if 'version' not in f.keys():
-                            f.update({'version':self.version})
-                    for g in temp:
-                        temp_all.append(g)
-                all_data = temp_all
+            if config_data[i] != None:
+                if len(all_data) == 0:
+                    for f in config_data[i]:
+                        all_data.append({i: f})
+                else:
+                    temp_all = []
+                    for e in config_data[i]:
+                        temp = copy.deepcopy(all_data)
+                        for f in temp:
+                            f.update({i: e})
+                            if 'version' not in f.keys():
+                                f.update({'version': self.version})
+                        for g in temp:
+                            temp_all.append(g)
+                        all_data = temp_all
         # print(all_data)
         # print(len(all_data))
         return all_data
@@ -617,7 +611,8 @@ if __name__ == "__main__":
     # config = config_reader('./tag_test')
     # print(config)
     test = Http_Test(config)
-    test.c_process(10)
+    print(test.url_keys_data())
+    # test.c_process(10)
     # print(time.time())
     # test.process(single_quantity=10)
     # test.Multithreading_api()
