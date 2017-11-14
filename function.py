@@ -401,7 +401,6 @@ class Http_Test:
                 print(e)
                 data_content_result = False
         return data_content_result
-
     # 检查
     def asser_api(self, data, response, fail):
         Assert = self.Assert
@@ -436,8 +435,8 @@ class Http_Test:
                 data_content_result = self.data_content(data, Assert_data_content, response_data)
                 if data_content_result == False:
                     reason.append('接口数据错误,返回数据为:' + response.text)
-        except:
-            # print('非JSON')
+        except Exception as e:
+            print('非JSON')
             pass
         if len(reason) > 0:
             fail_data.update({'data': data, 'reason': reason})
@@ -623,8 +622,8 @@ class Http_Test:
 
 if __name__ == "__main__":
     # config = config_reader('./c')
-    # config = config_reader('./test_case')
-    config = config_reader('./tag_test')
+    config = config_reader('./test_case')
+    # config = config_reader('./tag_test')
     # print(config)
     test = Http_Test(config)
     # print(len(test.url_keys_data()))
