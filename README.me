@@ -24,6 +24,9 @@ assert:
 #数据检查
 #前面的值是对应的维度，后面的字典内容key是对应值的路径，value是对应应该出现的值
 #填写内容验证遵守json格式，数据使用""
+#可以使用条件进行判断
+#eg:'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&popup_duration":"5000"}${"data&popup_duration":"4000"}'
+#维度为'ikey&920b56e9cadd743bfbbcb4126937e789'时且满足"data&popup_duration"对应字段等于5000是才进行{"data&popup_duration":"4000"}'判断
   data_content : {'ikey':'{"data&stickers&0&popup_duration":"5000"}'}
 #其他内容设定
 other:
