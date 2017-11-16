@@ -355,7 +355,11 @@ class Http_Test:
         return response
 
     # data_content无条件判断
-    def data_content_check(self, data, data_content_key, check_data, response):
+    def data_content_check(self, data, data_content_key_, check_data, response):
+        if '@' in data_content_key_:
+            data_content_key = data_content_key_.split('@')[0]
+        else:
+            data_content_key = data_content_key_
         data_content_result_False = 0
         try:
             check = check_data
@@ -372,13 +376,23 @@ class Http_Test:
                     check_value = [z for z in check_value_get][0]
                     if '&' in check_value:
                         check_value = check_value.split('&')
-                    if (str(self.response_value(check_key, response)) in list(str(check_value))) or (
-                                str(self.response_value(check_key, response)) == str(check_value)):
-                        pass
+                    response_value = self.response_value(check_key, response)
+                    if isinstance(check_value, str):
+                        if str(response_value) == str(check_value):
+                            pass
+                        else:
+                            print(data_content_key_)
+                            print(str(check))
+                            print(response_value)
+                            data_content_result_False += 1
                     else:
-                        # print(str(check))
-                        # print(str(response))
-                        data_content_result_False += 1
+                        if str(response_value) in list(check_value):
+                            pass
+                        else:
+                            print(data_content_key_)
+                            print(str(check))
+                            print(response_value)
+                            data_content_result_False += 1
             else:
                 if data_content_key in list(data.values()):
                     check_key_get = check.keys()
@@ -387,13 +401,23 @@ class Http_Test:
                     check_value = [z for z in check_value_get][0]
                     if '&' in check_value:
                         check_value = check_value.split('&')
-                    if (str(self.response_value(check_key, response)) in list(str(check_value))) or (
-                                str(self.response_value(check_key, response)) == str(check_value)):
-                        pass
+                    response_value = self.response_value(check_key, response)
+                    if isinstance(check_value, str) or isinstance(check_value, int):
+                        if str(response_value) == str(check_value):
+                            pass
+                        else:
+                            print(data_content_key_)
+                            print(str(check))
+                            print(str(response))
+                            data_content_result_False += 1
                     else:
-                        # print(str(check))
-                        # print(str(response))
-                        data_content_result_False += 1
+                        if str(response_value) in list(check_value):
+                            pass
+                        else:
+                            print(data_content_key_)
+                            print(str(check))
+                            print(response_value)
+                            data_content_result_False += 1
         except Exception as e:
             print('data_content数据检查,数据格式有误')
             print(check_data)
@@ -405,7 +429,11 @@ class Http_Test:
             return True
 
     # data_content有条件判断
-    def data_content_check_condition(self, data, data_content_key, condition, check_data, response):
+    def data_content_check_condition(self, data, data_content_key_, condition, check_data, response):
+        if '@' in data_content_key_:
+            data_content_key = data_content_key_.split('@')[0]
+        else:
+            data_content_key = data_content_key_
         data_content_result_False = 0
         try:
             check = check_data
@@ -430,14 +458,32 @@ class Http_Test:
                     condition_value = [z for z in condition_value_get][0]
                     if '&' in condition_value:
                         condition_value = condition.split('&')
-                    if str(self.response_value(condition_key, response)) == str(condition_value):
-                        if (str(self.response_value(check_key, response)) in list(str(check_value))) or (
-                                    str(self.response_value(check_key, response)) == str(check_value)):
-                            pass
+                    response_value = self.response_value(check_key, response)
+                    try:
+                        if str(self.response_value(condition_key, response)) == str(condition_value):
+                            if isinstance(str(check_value), str):
+                                if str(response_value) == str(check_value):
+                                    pass
+                                else:
+                                    print(data_content_key_)
+                                    print(str(check))
+                                    print(response_value)
+                                    data_content_result_False += 1
+                            else:
+                                if str(response_value) in list(str(check_value)):
+                                    pass
+                                else:
+                                    print(data_content_key_)
+                                    print(str(check))
+                                    print(response_value)
+                                    data_content_result_False += 1
                         else:
-                            # print(str(check))
-                            # print(str(response))
-                            data_content_result_False += 1
+                            print(data_content_key + '对应条件值不存在')
+                            print('对应判断条件值为：' + str(self.response_value(condition_key, response)))
+                    except Exception as e:
+                        print('条件路径有误')
+                        print(e)
+                        data_content_result_False += 1
             else:
                 if data_content_key in list(data.values()):
                     check_key_get = check.keys()
@@ -453,23 +499,38 @@ class Http_Test:
                     condition_value = [z for z in condition_value_get][0]
                     if '&' in condition_value:
                         condition_value = condition.split('&')
-                    if str(self.response_value(condition_key, response)) == str(condition_value):
-                        if (str(self.response_value(check_key, response)) in list(str(check_value))) or (
-                                    str(self.response_value(check_key, response)) == str(check_value)):
-                            # data_content_result = True
-                            pass
+                    response_value = self.response_value(check_key, response)
+                    try:
+                        if str(self.response_value(condition_key, response)) == str(condition_value):
+                            if isinstance(check_value, str) or isinstance(check_value, int):
+                                if str(response_value) == str(check_value):
+                                    pass
+                                else:
+                                    print(data_content_key_)
+                                    print(str(check))
+                                    print(response_value)
+                                    data_content_result_False += 1
+                            else:
+                                if str(response_value) in list(str(check_value)):
+                                    pass
+                                else:
+                                    print(data_content_key_)
+                                    print(str(check))
+                                    print(response_value)
+                                    data_content_result_False += 1
                         else:
-                            # print(str(check))
-                            # print(str(response))
-                            # data_content_result = False
-                            data_content_result_False += 1
+                            print(data_content_key + '对应条件值不存在')
+                            print('对应判断条件值为：' + str(self.response_value(condition_key, response)))
+                    except Exception as e:
+                        print('条件路径有误')
+                        print(e)
+                        data_content_result_False += 1
 
         except Exception as e:
             print('data_content数据检查,数据格式有误')
             print(check_data)
             print(e)
             data_content_result_False += 1
-
         if data_content_result_False > 0:
             return False
         else:

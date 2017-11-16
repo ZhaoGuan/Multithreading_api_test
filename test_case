@@ -1,15 +1,15 @@
-url: https://api.kikakeyboard.com/v1/stickers2/popup?
+#url: https://api.kikakeyboard.com/v1/stickers2/popup?
 cycle_times: 1
 #web0
 #url: http://54.70.186.123:8080/backend-content-sending/popup?
 #test3
-#url: http://52.43.155.219:9090/backend-content-sending/popup?
+url: http://52.43.155.219:9090/backend-content-sending/popup?
 keys: ['kb_lang','tag','duid']
 data:
-#  app: ['kika','ikey','pro']
-  app: ['ikey']
-  kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID']
-  tag : ['ok']
+  app: ['kika','ikey','pro']
+#  app: ['ikey']
+  kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR']
+  tag : ['gz_test']
   duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
           '920b56e9cadd743bfbbcb4126937e789']
   version:
@@ -18,14 +18,16 @@ assert:
   code : {'key':'errorCode','value':0}
 #  字段格式
   data_format : {"errorCode":'Int',"errorMsg":'Str',"data":{'tag':'&&&'}}
-#  数据检查
-#  前面的值是对应的维度，后面的字典内容key是对应值的路径，value是对应应该出现的值
-#  填写内容验证遵守json格式，数据使用""
-#  可以使用条件进行判断
+# 数据检查
+# 前面的值是对应的维度，后面的字典内容key是对应值的路径，value是对应应该出现的值
+# 填写内容验证遵守json格式，数据使用""
+# 可以使用条件进行判断
 # eg:'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&popup_duration":"5000"}${"data&popup_duration":"4000"}'
 # 维度为'ikey&920b56e9cadd743bfbbcb4126937e789'时且满足"data&popup_duration"对应字段等于5000是才进行{"data&popup_duration":"4000"}'判断
-  data_content : {'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&popup_duration":"5000"}${"data&popup_duration":"4000"}','kika':'{"data&stickers&0&popup_duration":"5000"}','pro':'{"data&stickers&0&popup_duration":"5000"}'}
+# 在维度上有字段重复的时候使用"@数字"的形势进行区分
+# 多可能结果 eg:'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&popup_duration":"4000&500"}
+  data_content : {'ikey@1':'{"data&type":"sticker"}${"data&popup_duration":"5000"}','ikey@2':'{"data&type":"magic"}${"data&popup_duration":"0"}','kika':'{"data&stickers&0&popup_duration":"5000"}','pro':'{"data&stickers&0&popup_duration":"5000"}'}
 other:
-  way: test
+  way: online
   host :
 
