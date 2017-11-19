@@ -1,0 +1,158 @@
+url: https://api.kikakeyboard.com/v1/utils/get_app_config?key=sticker2&
+cycle_times: 1
+#web0
+#url: http://54.70.186.123:8080/backend-content-sending/popup?
+keys: ['duid']
+data:
+  app: ['kika','ikey','pro']
+  kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR', 'in_ID']
+  duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
+          '920b56e9cadd743bfbbcb4126937e789']
+  version :
+assert:
+#  返回码(只能第一层)
+  code : {'key':'errorCode','value':0}
+#  字段格式
+#  data_format : {"errorCode":'Str',"errorMsg":'Str',"data":{'tag':'&&&'}}
+# 数据检查
+# 前面的值是对应的维度，后面的字典内容({"key":"value"}key是对应值的路径，value是对应应该出现的值(如果值添加问#那么只坚持对应结构是否存在忽略其具体值）
+# 填写内容验证遵守json格式，数据使用""
+# 可以使用条件进行判断
+# eg:'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&popup_duration":"5000"}${"data&popup_duration":"4000"}'
+# 维度为'ikey&920b56e9cadd743bfbbcb4126937e789'时且满足"data&popup_duration"对应字段等于5000是才进行{"data&popup_duration":"4000"}'判断
+# 在维度上有字段重复的时候使用"@数字"的形势进行区分
+# 多可能结果 eg:'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&popup_duration":"4000&500"}
+  data_content : {
+        'ikey':'{"data&tags_after_send":[":(", ":)", ":v", "?", "??", "???", "...", "\u2764", "\u2764\u2764", "\ud83e\udd14",
+                "\ud83d\ude01", "\ud83d\ude02", "\ud83d\ude02\ud83d\ude02", "\ud83d\ude02\ud83d\ude02\ud83d\ude02",
+                "\ud83d\ude02\ud83d\ude02\ud83d\ude02\ud83d\ude02", "\ud83d\ude02\ud83d\ude02\ud83d\ude02\ud83d\ude02\ud83d\ude02",
+                "\ud83d\ude02\ud83d\ude02\ud83d\ude02\ud83d\ude02\ud83d\ude02\ud83d\ude02", "\ud83d\ude0a",
+                "\ud83d\ude0d", "\ud83d\ude0d\ud83d\ude0d", "\ud83d\ude0d\ud83d\ude0d\ud83d\ude0d",
+                "\ud83d\ude12", "\ud83d\ude18", "\ud83d\ude18\ud83d\ude18", "\ud83d\ude18\ud83d\ude18\ud83d\ude18",
+                "\ud83d\ude44", "a bueno", "aaa", "acha", "aff", "ah", "ah", "ah bueno", "ah sim",
+                "aha", "aham", "ahh", "ahh", "ahhh", "aja", "alright", "am\u00e9m", "amen", "amor",
+                "amor", "apa", "are", "asi", "ata", "babe", "baby", "bb", "bem", "bien", "bien y
+                tu", "bjs", "blm", "blz", "bn", "boa", "boa noite", "boa tarde", "bolo", "bom dia",
+                "buenas noches", "bueno", "bueno amor", "buenos d\u00edas", "bye", "bye", "claro",
+                "claro", "como", "como estas", "como estas?", "confirm", "confirmar", "cool", "da",
+                "dale", "damn", "de nada", "desculpa", "dime", "donde estas", "\u00e9", "e vc",
+                "e vc?", "eh", "ei", "eita", "enserio", "ent\u00e3o", "entendi", "esta bien", "eu",
+                "eu sei", "fa", "fala", "Field1", "gm", "gn", "go", "goo", "good", "good morning",
+                "good night", "gpp", "gracias", "ha", "haa", "haan", "haha", "hahah", "hahaha",
+                "hahahah", "hahahaha", "hahahahaha", "hahahahahaha", "hai", "happy birthday", "hehe",
+                "hehehe", "hello", "hey", "hey", "hi", "hii", "hiii", "hlo", "hm", "hmm", "hmmm",
+                "hmmmm", "ho", "holaa", "holaaa", "how", "huh", "hum", "humm", "hy", "i know", "i
+                love you", "idk", "ight", "igual", "ik", "isso", "iy", "iya", "iya sayang", "iyaa",
+                "iyaaa", "iyah", "iyh", "iyo", "ja", "ja", "jaja", "jajaj", "jajajaj", "jajajaja",
+                "jajajajaj", "jajajajaja", "jajajajajaja", "jajajajajajaja", "jajajja", "jajja",
+                "jeje", "jejeje", "ka", "ki", "kk", "kkk", "kkkk", "kkkkk", "kkkkkk", "kkkkkkk",
+                "kkkkkkkk", "kkkkkkkkk", "kkkkkkkkkk", "kkkkkkkkkkk", "kkkkkkkkkkkk", "knp", "konfirmasi",
+                "kya", "la", "linda", "lmao", "lol", "ma", "ma", "mami", "ma\u00f1ana", "mande",
+                "mano", "mds", "me", "me too", "mhm", "mi", "mi", "mi amor", "mira", "mm", "mm",
+                "mmm", "mmm", "mmmm", "mo", "morning", "my", "na", "nada", "nada", "nah", "nao",
+                "n\u00e3o", "n\u00e3o sei", "nd", "ne", "n\u00e9", "neh", "nhi", "ni", "nice", "nn",
+                "no", "no", "no se", "noo", "nooo", "nop", "nope", "nose", "nossa", "nothing", "obg",
+                "obrigada", "obrigado", "oh", "oh ok", "ohh", "ohhh", "ohk", "oi", "oie", "oii",
+                "oiii", "ok", "ok", "okay", "oke", "okey", "oki", "okk", "okok", "ola", "omg", "oo",
+                "ooi", "opa", "opo", "oq", "owh", "oye", "pero", "ping", "po", "pois \u00e9", "porque",
+                "porque?", "pq", "pq?", "pues", "pues si", "q bom", "q haces", "que", "que bien",
+                "que bom", "que bueno", "que haces", "que haces?", "que?", "re", "really", "rs",
+                "rsrs", "sa", "same", "sayang", "sei", "s\u00e9rio", "serio", "sh", "si", "si amor",
+                "sii", "siii", "siiii", "sim", "sip", "sip", "sisi", "sla", "smh", "so", "sorry",
+                "ss", "streaks", "sup", "sure", "ta", "t\u00e1", "ta bom", "ta certo", "tabom",
+                "tbm", "tchau", "te amo", "te amo", "te quiero", "tendi", "thank you", "thanks",
+                "to", "tu", "tudo bem", "ty", "udah", "uhum", "va", "vai", "vale", "vc", "vdd",
+                "verdade", "viu", "vou", "wait", "we", "what", "what?", "what''s up", "why", "why?",
+                "wkwk", "wkwkwk", "wow", "wtf", "wya", "wyd", "xd", "xd", "xq", "y eso", "y tu",
+                "y tu?", "ya", "ya", "yah", "yang", "ye", "yea", "yeah", "yep", "yes", "yh", "yo",
+                "yo", "you", "yup", "true"]}',
+        'kika':'{"data&tags_after_send":[":(", ":)", ":v", "?", "??", "???", "...", "\u2764", "\u2764\u2764", "\ud83e\udd14",
+               "\ud83d\ude01", "\ud83d\ude02", "\ud83d\ude02\ud83d\ude02", "\ud83d\ude02\ud83d\ude02\ud83d\ude02",
+               "\ud83d\ude02\ud83d\ude02\ud83d\ude02\ud83d\ude02", "\ud83d\ude02\ud83d\ude02\ud83d\ude02\ud83d\ude02\ud83d\ude02",
+               "\ud83d\ude02\ud83d\ude02\ud83d\ude02\ud83d\ude02\ud83d\ude02\ud83d\ude02", "\ud83d\ude0a",
+               "\ud83d\ude0d", "\ud83d\ude0d\ud83d\ude0d", "\ud83d\ude0d\ud83d\ude0d\ud83d\ude0d",
+               "\ud83d\ude12", "\ud83d\ude18", "\ud83d\ude18\ud83d\ude18", "\ud83d\ude18\ud83d\ude18\ud83d\ude18",
+               "\ud83d\ude44", "a bueno", "aaa", "acha", "aff", "ah", "ah", "ah bueno", "ah sim",
+               "aha", "aham", "ahh", "ahh", "ahhh", "aja", "alright", "am\u00e9m", "amen", "amor",
+               "amor", "apa", "are", "asi", "ata", "babe", "baby", "bb", "bem", "bien", "bien y
+               tu", "bjs", "blm", "blz", "bn", "boa", "boa noite", "boa tarde", "bolo", "bom dia",
+               "buenas noches", "bueno", "bueno amor", "buenos d\u00edas", "bye", "bye", "claro",
+               "claro", "como", "como estas", "como estas?", "confirm", "confirmar", "cool", "da",
+               "dale", "damn", "de nada", "desculpa", "dime", "donde estas", "\u00e9", "e vc",
+               "e vc?", "eh", "ei", "eita", "enserio", "ent\u00e3o", "entendi", "esta bien", "eu",
+               "eu sei", "fa", "fala", "Field1", "gm", "gn", "go", "goo", "good", "good morning",
+               "good night", "gpp", "gracias", "ha", "haa", "haan", "haha", "hahah", "hahaha",
+               "hahahah", "hahahaha", "hahahahaha", "hahahahahaha", "hai", "happy birthday", "hehe",
+               "hehehe", "hello", "hey", "hey", "hi", "hii", "hiii", "hlo", "hm", "hmm", "hmmm",
+               "hmmmm", "ho", "holaa", "holaaa", "how", "huh", "hum", "humm", "hy", "i know", "i
+               love you", "idk", "ight", "igual", "ik", "isso", "iy", "iya", "iya sayang", "iyaa",
+               "iyaaa", "iyah", "iyh", "iyo", "ja", "ja", "jaja", "jajaj", "jajajaj", "jajajaja",
+               "jajajajaj", "jajajajaja", "jajajajajaja", "jajajajajajaja", "jajajja", "jajja",
+               "jeje", "jejeje", "ka", "ki", "kk", "kkk", "kkkk", "kkkkk", "kkkkkk", "kkkkkkk",
+               "kkkkkkkk", "kkkkkkkkk", "kkkkkkkkkk", "kkkkkkkkkkk", "kkkkkkkkkkkk", "knp", "konfirmasi",
+               "kya", "la", "linda", "lmao", "lol", "ma", "ma", "mami", "ma\u00f1ana", "mande",
+               "mano", "mds", "me", "me too", "mhm", "mi", "mi", "mi amor", "mira", "mm", "mm",
+               "mmm", "mmm", "mmmm", "mo", "morning", "my", "na", "nada", "nada", "nah", "nao",
+               "n\u00e3o", "n\u00e3o sei", "nd", "ne", "n\u00e9", "neh", "nhi", "ni", "nice", "nn",
+               "no", "no", "no se", "noo", "nooo", "nop", "nope", "nose", "nossa", "nothing", "obg",
+               "obrigada", "obrigado", "oh", "oh ok", "ohh", "ohhh", "ohk", "oi", "oie", "oii",
+               "oiii", "ok", "ok", "okay", "oke", "okey", "oki", "okk", "okok", "ola", "omg", "oo",
+               "ooi", "opa", "opo", "oq", "owh", "oye", "pero", "ping", "po", "pois \u00e9", "porque",
+               "porque?", "pq", "pq?", "pues", "pues si", "q bom", "q haces", "que", "que bien",
+               "que bom", "que bueno", "que haces", "que haces?", "que?", "re", "really", "rs",
+               "rsrs", "sa", "same", "sayang", "sei", "s\u00e9rio", "serio", "sh", "si", "si amor",
+               "sii", "siii", "siiii", "sim", "sip", "sip", "sisi", "sla", "smh", "so", "sorry",
+               "ss", "streaks", "sup", "sure", "ta", "t\u00e1", "ta bom", "ta certo", "tabom",
+               "tbm", "tchau", "te amo", "te amo", "te quiero", "tendi", "thank you", "thanks",
+               "to", "tu", "tudo bem", "ty", "udah", "uhum", "va", "vai", "vale", "vc", "vdd",
+               "verdade", "viu", "vou", "wait", "we", "what", "what?", "what''s up", "why", "why?",
+               "wkwk", "wkwkwk", "wow", "wtf", "wya", "wyd", "xd", "xd", "xq", "y eso", "y tu",
+               "y tu?", "ya", "ya", "yah", "yang", "ye", "yea", "yeah", "yep", "yes", "yh", "yo",
+               "yo", "you", "yup", "true"]}',
+        'pro':'{"data&tags_after_send":[":(", ":)", ":v", "?", "??", "???", "...", "\u2764", "\u2764\u2764", "\ud83e\udd14",
+               "\ud83d\ude01", "\ud83d\ude02", "\ud83d\ude02\ud83d\ude02", "\ud83d\ude02\ud83d\ude02\ud83d\ude02",
+               "\ud83d\ude02\ud83d\ude02\ud83d\ude02\ud83d\ude02", "\ud83d\ude02\ud83d\ude02\ud83d\ude02\ud83d\ude02\ud83d\ude02",
+               "\ud83d\ude02\ud83d\ude02\ud83d\ude02\ud83d\ude02\ud83d\ude02\ud83d\ude02", "\ud83d\ude0a",
+               "\ud83d\ude0d", "\ud83d\ude0d\ud83d\ude0d", "\ud83d\ude0d\ud83d\ude0d\ud83d\ude0d",
+               "\ud83d\ude12", "\ud83d\ude18", "\ud83d\ude18\ud83d\ude18", "\ud83d\ude18\ud83d\ude18\ud83d\ude18",
+               "\ud83d\ude44", "a bueno", "aaa", "acha", "aff", "ah", "ah", "ah bueno", "ah sim",
+               "aha", "aham", "ahh", "ahh", "ahhh", "aja", "alright", "am\u00e9m", "amen", "amor",
+               "amor", "apa", "are", "asi", "ata", "babe", "baby", "bb", "bem", "bien", "bien y
+               tu", "bjs", "blm", "blz", "bn", "boa", "boa noite", "boa tarde", "bolo", "bom dia",
+               "buenas noches", "bueno", "bueno amor", "buenos d\u00edas", "bye", "bye", "claro",
+               "claro", "como", "como estas", "como estas?", "confirm", "confirmar", "cool", "da",
+               "dale", "damn", "de nada", "desculpa", "dime", "donde estas", "\u00e9", "e vc",
+               "e vc?", "eh", "ei", "eita", "enserio", "ent\u00e3o", "entendi", "esta bien", "eu",
+               "eu sei", "fa", "fala", "Field1", "gm", "gn", "go", "goo", "good", "good morning",
+               "good night", "gpp", "gracias", "ha", "haa", "haan", "haha", "hahah", "hahaha",
+               "hahahah", "hahahaha", "hahahahaha", "hahahahahaha", "hai", "happy birthday", "hehe",
+               "hehehe", "hello", "hey", "hey", "hi", "hii", "hiii", "hlo", "hm", "hmm", "hmmm",
+               "hmmmm", "ho", "holaa", "holaaa", "how", "huh", "hum", "humm", "hy", "i know", "i
+               love you", "idk", "ight", "igual", "ik", "isso", "iy", "iya", "iya sayang", "iyaa",
+               "iyaaa", "iyah", "iyh", "iyo", "ja", "ja", "jaja", "jajaj", "jajajaj", "jajajaja",
+               "jajajajaj", "jajajajaja", "jajajajajaja", "jajajajajajaja", "jajajja", "jajja",
+               "jeje", "jejeje", "ka", "ki", "kk", "kkk", "kkkk", "kkkkk", "kkkkkk", "kkkkkkk",
+               "kkkkkkkk", "kkkkkkkkk", "kkkkkkkkkk", "kkkkkkkkkkk", "kkkkkkkkkkkk", "knp", "konfirmasi",
+               "kya", "la", "linda", "lmao", "lol", "ma", "ma", "mami", "ma\u00f1ana", "mande",
+               "mano", "mds", "me", "me too", "mhm", "mi", "mi", "mi amor", "mira", "mm", "mm",
+               "mmm", "mmm", "mmmm", "mo", "morning", "my", "na", "nada", "nada", "nah", "nao",
+               "n\u00e3o", "n\u00e3o sei", "nd", "ne", "n\u00e9", "neh", "nhi", "ni", "nice", "nn",
+               "no", "no", "no se", "noo", "nooo", "nop", "nope", "nose", "nossa", "nothing", "obg",
+               "obrigada", "obrigado", "oh", "oh ok", "ohh", "ohhh", "ohk", "oi", "oie", "oii",
+               "oiii", "ok", "ok", "okay", "oke", "okey", "oki", "okk", "okok", "ola", "omg", "oo",
+               "ooi", "opa", "opo", "oq", "owh", "oye", "pero", "ping", "po", "pois \u00e9", "porque",
+               "porque?", "pq", "pq?", "pues", "pues si", "q bom", "q haces", "que", "que bien",
+               "que bom", "que bueno", "que haces", "que haces?", "que?", "re", "really", "rs",
+               "rsrs", "sa", "same", "sayang", "sei", "s\u00e9rio", "serio", "sh", "si", "si amor",
+               "sii", "siii", "siiii", "sim", "sip", "sip", "sisi", "sla", "smh", "so", "sorry",
+               "ss", "streaks", "sup", "sure", "ta", "t\u00e1", "ta bom", "ta certo", "tabom",
+               "tbm", "tchau", "te amo", "te amo", "te quiero", "tendi", "thank you", "thanks",
+               "to", "tu", "tudo bem", "ty", "udah", "uhum", "va", "vai", "vale", "vc", "vdd",
+               "verdade", "viu", "vou", "wait", "we", "what", "what?", "what''s up", "why", "why?",
+               "wkwk", "wkwkwk", "wow", "wtf", "wya", "wyd", "xd", "xd", "xq", "y eso", "y tu",
+               "y tu?", "ya", "ya", "yah", "yang", "ye", "yea", "yeah", "yep", "yes", "yh", "yo",
+               "yo", "you", "yup", "true"]}'
+        }
+other:
+  way: online
+  host:

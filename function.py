@@ -354,6 +354,31 @@ class Http_Test:
                 print(e)
         return response
 
+    # 数据判断
+    def content_check(self,data_content_result_False,check,data_content_key_,response):
+        check_key_get = check.keys()
+        check_key = [g for g in check_key_get][0]
+        check_value_get = check.values()
+        check_value = [z for z in check_value_get][0]
+        if '&' in check_value:
+            check_value = check_value.split('&')
+        response_value = self.response_value(check_key, response)
+        if isinstance(check_value, str):
+            if (str(response_value) == str(check_value)) or (str(check_value) == "#"):
+                pass
+            else:
+                print(data_content_key_)
+                print(str(check))
+                print(response_value)
+                data_content_result_False += 1
+        else:
+            if (str(response_value) in list(check_value)) or (response_value == check_value):
+                pass
+            else:
+                print(data_content_key_)
+                print(str(check))
+                print(response_value)
+                data_content_result_False += 1
     # data_content无条件判断
     def data_content_check(self, data, data_content_key_, check_data, response):
         if '@' in data_content_key_:
@@ -378,7 +403,7 @@ class Http_Test:
                         check_value = check_value.split('&')
                     response_value = self.response_value(check_key, response)
                     if isinstance(check_value, str):
-                        if str(response_value) == str(check_value):
+                        if (str(response_value) == str(check_value)) or (str(check_value) == "#"):
                             pass
                         else:
                             print(data_content_key_)
@@ -386,7 +411,7 @@ class Http_Test:
                             print(response_value)
                             data_content_result_False += 1
                     else:
-                        if str(response_value) in list(check_value):
+                        if (str(response_value) in list(check_value)) or (response_value == check_value):
                             pass
                         else:
                             print(data_content_key_)
@@ -403,7 +428,7 @@ class Http_Test:
                         check_value = check_value.split('&')
                     response_value = self.response_value(check_key, response)
                     if isinstance(check_value, str) or isinstance(check_value, int):
-                        if str(response_value) == str(check_value):
+                        if (str(response_value) == str(check_value)) or (str(check_value) == "#"):
                             pass
                         else:
                             print(data_content_key_)
@@ -411,7 +436,8 @@ class Http_Test:
                             print(str(response))
                             data_content_result_False += 1
                     else:
-                        if str(response_value) in list(check_value):
+                        # 如果判断内容为list(暂时没有dict)
+                        if (str(response_value) in list(check_value)) or (response_value == check_value):
                             pass
                         else:
                             print(data_content_key_)
@@ -462,7 +488,7 @@ class Http_Test:
                     try:
                         if str(self.response_value(condition_key, response)) == str(condition_value):
                             if isinstance(str(check_value), str):
-                                if str(response_value) == str(check_value):
+                                if (str(response_value) == str(check_value))or (str(check_value) == "#"):
                                     pass
                                 else:
                                     print(data_content_key_)
@@ -470,7 +496,7 @@ class Http_Test:
                                     print(response_value)
                                     data_content_result_False += 1
                             else:
-                                if str(response_value) in list(str(check_value)):
+                                if (str(response_value) in list(check_value)) or (response_value == check_value):
                                     pass
                                 else:
                                     print(data_content_key_)
@@ -478,7 +504,7 @@ class Http_Test:
                                     print(response_value)
                                     data_content_result_False += 1
                         else:
-                            print(data_content_key + '对应条件值不存在')
+                            print(data_content_key_ + '对应条件值不存在')
                             print('对应判断条件值为：' + str(self.response_value(condition_key, response)))
                     except Exception as e:
                         print('条件路径有误')
@@ -503,7 +529,7 @@ class Http_Test:
                     try:
                         if str(self.response_value(condition_key, response)) == str(condition_value):
                             if isinstance(check_value, str) or isinstance(check_value, int):
-                                if str(response_value) == str(check_value):
+                                if (str(response_value) == str(check_value))or (str(check_value) == "#"):
                                     pass
                                 else:
                                     print(data_content_key_)
@@ -511,7 +537,7 @@ class Http_Test:
                                     print(response_value)
                                     data_content_result_False += 1
                             else:
-                                if str(response_value) in list(str(check_value)):
+                                if (str(response_value) in list(check_value)) or (response_value == check_value):
                                     pass
                                 else:
                                     print(data_content_key_)
@@ -519,7 +545,7 @@ class Http_Test:
                                     print(response_value)
                                     data_content_result_False += 1
                         else:
-                            print(data_content_key + '对应条件值不存在')
+                            print(data_content_key_ + '对应条件值不存在')
                             print('对应判断条件值为：' + str(self.response_value(condition_key, response)))
                     except Exception as e:
                         print('条件路径有误')
@@ -783,11 +809,9 @@ class Http_Test:
 
 if __name__ == "__main__":
     # config = config_reader('./c')
-    config = config_reader('./test_case')
-    # config = config_reader('./tag_test')
-    # print(config)
+    # config = config_reader('./case/test_case')
+    config = config_reader('./case/tag_test')
     test = Http_Test(config)
-    # print(len(test.url_keys_data()))
     # test.c_process(10)
     # print(time.time())
     # test.process(single_quantity=10)
