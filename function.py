@@ -103,10 +103,7 @@ class Http_Test:
             self.other = self.config['other']
             self.host = self.other['host']
         except:
-            if self.way == 'test':
-                self.host = 'api-dev.kikakeyboard.com'
-            else:
-                self.host = 'api.kikakeyboard.com'
+            self.host = None
         try:
             self.Assert = self.config['assert']
         except:
@@ -573,7 +570,10 @@ class Http_Test:
             version = int(data['version'])
             header = self.set_header(duid, app=app, version=version, lang=lang, way=self.way)
             url = self.url_mosaic(data)
-            # print(header)
+            print(self.way)
+            print(self.host)
+            print(url)
+            print(header)
             response = requests.request('get', url, headers=header)
         self.asser_api(data, response, fail)
         self.all_response(data, response)
@@ -742,5 +742,5 @@ if __name__ == "__main__":
     test = Http_Test(config)
     # test.c_process(10)
     # print(time.time())
-    # test.process(single_quantity=10)
-    test.Multithreading_api()
+    test.process(single_quantity=10)
+    # test.Multithreading_api()
