@@ -1,7 +1,7 @@
-#url: https://api.kikakeyboard.com/v1/stickers2/popup?
-cycle_times: 4
+url: https://api.kikakeyboard.com/v1/stickers2/popup?
+cycle_times: 1
 #web0
-url: http://sticker.pre.kikakeyboard.com/backend-content-sending/popup?
+#url: http://sticker.pre.kikakeyboard.com/backend-content-sending/popup?
 #test3
 #url: http://52.43.155.219:9090/backend-content-sending/popup?
 keys: ['kb_lang','tag','duid']
@@ -12,7 +12,8 @@ data:
   tag : ['ok']
   duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
           '920b56e9cadd743bfbbcb4126937e789']
-  version:
+# version可以通过对指定对象配置版本，最后一个&后填写版本之前的都是条件用&分隔
+  version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1478']
 assert:
 #  返回码(只能第一层)
   code : {'key':'errorCode','value':0}
@@ -26,7 +27,11 @@ assert:
 # 维度为'ikey&920b56e9cadd743bfbbcb4126937e789'时且满足"data&popup_duration"对应字段等于5000是才进行{"data&popup_duration":"4000"}'判断
 # 在维度上有字段重复的时候使用"@数字"的形势进行区分
 # 多可能结果 eg:'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&popup_duration":"4000&500"}
-  data_content : {'ikey@1':'{"data&type":"sticker"}${"data&popup_duration":"5000"}','ikey@2':'{"data&type":"magic"}${"data&popup_duration":"0"}','kika':'{"data&stickers&0&popup_duration":"5000"}','pro':'{"data&stickers&0&popup_duration":"5000"}'}
+  data_content : {'ikey@1':'{"data&type":"sticker"}${"data&popup_duration":"5000"}',
+                  'ikey@2':'{"data&type":"magic"}${"data&popup_duration":"0"}',
+                  'ikey&1478':'{"data&type":"magic&sticker"}',
+                  'kika':'{"data&stickers&0&popup_duration":"5000"}',
+                  'pro':'{"data&stickers&0&popup_duration":"5000"}'}
 other:
   way: online
   host :

@@ -212,11 +212,33 @@ class Http_Test:
 
         return header
 
+    # version处理
+    def handle_version(self, version_data, keys_data):
+        if '&' in str(version_data):
+            data = version_data.split('&')
+            condition = data[:-1]
+            print(condition)
+            version = data[-1]
+            print(version)
+            condition_count = 0
+            for i in condition:
+                if i in keys_data.values():
+                    condition_count += 1
+            if condition_count == len(condition):
+                keys_data.update({'version': version})
+        else:
+            keys_data.update({'version': version_data})
+
     # url key 数据整理
     def url_keys_data(self):
         all_data = []
         config_data = self.data
-        data_keys = self.data.keys()
+        copy_data = copy.deepcopy(self.data)
+        try:
+            copy_data.pop('version')
+        except:
+            pass
+        data_keys = list(list(copy_data.keys()))
         for i in data_keys:
             if len(all_data) == 0:
                 for f in config_data[i]:
@@ -227,11 +249,22 @@ class Http_Test:
                     temp = copy.deepcopy(all_data)
                     for f in temp:
                         f.update({i: e})
-                        if 'version' not in f.keys():
-                            f.update({'version': self.version})
                     for g in temp:
                         temp_all.append(g)
                 all_data = temp_all
+        # 处理version
+        temp_all_data = []
+        for data in all_data:
+            if 'version' not in config_data.keys():
+                data.update({'version': self.version})
+            else:
+                for v in config_data['version']:
+                    copy_data = copy.deepcopy(data)
+                    self.handle_version(v, copy_data)
+                    if 'version' not in list(copy_data.keys()):
+                        copy_data.update({'version': self.version})
+                    temp_all_data.append(copy_data)
+                all_data = temp_all_data
         # print(all_data)
         # print(len(all_data))
         return all_data
@@ -570,10 +603,10 @@ class Http_Test:
             version = int(data['version'])
             header = self.set_header(duid, app=app, version=version, lang=lang, way=self.way)
             url = self.url_mosaic(data)
-            print(self.way)
-            print(self.host)
-            print(url)
-            print(header)
+            # print(self.way)
+            # print(self.host)
+            # print(url)
+            # print(header)
             response = requests.request('get', url, headers=header)
         self.asser_api(data, response, fail)
         self.all_response(data, response)
@@ -742,5 +775,5 @@ if __name__ == "__main__":
     test = Http_Test(config)
     # test.c_process(10)
     # print(time.time())
-    test.process(single_quantity=10)
-    # test.Multithreading_api()
+    # test.process(single_quantity=10)
+    test.Multithreading_api()
