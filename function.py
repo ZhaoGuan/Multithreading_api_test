@@ -650,8 +650,8 @@ class Http_Test:
         print(time.time() - start_time)
         print('有误的配置内容:')
         print('有误数量:' + str(len(fail)))
+        print('所有误解返回内容:')
         print(fail)
-        print('所有返回内容:')
         all_data = reader_table()
         print('所有返回内容数量:' + str(len(all_data)))
         print(all_data)
@@ -770,8 +770,9 @@ class Http_Test:
 
 if __name__ == "__main__":
     # config = config_reader('./c')
-    config = config_reader('./case/test_case')
-    # config = config_reader('./case/tag_test')
+    # config = config_reader('./case/test_case')
+    config = config_reader('./case/tag_test')
+    # print(json.loads(config['assert']['data_content']['pro@1']))
     test = Http_Test(config)
     # test.c_process(10)
     # print(time.time())
