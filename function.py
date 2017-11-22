@@ -89,7 +89,7 @@ class Http_Test:
         try:
             self.other = self.config['other']
         except:
-            self.version = 2043
+            self.version = 1477
             self.way = 'online'
             self.host = 'api.kikakeyboard.com'
         try:
@@ -109,7 +109,7 @@ class Http_Test:
         except:
             self.Assert = None
         # 默认version
-        self.version = 2043
+        self.version = 1477
 
     # 根据udid获取sign
     def get_sign(self, app, version, duid):
@@ -137,7 +137,7 @@ class Http_Test:
         return sign
 
     # 设定header
-    def set_header(self, duid, lang='en_AU', app='kika', version=2043, way='online'):
+    def set_header(self, duid, lang='en_AU', app='kika', version=1477, way='online'):
         lange_en = ['en_AU', 'AU', 'en']
         lange_pt = ['pt_BR', 'BR', 'pt']
         lange_es = ['es_AR', 'AR', 'es']
@@ -217,9 +217,7 @@ class Http_Test:
         if '&' in str(version_data):
             data = version_data.split('&')
             condition = data[:-1]
-            print(condition)
             version = data[-1]
-            print(version)
             condition_count = 0
             for i in condition:
                 if i in keys_data.values():
@@ -770,11 +768,11 @@ class Http_Test:
 
 if __name__ == "__main__":
     # config = config_reader('./c')
-    # config = config_reader('./case/test_case')
-    config = config_reader('./case/tag_test')
+    config = config_reader('./case/test_case')
+    # config = config_reader('./case/tag_test')
     # print(json.loads(config['assert']['data_content']['pro@1']))
     test = Http_Test(config)
     # test.c_process(10)
     # print(time.time())
-    # test.process(single_quantity=10)
-    test.Multithreading_api()
+    test.process(single_quantity=10)
+    # test.Multithreading_api()
