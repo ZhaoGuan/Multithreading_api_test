@@ -9,6 +9,7 @@ data:
   app: ['kika','ikey','pro']
 #  app: ['ikey']
   kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID']
+#  kb_lang : ['en_US', 'en_AU', 'es_AR']
   tag : ['ok']
   duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
           '920b56e9cadd743bfbbcb4126937e789']
@@ -27,11 +28,17 @@ assert:
 # 维度为'ikey&920b56e9cadd743bfbbcb4126937e789'时且满足"data&popup_duration"对应字段等于5000是才进行{"data&popup_duration":"4000"}'判断
 # 在维度上有字段重复的时候使用"@数字"的形势进行区分
 # 多可能结果 eg:'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&popup_duration":"4000&500"}
-  data_content : {'ikey@1':'{"data&type":"sticker"}${"data&popup_duration":"5000"}',
+  data_content : {
+                  # ikey sticker和magic展示时间判断
+                  'ikey@1':'{"data&type":"sticker"}${"data&popup_duration":"5000"}',
                   'ikey@2':'{"data&type":"magic"}${"data&popup_duration":"0"}',
+                  # ikey1477以下版本不支持magic
+                  'ikey&1477':'{"data&type":"sticker"}',
                   'ikey&1478':'{"data&type":"magic&sticker"}',
+                  # kika pro 展示时间判断
                   'kika':'{"data&stickers&0&popup_duration":"5000"}',
-                  'pro':'{"data&stickers&0&popup_duration":"5000"}'}
+                  'pro':'{"data&stickers&0&popup_duration":"5000"}'
+                  }
 other:
   way: online
   host :

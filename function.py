@@ -138,38 +138,8 @@ class Http_Test:
 
     # 设定header
     def set_header(self, duid, lang='en_AU', app='kika', version=1477, way='online'):
-        lange_en = ['en_AU', 'AU', 'en']
-        lange_pt = ['pt_BR', 'BR', 'pt']
-        lange_es = ['es_AR', 'AR', 'es']
-        lange_in = ['in_ID', 'ID', 'in']
-        lange_us = ['en_US', 'US', 'en']
-        lange_ca = ['en_CA', 'CA', 'en']
-        lange_e_in = ['en_IN', 'IN', 'en']
-        lange_nz = ['en_NZ', 'NZ', 'en']
-        lange_ph = ['en_PH', 'PH', 'en']
-        lange_uk = ['en_UK', 'UK', 'en']
-        if lang == 'en_AU':
-            use_lang = lange_en
-        elif lang == 'en_US':
-            use_lang = lange_us
-        elif lang == 'en_CA':
-            use_lang = lange_ca
-        elif lang == 'en_IN':
-            use_lang = lange_e_in
-        elif lang == 'en_NZ':
-            use_lang = lange_nz
-        elif lang == 'en_PH':
-            use_lang = lange_ph
-        elif lang == 'en_UK':
-            use_lang = lange_uk
-        elif lang == 'pt_BR':
-            use_lang = lange_pt
-        elif lang == 'es_AR':
-            use_lang = lange_es
-        else:
-            use_lang = lange_in
-        # print('@@@@@@@@')
-        # print(use_lang)
+        lange_config = config_reader('./lange')
+        use_lang = lange_config[lang]
         if 'pro' == app:
             app_key = '4e5ab3a6d2140457e0423a28a094b1fd'
             security_key = '58d71c3fd1b5b17db9e0be0acc1b8048'
@@ -768,11 +738,11 @@ class Http_Test:
 
 if __name__ == "__main__":
     # config = config_reader('./c')
-    config = config_reader('./case/test_case')
-    # config = config_reader('./case/tag_test')
+    # config = config_reader('./case/test_case')
+    config = config_reader('./case/tag_test')
     # print(json.loads(config['assert']['data_content']['pro@1']))
     test = Http_Test(config)
     # test.c_process(10)
     # print(time.time())
-    test.process(single_quantity=10)
-    # test.Multithreading_api()
+    # test.process(single_quantity=10)
+    test.Multithreading_api()
