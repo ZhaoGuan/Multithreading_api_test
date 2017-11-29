@@ -265,9 +265,9 @@ class Http_Test:
             resources_result = False
         return resources_result
 
-    # 返回数据校验
-    def response_data_check(self, case, response):
-        if case == '&&&':
+    # 返回数据详细校验
+    def response_data_check_(self, case, response):
+        if case == '@@@':
             print('有值进行了忽略')
             result = True
         else:
@@ -280,7 +280,10 @@ class Http_Test:
                 result = isinstance(response, bool)
             elif case == 'Str':
                 # 判断字符串是否为空字符串
-                result = isinstance(response, str) and response != ''
+                if response != '':
+                    result = isinstance(response, str)
+                else:
+                    result = False
             elif case == 'Int':
                 result = isinstance(response, int)
             else:
@@ -297,11 +300,23 @@ class Http_Test:
                     # print(result)
         return result
 
+    # 返回数据校验
+    def response_data_check(self, case, response):
+        result = []
+        if '&' in case:
+            case = case.split('&')
+            for i in case:
+                result.append(self.response_data_check_(i, response))
+        else:
+            result.append(self.response_data_check_(case, response))
+        if True in result:
+            return True
+        else:
+            return False
+
     # 返回不同检查数据处理
     # 遇到list不检查list的数量去case中的第一个模板跟response中的内容最对比
-    def response_diff_list(self, case, response):
-        diff_result = True
-        diff = []
+    def response_diff_list(self, case, response, diff=[]):
         if isinstance(case, list):
             model = case[0]
             for i in case:
@@ -309,7 +324,7 @@ class Http_Test:
                     if isinstance(i, str):
                         diff.append(self.response_data_check(model, e))
                     else:
-                        self.response_diff_list(i, e)
+                        self.response_diff_list(i, e, diff)
         if isinstance(case, dict):
             if case.keys() == response.keys():
                 for key in case.keys():
@@ -319,17 +334,18 @@ class Http_Test:
                         if '&&&' in str(case[key]):
                             continue
                         else:
-                            self.response_diff_list(case[key], response[key])
+                            self.response_diff_list(case[key], response[key], diff)
                     else:
                         if isinstance(case[key], str):
                             diff.append(self.response_data_check(case[key], response[key]))
                         else:
-                            self.response_diff_list(case[key], response[key])
+                            self.response_diff_list(case[key], response[key], diff)
             else:
                 diff.append(self.response_data_check(case, response))
         if False in diff:
-            diff_result = False
-        return diff_result
+            return False
+        else:
+            return True
 
     # response字段获取
     def response_value(self, key_value, response):
@@ -540,7 +556,15 @@ class Http_Test:
                     reason.append('接口对应code' + Assert['code']['key'] + '值错误,返回内容为' + str(code))
             if Assert_data_format != None:
                 case = Assert['data_format']
-                data_format_result = self.response_diff_list(case, response_data)
+                if '&' in str(case.keys()):
+                    for i in case.keys():
+                        condition = json.loads(i)
+                        if self.response_value(list(condition.keys())[0], response_data) == list(condition.values())[0]:
+                            case = case[i]
+                            break
+                    data_format_result = self.response_diff_list(case, response_data, [])
+                else:
+                    data_format_result = self.response_diff_list(case, response_data, [])
                 if data_format_result == False:
                     reason.append('接口数据格式错误,返回格式为:' + response.text)
             if Assert_data_content != None:
@@ -738,11 +762,11 @@ class Http_Test:
 
 if __name__ == "__main__":
     # config = config_reader('./c')
-    # config = config_reader('./case/test_case')
-    config = config_reader('./case/tag_test')
+    config = config_reader('./case/test_case')
+    # config = config_reader('./case/tag_test')
     # print(json.loads(config['assert']['data_content']['pro@1']))
     test = Http_Test(config)
     # test.c_process(10)
     # print(time.time())
-    # test.process(single_quantity=10)
-    test.Multithreading_api()
+    test.process(single_quantity=10)
+    # test.Multithreading_api()
