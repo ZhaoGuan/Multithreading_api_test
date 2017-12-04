@@ -161,16 +161,16 @@ class Tag_list_check:
         fail_key = []
         keys = list(check_value.keys())
         response = response['data']
-        for i in keys:
-            # print(response[i])
-            # print(check_value[i])
-            if response[i] == check_value[i]:
-                # print('ok')
-                pass
-            else:
-                print(response[i])
-                print(check_value[i])
-                fail_key.append(i)
+        if set(keys) == set(response.keys()):
+            for i in keys:
+                if response[i] == check_value[i]:
+                    pass
+                else:
+                    print(response[i])
+                    print(check_value[i])
+                    fail_key.append(i)
+        else:
+            fail_key.append('response中key值不正确')
         return fail_key
 
     # 检查
