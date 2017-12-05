@@ -528,6 +528,21 @@ class Http_Test:
             return False
         else:
             return True
+    #
+    def response_headers_check(self,data, Assert_data_herader, response):
+        response_header = eval(str(response.headers))
+        key_list = list(Assert_data_herader.keys())
+        result = []
+        for i in key_list:
+            if i in response_header.keys():
+                if response_header[i] == Assert_data_herader[i]:
+                    pass
+                else:
+                    result.append(False)
+        if len(result) > 0:
+            return False
+        else:
+            return True
 
     # 检查
     def asser_api(self, data, response, fail):
@@ -544,6 +559,10 @@ class Http_Test:
             Assert_data_content = Assert['data_content']
         except:
             Assert_data_content = None
+        try:
+            Assert_data_response_header = Assert['response_header']
+        except:
+            Assert_data_response_header = None
         fail_data = {}
         reason = []
         if response.status_code != 200:
@@ -571,6 +590,10 @@ class Http_Test:
                 data_content_result = self.data_content(data, Assert_data_content, response_data)
                 if data_content_result == False:
                     reason.append('接口数据错误,返回数据为:' + response.text)
+            if Assert_data_response_header != None:
+                data_response_header_result = self.response_headers_check(data, Assert_data_response_header, response)
+                if data_response_header_result == False:
+                    reason.append('接口response header数据错误,headers数据为:' + str(response.headers))
         except Exception as e:
             print(e)
             print('非JSON')
@@ -768,5 +791,5 @@ if __name__ == "__main__":
     test = Http_Test(config)
     # test.c_process(10)
     # print(time.time())
-    test.process(single_quantity=10)
-    # test.Multithreading_api()
+    # test.process(single_quantity=10)
+    test.Multithreading_api()
