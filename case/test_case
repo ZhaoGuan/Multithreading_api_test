@@ -45,9 +45,10 @@ assert:
                   'pro':'{"data&stickers&0&popup_duration":"5000"}'
                   }
 # response_header检查
-# 展示是有检查没有不检查
+# 可根据前面的条件检查，条件能够用&关联
   response_header : {
-                  'Cache-Control': 'max-age=86400'
+                    kika: {Cache-Control: "max-age=86400"},
+                    pro: {Cache-Control: "max-age=86400"},
                     }
 other:
   way: online

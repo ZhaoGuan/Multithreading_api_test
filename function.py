@@ -507,19 +507,20 @@ class Http_Test:
     # 对应字段返回对应值
     def data_content(self, data, Assert_data_content, response):
         data_content_result_false = 0
-        for i in list(Assert_data_content.keys()):
-            if '$' in Assert_data_content[i]:
-                check_data_all = Assert_data_content[i].split('$')
+        for key, value in Assert_data_content.items():
+            if '$' in value:
+                check_data_all = value.split('$')
                 check_condition = check_data_all[0]
                 check_data = check_data_all[-1]
-                data_content_result = self.data_content_check_condition(data, i, check_condition, check_data, response)
+                data_content_result = self.data_content_check_condition(data, key, check_condition, check_data,
+                                                                        response)
                 if data_content_result == False:
                     data_content_result_false += 1
                 else:
                     pass
             else:
-                check_data = Assert_data_content[i]
-                data_content_result = self.data_content_check(data, i, check_data, response)
+                check_data = value
+                data_content_result = self.data_content_check(data, key, check_data, response)
                 if data_content_result == False:
                     data_content_result_false += 1
                 else:
@@ -528,17 +529,39 @@ class Http_Test:
             return False
         else:
             return True
-    #
-    def response_headers_check(self,data, Assert_data_herader, response):
+
+    # 检查是否有对应的key有检查是否相等,不得或没有添加到result中
+    def key_not_existence_value_not_equal(self, key, value, response_header, result):
+        if key in response_header.keys():
+            if response_header[key] == value:
+                pass
+            else:
+                result.append(False)
+        else:
+            result.append(False)
+
+    # response返回内容检查
+    def response_headers_check(self, data, Assert_data_herader, response):
         response_header = eval(str(response.headers))
-        key_list = list(Assert_data_herader.keys())
         result = []
-        for i in key_list:
-            if i in response_header.keys():
-                if response_header[i] == Assert_data_herader[i]:
-                    pass
+        for key, value in Assert_data_herader.items():
+            if isinstance(value, str):
+                # 检查是否有对应的key有检查是否相等没有为错误
+                self.key_not_existence_value_not_equal(key, value, response_header, result)
+            else:
+                condition = key
+                if '&' in condition:
+                    condition_ = condition.split('&')
+                    condition_key = [f for f in condition_]
+                    data_list = list(data.values())
+                    key_result = [g for g in condition_key if g in str(data_list)]
+                    if len(key_result) == len(condition_key):
+                        for header_key, header_value in value.items():
+                            self.key_not_existence_value_not_equal(header_key, header_value, response_header, result)
                 else:
-                    result.append(False)
+                    if condition in data.values():
+                        for header_key, header_value in value.items():
+                            self.key_not_existence_value_not_equal(header_key, header_value, response_header, result)
         if len(result) > 0:
             return False
         else:
@@ -787,7 +810,7 @@ if __name__ == "__main__":
     # config = config_reader('./c')
     config = config_reader('./case/test_case')
     # config = config_reader('./case/tag_test')
-    # print(json.loads(config['assert']['data_content']['pro@1']))
+    header = config['assert']['response_header']
     test = Http_Test(config)
     # test.c_process(10)
     # print(time.time())
