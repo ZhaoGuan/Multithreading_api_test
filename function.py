@@ -330,8 +330,8 @@ class Http_Test:
                 for key in case.keys():
                     # 值得类型是list进行忽略检查
                     if isinstance(case[key], list):
-                        # dict value检查有&&&忽略(强制转化了下期中的内容），这里是对list数量不对称的处理
-                        if '&&&' in str(case[key]):
+                        # dict value检查有@@@忽略(强制转化了下期中的内容），这里是对list数量不对称的处理
+                        if '@@@' in str(case[key]):
                             continue
                         else:
                             self.response_diff_list(case[key], response[key], diff)
