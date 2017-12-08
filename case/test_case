@@ -1,7 +1,7 @@
-url: https://api.kikakeyboard.com/v1/stickers2/popup?
-cycle_times: 1
+#url: https://api.kikakeyboard.com/v1/stickers2/popup?
+cycle_times: 12
 #web0
-#url: http://sticker.pre.kikakeyboard.com/backend-content-sending/popup?
+url: http://sticker.pre.kikakeyboard.com/backend-content-sending/popup?
 #test3
 #url: http://52.43.155.219:9090/backend-content-sending/popup?
 keys: ['kb_lang','tag','duid']
@@ -9,7 +9,7 @@ data:
   app: ['kika','ikey','pro']
 #  app: ['ikey']
   kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
-#  kb_lang : ['en_US', 'en_AU', 'es_AR']
+#  kb_lang : ['en_US', 'en_AU']
   tag : ['ok']
   duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
           '920b56e9cadd743bfbbcb4126937e789']
@@ -22,7 +22,8 @@ assert:
 # 多个返回可能的时候使用&连接可能性，使用@@@进行字段胡洛
 # 返回内容如果是个多级字段则为前置条件条件各级用&连接
   data_format : {
-    '{"data&type":"sticker"}':{'data': {'type': 'Str', 'magics': '$$$', 'stickers': [{'key': 'Str', 'tags': ['Str'], 'scale_type': 'Int', 'name': '$$$', 'mark': 'Str', 'image': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'mp4': '$$$', 'popup_duration': 'Int', 'source_text': 'Str&$$$'}], 'popup_duration': 'Int', 'extra': 'Str'}, 'errorMsg': 'Str', 'errorCode': 'Int'},
+    '{"data&type":"sticker"}':{'data': {'popup_duration': 'Int', 'stickers': [{'package_id': 'Str&$$$', 'tags': ['Str'], 'scale_type': 'Int', 'source_text': 'Str&$$$', 'mp4': '$$$', 'name': '$$$', 'popup_duration': 'Int', 'icon_url': 'Str&$$$', 'image': {'height': 'Int', 'width': 'Int', 'url': 'Str'}, 'mark': 'Str', 'key': 'Str'}], 'magics': '$$$', 'extra': 'Str', 'type': 'Str'}, 'errorCode': 'Int', 'errorMsg': 'Str'},
+#    '{"data&type":"sticker"}':{'data': {'type': 'Str', 'magics': '$$$', 'stickers': [{'key': 'Str', 'tags': ['Str'], 'scale_type': 'Int', 'name': '$$$', 'mark': 'Str', 'image': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'mp4': '$$$', 'popup_duration': 'Int', source_text': 'Str&$$$','package_id': 'Int&$$$', 'icon_url': 'Http&$$$'}], 'popup_duration': 'Int', 'extra': 'Str'}, 'errorMsg': 'Str', 'errorCode': 'Int'},
     '{"data&type":"magic"}':{'data': {'type': 'Str', 'magics': [{'key': 'Str', 'style': 'Str'}], 'stickers': '$$$', 'popup_duration': 'Int', 'extra': 'Str'}, 'errorMsg': 'Str', 'errorCode': 'Int'}
     }
 # 数据检查

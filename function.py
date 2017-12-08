@@ -814,5 +814,5 @@ if __name__ == "__main__":
     test = Http_Test(config)
     # test.c_process(10)
     # print(time.time())
-    # test.process(single_quantity=10)
-    test.Multithreading_api()
+    test.process(single_quantity=10)
+    # test.Multithreading_api()
