@@ -71,5 +71,6 @@ def data_clear(data):
 
 
 if __name__ == "__main__":
+    # data内容为response返回内容
     data = '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"005552bfc17585560f68ff108148aab4","name":null,"tags":["sticker"],"source_text":"kikatech.com","image":{"url":"http://cdn.kikakeyboard.com/sticker_partnerLoveEmoji/01.png","width":458,"height":270},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":"38","icon_url":"http://cdn.kikakeyboard.com/sticker_partnerLoveEmoji/icon.png"}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{}"}}'
     print(data_clear(data))
