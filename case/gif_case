@@ -1,0 +1,34 @@
+above:
+  url: http://api.kikakeyboard.com/backend-picture/v1/gif/tags?
+  keys: ['duid']
+  data:
+    app: ['kika']
+    kb_lang : ['en_US']
+    duid : ['5a215835df204115ee3d2d4ec0c528aa']
+    version :
+  assert:
+  #  返回码(只能第一层)
+    code : {'key':'errorCode','value':0}
+  #字段格式
+    data_format : {'errorMsg': 'Str', 'errorCode': 'Int','data': {'tagList': [{'key': 'Str', 'id': 'Int', 'name': 'Str', 'image': 'HTTP', 'path': 'HTTP'}]}}
+  # 传递给下文的内容
+  content: 'data&tagList&[]&key'
+  other:
+    way: online
+    host:
+below:
+  url: http://api.kikakeyboard.com/backend-picture/v1/gif/search?
+  keys: ['duid','query']
+  data:
+    app: ['kika']
+    kb_lang : ['en_US']
+    duid : ['5a215835df204115ee3d2d4ec0c528aa']
+    query: ['content']
+    version :
+  assert:
+  #  返回码(只能第一层)
+    code : {'key':'errorCode','value':0}
+    data_format : {'errorMsg': 'Str', 'errorCode': 'Int', 'data': {'resourceList': [{'tiny_gif': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'preview': 'HTTP', 'gif': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'source': 'Str', 'mp4': {'height': 'Int', 'width': 'Int', 'url': 'HTTP', 'duration': -1.0}, 'source_id': 'Str', 'tinygif': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'index': 'Int', 'title': 'Str', 'tags': ['@@@']}]}}
+  other:
+    way: online
+    host:
