@@ -1,0 +1,34 @@
+above:
+  url: https://api.kikakeyboard.com/v1/stickers2/trending?page=0&size=10&
+  keys: ['duid']
+  data:
+    app: ['kika']
+    kb_lang : ['en_US']
+    duid : ['5a215835df204115ee3d2d4ec0c528aa']
+    version :
+  assert:
+  #  返回码(只能第一层)
+    code : {'key':'errorCode','value':0}
+  #字段格式
+    data_format : {'errorCode': 'Int', 'errorMsg': 'Str', 'data': {'next_page': 'Int', 'page': 'Int', 'size': 'Int', 'data': [{'icon': 'HTTP', 'stickers': [{'mp4': '$$$', 'key': 'Str', 'name': 'Str', 'type': 'Int', 'image': {'width': 'Int', 'height': 'Int', 'url': 'HTTP'}, 'tags': ['@@@'], 'scale_type': 'Int'}], 'key': 'Str', 'description': 'Str', 'name': 'Str', 'author': {'name': 'Str', 'avatar': 'Str', 'key': 'Str'}, 'icon_big': 'HTTP'}]}}
+  # 传递给下文的内容
+  content: 'data&data&[]&key'
+  other:
+    way: online
+    host:
+below:
+  url: https://api.kikakeyboard.com/v1/stickers2/
+  keys: ['content','duid']
+  data:
+    app: ['kika']
+    kb_lang : ['en_US']
+    duid : ['5a215835df204115ee3d2d4ec0c528aa']
+    content: ['content']
+    version :
+  assert:
+  #  返回码(只能第一层)
+    code : {'key':'errorCode','value':0}
+    data_format : {'errorMsg': 'Str', 'errorCode': 'Int', 'data': {'icon': 'HTTP', 'description': 'Str', 'name': 'Str', 'key': 'Str', 'author': {'key': '@@@', 'avatar': '@@@', 'name': '@@@'}, 'icon_big': 'HTTP', 'stickers': [{'tags': ['@@@'], 'name': 'Str', 'mp4': {'height': 'Int', 'url': 'HTTP', 'width': 'Int'}, 'key': 'Str', 'scale_type': 'Int', 'type': 'Int', 'image': {'height': 'Int', 'url': 'HTTP', 'width': 'Int'}}]}}
+  other:
+    way: online
+    host:

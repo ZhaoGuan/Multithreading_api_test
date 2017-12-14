@@ -37,3 +37,42 @@ other:
   way: online  
 #host填写(可不填)
   host:
+
+# 上线问接口测试使用格式
+#上文
+above:
+  url: http://api.kikakeyboard.com/backend-picture/v1/sticker/categories?
+  keys: ['duid']
+  data:
+    app: ['kika']
+    kb_lang : ['en_US']
+    duid : ['5a215835df204115ee3d2d4ec0c528aa']
+    version :
+  assert:
+  #  返回码(只能第一层)
+    code : {'key':'errorCode','value':0}
+  #字段格式
+    data_format : {'errorCode': 'Int', 'errorMsg': 'Str', 'data': {'categories': [{'preview': 'HTTP', 'name': 'Str', 'title': 'Str'}}}}
+  # 传递给下文的内容
+  # []代表list
+  content: 'data&categories&[]&name'
+  other:
+    way: online
+    host:
+#下文
+below:
+  url: http://api.kikakeyboard.com/backend-picture/v1/sticker/search?
+  keys: ['duid','query']
+  data:
+    app: ['kika']
+    kb_lang : ['en_US']
+    duid : ['5a215835df204115ee3d2d4ec0c528aa']
+    query: ['content']
+    version :
+  assert:
+  #  返回码(只能第一层)
+    code : {'key':'errorCode','value':0}
+    data_format : {'errorCode': 'Int', 'errorMsg': 'Str','data': {'stickers': [{'small': {'url': 'HTTP', 'width': 'Int', 'height': 'Int'}, 'preview': 'HTTP', 'source': 'Str', 'index': 'Int', 'large': {'url': 'HTTP', 'width': 'Int', 'height': 'Int'}, 'tags': ['@@@'], 'id': 'Str'}]}}
+  other:
+    way: online
+    host:

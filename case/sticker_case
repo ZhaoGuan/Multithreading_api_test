@@ -12,6 +12,7 @@ above:
   #字段格式
     data_format : {'errorCode': 'Int', 'errorMsg': 'Str', 'data': {'categories': [{'preview': 'HTTP', 'name': 'Str', 'title': 'Str'}}}}
   # 传递给下文的内容
+  # []代表list
   content: 'data&categories&[]&name'
   other:
     way: online

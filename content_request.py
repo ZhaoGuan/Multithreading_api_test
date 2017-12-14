@@ -245,7 +245,7 @@ class Http_Test:
             url = self.url_mosaic(data)
             response = requests.request('get', url, headers=header)
         print(url)
-        # print(response.text)
+        print(response.text)
         self.asser_api(data, response, fail)
         self.all_response(data, response)
         if len(fail) == 0:
@@ -271,9 +271,12 @@ class Http_Test:
             version = int(data['version'])
             header = self.kika_request.set_header(duid, app=app, version=version, lang=lang, way=self.way)
             url = self.url_mosaic(data)
+            # 为了package的临时方案
+            if 'content=' in url:
+                url = url.replace('content=', '').replace('&', '?')
             print(url)
             response = requests.request('get', url, headers=header)
-        # print(response.text)
+        print(response.text)
         self.asser_api(data, response, fail)
         self.all_response(data, response)
         return response.text
@@ -292,13 +295,14 @@ def content_request(Path):
     if len(above_fail) == 0:
         below = below_test.below_url_request(content, below_test.url_keys_data()[0], below_fail)
         if len(below_fail) > 0:
-            result = '上文结果通过,下文结果错误，错位内容:\n' + below_fail
+            result = '上文结果通过,下文结果错误，错位内容:\n' + str(below_fail)
     else:
-        result = '上文接口错误，访问内容为:\n' + above_fail
+        result = '上文接口错误，访问内容为:\n' + str(above_fail)
     print(result)
     return result
 
 
 if __name__ == "__main__":
     # content_request('./case/sticker_case')
-    content_request('./case/gif_case')
+    # content_request('./case/gif_case')
+    content_request('./case/sticker2_package')

@@ -225,6 +225,7 @@ class Http_Test:
             # print(self.host)
             # print(url)
             # print(header)
+            # print(url)
             response = requests.request('get', url, headers=header)
         self.asser_api(data, response, fail)
         self.all_response(data, response)
@@ -273,6 +274,10 @@ class Http_Test:
         all_data = reader_table()
         print('所有返回内容数量:' + str(len(all_data)))
         print(all_data)
+        if len(fail) != 0:
+            print('有失败的内容！！！！！！！！！')
+        else:
+            print('测试通过！！！！')
 
     # 线程
     def threading(self, fail, queue, single_quantity):
@@ -342,6 +347,10 @@ class Http_Test:
         print(len(all_data))
         print('所有返回内容:')
         print(all_data)
+        if len(fail) != 0:
+            print('有失败的内容！！！！！！！！！')
+        else:
+            print('测试通过！！！！')
 
     # 策略C测试
     def c_process(self, single_quantity=1, process_number=4):
@@ -387,10 +396,10 @@ class Http_Test:
 
 
 if __name__ == "__main__":
-    # config = config_reader('./c')
-    config = config_reader('./case/test_case')
-    # config = config_reader('./case/tag_test')
-    header = config['assert']['response_header']
+    # config = config_reader('./case/test_case')
+    config = config_reader('./case/sticker2_trending')
+    config = config_reader('./case/sticker2_all')
+    # print(config)
     test = Http_Test(config)
     # test.c_process(10)
     # print(time.time())
