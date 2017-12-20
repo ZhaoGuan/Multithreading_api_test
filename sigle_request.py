@@ -166,7 +166,7 @@ class Http_Test:
         fail_data = {}
         reason = []
         if response.status_code != 200:
-            reason.append('接口返回值不等于200')
+            reason.append('接口返回值不等于200,返回内容为:' + str(response.status_code))
         try:
             response_data = json.loads(response.text)
             if Assert_code != None:
@@ -396,9 +396,9 @@ class Http_Test:
 
 
 if __name__ == "__main__":
-    # config = config_reader('./case/test_case')
-    config = config_reader('./case/sticker2_trending')
-    config = config_reader('./case/sticker2_all')
+    config = config_reader('./case/test_case')
+    # config = config_reader('./case/sticker2_trending')
+    # config = config_reader('./case/sticker2_all')
     # print(config)
     test = Http_Test(config)
     # test.c_process(10)

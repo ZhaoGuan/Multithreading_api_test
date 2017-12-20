@@ -1,5 +1,6 @@
 above:
-  url: http://api.kikakeyboard.com/backend-picture/v1/sticker/categories?
+#  url: http://api.kikakeyboard.com/backend-picture/v1/sticker/categories?
+  url: http://35.162.54.159:8080/backend-picture/v1/sticker/categories?
   keys: ['duid']
   data:
     app: ['kika']
@@ -10,7 +11,7 @@ above:
   #  返回码(只能第一层)
     code : {'key':'errorCode','value':0}
   #字段格式
-    data_format : {'errorCode': 'Int', 'errorMsg': 'Str', 'data': {'categories': [{'preview': 'HTTP', 'name': 'Str', 'title': 'Str'}}}}
+    data_format : {'errorCode': 'Int', 'errorMsg': 'Str', 'data': {'categories': [{'preview': 'HTTP', 'name': 'Str', 'title': 'Str'}]}}
   # 传递给下文的内容
   # []代表list
   content: 'data&categories&[]&name'
@@ -18,7 +19,8 @@ above:
     way: online
     host:
 below:
-  url: http://api.kikakeyboard.com/backend-picture/v1/sticker/search?
+#  url: http://api.kikakeyboard.com/backend-picture/v1/sticker/search?
+  url: http://35.162.54.159:8080/backend-picture/v1/sticker/search?
   keys: ['duid','query']
   data:
     app: ['kika']

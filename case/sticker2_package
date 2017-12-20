@@ -1,5 +1,6 @@
 above:
-  url: https://api.kikakeyboard.com/v1/stickers2/trending?page=0&size=10&
+#  url: https://api.kikakeyboard.com/v1/stickers2/trending?page=0&size=10&
+  url: http://35.162.54.159:8080/backend-picture/v1/stickers2/trending?page=0&size=10&
   keys: ['duid']
   data:
     app: ['kika']
@@ -17,7 +18,8 @@ above:
     way: online
     host:
 below:
-  url: https://api.kikakeyboard.com/v1/stickers2/
+#  url: https://api.kikakeyboard.com/v1/stickers2/
+  url: http://35.162.54.159:8080/backend-picture/v1/stickers2/
   keys: ['content','duid']
   data:
     app: ['kika']

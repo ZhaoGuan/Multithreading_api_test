@@ -11,14 +11,15 @@ data:
   kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
 #  kb_lang : ['en_US', 'en_AU']
   tag : ['ok']
+#  tag : ['hi']
   duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
           '920b56e9cadd743bfbbcb4126937e789']
   # 算法duid
 #  duid : ['1cbea45d00704178ed555e8cd12a4f3b', 'c500d24e6f79ea93de3fe8eb7c420f0a', '8f9e30b328b3fa3f07fc7eaefff1a16e',
 #          'd3aba2d3052aa2a9aaeaa4273c8859a0']
 # version可以通过对指定对象配置版本，最后一个&后填写版本之前的都是条件用&分隔
-#  version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1478']
-  version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1478']
+  version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1478']
+#  version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1478']
 assert:
 #  返回码(只能第一层)
   code : {'key':'errorCode','value':0}
@@ -40,13 +41,16 @@ assert:
   data_content : {
                   # ikey sticker和magic展示时间判断
                   'ikey@1':'{"data&type":"sticker"}${"data&popup_duration":"5000"}',
-                  'ikey@2':'{"data&type":"magic"}${"data&popup_duration":"0"}',
+                  'ikey@2':'{"data&type":"magis"}${"data&popup_duration":"0"}',
                   # ikey1477以下版本不支持magic
                   'ikey&1477':'{"data&type":"sticker"}',
                   'ikey&1478':'{"data&type":"magic&sticker"}',
                   # kika pro 展示时间判断
-                  'kika':'{"data&stickers&0&popup_duration":"5000"}',
-                  'pro':'{"data&stickers&0&popup_duration":"5000"}'
+                  'kika@1':'{"data&stickers&0&popup_duration":"5000"}',
+                  'pro@1':'{"data&stickers&0&popup_duration":"5000"}',
+                  'ikey@3':'{"data&type":"sticker"}${"data&stickers&0&tags&0":"ok"}',
+                  'kika@2':'{"data&stickers&0&tags&0":"ok"}',
+                  'pro@@2':'{"data&stickers&0&tags&0":"ok"}'
                   }
 # response_header检查
 # 可根据前面的条件检查，条件能够用&关联

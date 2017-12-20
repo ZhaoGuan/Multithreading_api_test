@@ -1,5 +1,6 @@
 above:
-  url: http://api.kikakeyboard.com/backend-picture/v1/gif/tags?
+#  url: http://api.kikakeyboard.com/backend-picture/v1/gif/tags?
+  url: http://35.162.54.159:8080/backend-picture/v1/gif/tags?
   keys: ['duid']
   data:
     app: ['kika']
@@ -17,7 +18,8 @@ above:
     way: online
     host:
 below:
-  url: http://api.kikakeyboard.com/backend-picture/v1/gif/search?
+#  url: http://api.kikakeyboard.com/backend-picture/v1/gif/search?
+  url: http://35.162.54.159:8080/backend-picture/v1/gif/search?
   keys: ['duid','query']
   data:
     app: ['kika']

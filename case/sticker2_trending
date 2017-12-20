@@ -1,4 +1,5 @@
-url: https://api.kikakeyboard.com/v1/stickers2/trending?page=0&size=10&
+#url: https://api.kikakeyboard.com/v1/stickers2/trending?page=0&size=10&
+url: http://35.162.54.159:8080/backend-picture/v1/stickers2/trending?page=0&size=10&
 cycle_times: 1
 #web0
 #url: http://sticker.pre.kikakeyboard.com/backend-content-sending/popup?
