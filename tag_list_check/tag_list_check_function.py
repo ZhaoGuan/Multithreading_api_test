@@ -227,6 +227,11 @@ class Tag_list_check:
         print(fail)
         print('所有返回结果:')
         print(all_response)
+        if len(fail) != 0:
+            print('有失败的内容！！！！！！！！！')
+            print(len(fail))
+        else:
+            print('测试通过！！！！')
 
 
 if __name__ == "__main__":

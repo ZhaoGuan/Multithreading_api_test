@@ -11,7 +11,6 @@ import requests
 import yaml
 import os
 
-print(os.getcwd())
 from base_function.Inspection_method import Inspection_method
 from base_function.data_sqlite import *
 from base_function.kika_base_request import Kika_base_request

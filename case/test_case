@@ -1,9 +1,9 @@
-url: https://api.kikakeyboard.com/v1/stickers2/popup?
+url: https://api.kikakeyboard.com/v1/stickers2/popup?type=0&
 cycle_times: 1
 #web0
-#url: http://sticker.pre.kikakeyboard.com/backend-content-sending/popup?
+#url: http://sticker.pre.kikakeyboard.com/backend-content-sending/popup?type=0&
 #test3
-#url: http://52.43.155.219:9090/backend-content-sending/popup?
+#url: http://52.43.155.219:9090/backend-content-sending/popup?type=0&
 keys: ['kb_lang','tag','duid']
 data:
   app: ['kika','ikey','pro']
@@ -11,12 +11,12 @@ data:
   kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
 #  kb_lang : ['en_US', 'en_AU']
   tag : ['ok']
-#  tag : ['hi']
+#  tag: [lol]
+#  tag : ['ha']
   duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
           '920b56e9cadd743bfbbcb4126937e789']
-  # 算法duid
-#  duid : ['1cbea45d00704178ed555e8cd12a4f3b', 'c500d24e6f79ea93de3fe8eb7c420f0a', '8f9e30b328b3fa3f07fc7eaefff1a16e',
-#          'd3aba2d3052aa2a9aaeaa4273c8859a0']
+#  算法duid
+#  duid : ['a2bb5434f3541bf5aa64186ec8c2b77f']
 # version可以通过对指定对象配置版本，最后一个&后填写版本之前的都是条件用&分隔
   version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1478']
 #  version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1478']
@@ -27,7 +27,7 @@ assert:
 # 多个返回可能的时候使用&连接可能性，使用@@@进行字段胡洛
 # 返回内容如果是个多级字段则为前置条件条件各级用&连接
   data_format : {
-    '{"data&type":"sticker"}':{'data': {'popup_duration': 'Int', 'stickers': [{'package_id': 'Str&$$$', 'tags': ['@@@'], 'scale_type': 'Int', 'source_text': 'Str&$$$', 'mp4': '$$$', 'name': '$$$', 'popup_duration': 'Int', 'icon_url': 'Str&$$$', 'image': {'height': 'Int', 'width': 'Int', 'url': 'Str'}, 'mark': 'Str', 'key': 'Str'}], 'magics': '$$$', 'extra': '@@@', 'type': 'Str'}, 'errorCode': 'Int', 'errorMsg': 'Str'},
+    '{"data&type":"sticker"}':{'data': {'popup_duration': 'Int', 'stickers': [{'package_id': 'Str&$$$', 'tags': ['@@@'], 'scale_type': 'Int', 'source_text': 'Str&$$$', 'mp4': '$$$', 'name': '$$$', 'popup_duration': 'Int', 'icon_url': 'Str&$$$', 'image': {'height': 'Int', 'width': 'Int', 'url': 'Str', 'size':'Int' , 'md5':'Str'}, 'mark': 'Str', 'key': 'Str'}], 'magics': '$$$', 'extra': '@@@', 'type': 'Str'}, 'errorCode': 'Int', 'errorMsg': 'Str'},
     '{"data&type":"magic"}':{'data': {'type': 'Str', 'magics': [{'key': 'Str', 'style': 'Str'}], 'stickers': '$$$', 'popup_duration': 'Int', 'extra': 'Str'}, 'errorMsg': 'Str', 'errorCode': 'Int'}
     }
 # 数据检查
