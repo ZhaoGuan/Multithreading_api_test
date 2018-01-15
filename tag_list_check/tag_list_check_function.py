@@ -187,7 +187,10 @@ class Tag_list_check:
         except Exception as e:
             print(e)
             print('非JSON')
+            print(data)
+            print(json.loads(response.text))
             fail_data.update({'data': data, 'reason': '返回内容错误非JSON'})
+            fail.append(fail_data)
         if len(reason) > 0:
             fail_data.update({'data': data, 'reason': reason})
             fail.append(fail_data)
@@ -226,7 +229,7 @@ class Tag_list_check:
         print('所有误解返回内容:')
         print(fail)
         print('所有返回结果:')
-        print(all_response)
+        # print(all_response)
         if len(fail) != 0:
             print('有失败的内容！！！！！！！！！')
             print(len(fail))
