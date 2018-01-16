@@ -99,11 +99,16 @@ def get_fiel(file_id):
 
 
 def get_doc_data(name):
-    id = file_list()[name]
-    data = get_fiel(id)
+    try:
+        id = file_list()[name]
+        data = get_fiel(id)
+    except:
+        print('未发现对应DOC ID')
+        data = None
     return data
 
 
 if __name__ == '__main__':
-    a = get_doc_data('all+发送后popup + 延长展示时长+长尾')
+    print(file_list())
+    # a = get_doc_data('all+发送后popup + 延长展示时长+长尾')
     # print(a)

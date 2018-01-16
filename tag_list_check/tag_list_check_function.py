@@ -166,8 +166,8 @@ class Tag_list_check:
                 if response[i] == check_value[i]:
                     pass
                 else:
-                    print(response[i])
-                    print(check_value[i])
+                    # print(response[i])
+                    # print(check_value[i])
                     fail_key.append(i)
         else:
             fail_key.append('response中key值不正确')
@@ -183,6 +183,7 @@ class Tag_list_check:
             response_data = json.loads(response.text)
             data_content_result = self.data_content(check_value, response_data)
             if len(data_content_result) > 0:
+                print(response_data)
                 reason.append('接口数据错误,错误key为:' + str(data_content_result))
         except Exception as e:
             print(e)

@@ -43,6 +43,7 @@ class Inspection_method():
                     response = '$$$'
                 else:
                     # print('存在非None的值')
+                    # print(response)
                     pass
                 if case == response:
                     result = True
@@ -68,7 +69,6 @@ class Inspection_method():
     # 返回不同检查数据处理
     # 遇到list不检查list的数量去case中的第一个模板跟response中的内容最对比
     def response_diff_list(self, case, response, diff=[]):
-        # print(case)
         if response == None:
             pass
         else:
@@ -80,27 +80,31 @@ class Inspection_method():
                             diff.append(self.response_data_check(model, e))
                         else:
                             self.response_diff_list(i, e, diff)
-        if isinstance(case, dict):
-            if case.keys() == response.keys():
-                for key in case.keys():
-                    # 值得类型是list进行忽略检查
-                    if isinstance(case[key], list):
-                        # dict value检查有@@@忽略(强制转化了下期中的内容），这里是对list数量不对称的处理
-                        if '@@@' in str(case[key]):
-                            continue
+            elif isinstance(case, dict):
+                if case.keys() == response.keys():
+                    for key in case.keys():
+                        # 值得类型是list进行忽略检查
+                        if isinstance(case[key], list):
+                            if isinstance(case[key][0], dict):
+                                self.response_diff_list(case[key], response[key], diff)
+                            else:
+                                # dict value检查有@@@忽略(强制转化了下期中的内容），这里是对list数量不对称的处理
+                                if '@@@' in case[key]:
+                                    continue
+                                else:
+                                    self.response_diff_list(case[key], response[key], diff)
                         else:
-                            self.response_diff_list(case[key], response[key], diff)
-                    else:
-                        if isinstance(case[key], str):
-                            diff.append(self.response_data_check(case[key], response[key]))
-                        else:
-                            self.response_diff_list(case[key], response[key], diff)
+                            if isinstance(case[key], str):
+                                diff.append(self.response_data_check(case[key], response[key]))
+                            else:
+                                self.response_diff_list(case[key], response[key], diff)
             else:
                 diff.append(self.response_data_check(case, response))
         if False in diff:
             return False
         else:
             return True
+
 
     # response字段获取
     def response_value(self, key_value, response):

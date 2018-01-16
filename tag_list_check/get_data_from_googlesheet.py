@@ -19,7 +19,7 @@ def get_sheet():
 
 
 def get_doc_data_to_csv():
-    # get_sheet()
+    get_sheet()
     data = []
     with open('./app_config_sicker2.csv') as csv_data:
         dict_data = csv.DictReader(csv_data)

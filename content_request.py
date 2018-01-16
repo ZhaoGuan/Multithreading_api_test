@@ -199,6 +199,8 @@ class Http_Test:
         except Exception as e:
             print(e)
             print('非JSON')
+            # fail_data.update({'data': data, 'reason': '带有非JSON内容'})
+            # fail.append(fail_data)
             pass
         if len(reason) > 0:
             fail_data.update({'data': data, 'reason': reason})

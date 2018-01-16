@@ -27,8 +27,8 @@ assert:
 # 多个返回可能的时候使用&连接可能性，使用@@@进行字段胡洛
 # 返回内容如果是个多级字段则为前置条件条件各级用&连接
   data_format : {
-    '{"data&type":"sticker"}':{'data': {'popup_duration': 'Int', 'stickers': [{'package_id': 'Str&$$$', 'tags': ['@@@'], 'scale_type': 'Int', 'source_text': 'Str&$$$', 'mp4': '$$$', 'name': '$$$', 'popup_duration': 'Int', 'icon_url': 'Str&$$$', 'image': {'height': 'Int', 'width': 'Int', 'url': 'Str', 'size':'Int' , 'md5':'Str'}, 'mark': 'Str', 'key': 'Str'}], 'magics': '$$$', 'extra': '@@@', 'type': 'Str'}, 'errorCode': 'Int', 'errorMsg': 'Str'},
-    '{"data&type":"magic"}':{'data': {'type': 'Str', 'magics': [{'key': 'Str', 'style': 'Str'}], 'stickers': '$$$', 'popup_duration': 'Int', 'extra': 'Str'}, 'errorMsg': 'Str', 'errorCode': 'Int'}
+    '{"data&type":"sticker"}':{'data': {'popup_duration': 'Int', 'stickers': [{'package_id': 'Str&$$$', 'tags': ['@@@'], 'scale_type': 'Int', 'source_text': 'Str&$$$', 'mp4': '$$$', 'name': '$$$', 'popup_duration': 'Int', 'icon_url': 'Str&$$$', 'image': {'height': 'Int', 'width': 'Int', 'url': 'Str', 'size':'Int' , 'md5':'Str'}, 'mark': 'Str&$$$', 'key': 'Str'}], 'magics': '$$$', 'extra': '@@@', 'type': 'Str'}, 'errorCode': 'Int', 'errorMsg': 'Str'},
+    '{"data&type":"magic"}':{'data': {'type': 'Str', 'magics': [{'key': 'Str', 'style': 'Str'}], 'stickers': '$$$', 'popup_duration': 'Int', 'extra': '@@@'}, 'errorMsg': 'Str', 'errorCode': 'Int'}
     }
 # 数据检查
 # 前面的值是对应的维度，后面的字典内容({"key":"value"}key是对应值的路径，value是对应应该出现的值(如果值添加问#那么只坚持对应结构是否存在忽略其具体值）
@@ -41,7 +41,7 @@ assert:
   data_content : {
                   # ikey sticker和magic展示时间判断
                   'ikey@1':'{"data&type":"sticker"}${"data&popup_duration":"5000"}',
-                  'ikey@2':'{"data&type":"magis"}${"data&popup_duration":"0"}',
+                  'ikey@2':'{"data&type":"magic"}${"data&popup_duration":"0"}',
                   # ikey1477以下版本不支持magic
                   'ikey&1477':'{"data&type":"sticker"}',
                   'ikey&1478':'{"data&type":"magic&sticker"}',

@@ -1,6 +1,7 @@
 above:
 #  url: http://api.kikakeyboard.com/backend-picture/v1/sticker/categories?
-  url: http://35.162.54.159:8080/backend-picture/v1/sticker/categories?
+#  url: http://35.162.54.159:8080/backend-picture/v1/sticker/categories?
+  url: http://52.43.155.219:8080/backend-picture-api/v1/sticker/categories?
   keys: ['duid']
   data:
     app: ['kika']
@@ -20,7 +21,8 @@ above:
     host:
 below:
 #  url: http://api.kikakeyboard.com/backend-picture/v1/sticker/search?
-  url: http://35.162.54.159:8080/backend-picture/v1/sticker/search?
+#  url: http://35.162.54.159:8080/backend-picture/v1/sticker/search?
+  url: http://52.43.155.219:8080/backend-picture-api/v1/sticker/search?
   keys: ['duid','query']
   data:
     app: ['kika']

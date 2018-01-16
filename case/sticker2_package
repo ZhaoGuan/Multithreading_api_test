@@ -10,8 +10,10 @@ above:
   assert:
   #  返回码(只能第一层)
     code : {'key':'errorCode','value':0}
-  #字段格式
-    data_format : {'errorMsg': 'Str', 'errorCode': 'Int', 'data': {'data': [{'key': 'Str', 'icon': 'HTTP', 'description': 'Str', 'author': {'key': '@@@', 'avatar': '@@@', 'name': '@@@'}, 'name': 'Str', 'stickers': [{'key': 'Str', 'image': {'url': 'HTTP', 'width': 'Int', 'height': 'Int'}, 'type': 'Int', 'scale_type': 'Int', 'mp4': '@@@', 'tags': ['@@@'], 'name': 'Str'}], 'icon_big': 'HTTP', 'column_count': 'Int'}], 'page': 'Int', 'size': 'Int', 'next_page': 'Int'}}
+  #字段格式 *注意新增webp非gif的图片webp字段不应为null
+#    data_format : {'errorMsg': 'Str', 'errorCode': 'Int', 'data': {'data': [{'key': 'Str', 'icon': 'HTTP', 'description': 'Str', 'author': {'key': '@@@', 'avatar': '@@@', 'name': '@@@'}, 'name': 'Str', 'stickers': [{'key': 'Str', 'image': {'url': 'HTTP', 'width': 'Int', 'height': 'Int'}, 'type': 'Int', 'scale_type': 'Int', 'mp4': '@@@', 'tags': ['@@@'], 'name': 'Str'}], 'icon_big': 'HTTP', 'column_count': 'Int'}], 'page': 'Int', 'size': 'Int', 'next_page': 'Int'}}
+#    data_format : {'data': {'data': [{'name': 'Str', 'stickers': [{'type': 'Int', 'name': 'Str', 'mp4': {'width': 'Int', 'height': 'Int', 'url': 'HTTP'}, 'image': {'width': 'Int', 'height': 'Int', 'url': 'HTTP'}, 'webp': '$$$', 'scale_type': 'Int', 'key': 'Str', 'tags': ['Str']}], 'icon_big': 'HTTP', 'author': {'name': '@@@', 'avatar': '@@@', 'key': '@@@'}, 'icon': 'HTTP', 'key': 'Str', 'description': 'Str', 'column_count': 'Int'}], 'page': 'Int', 'next_page': 'Int', 'size': 'Int'}, 'errorMsg': 'Str', 'errorCode': 'Int'}
+    data_format : {'errorCode': 'Int', 'errorMsg': 'Str', 'data': {'page': 'Int', 'size': 'Int', 'data': [{'author': {'key': '@@@', 'name': '@@@', 'avatar': '@@@'}, 'icon_big': 'HTTP', 'icon': 'HTTP', 'key': 'Str', 'name': 'Str', 'stickers': [{'image': {'height': 'Int', 'url': 'HTTP', 'width': 'Int'}, 'mp4': {'height': '@@@', 'url': '@@@', 'width': '@@@'}, 'scale_type': 'Int', 'type': 'Int', 'key': 'Str', 'name': 'Str', 'tags': ['Str'], 'webp': {'height': '@@@', 'url': '@@@', 'width': '@@@'}}], 'column_count': 'Int', 'description': 'Str'}], 'next_page': 'Int'}}
   # 传递给下文的内容
   content: 'data&data&[]&key'
   other:
@@ -30,7 +32,9 @@ below:
   assert:
   #  返回码(只能第一层)
     code : {'key':'errorCode','value':0}
-    data_format : {'errorCode': 'Int', 'errorMsg': 'Str', 'data': {'icon': 'HTTP', 'stickers': [{'mp4': '@@@', 'image': {'url': 'HTTP', 'height': 'Int', 'width': 'Int'}, 'key': 'Str', 'name': 'Str', 'type': 'Int', 'tags': ['@@@'], 'scale_type': 'Int'}], 'author': {'key': '@@@', 'avatar': '@@@', 'name': '@@@'}, 'key': 'Str', 'column_count': 'Int', 'description': 'Str', 'name': 'Str', 'icon_big': 'HTTP'}}
+  # *注意新增webp非gif的图片webp字段不应为null
+#    data_format : {'errorCode': 'Int', 'errorMsg': 'Str', 'data': {'icon': 'HTTP', 'stickers': [{'mp4': '@@@','webp':'$$$', 'image': {'url': 'HTTP', 'height': 'Int', 'width': 'Int'}, 'key': 'Str', 'name': 'Str', 'type': 'Int', 'tags': ['@@@'], 'scale_type': 'Int'}], 'author': {'key': '@@@', 'avatar': '@@@', 'name': '@@@'}, 'key': 'Str', 'column_count': 'Int', 'description': 'Str', 'name': 'Str', 'icon_big': 'HTTP'}}
+  data_format : {'data': {'icon_big': 'HTTP', 'column_count': 'Int', 'icon': 'HTTP', 'description': 'Str', 'name': 'Str', 'key': 'Str', 'stickers': [{'tags': ['Str'], 'mp4': '$$$', 'type': 'Int', 'webp': {'width': 'Int', 'height': 'Int', 'url': 'HTTP'}, 'name': 'Str', 'image': {'width': 'Int', 'height': 'Int', 'url': 'HTTP'}, 'key': 'Str', 'scale_type': 'Int'}], 'author': {'name': '@@@', 'avatar': '@@@', 'key': '@@@'}}, 'errorCode': 'Int', 'errorMsg': 'Str'}
   other:
     way: online
     host:
