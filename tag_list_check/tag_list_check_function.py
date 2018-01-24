@@ -152,7 +152,7 @@ class Tag_list_check:
 
     # url 重新拼接
     def url_mosaic(self, data):
-        url = 'https://api.kikakeyboard.com/v1/utils/get_app_config?key=sticker2&'
+        url = 'https://api.kikakeyboard.com/v1/utils/get_app_config?key=sticker2&is_graytest=true&'
         url = url + 'sign=' + self.get_sign(version=data['data']['version'], duid=data['data']['duid'],
                                             app=data['data']['product'])
         return url

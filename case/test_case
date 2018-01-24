@@ -9,14 +9,15 @@ data:
   app: ['kika','ikey','pro']
 #  app: ['ikey']
   kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
-#  kb_lang : ['en_US', 'en_AU']
+#  kb_lang : ['en_US', 'en_AU','pt_BR']
   tag : ['ok']
 #  tag: [lol]
 #  tag : ['ha']
   duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
           '920b56e9cadd743bfbbcb4126937e789']
 #  算法duid
-#  duid : ['a2bb5434f3541bf5aa64186ec8c2b77f']
+#  pt
+#  duid : ['2836df6911204597987c3e2cc566f589', 'f84fcd38030e47e986debe730e3ea5f2', 'adf14d544eaa40db9be006d8bedcbeb6', 'd70c680277c44a009b943b9ca71f85c6']
 # version可以通过对指定对象配置版本，最后一个&后填写版本之前的都是条件用&分隔
   version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1478']
 #  version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1478']

@@ -4,7 +4,8 @@ from gsheets import Sheets
 import csv
 import json
 from tag_list_check.doc_reader import get_doc_data
-
+import sys
+csv.field_size_limit(sys.maxsize)
 
 def get_sheet():
     sheet = Sheets.from_files('./client_secret-sheet.json')
@@ -25,7 +26,7 @@ def get_doc_data_to_csv():
         dict_data = csv.DictReader(csv_data)
         # print(dict_data)
         for i in dict_data:
-            if 'drive.google.com' in i['appconfig']:
+            if ('drive.google.com' in i['appconfig']) or ('docs.google.com' in i['appconfig']):
                 i['appconfig'] = get_doc_data(i['策略']).replace('﻿{', '{')
                 # print(i['appconfig'])
             data.append(i)

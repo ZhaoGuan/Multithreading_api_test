@@ -98,6 +98,8 @@ class Inspection_method():
                                 diff.append(self.response_data_check(case[key], response[key]))
                             else:
                                 self.response_diff_list(case[key], response[key], diff)
+                else:
+                    diff.append(False)
             else:
                 diff.append(self.response_data_check(case, response))
         if False in diff:

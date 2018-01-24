@@ -1,6 +1,9 @@
 above:
-  url: http://api.kikakeyboard.com/backend-picture/v1/gif/tags?
+#  url: https://api.kikakeyboard.com/v1/gif/tags?
 #  url: http://35.162.54.159:8080/backend-picture/v1/gif/tags?
+#  url: http://52.43.155.219:8080/backend-picture-api/v1/gif/tags?
+#  url: https://api-dev.kikakeyboard.com/v1/gif/tags?
+
   keys: ['duid']
   data:
     app: ['kika']
@@ -18,8 +21,10 @@ above:
     way: online
     host:
 below:
-  url: http://api.kikakeyboard.com/backend-picture/v1/gif/search?
+#  url: http://api.kikakeyboard.comv1/gif/search?
 #  url: http://35.162.54.159:8080/backend-picture/v1/gif/search?
+#  url: http://52.43.155.219:8080/backend-picture-api/v1/gif/search?
+#  url: http://api-dev.kikakeyboard.com/v1/gif/search?
   keys: ['duid','query']
   data:
     app: ['kika']
@@ -30,7 +35,7 @@ below:
   assert:
   #  返回码(只能第一层)
     code : {'key':'errorCode','value':0}
-    data_format : {'errorMsg': 'Str', 'errorCode': 'Int', 'data': {'resourceList': [{'tiny_gif': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'preview': 'HTTP', 'gif': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'source': 'Str', 'mp4': {'height': 'Int', 'width': 'Int', 'url': 'HTTP', 'duration': -1.0}, 'source_id': 'Str', 'tinygif': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'index': 'Int', 'title': 'Str', 'tags': ['@@@']}]}}
+    data_format : {'errorMsg': 'Str', 'errorCode': 'Int', 'data': {'resourceList': [{'tiny_gif': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'preview': 'HTTP', 'gif': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'source': 'Str', 'mp4': {'height': 'Int', 'width': 'Int', 'url': 'HTTP', 'duration': 'Int'}, 'source_id': 'Str', 'tinygif': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'index': 'Int', 'title': 'Str', 'tags': ['@@@']}]}}
   other:
     way: online
     host:
