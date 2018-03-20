@@ -46,11 +46,12 @@ def appconfig_data():
     data = []
     result = []
     screen_data = []
+    new_screen_data = []
     with open('./app_config_sicker2_get_doc.csv') as csv_data:
         dict_data = csv.DictReader(csv_data)
         for i in dict_data:
             data.append(i)
-    # 筛选数据
+            # 筛选数据
     for f in data:
         if f['老版本appconfig'] == None:
             pass
@@ -58,16 +59,36 @@ def appconfig_data():
             screen_data.append(f)
     # 老版本appconfig数据整理
     for e in screen_data:
-        # print(e['appconfig'])
         try:
             value = json.loads(e['老版本appconfig'])
         except:
-            print(e['策略'])
+            pass
+            # print(e['策略'])
         duid = e['取模'].replace('%', '').split('==')
         if duid == ['']:
             duid = 'random'
-        temp = {'data': {'product': e['产品'], 'language': e['语言地区'], 'duid': duid}, 'check_value': value}
+        temp = {'data': {'product': e['产品'], 'language': e['语言地区'], 'duid': duid, 'style': 'old'}, 'check_value': value}
         result.append(temp)
+    # 新数据整理
+    for n_f in data:
+        if n_f['新版本appconfig'] == None:
+            pass
+        else:
+            new_screen_data.append(n_f)
+    # 老版本appconfig数据整理
+    for n_e in new_screen_data:
+        try:
+            value = json.loads(n_e['新版本appconfig'])
+        except:
+            pass
+            # print(n_e['策略'])
+        duid = n_e['取模'].replace('%', '').split('==')
+        if duid == ['']:
+            duid = 'random'
+        temp = {'data': {'product': n_e['产品'], 'language': n_e['语言地区'], 'duid': duid, 'style': 'new'},
+                'check_value': value}
+        result.append(temp)
+    # print(result)
     return result
 
 
