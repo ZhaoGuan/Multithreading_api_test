@@ -8,6 +8,7 @@ import requests
 import json
 import time
 from tag_list_check.get_data_from_googlesheet import appconfig_data
+from base_function.Inspection_method import Inspection_method
 
 
 def config_reader(Yaml_file):
@@ -67,8 +68,23 @@ def get_duid_in_way(way, result):
 class Tag_list_check:
     def __init__(self):
         self.version = 1477
+        self.old_ikey = 1844
+        self.new_ikey = 1845
+        self.old_kika = 2484
+        self.new_kika = 2485
+        self.old_pro = 370
+        self.new_pro = 371
         self.host = 'api.kikakeyboard.com'
         self.way = 'online'
+        self.tags_config_format = {
+            "tags": ['@@@'],
+            "tags_after_send": ['@@@'],
+            "delay_when_typing": 'Int',
+            "delay_configs": [{
+                "delay": 'Int',
+                "tags": ['@@@']
+            }]
+        }
 
     # 根据udid获取sign
     def get_sign(self, app, version, duid):
@@ -143,7 +159,20 @@ class Tag_list_check:
     def google_sheet_data(self):
         data = appconfig_data()
         for i in data:
-            i['data'].update({'version': self.version})
+            if i['data']['style'] == 'new':
+                if i['data']['product'] == 'ikey':
+                    i['data'].update({'version': self.new_ikey})
+                elif i['data']['product'] == 'kika':
+                    i['data'].update({'version': self.new_kika})
+                elif i['data']['product'] == 'pro':
+                    i['data'].update({'version': self.new_pro})
+            else:
+                if i['data']['product'] == 'ikey':
+                    i['data'].update({'version': self.old_ikey})
+                elif i['data']['product'] == 'kika':
+                    i['data'].update({'version': self.old_kika})
+                elif i['data']['product'] == 'pro':
+                    i['data'].update({'version': self.old_pro})
             if i['data']['duid'] == 'random':
                 i['data']['duid'] = random_duid()
             else:
@@ -152,9 +181,10 @@ class Tag_list_check:
 
     # url 重新拼接
     def url_mosaic(self, data):
-        url = 'https://api.kikakeyboard.com/v1/utils/get_app_config?key=sticker2&is_graytest=true&'
+        url = 'https://api.kikakeyboard.com/v1/utils/get_app_config?key=sticker2&'
         url = url + 'sign=' + self.get_sign(version=data['data']['version'], duid=data['data']['duid'],
                                             app=data['data']['product'])
+        # print(url)
         return url
 
     def data_content(self, check_value, response):
@@ -196,6 +226,17 @@ class Tag_list_check:
             fail_data.update({'data': data, 'reason': reason})
             fail.append(fail_data)
 
+            # 检查
+
+    # cdn下载内容格式检查
+    def new_cdn_check(self, data, check_value, response, fail_data):
+        tags_config_url = json.loads(response.text)['data']['tags_config_url']
+        tags_config_url_response = requests.get(tags_config_url)
+        json_tags_config_url_response = json.loads(tags_config_url_response.text)
+        Im = Inspection_method().response_diff_list(check_value, json_tags_config_url_response, diff=[])
+        if Im == False:
+            fail_data.update({'data': data, 'reason': 'tags_config_url文件中内容格式有误'})
+
     # 发送请求
     def url_request(self, data, fail, all_response):
         lang = data['data']['language']
@@ -205,7 +246,10 @@ class Tag_list_check:
         header = self.set_header(duid, app=app, version=version, lang=lang, way=self.way)
         url = self.url_mosaic(data)
         response = requests.request('get', url, headers=header)
+        # print(response.text)
         self.asser_api(data['data'], data['check_value'], response, fail)
+        if version == self.new_ikey or version == self.new_kika or version == self.new_pro:
+            self.new_cdn_check(data, self.tags_config_format, response=response, fail_data=fail)
         all_response.append({'data': 'data', 'response': response.text})
 
     # 多线程处理,单个用例

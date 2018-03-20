@@ -1,7 +1,7 @@
-url: https://api.kikakeyboard.com/v1/stickers2/popup?type=0&
+#url: https://api.kikakeyboard.com/v1/stickers2/popup?type=0&
 cycle_times: 1
 #web0
-#url: http://sticker.pre.kikakeyboard.com/backend-content-sending/popup?type=0&
+url: http://sticker.pre.kikakeyboard.com/backend-content-sending/popup?type=0&
 #test3
 #url: http://52.43.155.219:9090/backend-content-sending/popup?type=0&
 keys: ['kb_lang','tag','duid']
@@ -9,7 +9,8 @@ data:
   app: ['kika','ikey','pro']
 #  app: ['ikey']
   kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
-#  kb_lang : ['en_US', 'en_AU','pt_BR']
+#  kb_lang : ['en_US', 'en_AU']
+#  kb_lang : ['pt_BR']
   tag : ['ok']
 #  tag: [lol]
 #  tag : ['ha']
@@ -17,9 +18,13 @@ data:
           '920b56e9cadd743bfbbcb4126937e789']
 #  算法duid
 #  pt
-#  duid : ['2836df6911204597987c3e2cc566f589', 'f84fcd38030e47e986debe730e3ea5f2', 'adf14d544eaa40db9be006d8bedcbeb6', 'd70c680277c44a009b943b9ca71f85c6']
+#  duid : ['5305d9afc01346cea4249fd1f115c794', 'd145478960e347daadf46f3503d03a2e', '2c8bba2cadda453ea5085b7bc9e99cdd','1569959deeb8440d9864c09d49ccb8e0']
+# en
+#  duid : ['db178e8064704e9db2e407df6eab233a','760e8e030dc442a08214626cb37446fb','77b655b741c04c2181b7684a567143b6']
+# 24e7edfba2194dc382288036b631ba44 有magictext 的情况 但是算法未处理1477的逻辑，暂时看无影响。
+#  duid : ['24e7edfba2194dc382288036b631ba44','6f033426b0b44ae2864a23f0ab164ba5','1d73d538d4dc999a1d1a082885de283d']
 # version可以通过对指定对象配置版本，最后一个&后填写版本之前的都是条件用&分隔
-  version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1478']
+  version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1478','kika&920b56e9cadd743bfbbcb4126937e789&2371','pro&920b56e9cadd743bfbbcb4126937e789&350']
 #  version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1478']
 assert:
 #  返回码(只能第一层)
@@ -28,8 +33,8 @@ assert:
 # 多个返回可能的时候使用&连接可能性，使用@@@进行字段胡洛
 # 返回内容如果是个多级字段则为前置条件条件各级用&连接
   data_format : {
-    '{"data&type":"sticker"}':{'data': {'popup_duration': 'Int', 'stickers': [{'package_id': 'Str&$$$', 'tags': ['@@@'], 'scale_type': 'Int', 'source_text': 'Str&$$$', 'mp4': '$$$', 'name': '$$$', 'popup_duration': 'Int', 'icon_url': 'Str&$$$', 'image': {'height': 'Int', 'width': 'Int', 'url': 'Str', 'size':'Int' , 'md5':'Str'}, 'mark': 'Str&$$$', 'key': 'Str'}], 'magics': '$$$', 'extra': '@@@', 'type': 'Str'}, 'errorCode': 'Int', 'errorMsg': 'Str'},
-    '{"data&type":"magic"}':{'data': {'type': 'Str', 'magics': [{'key': 'Str', 'style': 'Str'}], 'stickers': '$$$', 'popup_duration': 'Int', 'extra': '@@@'}, 'errorMsg': 'Str', 'errorCode': 'Int'}
+    '{"data&type":"sticker"}':{'data': {'popup_duration': 'Int', 'stickers': [{'package_id': 'Str&$$$', 'tags': ['@@@'], 'scale_type': 'Int', 'source_text': 'Str&$$$','caption':'Str&$$$','mp4': '$$$', 'name': '$$$', 'popup_duration': 'Int', 'icon_url': 'Str&$$$', 'image': {'height': 'Int', 'width': 'Int', 'url': 'Str', 'size':'Int' , 'md5':'Str'}, 'mark': 'Str&$$$', 'key': 'Str'}], 'magics': '$$$', 'extra': 'Str', 'type': 'Str'}, 'errorCode': 'Int', 'errorMsg': 'Str'},
+    '{"data&type":"magic"}':{'data': {'type': 'Str', 'magics': [{'key': 'Str', 'style': 'Str'}], 'stickers': '$$$', 'popup_duration': 'Int', 'extra': 'Str'}, 'errorMsg': 'Str', 'errorCode': 'Int'}
     }
 # 数据检查
 # 前面的值是对应的维度，后面的字典内容({"key":"value"}key是对应值的路径，value是对应应该出现的值(如果值添加问#那么只坚持对应结构是否存在忽略其具体值）
@@ -49,15 +54,16 @@ assert:
                   # kika pro 展示时间判断
                   'kika@1':'{"data&stickers&0&popup_duration":"5000"}',
                   'pro@1':'{"data&stickers&0&popup_duration":"5000"}',
-                  'ikey@3':'{"data&type":"sticker"}${"data&stickers&0&tags&0":"ok"}',
-                  'kika@2':'{"data&stickers&0&tags&0":"ok"}',
-                  'pro@@2':'{"data&stickers&0&tags&0":"ok"}'
+#                  'ikey@3':'{"data&type":"sticker"}${"data&stickers&0&tags&0":"ok"}',
+#                  'kika@2':'{"data&stickers&0&tags&0":"ok"}',
+#                  'pro@@2':'{"data&stickers&0&tags&0":"ok"}'
                   }
 # response_header检查
 # 可根据前面的条件检查，条件能够用&关联
+# @@@来忽略内容只坚持key
   response_header : {
-#                    kika: {Cache-Control: "max-age=28800"},
-#                    pro: {Cache-Control: "max-age=28800"}
+#                    kika: {Cache-Control: "@@@"},
+#                    pro: {Cache-Control: "@@@"}
                     }
 other:
   way: online

@@ -396,6 +396,7 @@ class Http_Test:
 
 if __name__ == "__main__":
     config = config_reader('./case/test_case')
+    # config = config_reader('./case/for_data_modle')
     # config = config_reader('./case/sticker2_trending')
     # config = config_reader('./case/sticker2_all')
     # print(config)
