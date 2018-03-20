@@ -103,6 +103,7 @@ def get_doc_data(name):
         id = file_list()[name]
         data = get_fiel(id)
     except:
+        print(name)
         print('未发现对应DOC ID')
         data = None
     return data

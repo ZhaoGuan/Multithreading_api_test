@@ -152,9 +152,10 @@ class Tag_list_check:
 
     # url 重新拼接
     def url_mosaic(self, data):
-        url = 'https://api.kikakeyboard.com/v1/utils/get_app_config?key=sticker2&is_graytest=true&'
+        url = 'https://api.kikakeyboard.com/v1/utils/get_app_config?key=sticker2&'
         url = url + 'sign=' + self.get_sign(version=data['data']['version'], duid=data['data']['duid'],
                                             app=data['data']['product'])
+        # print(url)
         return url
 
     def data_content(self, check_value, response):
@@ -205,6 +206,7 @@ class Tag_list_check:
         header = self.set_header(duid, app=app, version=version, lang=lang, way=self.way)
         url = self.url_mosaic(data)
         response = requests.request('get', url, headers=header)
+        # print(response.text)
         self.asser_api(data['data'], data['check_value'], response, fail)
         all_response.append({'data': 'data', 'response': response.text})
 

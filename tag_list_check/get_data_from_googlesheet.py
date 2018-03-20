@@ -5,7 +5,9 @@ import csv
 import json
 from tag_list_check.doc_reader import get_doc_data
 import sys
+
 csv.field_size_limit(sys.maxsize)
+
 
 def get_sheet():
     sheet = Sheets.from_files('./client_secret-sheet.json')
@@ -26,12 +28,12 @@ def get_doc_data_to_csv():
         dict_data = csv.DictReader(csv_data)
         # print(dict_data)
         for i in dict_data:
-            if ('drive.google.com' in i['appconfig']) or ('docs.google.com' in i['appconfig']):
-                i['appconfig'] = get_doc_data(i['策略']).replace('﻿{', '{')
+            if ('drive.google.com' in i['老版本appconfig']) or ('docs.google.com' in i['老版本appconfig']):
+                i['老版本appconfig'] = get_doc_data(i['策略']).replace('﻿{', '{')
                 # print(i['appconfig'])
             data.append(i)
     with open('./app_config_sicker2_get_doc.csv', 'w') as new_csv:
-        writer = csv.DictWriter(new_csv, ['产品', '语言地区', '取模', '分组', '策略', '文档链接', 'appconfig', '备注'])
+        writer = csv.DictWriter(new_csv, ['产品', '语言地区', '取模', '分组', '策略', '文档链接', '新版本appconfig', '老版本appconfig', '备注'])
         writer.writeheader()
         for e in data:
             # print(e)
@@ -50,15 +52,15 @@ def appconfig_data():
             data.append(i)
     # 筛选数据
     for f in data:
-        if f['appconfig'] == None:
+        if f['老版本appconfig'] == None:
             pass
         else:
             screen_data.append(f)
-    # 数据整理
+    # 老版本appconfig数据整理
     for e in screen_data:
         # print(e['appconfig'])
         try:
-            value = json.loads(e['appconfig'])
+            value = json.loads(e['老版本appconfig'])
         except:
             print(e['策略'])
         duid = e['取模'].replace('%', '').split('==')
@@ -66,7 +68,6 @@ def appconfig_data():
             duid = 'random'
         temp = {'data': {'product': e['产品'], 'language': e['语言地区'], 'duid': duid}, 'check_value': value}
         result.append(temp)
-    # print(result)
     return result
 
 
