@@ -107,7 +107,6 @@ class Inspection_method():
         else:
             return True
 
-
     # response字段获取
     def response_value(self, key_value, response):
         if "&" in str(key_value):
@@ -294,10 +293,14 @@ class Inspection_method():
     # 检查是否有对应的key有检查是否相等,不得或没有添加到result中
     def key_not_existence_value_not_equal(self, key, value, response_header, result):
         if key in response_header.keys():
-            if response_header[key] == value:
+            # 只坚持key
+            if value == '@@@':
                 pass
             else:
-                result.append(False)
+                if response_header[key] == value:
+                    pass
+                else:
+                    result.append(False)
         else:
             result.append(False)
 
