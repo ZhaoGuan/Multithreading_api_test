@@ -1,25 +1,19 @@
-#运营
-# 灰度
-#url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/sticker2/get_popup_map?is_debug=true
-#url : http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/sticker2/resource_with_tags
-# test
-#url: http://34.214.222.244:9090/backend-content-sending/v1/sticker2/get_popup_map?is_debug=true
-#url : http://34.214.222.244:9090/backend-content-sending/v1/sticker2/resource_with_tags
-#爬虫
-# 灰度
-url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/sticker2/crawler_resource_with_tags
+url: https://api.kikakeyboard.com/v1/sticker2/MagicText/all
 #test
-#url : http://34.214.222.244:9090/backend-content-sending/v1/sticker2/crawler_resource_with_tags
+#url: http://34.214.222.244:9090/backend-content-sending/v1/sticker2/MagicText/all
 cycle_times: 1
-keys:
+#web0
+#url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/sticker2/MagicText/all
+keys: ['tag','lang']
 data:
+  # 这里kb_lang,duid,app只是为了header
 assert:
 #  返回码(只能第一层)
   code : {'key':'errorCode','value':0}
 #  字段格式
 # 多个返回可能的时候使用&连接可能性，使用@@@进行字段胡洛
 # 返回内容如果是个多级字段则为前置条件条件各级用&连接
-  data_format : {'data': '@@@', 'errorCode': 'Int', 'errorMsg': 'Str'}
+  data_format : {'errorCode': 'Int', 'data': {'info': [{'name': 'Str', 'url': 'HTTP', 'id': 'Int'}]}, 'errorMsg': 'Str'}
 # 数据检查
 # 前面的值是对应的维度，后面的字典内容({"key":"value"}key是对应值的路径，value是对应应该出现的值(如果值添加问#那么只坚持对应结构是否存在忽略其具体值）
 # 填写内容验证遵守json格式，数据使用""
@@ -34,6 +28,7 @@ assert:
 # 可根据前面的条件检查，条件能够用&关联
 # @@@来忽略内容只坚持key
   response_header : {
+  Cache-Control: 'max-age=86400'
                     }
 other:
   way: online

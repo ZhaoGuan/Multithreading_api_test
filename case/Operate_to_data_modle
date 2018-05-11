@@ -1,7 +1,6 @@
 url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/sticker2/resource_with_tags
-url: http://52.43.155.219:9090/backend-content-sending/v1/sticker2/resource_with_tags
-url: http://52.43.155.219:9090/backend-content-sending/v1/sticker2/resource_with_tags?is_realtime=true
-
+#url: http://52.43.155.219:9090/backend-content-sending/v1/sticker2/resource_with_tags
+#url: http://52.43.155.219:9090/backend-content-sending/v1/sticker2/resource_with_tags?is_realtime=true
 keys:
 data:
 assert:
