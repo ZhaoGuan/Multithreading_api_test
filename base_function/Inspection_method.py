@@ -74,12 +74,16 @@ class Inspection_method():
         else:
             if isinstance(case, list):
                 model = case[0]
-                for i in case:
-                    for e in response:
-                        if isinstance(i, str):
-                            diff.append(self.response_data_check(model, e))
-                        else:
-                            self.response_diff_list(i, e, diff)
+                try:
+                    for i in case:
+                        for e in response:
+                            if isinstance(i, str):
+                                diff.append(self.response_data_check(model, e))
+                            else:
+                                self.response_diff_list(i, e, diff)
+                except Exception as e:
+                    diff.append(False)
+                    print(e)
             elif isinstance(case, dict):
                 try:
                     if case.keys() == response.keys():
