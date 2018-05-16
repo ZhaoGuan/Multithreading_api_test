@@ -2,7 +2,8 @@ operation_mode: sigle_request
 source:
   test:
     #test3
-    url: http://34.214.222.244:9090/backend-content-sending/popup?type=0&
+#    url: http://34.214.222.244:9090/backend-content-sending/popup?type=0&
+    url: http://172.31.23.134:9090/backend-content-sending/popup?type=0&
     cycle_times: 1
     keys: ['kb_lang','tag','duid']
     data:

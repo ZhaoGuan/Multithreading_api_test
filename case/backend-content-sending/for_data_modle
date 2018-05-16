@@ -4,9 +4,12 @@ source:
   test:
     #运营
     #url: http://34.214.222.244:9090/backend-content-sending/v1/sticker2/get_popup_map?is_debug=true
+    #url: http://172.31.23.134:9090/backend-content-sending/v1/sticker2/get_popup_map?is_debug=true
     #url : http://34.214.222.244:9090/backend-content-sending/v1/sticker2/resource_with_tags
+    #url : http://172.31.23.134.244:9090/backend-content-sending/v1/sticker2/resource_with_tags
     #爬虫
-    url : http://34.214.222.244:9090/backend-content-sending/v1/sticker2/crawler_resource_with_tags
+#    url : http://34.214.222.244:9090/backend-content-sending/v1/sticker2/crawler_resource_with_tags
+    url : http://172.31.23.134:9090/backend-content-sending/v1/sticker2/crawler_resource_with_tags
     cycle_times: 1
     keys:
     data:
