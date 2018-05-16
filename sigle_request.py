@@ -27,16 +27,16 @@ Inspection_method = Inspection_method()
 
 
 class Http_Test:
-    def __init__(self, config):
+    def __init__(self, config, source='online'):
         self.config = config
-        self.cycle_times = self.config['cycle_times']
-        self.url = self.config['url']
+        self.cycle_times = self.config['source'][source]['cycle_times']
+        self.url = self.config['source'][source]['url']
         try:
-            self.keys = self.config['keys']
+            self.keys = self.config['source'][source]['keys']
         except:
             self.keys = None
         try:
-            self.data = self.config['data']
+            self.data = self.config['source'][source]['data']
         except:
             self.data = None
         # version处理
@@ -70,6 +70,7 @@ class Http_Test:
         # 默认version
         self.version = 1477
         self.kika_request = Kika_base_request(self.host)
+        print(self.url)
 
     # version处理
     def handle_version(self, version_data, keys_data):
@@ -401,9 +402,9 @@ if __name__ == "__main__":
     config = config_reader('./case/for_data_modle')
     # config = config_reader('./case/sticker2_trending')
     # config = config_reader('./case/sticker2_all')
-    # print(config)
+    print(config)
     test = Http_Test(config)
     # test.c_process(10)
     # print(time.time())
     # test.process(single_quantity=10)
-    test.Multithreading_api()
+    # test.Multithreading_api()
