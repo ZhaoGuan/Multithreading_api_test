@@ -24,15 +24,15 @@ Inspection_method = Inspection_method()
 
 
 class Http_Test:
-    def __init__(self, config):
+    def __init__(self, config, source='online'):
         self.config = config
-        self.url = self.config['url']
+        self.url = self.config['source'][source]['url']
         try:
-            self.keys = self.config['keys']
+            self.keys = self.config['source'][source]['keys']
         except:
             self.keys = None
         try:
-            self.data = self.config['data']
+            self.data = self.config['source'][source]['data']
         except:
             self.data = None
         # version处理
@@ -284,15 +284,16 @@ class Http_Test:
         return response.text
 
 
-def content_request(Path):
+def content_request(Path, source='online'):
     result = '测试通过!!!!!!!!!'
     config = config_reader(Path)
+    print(config)
     above_config = config['above']
     below_config = config['below']
     above_fail = []
     below_fail = []
-    above_test = Http_Test(above_config)
-    below_test = Http_Test(below_config)
+    above_test = Http_Test(above_config, source)
+    below_test = Http_Test(below_config, source)
     content = above_test.above_url_request(above_test.url_keys_data()[0], above_fail)
     if len(above_fail) == 0:
         below = below_test.below_url_request(content, below_test.url_keys_data()[0], below_fail)
@@ -305,6 +306,6 @@ def content_request(Path):
 
 
 if __name__ == "__main__":
-    # content_request('./case/sticker_case')
-    content_request('./case/gif_case')
-    # content_request('./case/sticker2_package')
+    content_request('./case/sticker_case')
+    # content_request('./case/gif_case', 'test')
+    # content_request('./case/sticker2_package', 'online')

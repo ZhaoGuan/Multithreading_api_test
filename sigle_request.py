@@ -70,7 +70,6 @@ class Http_Test:
         # 默认version
         self.version = 1477
         self.kika_request = Kika_base_request(self.host)
-        print(self.url)
 
     # version处理
     def handle_version(self, version_data, keys_data):
@@ -395,16 +394,19 @@ class Http_Test:
         print(pic)
 
 
-if __name__ == "__main__":
-    # config = config_reader('./case/test_case')
-    # config = config_reader('./case/Magictext_all')
-    # config = config_reader('./case/gif_search')
-    config = config_reader('./case/for_data_modle')
-    # config = config_reader('./case/sticker2_trending')
-    # config = config_reader('./case/sticker2_all')
-    print(config)
+def sigle_request_runner(path):
+    config = config_reader(path)
+    # print(config)
     test = Http_Test(config)
     # test.c_process(10)
-    # print(time.time())
     # test.process(single_quantity=10)
-    # test.Multithreading_api()
+    test.Multithreading_api()
+
+
+if __name__ == "__main__":
+    sigle_request_runner('./case/test_case')
+    # sigle_request_runner('./case/Magictext_all')
+    # sigle_request_runner('./case/gif_search')
+    # sigle_request_runner('./case/for_data_modle')
+    # sigle_request_runner('./case/sticker2_trending')
+    # sigle_request_runner('./case/sticker2_all')
