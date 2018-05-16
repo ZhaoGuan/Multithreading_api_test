@@ -23,13 +23,21 @@ class ApiTest(unittest.TestCase):
     def test_http_api(self, path, source):
         # print(path, source)
         file_path = PATH + '/../case/' + path
-        run_way = config_reader(file_path)['operation_mode']
+        try:
+            run_way = config_reader(file_path)['operation_mode']
+        except:
+            run_way = 'py'
         if run_way == 'sigle_request':
             result = sigle_request_runner(file_path, source)
             assert result
-        else:
+        elif run_way == 'content_request':
             result = content_request(file_path, source)
             assert result
+        else:
+            result = os.popen('python3 ' + file_path).read()
+            print(result)
+            if '失败' in result:
+                assert False
 
     def tearDown(self):
         print('Test Over')

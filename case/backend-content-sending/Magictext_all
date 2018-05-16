@@ -2,6 +2,14 @@ operation_mode: sigle_request
 source:
   test:
     #test
+    url: http://34.214.222.244:9090/backend-content-sending/v1/sticker2/MagicText/all
+#    url: http://172.31.23.134:9090/backend-content-sending/v1/sticker2/MagicText/all
+    cycle_times: 1
+    keys: ['tag','lang']
+    data:
+      # 这里kb_lang,duid,app只是为了header
+  ip:
+    #test
 #    url: http://34.214.222.244:9090/backend-content-sending/v1/sticker2/MagicText/all
     url: http://172.31.23.134:9090/backend-content-sending/v1/sticker2/MagicText/all
     cycle_times: 1
