@@ -1,15 +1,15 @@
-url: https://api.kikakeyboard.com/v1/stickers2/popup?type=0&
+#url: https://api.kikakeyboard.com/v1/stickers2/popup?type=0&
 cycle_times: 1
 #web0
 #url: http://sticker.pre.kikakeyboard.com/backend-content-sending/popup?type=0&
 #test3
-#url: http://34.214.222.244:9090/backend-content-sending/popup?type=0&
+url: http://34.214.222.244:9090/backend-content-sending/popup?type=0&
 keys: ['kb_lang','tag','duid']
 data:
   app: ['kika','ikey','pro']
 #  app: ['ikey']
-  kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
-#  kb_lang : ['en_US', 'en_AU']
+#  kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
+  kb_lang : ['en_US', 'en_AU']
 #  kb_lang : ['pt_BR']
   tag : ['ok']
 #  tag: [lol]

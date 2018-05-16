@@ -1,6 +1,6 @@
-url: https://api.kikakeyboard.com/v1/sticker2/MagicText/all
+#url: https://api.kikakeyboard.com/v1/sticker2/MagicText/all
 #test
-#url: http://34.214.222.244:9090/backend-content-sending/v1/sticker2/MagicText/all
+url: http://34.214.222.244:9090/backend-content-sending/v1/sticker2/MagicText/all
 cycle_times: 1
 #web0
 #url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/sticker2/MagicText/all
