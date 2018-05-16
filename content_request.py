@@ -246,8 +246,8 @@ class Http_Test:
             header = self.kika_request.set_header(duid, app=app, version=version, lang=lang, way=self.way)
             url = self.url_mosaic(data)
             response = requests.request('get', url, headers=header)
-        print(url)
-        print(response.text)
+        # print(url)
+        # print(response.text)
         self.asser_api(data, response, fail)
         self.all_response(data, response)
         if len(fail) == 0:
@@ -258,7 +258,7 @@ class Http_Test:
 
     # 下文请求
     def below_url_request(self, content, data, fail):
-        print(content)
+        # print(content)
         if self.data == None or self.keys == None:
             url = self.url
             response = requests.request('get', url)
@@ -276,9 +276,9 @@ class Http_Test:
             # 为了package的临时方案
             if 'content=' in url:
                 url = url.replace('content=', '').replace('&', '?')
-            print(url)
+            # print(url)
             response = requests.request('get', url, headers=header)
-        print(response.text)
+        # print(response.text)
         self.asser_api(data, response, fail)
         self.all_response(data, response)
         return response.text
@@ -287,7 +287,7 @@ class Http_Test:
 def content_request(Path, source='online'):
     result = '测试通过!!!!!!!!!'
     config = config_reader(Path)
-    print(config)
+    # print(config)
     above_config = config['above']
     below_config = config['below']
     above_fail = []

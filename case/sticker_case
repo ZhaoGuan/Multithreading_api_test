@@ -52,7 +52,7 @@ below:
   assert:
   #  返回码(只能第一层)
     code : {'key':'errorCode','value':0}
-    data_format : {'errorCode': 'Int', 'errorMsg': 'Str','data': {'stickers': [{'small': {'url': 'HTTP', 'width': 'Int', 'height': 'Int'}, 'preview': 'HTTP', 'source': 'Str', 'index': 'Int', 'large': {'url': 'HTTP', 'width': 'Int', 'height': 'Int'}, 'tags': ['@@@'], 'id': 'Str'}]}}
+    data_format : {'errorCode': 'Int', 'errorMsg': 'Str','data': {'stickers': [{'small': {'url': 'HTTP', 'width': 'Int', 'height': 'Int'}, 'preview': 'HTTP', 'source': 'Str', 'index': 'Int', 'large': {'url': 'HTTP', 'width': 'Int', 'height': 'Int'}, 'webp': {'url': 'HTTP', 'height': 'Int', 'width': 'Int'}, 'tags': ['@@@'], 'id': 'Str'}]}}
   other:
     way: online
     host:

@@ -243,11 +243,12 @@ class Http_Test:
 
     # 多线程处理,单个用例
     def Multithreading_api(self):
-        try:
-            create_table()
-        except:
-            delete_table()
-            create_table()
+        result = True
+        # try:
+        #     create_table()
+        # except:
+        #     delete_table()
+        #     create_table()
         start_time = time.time()
         if self.data != None:
             all_test = self.url_keys_data()
@@ -270,13 +271,15 @@ class Http_Test:
         print('有误数量:' + str(len(fail)))
         print('所有误解返回内容:')
         print(fail)
-        all_data = reader_table()
-        print('所有返回内容数量:' + str(len(all_data)))
-        print(all_data)
+        # all_data = reader_table()
+        # print('所有返回内容数量:' + str(len(all_data)))
+        # print(all_data)
         if len(fail) != 0:
             print('有失败的内容！！！！！！！！！')
+            result = False
         else:
             print('测试通过！！！！')
+        return result
 
     # 线程
     def threading(self, fail, queue, single_quantity):
@@ -400,7 +403,8 @@ def sigle_request_runner(path):
     test = Http_Test(config)
     # test.c_process(10)
     # test.process(single_quantity=10)
-    test.Multithreading_api()
+    result = test.Multithreading_api()
+    return result
 
 
 if __name__ == "__main__":
