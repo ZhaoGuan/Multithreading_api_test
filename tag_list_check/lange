@@ -3,3 +3,4 @@
 'in' : ['in_ID', 'ID', 'in']
 'en' : ['en_US', 'US', 'en']
 'fr' : ['fr', 'US', 'fr']
+'ru' : ['ru','US','ru']

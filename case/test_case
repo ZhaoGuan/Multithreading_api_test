@@ -1,15 +1,15 @@
 #url: https://api.kikakeyboard.com/v1/stickers2/popup?type=0&
 cycle_times: 1
 #web0
-url: http://sticker.pre.kikakeyboard.com/backend-content-sending/popup?type=0&
+#url: http://sticker.pre.kikakeyboard.com/backend-content-sending/popup?type=0&
 #test3
-#url: http://52.43.155.219:9090/backend-content-sending/popup?type=0&
+url: http://34.214.222.244:9090/backend-content-sending/popup?type=0&
 keys: ['kb_lang','tag','duid']
 data:
   app: ['kika','ikey','pro']
 #  app: ['ikey']
-  kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
-#  kb_lang : ['en_US', 'en_AU']
+#  kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
+  kb_lang : ['en_US', 'en_AU']
 #  kb_lang : ['pt_BR']
   tag : ['ok']
 #  tag: [lol]
@@ -52,8 +52,10 @@ assert:
                   'ikey&1477':'{"data&type":"sticker"}',
                   'ikey&1478':'{"data&type":"magic&sticker"}',
                   # kika pro 展示时间判断
-                  'kika@1':'{"data&stickers&0&popup_duration":"5000"}',
-                  'pro@1':'{"data&stickers&0&popup_duration":"5000"}',
+                  'kika@1':'{"data&type":"sticker"}${"data&popup_duration":"5000"}',
+                  'kika@2':'{"data&type":"magic"}${"data&popup_duration":"0"}',
+                  'pro@1':'{"data&type":"sticker"}${"data&popup_duration":"5000"}',
+                  'pro@2':'{"data&type":"magic"}${"data&popup_duration":"0"}',
 #                  'ikey@3':'{"data&type":"sticker"}${"data&stickers&0&tags&0":"ok"}',
 #                  'kika@2':'{"data&stickers&0&tags&0":"ok"}',
 #                  'pro@@2':'{"data&stickers&0&tags&0":"ok"}'

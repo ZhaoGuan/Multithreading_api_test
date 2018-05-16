@@ -1,16 +1,6 @@
-#运营
-# 灰度
-#url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/sticker2/get_popup_map?is_debug=true
-#url : http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/sticker2/resource_with_tags
-# test
-#url: http://34.214.222.244:9090/backend-content-sending/v1/sticker2/get_popup_map?is_debug=true
-#url : http://34.214.222.244:9090/backend-content-sending/v1/sticker2/resource_with_tags
-#爬虫
-# 灰度
-#url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/sticker2/crawler_resource_with_tags
-#test
-#url : http://34.214.222.244:9090/backend-content-sending/v1/sticker2/crawler_resource_with_tags
-cycle_times: 1
+url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/sticker2/resource_with_tags
+#url: http://52.43.155.219:9090/backend-content-sending/v1/sticker2/resource_with_tags
+#url: http://52.43.155.219:9090/backend-content-sending/v1/sticker2/resource_with_tags?is_realtime=true
 keys:
 data:
 assert:
