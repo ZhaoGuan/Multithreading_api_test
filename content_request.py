@@ -305,6 +305,6 @@ def content_request(Path):
 
 
 if __name__ == "__main__":
-    content_request('./case/sticker_case')
-    # content_request('./case/gif_case')
+    # content_request('./case/sticker_case')
+    content_request('./case/gif_case')
     # content_request('./case/sticker2_package')
