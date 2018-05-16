@@ -1,3 +1,4 @@
+operation_mode: sigle_request
 source:
   test:
     url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/sticker2/resource_with_tags

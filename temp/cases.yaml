@@ -1,0 +1,9 @@
+backend-content-sending/Magictext_all:
+  path: backend-content-sending/Magictext_all
+  source: test
+backend-content-sending/for_data_modle:
+  path: backend-content-sending/for_data_modle
+  source: test
+backend-content-sending/test_case:
+  path: backend-content-sending/test_case
+  source: test

@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>接口自动化测试报告</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+<style type="text/css" media="screen">
+body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
+table       { font-size: 100%; }
+pre         { }
+
+/* -- heading ---------------------------------------------------------------------- */
+h1 {
+	font-size: 16pt;
+	color: gray;
+}
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+
+.heading .attribute {
+    margin-top: 1ex;
+    margin-bottom: 0;
+}
+
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+
+/* -- css div popup ------------------------------------------------------------------------ */
+a.popup_link {
+}
+
+a.popup_link:hover {
+    color: red;
+}
+
+.popup_window {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    background-color: #E6E6D6;
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 8pt;
+    width: 500px;
+}
+
+}
+/* -- report ------------------------------------------------------------------------ */
+#show_detail_line {
+    margin-top: 3ex;
+    margin-bottom: 1ex;
+}
+#result_table {
+    width: 80%;
+    border-collapse: collapse;
+    border: 1px solid #777;
+}
+#header_row {
+    font-weight: bold;
+    color: white;
+    background-color: #777;
+}
+#result_table td {
+    border: 1px solid #777;
+    padding: 2px;
+}
+#total_row  { font-weight: bold; }
+.passClass  { background-color: #6c6; }
+.failClass  { background-color: #c60; }
+.errorClass { background-color: #c00; }
+.passCase   { color: #6c6; }
+.failCase   { color: #c60; font-weight: bold; }
+.errorCase  { color: #c00; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+
+
+/* -- ending ---------------------------------------------------------------------- */
+#ending {
+}
+
+</style>
+
+</head>
+<body>
+<script language="javascript" type="text/javascript"><!--
+output_list = Array();
+
+/* level - 0:Summary; 1:Failed; 2:All */
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level < 1) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level > 1) {
+                tr.className = '';
+            }
+            else {
+                tr.className = 'hiddenRow';
+            }
+        }
+    }
+}
+
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        tid0 = 't' + cid.substr(1) + '.' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        if (toHide) {
+            document.getElementById('div_'+tid).style.display = 'none'
+            document.getElementById(tid).className = 'hiddenRow';
+        }
+        else {
+            document.getElementById(tid).className = '';
+        }
+    }
+}
+
+
+function showTestDetail(div_id){
+    var details_div = document.getElementById(div_id)
+    var displayState = details_div.style.display
+    // alert(displayState)
+    if (displayState != 'block' ) {
+        displayState = 'block'
+        details_div.style.display = 'block'
+    }
+    else {
+        details_div.style.display = 'none'
+    }
+}
+
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+/* obsoleted by detail in <div>
+function showOutput(id, name) {
+    var w = window.open("", //url
+                    name,
+                    "resizable,scrollbars,status,width=800,height=450");
+    d = w.document;
+    d.write("<pre>");
+    d.write(html_escape(output_list[id]));
+    d.write("\n");
+    d.write("<a href='javascript:window.close()'>close</a>\n");
+    d.write("</pre>\n");
+    d.close();
+}
+*/
+--></script>
+
+<div class='heading'>
+<h1>接口自动化测试报告</h1>
+<p class='attribute'><strong>Start Time:</strong> 2018-05-16 16:14:42</p>
+<p class='attribute'><strong>Duration:</strong> 0:00:38.222118</p>
+<p class='attribute'><strong>Status:</strong> Pass 3</p>
+
+<p class='description'>接口自动化测试报告</p>
+</div>
+
+
+
+<p id='show_detail_line'>Show
+<a href='javascript:showCase(0)'>Summary</a>
+<a href='javascript:showCase(1)'>Failed</a>
+<a href='javascript:showCase(2)'>All</a>
+</p>
+<table id='result_table'>
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row'>
+    <td>Test Group/Test case</td>
+    <td>Count</td>
+    <td>Pass</td>
+    <td>Fail</td>
+    <td>Error</td>
+    <td>View</td>
+</tr>
+
+<tr class='passClass'>
+    <td>running_template.ApiTest</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c1',3)">Detail</a></td>
+</tr>
+
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_http_api_1_backend_content_sending_Magictext_all</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
+        pass</a>
+
+    <div id='div_pt1.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.1: Test Begin
+HTTP_DATA delete!!!!
+HTTP_DATA created!!!!
+&lt;Thread(Thread-1, initial)&gt;
+所用时间:
+25.477200031280518
+有误的配置内容:
+有误数量:0
+所有误解返回内容:
+所有返回内容数量:1
+{'response': '{"data":{"info":[{"id":111,"name":"new_magictest_style","url":"http://cdn.kikakeyboard.com/picture/20b315258a2b691f70a0d8501cd3aed1.Zip"},{"id":112,"name":"test","url":"http://cdn.kikakeyboard.com/picture/20b315258a2b691f70a0d8501cd3aed1.Zip"},{"id":113,"name":"gz","url":"http://cdn.kikakeyboard.com/picture/4457ae670b1367f3f4ac4001566af009.Zip"}]},"errorMsg":"ok","errorCode":0}', 'data': '0'}
+测试通过！！！！
+Test Over
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_http_api_2_backend_content_sending_for_data_modle</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.2')" >
+        pass</a>
+
+    <div id='div_pt1.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.2: Test Begin
+HTTP_DATA delete!!!!
+HTTP_DATA created!!!!
+&lt;Thread(Thread-2, initial)&gt;
+有值进行了忽略
+所用时间:
+0.4233529567718506
+有误的配置内容:
+有误数量:0
+所有误解返回内容:
+所有返回内容数量:1
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"love":["005552bfc17585560f68ff108148aab4"],"no":["2ca542a85a85c88b9782acbcfd7de6ef"],"haha":["fe49176d6e09af0872929bdb095e0a12"],"giphy":["a8e0463b01be4865b21a6bbf9c8febde"],"saber":["2bb661c0f7650e9e0fda0cf12fc579d3"],"omg":["e450552f0b260ed353aa47caf67401ab"],"newton":["4746ca8994a3ac35543d6e8672982870"],"bravo":["b0d43abaf9603aadb6bdc50ade474b27"],"checkitout":["2ab2ec3918b3999259e64c2163e66af7"],"lit":["73c75f4d77d7ea46facc7e0c4331d703"],"nate":["88bd5fed07fcf5d8cb49605aa67d3e68"],"mal":["8fen5LSZcHQ5O"],"gameon":["b50d6b0f71da0a89a9e9166cbc38de2a"],"namaste":["3525bed52a13c7edab89c24a8b764d69"],"ok":["eef96bd7-d91c-4275-913b-e03c90a7f676"],"shrikethorn":["5bfade7a0b1fecf9865f81d1a3097b8c"],"jake":["8569c3e10be9fe14a52f18e4b30590a4"],"raijin":["c495dde30305f1099d31b7a3e4acff51"],"mori":["c6947ed9602193c9a4e589419d37fe4f"],"pilotsuit":["e248ed2d48ba745bccc726d17f52de31"],"amara":["4d5f3c9543c1ca86b7cba73167330742"],"1":["c25a1fa30a03812dba0e16b2ede7334d","ccdcf6dd4df179f0d013a3440be2019b","e6109388f430bdc8771929c17e525c2c","f0d949cef489117266d7b4ca558d86d0"],"2":["252ae01e37fd20b11949e0a800de6974","8dcb8d92006a3bca9089869fabd6cdfe","b92cb460102244c3ed879ffe34703c54"],"phoenix":["b2c795be4eab0d8ef72e6d80ca5dbe77"],"3":["6036871cec5e849e6a9247ead190c2f2","68c9f1a27d04e77823e452691bbfbb6c","902ca5755ceaab110302ed3958e31260"],"gz":["818cde38-4272-4808-9739-1a76e7dda033"],"suited":["184c0a4fc2f5f0015e09363b517031e2"],"4":["47e0f3ac9094fca4319add31d37cfbf7","aa8939adef7c9aadf02ef5a1b751df59","bcb06320c0348391262c5247db13fde1"],"5":["2d929b400acedf95d933fde48e071873","a17fe67b73594d9810be9164e8802997","c47965b7f178c58b306c0ebbe5606c94"],"6":["455580e796e64ddfe92c75b340adf7c6","e348e0d6f817af30a8e3299a6326c463"],"gottlieb":["664365855a15f0587f0ae6609090df2c"],"7":["7f6002e06bb01b40292390d65fc29707","c991c0feff046bd95f11b23034186ce9"],"8":["6d03006a98484f8c68b0650216f52bda"],"coming":["7d0a94b1708cd8ea1675c10031566d51"],"gz120":["21e99154-bd34-4401-a970-d1849a690b39","14a83f82-0c31-40fd-bd16-9079831199c3","7b039850-16d1-4284-b903-1b0b58957119"]}}', 'data': '0'}
+测试通过！！！！
+Test Over
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_http_api_3_backend_content_sending_test_case</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.3')" >
+        pass</a>
+
+    <div id='div_pt1.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.3: Test Begin
+HTTP_DATA delete!!!!
+HTTP_DATA created!!!!
+&lt;Thread(Thread-3, initial)&gt;
+&lt;Thread(Thread-4, initial)&gt;
+&lt;Thread(Thread-5, initial)&gt;
+&lt;Thread(Thread-6, initial)&gt;
+&lt;Thread(Thread-7, initial)&gt;
+&lt;Thread(Thread-8, initial)&gt;
+&lt;Thread(Thread-9, initial)&gt;
+&lt;Thread(Thread-10, initial)&gt;
+&lt;Thread(Thread-11, initial)&gt;
+&lt;Thread(Thread-12, initial)&gt;
+&lt;Thread(Thread-13, initial)&gt;
+&lt;Thread(Thread-14, initial)&gt;
+&lt;Thread(Thread-15, initial)&gt;
+&lt;Thread(Thread-16, initial)&gt;
+&lt;Thread(Thread-17, initial)&gt;
+&lt;Thread(Thread-18, initial)&gt;
+&lt;Thread(Thread-19, initial)&gt;
+&lt;Thread(Thread-20, initial)&gt;
+&lt;Thread(Thread-21, initial)&gt;
+&lt;Thread(Thread-22, initial)&gt;
+&lt;Thread(Thread-23, initial)&gt;
+&lt;Thread(Thread-24, initial)&gt;
+&lt;Thread(Thread-25, initial)&gt;
+&lt;Thread(Thread-26, initial)&gt;
+&lt;Thread(Thread-27, initial)&gt;
+&lt;Thread(Thread-28, initial)&gt;
+&lt;Thread(Thread-29, initial)&gt;
+&lt;Thread(Thread-30, initial)&gt;
+&lt;Thread(Thread-31, initial)&gt;
+&lt;Thread(Thread-32, initial)&gt;
+&lt;Thread(Thread-33, initial)&gt;
+&lt;Thread(Thread-34, initial)&gt;
+&lt;Thread(Thread-35, initial)&gt;
+&lt;Thread(Thread-36, initial)&gt;
+&lt;Thread(Thread-37, initial)&gt;
+&lt;Thread(Thread-38, initial)&gt;
+&lt;Thread(Thread-39, initial)&gt;
+&lt;Thread(Thread-40, initial)&gt;
+&lt;Thread(Thread-41, initial)&gt;
+&lt;Thread(Thread-42, initial)&gt;
+&lt;Thread(Thread-43, initial)&gt;
+&lt;Thread(Thread-44, initial)&gt;
+&lt;Thread(Thread-45, initial)&gt;
+&lt;Thread(Thread-46, initial)&gt;
+&lt;Thread(Thread-47, initial)&gt;
+&lt;Thread(Thread-48, initial)&gt;
+&lt;Thread(Thread-49, initial)&gt;
+&lt;Thread(Thread-50, initial)&gt;
+&lt;Thread(Thread-51, initial)&gt;
+&lt;Thread(Thread-52, initial)&gt;
+&lt;Thread(Thread-53, initial)&gt;
+&lt;Thread(Thread-54, initial)&gt;
+&lt;Thread(Thread-55, initial)&gt;
+&lt;Thread(Thread-56, initial)&gt;
+&lt;Thread(Thread-57, initial)&gt;
+&lt;Thread(Thread-58, initial)&gt;
+&lt;Thread(Thread-59, initial)&gt;
+&lt;Thread(Thread-60, initial)&gt;
+&lt;Thread(Thread-61, initial)&gt;
+&lt;Thread(Thread-62, initial)&gt;
+&lt;Thread(Thread-63, initial)&gt;
+&lt;Thread(Thread-64, initial)&gt;
+&lt;Thread(Thread-65, initial)&gt;
+&lt;Thread(Thread-66, initial)&gt;
+&lt;Thread(Thread-67, initial)&gt;
+&lt;Thread(Thread-68, initial)&gt;
+&lt;Thread(Thread-69, initial)&gt;
+&lt;Thread(Thread-70, initial)&gt;
+&lt;Thread(Thread-71, initial)&gt;
+&lt;Thread(Thread-72, initial)&gt;
+&lt;Thread(Thread-73, initial)&gt;
+kika@2对应条件值不存在
+对应判断条件值为：sticker
+kika@2对应条件值不存在
+对应判断条件值为：sticker
+kika@2对应条件值不存在
+对应判断条件值为：sticker
+&lt;Thread(Thread-74, initial)&gt;
+kika@2对应条件值不存在
+对应判断条件值为：sticker
+ikey@2对应条件值不存在
+对应判断条件值为：sticker
+pro@2对应条件值不存在
+对应判断条件值为：sticker
+ikey@2对应条件值不存在
+对应判断条件值为：sticker
+kika@2对应条件值不存在
+对应判断条件值为：sticker
+kika@2对应条件值不存在
+对应判断条件值为：sticker
+kika@2对应条件值不存在
+对应判断条件值为：sticker
+pro@2对应条件值不存在
+对应判断条件值为：sticker
+pro@1对应条件值不存在
+对应判断条件值为：magic
+ikey@2对应条件值不存在
+对应判断条件值为：sticker
+kika@2对应条件值不存在
+对应判断条件值为：sticker
+pro@2对应条件值不存在
+对应判断条件值为：sticker
+pro@2对应条件值不存在
+对应判断条件值为：sticker
+kika@2对应条件值不存在
+对应判断条件值为：sticker
+ikey@2对应条件值不存在
+对应判断条件值为：sticker
+kika@2对应条件值不存在
+对应判断条件值为：sticker
+kika@2对应条件值不存在
+对应判断条件值为：sticker
+kika@2对应条件值不存在
+对应判断条件值为：sticker
+ikey@2对应条件值不存在
+对应判断条件值为：sticker
+ikey@2对应条件值不存在
+对应判断条件值为：sticker
+pro@2对应条件值不存在
+对应判断条件值为：sticker
+pro@2对应条件值不存在
+对应判断条件值为：sticker
+ikey@2对应条件值不存在
+对应判断条件值为：sticker
+kika@2对应条件值不存在
+对应判断条件值为：sticker
+ikey@2对应条件值不存在
+对应判断条件值为：sticker
+ikey@2对应条件值不存在
+对应判断条件值为：sticker
+ikey@2对应条件值不存在
+对应判断条件值为：sticker
+pro@2对应条件值不存在
+对应判断条件值为：sticker
+kika@1对应条件值不存在
+对应判断条件值为：magic
+kika@2对应条件值不存在
+对应判断条件值为：sticker
+pro@2对应条件值不存在
+对应判断条件值为：sticker
+kika@2对应条件值不存在
+对应判断条件值为：sticker
+pro@2对应条件值不存在
+对应判断条件值为：sticker
+kika@1对应条件值不存在
+对应判断条件值为：magic
+kika@2对应条件值不存在
+对应判断条件值为：sticker
+ikey@2对应条件值不存在
+对应判断条件值为：sticker
+ikey@2对应条件值不存在
+对应判断条件值为：sticker
+ikey@2对应条件值不存在
+对应判断条件值为：sticker
+ikey@2对应条件值不存在
+对应判断条件值为：sticker
+pro@1对应条件值不存在
+对应判断条件值为：magic
+pro@2对应条件值不存在
+对应判断条件值为：sticker
+ikey@2对应条件值不存在
+对应判断条件值为：sticker
+ikey@2对应条件值不存在
+对应判断条件值为：sticker
+pro@1对应条件值不存在
+对应判断条件值为：magic
+pro@2对应条件值不存在
+对应判断条件值为：sticker
+pro@2对应条件值不存在
+对应判断条件值为：sticker
+ikey@2对应条件值不存在
+对应判断条件值为：sticker
+kika@2对应条件值不存在
+对应判断条件值为：sticker
+kika@2对应条件值不存在
+对应判断条件值为：sticker
+kika@2对应条件值不存在
+对应判断条件值为：sticker
+kika@2对应条件值不存在
+对应判断条件值为：sticker
+kika@2对应条件值不存在
+对应判断条件值为：sticker
+pro@2对应条件值不存在
+对应判断条件值为：sticker
+pro@1对应条件值不存在
+对应判断条件值为：magic
+kika@2对应条件值不存在
+对应判断条件值为：sticker
+ikey@2对应条件值不存在
+对应判断条件值为：sticker
+pro@1对应条件值不存在
+对应判断条件值为：magic
+ikey@2对应条件值不存在
+对应判断条件值为：sticker
+ikey@2对应条件值不存在
+对应判断条件值为：sticker
+ikey@2对应条件值不存在
+对应判断条件值为：sticker
+pro@2对应条件值不存在
+对应判断条件值为：sticker
+ikey@2对应条件值不存在
+对应判断条件值为：sticker
+pro@2对应条件值不存在
+对应判断条件值为：sticker
+pro@1对应条件值不存在
+对应判断条件值为：magic
+pro@2对应条件值不存在
+对应判断条件值为：sticker
+ikey@2对应条件值不存在
+对应判断条件值为：sticker
+pro@2对应条件值不存在
+对应判断条件值为：sticker
+ikey@2对应条件值不存在
+对应判断条件值为：sticker
+pro@2对应条件值不存在
+对应判断条件值为：sticker
+所用时间:
+12.232431173324585
+有误的配置内容:
+有误数量:0
+所有误解返回内容:
+所有返回内容数量:72
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"eef96bd7-d91c-4275-913b-e03c90a7f676","name":null,"tags":["ok"],"source_text":"kikatech.com","image":{"url":"http://cdn.kikakeyboard.com/picture/53450d17f3a492f12586c2080a4c80d3.gif","width":458,"height":300,"size":54273,"md5":"53450d17f3a492f12586c2080a4c80d3"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"sticker3PZ6EZv5hjLBMU73YdAcFf20180516161509074\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'kika', 'tag': 'ok', 'duid': '5a215835df204115ee3d2d4ec0c528aa'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"833b56f1-8fc4-4ba6-a3f9-3de2d2b33051","name":null,"tags":["ok"],"source_text":"tenor.com","image":{"url":"https://media.tenor.com/images/848315f7dbb6bef2158e7f018d061e08/tenor.gif","width":250,"height":188,"size":858770,"md5":"10378694"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":"By goo.gl/8eU5qS"}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"sticker8A2dzAz3sNj3eRBRej7mW420180516161509060\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'kika', 'tag': 'ok', 'duid': '5a215835df204115ee3d2d4ec0c528aa'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"833b56f1-8fc4-4ba6-a3f9-3de2d2b33051","name":null,"tags":["ok"],"source_text":"tenor.com","image":{"url":"https://media.tenor.com/images/848315f7dbb6bef2158e7f018d061e08/tenor.gif","width":250,"height":188,"size":858770,"md5":"10378694"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickerZSdCazkrbECxgYMfU7aQkU20180516161509070\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'kika', 'tag': 'ok', 'duid': '5a215835df204115ee3d2d4ec0c528aa'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"ac8dd5a3-d9bc-4273-a797-451c76c08b8b","name":null,"tags":["ok"],"source_text":"giphy.com","image":{"url":"https://media3.giphy.com/media/10bhnmBHGYTr2g/200_d.gif","width":250,"height":200,"size":155622,"md5":"10bhnmBHGYTr2g"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"bucket\\":\\"10:EnNotUsBeforeBucket\\",\\"alg_hit\\":\\"0\\",\\"scenario\\":\\"EnNotUsBeforeScenario\\",\\"sessionId\\":\\"stickerv6jsoisMWyqPNbJn2MaGcF20180516161509069\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'ikey', 'tag': 'ok', 'duid': '5a215835df204115ee3d2d4ec0c528aa'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"833b56f1-8fc4-4ba6-a3f9-3de2d2b33051","name":null,"tags":["ok"],"source_text":"tenor.com","image":{"url":"https://media.tenor.com/images/848315f7dbb6bef2158e7f018d061e08/tenor.gif","width":250,"height":188,"size":858770,"md5":"10378694"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickerJAr5yHaqgmtAVJqZZCgGFb20180516161509073\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'kika', 'tag': 'ok', 'duid': '5a215835df204115ee3d2d4ec0c528aa'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"ac8dd5a3-d9bc-4273-a797-451c76c08b8b","name":null,"tags":["ok"],"source_text":"giphy.com","image":{"url":"https://media3.giphy.com/media/10bhnmBHGYTr2g/200_d.gif","width":250,"height":200,"size":155622,"md5":"10bhnmBHGYTr2g"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"sticker2we7VfDibQgXpCmmc7S8sV20180516161509149\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'pro', 'tag': 'ok', 'duid': '5a215835df204115ee3d2d4ec0c528aa'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"833b56f1-8fc4-4ba6-a3f9-3de2d2b33051","name":null,"tags":["ok"],"source_text":"tenor.com","image":{"url":"https://media.tenor.com/images/848315f7dbb6bef2158e7f018d061e08/tenor.gif","width":250,"height":188,"size":858770,"md5":"10378694"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"bucket\\":\\"10:EnNotUsBeforeBucket\\",\\"alg_hit\\":\\"0\\",\\"scenario\\":\\"EnNotUsBeforeScenario\\",\\"sessionId\\":\\"stickerfH9rPi2DkNZzcwaiNpAK9c20180516161509092\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'ikey', 'tag': 'ok', 'duid': '5a215835df204115ee3d2d4ec0c528aa'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"ac8dd5a3-d9bc-4273-a797-451c76c08b8b","name":null,"tags":["ok"],"source_text":"giphy.com","image":{"url":"https://media3.giphy.com/media/10bhnmBHGYTr2g/200_d.gif","width":250,"height":200,"size":155622,"md5":"10bhnmBHGYTr2g"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickercif8VrbboaJGwQL5ccLQBR20180516161509165\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'kika', 'tag': 'ok', 'duid': 'adad79631d9339915e3be1c9e783e82d'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"833b56f1-8fc4-4ba6-a3f9-3de2d2b33051","name":null,"tags":["ok"],"source_text":"tenor.com","image":{"url":"https://media.tenor.com/images/848315f7dbb6bef2158e7f018d061e08/tenor.gif","width":250,"height":188,"size":858770,"md5":"10378694"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"sticker8NcZ5bixYV2JeChbDvtVm620180516161509165\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'pro', 'tag': 'ok', 'duid': '5a215835df204115ee3d2d4ec0c528aa'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"833b56f1-8fc4-4ba6-a3f9-3de2d2b33051","name":null,"tags":["ok"],"source_text":"tenor.com","image":{"url":"https://media.tenor.com/images/848315f7dbb6bef2158e7f018d061e08/tenor.gif","width":250,"height":188,"size":858770,"md5":"10378694"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickerBEHsYUogRU3kFpqSzySyyh20180516161509165\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'kika', 'tag': 'ok', 'duid': 'adad79631d9339915e3be1c9e783e82d'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"833b56f1-8fc4-4ba6-a3f9-3de2d2b33051","name":null,"tags":["ok"],"source_text":"tenor.com","image":{"url":"https://media.tenor.com/images/848315f7dbb6bef2158e7f018d061e08/tenor.gif","width":250,"height":188,"size":858770,"md5":"10378694"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickerfeC68dzoyEoBS3v4rY8XUY20180516161509161\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'kika', 'tag': 'ok', 'duid': 'adad79631d9339915e3be1c9e783e82d'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":null,"magics":[{"key":"a6ca14fd-4214-4eb9-8d02-20a1675e17c7","style":"style=12345"}],"type":"magic","popup_duration":0,"extra":"{\\"sessionId\\":\\"stickerMfnSbzdSy3Ssx6VKHQPgpb20180516161509202\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'pro', 'tag': 'ok', 'duid': 'adad79631d9339915e3be1c9e783e82d'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"eef96bd7-d91c-4275-913b-e03c90a7f676","name":null,"tags":["ok"],"source_text":"kikatech.com","image":{"url":"http://cdn.kikakeyboard.com/picture/53450d17f3a492f12586c2080a4c80d3.gif","width":458,"height":300,"size":54273,"md5":"53450d17f3a492f12586c2080a4c80d3"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"bucket\\":\\"10:EnNotUsBeforeBucket\\",\\"alg_hit\\":\\"0\\",\\"scenario\\":\\"EnNotUsBeforeScenario\\",\\"sessionId\\":\\"stickerEgesCmY2iqcHnvHENBR3UN20180516161509193\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'ikey', 'tag': 'ok', 'duid': 'adad79631d9339915e3be1c9e783e82d'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"ac8dd5a3-d9bc-4273-a797-451c76c08b8b","name":null,"tags":["ok"],"source_text":"giphy.com","image":{"url":"https://media3.giphy.com/media/10bhnmBHGYTr2g/200_d.gif","width":250,"height":200,"size":155622,"md5":"10bhnmBHGYTr2g"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":"By goo.gl/8eU5qS"}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"sticker7RvfadF8i8kHQm9KD2M9sd20180516161509266\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'kika', 'tag': 'ok', 'duid': 'a2bb5434f3541bf5aa64186ec8c2b77f'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"833b56f1-8fc4-4ba6-a3f9-3de2d2b33051","name":null,"tags":["ok"],"source_text":"tenor.com","image":{"url":"https://media.tenor.com/images/848315f7dbb6bef2158e7f018d061e08/tenor.gif","width":250,"height":188,"size":858770,"md5":"10378694"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickeryPXtSDQyEME393bXazmAx620180516161509269\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'pro', 'tag': 'ok', 'duid': 'adad79631d9339915e3be1c9e783e82d'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"833b56f1-8fc4-4ba6-a3f9-3de2d2b33051","name":null,"tags":["ok"],"source_text":"tenor.com","image":{"url":"https://media.tenor.com/images/848315f7dbb6bef2158e7f018d061e08/tenor.gif","width":250,"height":188,"size":858770,"md5":"10378694"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickerW5apsH3pwiBgwCCXECvF8Z20180516161509273\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'pro', 'tag': 'ok', 'duid': 'adad79631d9339915e3be1c9e783e82d'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"ac8dd5a3-d9bc-4273-a797-451c76c08b8b","name":null,"tags":["ok"],"source_text":"giphy.com","image":{"url":"https://media3.giphy.com/media/10bhnmBHGYTr2g/200_d.gif","width":250,"height":200,"size":155622,"md5":"10bhnmBHGYTr2g"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":"By goo.gl/8eU5qS"}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickerfjkCqjvsSBEcVUSpE7c4Q720180516161509279\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'kika', 'tag': 'ok', 'duid': 'a2bb5434f3541bf5aa64186ec8c2b77f'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"ac8dd5a3-d9bc-4273-a797-451c76c08b8b","name":null,"tags":["ok"],"source_text":"giphy.com","image":{"url":"https://media3.giphy.com/media/10bhnmBHGYTr2g/200_d.gif","width":250,"height":200,"size":155622,"md5":"10bhnmBHGYTr2g"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickerGm6Vs9NaGhrVYKSNGxTF8k20180516161509289\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'kika', 'tag': 'ok', 'duid': 'a2bb5434f3541bf5aa64186ec8c2b77f'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"833b56f1-8fc4-4ba6-a3f9-3de2d2b33051","name":null,"tags":["ok"],"source_text":"tenor.com","image":{"url":"https://media.tenor.com/images/848315f7dbb6bef2158e7f018d061e08/tenor.gif","width":250,"height":188,"size":858770,"md5":"10378694"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"bucket\\":\\"10:EnNotUsBeforeBucket\\",\\"alg_hit\\":\\"0\\",\\"scenario\\":\\"EnNotUsBeforeScenario\\",\\"sessionId\\":\\"stickerGXHJNBBKftmFVbaBmHHi5n20180516161509202\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'ikey', 'tag': 'ok', 'duid': 'adad79631d9339915e3be1c9e783e82d'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"833b56f1-8fc4-4ba6-a3f9-3de2d2b33051","name":null,"tags":["ok"],"source_text":"tenor.com","image":{"url":"https://media.tenor.com/images/848315f7dbb6bef2158e7f018d061e08/tenor.gif","width":250,"height":188,"size":858770,"md5":"10378694"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickerVEFR9BK4yoYVNAU546Vhe420180516161509308\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'kika', 'tag': 'ok', 'duid': 'a2bb5434f3541bf5aa64186ec8c2b77f'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"ac8dd5a3-d9bc-4273-a797-451c76c08b8b","name":null,"tags":["ok"],"source_text":"giphy.com","image":{"url":"https://media3.giphy.com/media/10bhnmBHGYTr2g/200_d.gif","width":250,"height":200,"size":155622,"md5":"10bhnmBHGYTr2g"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickerxq6yfBUqwwscZRz2CodvjK20180516161509278\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'kika', 'tag': 'ok', 'duid': 'a2bb5434f3541bf5aa64186ec8c2b77f'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"ac8dd5a3-d9bc-4273-a797-451c76c08b8b","name":null,"tags":["ok"],"source_text":"giphy.com","image":{"url":"https://media3.giphy.com/media/10bhnmBHGYTr2g/200_d.gif","width":250,"height":200,"size":155622,"md5":"10bhnmBHGYTr2g"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"bucket\\":\\"5:EnUsBeforeMod2Bucket\\",\\"alg_hit\\":\\"0\\",\\"scenario\\":\\"EnUsBeforeMod2Secnario\\",\\"sessionId\\":\\"stickerCZHZbNyzqYMKPMpoia2QaF20180516161509311\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'ikey', 'tag': 'ok', 'duid': 'a2bb5434f3541bf5aa64186ec8c2b77f'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"ac8dd5a3-d9bc-4273-a797-451c76c08b8b","name":null,"tags":["ok"],"source_text":"giphy.com","image":{"url":"https://media3.giphy.com/media/10bhnmBHGYTr2g/200_d.gif","width":250,"height":200,"size":155622,"md5":"10bhnmBHGYTr2g"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"bucket\\":\\"5:EnUsBeforeMod2Bucket\\",\\"alg_hit\\":\\"0\\",\\"scenario\\":\\"EnUsBeforeMod2Secnario\\",\\"sessionId\\":\\"sticker4vMN74TQKFGYz47FR2y2Km20180516161509310\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'ikey', 'tag': 'ok', 'duid': 'a2bb5434f3541bf5aa64186ec8c2b77f'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"833b56f1-8fc4-4ba6-a3f9-3de2d2b33051","name":null,"tags":["ok"],"source_text":"tenor.com","image":{"url":"https://media.tenor.com/images/848315f7dbb6bef2158e7f018d061e08/tenor.gif","width":250,"height":188,"size":858770,"md5":"10378694"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickerUFA6gGnM8gEhzcWCSMrrYY20180516161509379\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'pro', 'tag': 'ok', 'duid': 'a2bb5434f3541bf5aa64186ec8c2b77f'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"eef96bd7-d91c-4275-913b-e03c90a7f676","name":null,"tags":["ok"],"source_text":"kikatech.com","image":{"url":"http://cdn.kikakeyboard.com/picture/53450d17f3a492f12586c2080a4c80d3.gif","width":458,"height":300,"size":54273,"md5":"53450d17f3a492f12586c2080a4c80d3"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickerpgWSqQ4H4qMfFRKjBmUfCn20180516161509380\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'pro', 'tag': 'ok', 'duid': 'a2bb5434f3541bf5aa64186ec8c2b77f'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"eef96bd7-d91c-4275-913b-e03c90a7f676","name":null,"tags":["ok"],"source_text":"kikatech.com","image":{"url":"http://cdn.kikakeyboard.com/picture/53450d17f3a492f12586c2080a4c80d3.gif","width":458,"height":300,"size":54273,"md5":"53450d17f3a492f12586c2080a4c80d3"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"bucket\\":\\"5:EnUsBeforeMod2Bucket\\",\\"alg_hit\\":\\"0\\",\\"scenario\\":\\"EnUsBeforeMod2Secnario\\",\\"sessionId\\":\\"stickerpqENd4wM9ZpeGWB5oNJjxa20180516161509377\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'ikey', 'tag': 'ok', 'duid': 'a2bb5434f3541bf5aa64186ec8c2b77f'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":null,"magics":[{"key":"a6ca14fd-4214-4eb9-8d02-20a1675e17c7","style":"style=12345"}],"type":"magic","popup_duration":0,"extra":"{\\"sessionId\\":\\"stickerc97Dk9CoRvv6Yepdsb48h820180516161509411\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': '2371', 'app': 'kika', 'tag': 'ok', 'duid': '920b56e9cadd743bfbbcb4126937e789'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"ac8dd5a3-d9bc-4273-a797-451c76c08b8b","name":null,"tags":["ok"],"source_text":"giphy.com","image":{"url":"https://media3.giphy.com/media/10bhnmBHGYTr2g/200_d.gif","width":250,"height":200,"size":155622,"md5":"10bhnmBHGYTr2g"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickerFvNDhDbe6HZNfBjFRzKALc20180516161509416\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'kika', 'tag': 'ok', 'duid': '920b56e9cadd743bfbbcb4126937e789'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"ac8dd5a3-d9bc-4273-a797-451c76c08b8b","name":null,"tags":["ok"],"source_text":"giphy.com","image":{"url":"https://media3.giphy.com/media/10bhnmBHGYTr2g/200_d.gif","width":250,"height":200,"size":155622,"md5":"10bhnmBHGYTr2g"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"bucket\\":\\"10:EnNotUsBeforeBucket\\",\\"alg_hit\\":\\"0\\",\\"scenario\\":\\"EnNotUsBeforeScenario\\",\\"sessionId\\":\\"stickerPczBqcRMrnpYiBnHRGet6S20180516161509373\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'ikey', 'tag': 'ok', 'duid': 'a2bb5434f3541bf5aa64186ec8c2b77f'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"ac8dd5a3-d9bc-4273-a797-451c76c08b8b","name":null,"tags":["ok"],"source_text":"giphy.com","image":{"url":"https://media3.giphy.com/media/10bhnmBHGYTr2g/200_d.gif","width":250,"height":200,"size":155622,"md5":"10bhnmBHGYTr2g"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickerWFsqJqE4P3jakLV9rNqEMD20180516161509414\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'kika', 'tag': 'ok', 'duid': '920b56e9cadd743bfbbcb4126937e789'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"ac8dd5a3-d9bc-4273-a797-451c76c08b8b","name":null,"tags":["ok"],"source_text":"giphy.com","image":{"url":"https://media3.giphy.com/media/10bhnmBHGYTr2g/200_d.gif","width":250,"height":200,"size":155622,"md5":"10bhnmBHGYTr2g"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"sticker4XCXHRxSWJ87RL23J9NZAG20180516161509414\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'pro', 'tag': 'ok', 'duid': 'a2bb5434f3541bf5aa64186ec8c2b77f'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"ac8dd5a3-d9bc-4273-a797-451c76c08b8b","name":null,"tags":["ok"],"source_text":"giphy.com","image":{"url":"https://media3.giphy.com/media/10bhnmBHGYTr2g/200_d.gif","width":250,"height":200,"size":155622,"md5":"10bhnmBHGYTr2g"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"bucket\\":\\"10:EnNotUsBeforeBucket\\",\\"alg_hit\\":\\"0\\",\\"scenario\\":\\"EnNotUsBeforeScenario\\",\\"sessionId\\":\\"stickerDjEa7P9mZWLULtiQTkSn2d20180516161509380\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'ikey', 'tag': 'ok', 'duid': 'a2bb5434f3541bf5aa64186ec8c2b77f'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"ac8dd5a3-d9bc-4273-a797-451c76c08b8b","name":null,"tags":["ok"],"source_text":"giphy.com","image":{"url":"https://media3.giphy.com/media/10bhnmBHGYTr2g/200_d.gif","width":250,"height":200,"size":155622,"md5":"10bhnmBHGYTr2g"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"sticker5dgJyFbmXjx8tvuVLHJ3na20180516161509392\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'kika', 'tag': 'ok', 'duid': '920b56e9cadd743bfbbcb4126937e789'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"eef96bd7-d91c-4275-913b-e03c90a7f676","name":null,"tags":["ok"],"source_text":"kikatech.com","image":{"url":"http://cdn.kikakeyboard.com/picture/53450d17f3a492f12586c2080a4c80d3.gif","width":458,"height":300,"size":54273,"md5":"53450d17f3a492f12586c2080a4c80d3"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickerC3P92dy934f7zYT3ATpSam20180516161509116\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'pro', 'tag': 'ok', 'duid': '5a215835df204115ee3d2d4ec0c528aa'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"eef96bd7-d91c-4275-913b-e03c90a7f676","name":null,"tags":["ok"],"source_text":"kikatech.com","image":{"url":"http://cdn.kikakeyboard.com/picture/53450d17f3a492f12586c2080a4c80d3.gif","width":458,"height":300,"size":54273,"md5":"53450d17f3a492f12586c2080a4c80d3"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickerBuiNG9BaWnV6Am4GkzxDnG20180516161509398\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'pro', 'tag': 'ok', 'duid': 'a2bb5434f3541bf5aa64186ec8c2b77f'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":null,"magics":[{"key":"a6ca14fd-4214-4eb9-8d02-20a1675e17c7","style":"style=12345"}],"type":"magic","popup_duration":0,"extra":"{\\"sessionId\\":\\"sticker3bXnQ7Q4L3zq9Cg8odAFy620180516161509452\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': '2371', 'app': 'kika', 'tag': 'ok', 'duid': '920b56e9cadd743bfbbcb4126937e789'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"ac8dd5a3-d9bc-4273-a797-451c76c08b8b","name":null,"tags":["ok"],"source_text":"giphy.com","image":{"url":"https://media3.giphy.com/media/10bhnmBHGYTr2g/200_d.gif","width":250,"height":200,"size":155622,"md5":"10bhnmBHGYTr2g"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickeraVrwJoQTFJJztLdhgkB2ER20180516161509481\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'ikey', 'tag': 'ok', 'duid': '920b56e9cadd743bfbbcb4126937e789'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"eef96bd7-d91c-4275-913b-e03c90a7f676","name":null,"tags":["ok"],"source_text":"kikatech.com","image":{"url":"http://cdn.kikakeyboard.com/picture/53450d17f3a492f12586c2080a4c80d3.gif","width":458,"height":300,"size":54273,"md5":"53450d17f3a492f12586c2080a4c80d3"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickervWd2eMeoBsQKcGSpQDt7cd20180516161509459\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'ikey', 'tag': 'ok', 'duid': '920b56e9cadd743bfbbcb4126937e789'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"833b56f1-8fc4-4ba6-a3f9-3de2d2b33051","name":null,"tags":["ok"],"source_text":"tenor.com","image":{"url":"https://media.tenor.com/images/848315f7dbb6bef2158e7f018d061e08/tenor.gif","width":250,"height":188,"size":858770,"md5":"10378694"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickerTyLY4Z3aDXAKUNpAMCpeLc20180516161509453\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'kika', 'tag': 'ok', 'duid': '920b56e9cadd743bfbbcb4126937e789'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"eef96bd7-d91c-4275-913b-e03c90a7f676","name":null,"tags":["ok"],"source_text":"kikatech.com","image":{"url":"http://cdn.kikakeyboard.com/picture/53450d17f3a492f12586c2080a4c80d3.gif","width":458,"height":300,"size":54273,"md5":"53450d17f3a492f12586c2080a4c80d3"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"bucket\\":\\"15:EnUsBeforeNotMod2GBDTBucket\\",\\"alg_hit\\":\\"0\\",\\"scenario\\":\\"EnUsBeforeNotMod2Scenario\\",\\"sessionId\\":\\"sticker5ecPEevVQyKxYuhCnwVebW20180516161509071\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'ikey', 'tag': 'ok', 'duid': '5a215835df204115ee3d2d4ec0c528aa'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"eef96bd7-d91c-4275-913b-e03c90a7f676","name":null,"tags":["ok"],"source_text":"kikatech.com","image":{"url":"http://cdn.kikakeyboard.com/picture/53450d17f3a492f12586c2080a4c80d3.gif","width":458,"height":300,"size":54273,"md5":"53450d17f3a492f12586c2080a4c80d3"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"bucket\\":\\"10:EnNotUsBeforeBucket\\",\\"alg_hit\\":\\"0\\",\\"scenario\\":\\"EnNotUsBeforeScenario\\",\\"sessionId\\":\\"stickerKphsGUcqngKeqeLXGcgF7n20180516161509373\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'ikey', 'tag': 'ok', 'duid': 'a2bb5434f3541bf5aa64186ec8c2b77f'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"ac8dd5a3-d9bc-4273-a797-451c76c08b8b","name":null,"tags":["ok"],"source_text":"giphy.com","image":{"url":"https://media3.giphy.com/media/10bhnmBHGYTr2g/200_d.gif","width":250,"height":200,"size":155622,"md5":"10bhnmBHGYTr2g"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"bucket\\":\\"15:EnUsBeforeNotMod2GBDTBucket\\",\\"alg_hit\\":\\"0\\",\\"scenario\\":\\"EnUsBeforeNotMod2Scenario\\",\\"sessionId\\":\\"stickerXTKpDaQEwcpfR2gtmBjoQU20180516161509176\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'ikey', 'tag': 'ok', 'duid': 'adad79631d9339915e3be1c9e783e82d'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":null,"magics":[{"key":"a6ca14fd-4214-4eb9-8d02-20a1675e17c7","style":"style=12345"}],"type":"magic","popup_duration":0,"extra":"{\\"sessionId\\":\\"stickergA2ynAndtmNoaDraraZm8V20180516161509561\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'pro', 'tag': 'ok', 'duid': '920b56e9cadd743bfbbcb4126937e789'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"833b56f1-8fc4-4ba6-a3f9-3de2d2b33051","name":null,"tags":["ok"],"source_text":"tenor.com","image":{"url":"https://media.tenor.com/images/848315f7dbb6bef2158e7f018d061e08/tenor.gif","width":250,"height":188,"size":858770,"md5":"10378694"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickervWhVG74diVQ6yxcJpz9ivH20180516161509511\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'pro', 'tag': 'ok', 'duid': '920b56e9cadd743bfbbcb4126937e789'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"ac8dd5a3-d9bc-4273-a797-451c76c08b8b","name":null,"tags":["ok"],"source_text":"giphy.com","image":{"url":"https://media3.giphy.com/media/10bhnmBHGYTr2g/200_d.gif","width":250,"height":200,"size":155622,"md5":"10bhnmBHGYTr2g"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"bucket\\":\\"15:EnUsBeforeNotMod2GBDTBucket\\",\\"alg_hit\\":\\"0\\",\\"scenario\\":\\"EnUsBeforeNotMod2Scenario\\",\\"sessionId\\":\\"stickerxv852mVxyc2QEFkSXB5mQb20180516161509073\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'ikey', 'tag': 'ok', 'duid': '5a215835df204115ee3d2d4ec0c528aa'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"eef96bd7-d91c-4275-913b-e03c90a7f676","name":null,"tags":["ok"],"source_text":"kikatech.com","image":{"url":"http://cdn.kikakeyboard.com/picture/53450d17f3a492f12586c2080a4c80d3.gif","width":458,"height":300,"size":54273,"md5":"53450d17f3a492f12586c2080a4c80d3"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"bucket\\":\\"15:EnUsBeforeNotMod2GBDTBucket\\",\\"alg_hit\\":\\"0\\",\\"scenario\\":\\"EnUsBeforeNotMod2Scenario\\",\\"sessionId\\":\\"stickerwQ4i8Ko5sVqmZbLoEzjEnn20180516161509165\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'ikey', 'tag': 'ok', 'duid': 'adad79631d9339915e3be1c9e783e82d'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":null,"magics":[{"key":"a6ca14fd-4214-4eb9-8d02-20a1675e17c7","style":"style=12345"}],"type":"magic","popup_duration":0,"extra":"{\\"sessionId\\":\\"stickerLUXMJDShXJy9XJYpTcV3GD20180516161509269\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'pro', 'tag': 'ok', 'duid': 'adad79631d9339915e3be1c9e783e82d'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"833b56f1-8fc4-4ba6-a3f9-3de2d2b33051","name":null,"tags":["ok"],"source_text":"tenor.com","image":{"url":"https://media.tenor.com/images/848315f7dbb6bef2158e7f018d061e08/tenor.gif","width":250,"height":188,"size":858770,"md5":"10378694"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"sticker9F29GRh2xZPW7LDRGNHVw920180516161509883\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'pro', 'tag': 'ok', 'duid': '5a215835df204115ee3d2d4ec0c528aa'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"eef96bd7-d91c-4275-913b-e03c90a7f676","name":null,"tags":["ok"],"source_text":"kikatech.com","image":{"url":"http://cdn.kikakeyboard.com/picture/53450d17f3a492f12586c2080a4c80d3.gif","width":458,"height":300,"size":54273,"md5":"53450d17f3a492f12586c2080a4c80d3"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickerNT2TfK9XR3XbpJH7kL9mrb20180516161509204\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'pro', 'tag': 'ok', 'duid': 'adad79631d9339915e3be1c9e783e82d'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"eef96bd7-d91c-4275-913b-e03c90a7f676","name":null,"tags":["ok"],"source_text":"kikatech.com","image":{"url":"http://cdn.kikakeyboard.com/picture/53450d17f3a492f12586c2080a4c80d3.gif","width":458,"height":300,"size":54273,"md5":"53450d17f3a492f12586c2080a4c80d3"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"bucket\\":\\"10:EnNotUsBeforeBucket\\",\\"alg_hit\\":\\"0\\",\\"scenario\\":\\"EnNotUsBeforeScenario\\",\\"sessionId\\":\\"stickerGxBCwTSduDPxS5gRKrQmrb20180516161509189\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'ikey', 'tag': 'ok', 'duid': 'adad79631d9339915e3be1c9e783e82d'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"ac8dd5a3-d9bc-4273-a797-451c76c08b8b","name":null,"tags":["ok"],"source_text":"giphy.com","image":{"url":"https://media3.giphy.com/media/10bhnmBHGYTr2g/200_d.gif","width":250,"height":200,"size":155622,"md5":"10bhnmBHGYTr2g"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":"By goo.gl/8eU5qS"}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickeru249GatRhnZj4tSJDDJmMW20180516161509990\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'kika', 'tag': 'ok', 'duid': '5a215835df204115ee3d2d4ec0c528aa'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"ac8dd5a3-d9bc-4273-a797-451c76c08b8b","name":null,"tags":["ok"],"source_text":"giphy.com","image":{"url":"https://media3.giphy.com/media/10bhnmBHGYTr2g/200_d.gif","width":250,"height":200,"size":155622,"md5":"10bhnmBHGYTr2g"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":"By goo.gl/8eU5qS"}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickerWdU9pE83MywSRhR8dp8dAX20180516161509996\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'kika', 'tag': 'ok', 'duid': '5a215835df204115ee3d2d4ec0c528aa'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"ac8dd5a3-d9bc-4273-a797-451c76c08b8b","name":null,"tags":["ok"],"source_text":"giphy.com","image":{"url":"https://media3.giphy.com/media/10bhnmBHGYTr2g/200_d.gif","width":250,"height":200,"size":155622,"md5":"10bhnmBHGYTr2g"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":"By goo.gl/8eU5qS"}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickerXKqjcuBkKkwuPyPpf9A95k20180516161509275\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'kika', 'tag': 'ok', 'duid': 'a2bb5434f3541bf5aa64186ec8c2b77f'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"ac8dd5a3-d9bc-4273-a797-451c76c08b8b","name":null,"tags":["ok"],"source_text":"giphy.com","image":{"url":"https://media3.giphy.com/media/10bhnmBHGYTr2g/200_d.gif","width":250,"height":200,"size":155622,"md5":"10bhnmBHGYTr2g"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickerMa7GFcmZG83D5HRYELdr2U20180516161510001\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'kika', 'tag': 'ok', 'duid': 'adad79631d9339915e3be1c9e783e82d'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"833b56f1-8fc4-4ba6-a3f9-3de2d2b33051","name":null,"tags":["ok"],"source_text":"tenor.com","image":{"url":"https://media.tenor.com/images/848315f7dbb6bef2158e7f018d061e08/tenor.gif","width":250,"height":188,"size":858770,"md5":"10378694"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickergfrXkT86auJUPwyG8jow7T20180516161510039\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'kika', 'tag': 'ok', 'duid': 'adad79631d9339915e3be1c9e783e82d'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"ac8dd5a3-d9bc-4273-a797-451c76c08b8b","name":null,"tags":["ok"],"source_text":"giphy.com","image":{"url":"https://media3.giphy.com/media/10bhnmBHGYTr2g/200_d.gif","width":250,"height":200,"size":155622,"md5":"10bhnmBHGYTr2g"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickerQ9cCpDhZz6L2oPqMFJ2qVS20180516161510048\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'pro', 'tag': 'ok', 'duid': '5a215835df204115ee3d2d4ec0c528aa'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":null,"magics":[{"key":"a6ca14fd-4214-4eb9-8d02-20a1675e17c7","style":"style=12345"}],"type":"magic","popup_duration":0,"extra":"{\\"sessionId\\":\\"stickeriQuMvfgMWbRkGkUSihy69m20180516161509504\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'pro', 'tag': 'ok', 'duid': '920b56e9cadd743bfbbcb4126937e789'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"833b56f1-8fc4-4ba6-a3f9-3de2d2b33051","name":null,"tags":["ok"],"source_text":"tenor.com","image":{"url":"https://media.tenor.com/images/848315f7dbb6bef2158e7f018d061e08/tenor.gif","width":250,"height":188,"size":858770,"md5":"10378694"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickerTypEb8akzRrhvp7Pvts64620180516161509168\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'kika', 'tag': 'ok', 'duid': 'adad79631d9339915e3be1c9e783e82d'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"833b56f1-8fc4-4ba6-a3f9-3de2d2b33051","name":null,"tags":["ok"],"source_text":"tenor.com","image":{"url":"https://media.tenor.com/images/848315f7dbb6bef2158e7f018d061e08/tenor.gif","width":250,"height":188,"size":858770,"md5":"10378694"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"bucket\\":\\"15:EnUsBeforeNotMod2GBDTBucket\\",\\"alg_hit\\":\\"0\\",\\"scenario\\":\\"EnUsBeforeNotMod2Scenario\\",\\"sessionId\\":\\"stickerBHVLC2mnvreMmKoxvFF7PG20180516161509941\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'ikey', 'tag': 'ok', 'duid': '5a215835df204115ee3d2d4ec0c528aa'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"833b56f1-8fc4-4ba6-a3f9-3de2d2b33051","name":null,"tags":["ok"],"source_text":"tenor.com","image":{"url":"https://media.tenor.com/images/848315f7dbb6bef2158e7f018d061e08/tenor.gif","width":250,"height":188,"size":858770,"md5":"10378694"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"bucket\\":\\"15:EnUsBeforeNotMod2GBDTBucket\\",\\"alg_hit\\":\\"0\\",\\"scenario\\":\\"EnUsBeforeNotMod2Scenario\\",\\"sessionId\\":\\"stickerCETR2BBWLYBQf4XAkgBGJE20180516161509955\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'ikey', 'tag': 'ok', 'duid': 'adad79631d9339915e3be1c9e783e82d'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":null,"magics":[{"key":"a6ca14fd-4214-4eb9-8d02-20a1675e17c7","style":"style=12345"}],"type":"magic","popup_duration":0,"extra":"{\\"sessionId\\":\\"sticker4uZGFW9oXz3BGDmUXmLbie20180516161510429\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': '350', 'app': 'pro', 'tag': 'ok', 'duid': '920b56e9cadd743bfbbcb4126937e789'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"833b56f1-8fc4-4ba6-a3f9-3de2d2b33051","name":null,"tags":["ok"],"source_text":"tenor.com","image":{"url":"https://media.tenor.com/images/848315f7dbb6bef2158e7f018d061e08/tenor.gif","width":250,"height":188,"size":858770,"md5":"10378694"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickersQTh9rukY2ebXY7nt4YuA920180516161510433\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'ikey', 'tag': 'ok', 'duid': '920b56e9cadd743bfbbcb4126937e789'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"ac8dd5a3-d9bc-4273-a797-451c76c08b8b","name":null,"tags":["ok"],"source_text":"giphy.com","image":{"url":"https://media3.giphy.com/media/10bhnmBHGYTr2g/200_d.gif","width":250,"height":200,"size":155622,"md5":"10bhnmBHGYTr2g"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickerhGUbGAkiSNiXmqPsDEUQCm20180516161509535\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'ikey', 'tag': 'ok', 'duid': '920b56e9cadd743bfbbcb4126937e789'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"ac8dd5a3-d9bc-4273-a797-451c76c08b8b","name":null,"tags":["ok"],"source_text":"giphy.com","image":{"url":"https://media3.giphy.com/media/10bhnmBHGYTr2g/200_d.gif","width":250,"height":200,"size":155622,"md5":"10bhnmBHGYTr2g"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickerkdYiciHUSPd7jE4Y3QdLD20180516161510451\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'pro', 'tag': 'ok', 'duid': 'a2bb5434f3541bf5aa64186ec8c2b77f'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"ac8dd5a3-d9bc-4273-a797-451c76c08b8b","name":null,"tags":["ok"],"source_text":"giphy.com","image":{"url":"https://media3.giphy.com/media/10bhnmBHGYTr2g/200_d.gif","width":250,"height":200,"size":155622,"md5":"10bhnmBHGYTr2g"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickerF2maK3y5WxnHFVNCK32avc20180516161510428\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': '1478', 'app': 'ikey', 'tag': 'ok', 'duid': '920b56e9cadd743bfbbcb4126937e789'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"eef96bd7-d91c-4275-913b-e03c90a7f676","name":null,"tags":["ok"],"source_text":"kikatech.com","image":{"url":"http://cdn.kikakeyboard.com/picture/53450d17f3a492f12586c2080a4c80d3.gif","width":458,"height":300,"size":54273,"md5":"53450d17f3a492f12586c2080a4c80d3"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickerfK5E5gxksANSK4J34RYkMj20180516161509281\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'pro', 'tag': 'ok', 'duid': 'adad79631d9339915e3be1c9e783e82d'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":null,"magics":[{"key":"a6ca14fd-4214-4eb9-8d02-20a1675e17c7","style":"style=12345"}],"type":"magic","popup_duration":0,"extra":"{\\"sessionId\\":\\"stickerAV25SijWZ5q3kJJqDkv76F20180516161509377\\"}"}}', 'data': "{'kb_lang': 'en_US', 'version': 1477, 'app': 'pro', 'tag': 'ok', 'duid': 'a2bb5434f3541bf5aa64186ec8c2b77f'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"ac8dd5a3-d9bc-4273-a797-451c76c08b8b","name":null,"tags":["ok"],"source_text":"giphy.com","image":{"url":"https://media3.giphy.com/media/10bhnmBHGYTr2g/200_d.gif","width":250,"height":200,"size":155622,"md5":"10bhnmBHGYTr2g"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickerokD8dptheV3GocLwwXea9L20180516161509931\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'pro', 'tag': 'ok', 'duid': '5a215835df204115ee3d2d4ec0c528aa'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"ac8dd5a3-d9bc-4273-a797-451c76c08b8b","name":null,"tags":["ok"],"source_text":"giphy.com","image":{"url":"https://media3.giphy.com/media/10bhnmBHGYTr2g/200_d.gif","width":250,"height":200,"size":155622,"md5":"10bhnmBHGYTr2g"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"bucket\\":\\"10:EnNotUsBeforeBucket\\",\\"alg_hit\\":\\"0\\",\\"scenario\\":\\"EnNotUsBeforeScenario\\",\\"sessionId\\":\\"sticker9MiyyJc4T6KCUPnAH7vmrL20180516161509907\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'ikey', 'tag': 'ok', 'duid': '5a215835df204115ee3d2d4ec0c528aa'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"833b56f1-8fc4-4ba6-a3f9-3de2d2b33051","name":null,"tags":["ok"],"source_text":"tenor.com","image":{"url":"https://media.tenor.com/images/848315f7dbb6bef2158e7f018d061e08/tenor.gif","width":250,"height":188,"size":858770,"md5":"10378694"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickerrDe6GuezEcSxfKMRWYhhtY20180516161510429\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': 1477, 'app': 'pro', 'tag': 'ok', 'duid': '920b56e9cadd743bfbbcb4126937e789'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"eef96bd7-d91c-4275-913b-e03c90a7f676","name":null,"tags":["ok"],"source_text":"kikatech.com","image":{"url":"http://cdn.kikakeyboard.com/picture/53450d17f3a492f12586c2080a4c80d3.gif","width":458,"height":300,"size":54273,"md5":"53450d17f3a492f12586c2080a4c80d3"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"sticker3B9QdUVwY2TmqB7z9nXiei20180516161511643\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': '1478', 'app': 'ikey', 'tag': 'ok', 'duid': '920b56e9cadd743bfbbcb4126937e789'}"}
+{'response': '{"errorCode":0,"errorMsg":"ok","data":{"stickers":[{"key":"ac8dd5a3-d9bc-4273-a797-451c76c08b8b","name":null,"tags":["ok"],"source_text":"giphy.com","image":{"url":"https://media3.giphy.com/media/10bhnmBHGYTr2g/200_d.gif","width":250,"height":200,"size":155622,"md5":"10bhnmBHGYTr2g"},"mp4":null,"scale_type":1,"mark":"random","popup_duration":5000,"package_id":null,"icon_url":null,"caption":null}],"magics":null,"type":"sticker","popup_duration":5000,"extra":"{\\"sessionId\\":\\"stickerrTn7aVc2QQHB33UkeqKghc20180516161510427\\"}"}}', 'data': "{'kb_lang': 'en_AU', 'version': '350', 'app': 'pro', 'tag': 'ok', 'duid': '920b56e9cadd743bfbbcb4126937e789'}"}
+测试通过！！！！
+Test Over
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='total_row'>
+    <td>Total</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+
+</body>
+</html>

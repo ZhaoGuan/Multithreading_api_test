@@ -1,3 +1,4 @@
+operation_mode: sigle_request
 source:
 #test
   test:

@@ -1,20 +1,39 @@
-#url: https://api.kikakeyboard.com/v1/gifsticker/search?offset=0&limite=10&
-url: http://34.218.48.170:8080/v1/gifsticker/search?offset=0&limite=10&
-#test
-#url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
-#url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
-cycle_times: 1
-#web0
-#url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
-keys: ['tag','lang']
-data:
-  # 这里kb_lang,duid,app只是为了header
-  duid : ['5a215835df204115ee3d2d4ec0c528aa']
-  kb_lang : ['en_US']
-  app: ['ikey']
-  lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
-  tag : ['ok','lol']
-  version: ['1478']
+operation_mode: sigle_request
+source:
+  test:
+    url: http://34.218.48.170:8080/v1/gifsticker/search?offset=0&limite=10&
+    #test
+    #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
+    #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
+    cycle_times: 1
+    #web0
+    #url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
+    keys: ['tag','lang']
+    data:
+      # 这里kb_lang,duid,app只是为了header
+      duid : ['5a215835df204115ee3d2d4ec0c528aa']
+      kb_lang : ['en_US']
+      app: ['ikey']
+      lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
+      tag : ['ok','lol']
+      version: ['1478']
+  online:
+    #url: https://api.kikakeyboard.com/v1/gifsticker/search?offset=0&limite=10&
+    #test
+    #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
+    #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
+    cycle_times: 1
+    #web0
+    #url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
+    keys: ['tag','lang']
+    data:
+      # 这里kb_lang,duid,app只是为了header
+      duid : ['5a215835df204115ee3d2d4ec0c528aa']
+      kb_lang : ['en_US']
+      app: ['ikey']
+      lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
+      tag : ['ok','lol']
+      version: ['1478']
 assert:
 #  返回码(只能第一层)
   code : {'key':'errorCode','value':0}

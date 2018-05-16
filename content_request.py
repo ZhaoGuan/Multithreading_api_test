@@ -11,14 +11,7 @@ import copy
 from base_function.Inspection_method import Inspection_method
 from base_function.data_sqlite import *
 from base_function.kika_base_request import Kika_base_request
-
-
-def config_reader(Yaml_file):
-    yf = open(Yaml_file)
-    yx = yaml.load(yf)
-    yf.close()
-    return yx
-
+from base_function.golable_function import config_reader
 
 Inspection_method = Inspection_method()
 

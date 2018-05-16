@@ -1,3 +1,4 @@
+operation_mode: content_request
 above:
   source:
     test:

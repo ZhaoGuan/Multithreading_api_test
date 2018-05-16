@@ -6,7 +6,7 @@ import json
 import threading
 import time
 from multiprocessing import Process, Queue
-
+from base_function.golable_function import config_reader
 import requests
 import yaml
 import os
@@ -15,15 +15,8 @@ from base_function.Inspection_method import Inspection_method
 from base_function.data_sqlite import *
 from base_function.kika_base_request import Kika_base_request
 
-
-def config_reader(Yaml_file):
-    yf = open(Yaml_file)
-    yx = yaml.load(yf)
-    yf.close()
-    return yx
-
-
 Inspection_method = Inspection_method()
+PATH = os.path.dirname(os.path.abspath(__file__))
 
 
 class Http_Test:
@@ -244,11 +237,11 @@ class Http_Test:
     # 多线程处理,单个用例
     def Multithreading_api(self):
         result = True
-        # try:
-        #     create_table()
-        # except:
-        #     delete_table()
-        #     create_table()
+        try:
+            create_table()
+        except:
+            delete_table()
+            create_table()
         start_time = time.time()
         if self.data != None:
             all_test = self.url_keys_data()
@@ -270,10 +263,14 @@ class Http_Test:
         print('有误的配置内容:')
         print('有误数量:' + str(len(fail)))
         print('所有误解返回内容:')
-        print(fail)
-        # all_data = reader_table()
-        # print('所有返回内容数量:' + str(len(all_data)))
+        # print(fail)
+        for data in fail:
+            print(data)
+        all_data = reader_table()
+        print('所有返回内容数量:' + str(len(all_data)))
         # print(all_data)
+        for data in all_data:
+            print(data)
         if len(fail) != 0:
             print('有失败的内容！！！！！！！！！')
             result = False
@@ -397,10 +394,10 @@ class Http_Test:
         print(pic)
 
 
-def sigle_request_runner(path):
+def sigle_request_runner(path, source='online'):
     config = config_reader(path)
     # print(config)
-    test = Http_Test(config)
+    test = Http_Test(config, source)
     # test.c_process(10)
     # test.process(single_quantity=10)
     result = test.Multithreading_api()
@@ -408,9 +405,9 @@ def sigle_request_runner(path):
 
 
 if __name__ == "__main__":
-    sigle_request_runner('./case/test_case')
-    # sigle_request_runner('./case/Magictext_all')
-    # sigle_request_runner('./case/gif_search')
-    # sigle_request_runner('./case/for_data_modle')
-    # sigle_request_runner('./case/sticker2_trending')
-    # sigle_request_runner('./case/sticker2_all')
+    sigle_request_runner('./case/backend-content-sending/test_case')
+    # sigle_request_runner('./case/backend-content-sending/Magictext_all')
+    # sigle_request_runner('./case/gifsearch/gif_search')
+    # sigle_request_runner('./case/backend-content-sending/for_data_modle')
+    # sigle_request_runner('./case/backend-picture/sticker2_trending')
+    # sigle_request_runner('./case/backend-picture/sticker2_all')

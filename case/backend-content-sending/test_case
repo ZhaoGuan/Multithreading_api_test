@@ -1,3 +1,4 @@
+operation_mode: sigle_request
 source:
   test:
     #test3
@@ -7,7 +8,7 @@ source:
     data:
       app: ['kika','ikey','pro']
     #  app: ['ikey']
-    #  kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
+#      kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
       kb_lang : ['en_US', 'en_AU']
     #  kb_lang : ['pt_BR']
       tag : ['ok']
