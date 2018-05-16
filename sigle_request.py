@@ -12,7 +12,7 @@ import yaml
 import os
 
 from base_function.Inspection_method import Inspection_method
-from base_function.data_sqlite import *
+# from base_function.data_sqlite import *
 from base_function.kika_base_request import Kika_base_request
 
 Inspection_method = Inspection_method()
@@ -198,11 +198,12 @@ class Http_Test:
             fail.append(fail_data)
 
     # 请求内容集合
-    def all_response(self, data, response):
-        instet_table(data, response.text)
+    def all_response(self, data, response, all_data_respone):
+        # instet_table(data, response.text)
+        all_data_respone.append({'data': data, 'response': response.text})
 
     # 发送请求
-    def url_request(self, data, fail):
+    def url_request(self, data, fail, all_data):
         if self.data == None or self.keys == None:
             url = self.url
             response = requests.request('get', url)
@@ -220,7 +221,7 @@ class Http_Test:
             # print(url)
             response = requests.request('get', url, headers=header)
         self.asser_api(data, response, fail)
-        self.all_response(data, response)
+        self.all_response(data, response, all_data)
 
     # 图片统计
     def pic_statistics(self, all_pic):
@@ -237,11 +238,11 @@ class Http_Test:
     # 多线程处理,单个用例
     def Multithreading_api(self):
         result = True
-        try:
-            create_table()
-        except:
-            delete_table()
-            create_table()
+        # try:
+        #     create_table()
+        # except:
+        #     delete_table()
+        #     create_table()
         start_time = time.time()
         if self.data != None:
             all_test = self.url_keys_data()
@@ -249,9 +250,10 @@ class Http_Test:
             all_test = range(1)
         proc_record = []
         fail = []
+        all_data = []
         for g in range(self.cycle_times):
             for i in all_test:
-                th = threading.Thread(target=self.url_request, args=(i, fail))
+                th = threading.Thread(target=self.url_request, args=(i, fail, all_data))
                 print(th)
                 th.setDaemon(True)
                 th.start()
@@ -266,7 +268,7 @@ class Http_Test:
         # print(fail)
         for data in fail:
             print(data)
-        all_data = reader_table()
+        # all_data = reader_table()
         print('所有返回内容数量:' + str(len(all_data)))
         # print(all_data)
         for data in all_data:

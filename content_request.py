@@ -9,7 +9,7 @@ import random
 import copy
 
 from base_function.Inspection_method import Inspection_method
-from base_function.data_sqlite import *
+# from base_function.data_sqlite import *
 from base_function.kika_base_request import Kika_base_request
 from base_function.golable_function import config_reader
 
@@ -200,8 +200,9 @@ class Http_Test:
             fail.append(fail_data)
 
     # 请求内容集合
-    def all_response(self, data, response):
-        instet_table(data, response.text)
+    def all_response(self, data, response, all_data_respone):
+        # instet_table(data, response.text)
+        all_data_respone.append({'data': data, 'response': response.text})
 
     # 获取list中的value
     def content_list_value(self, content, key):
@@ -227,7 +228,7 @@ class Http_Test:
         return content
 
     # 上文请求
-    def above_url_request(self, data, fail):
+    def above_url_request(self, data, fail, all_data_respone):
         if self.data == None or self.keys == None:
             url = self.url
             response = requests.request('get', url)
@@ -242,7 +243,7 @@ class Http_Test:
         # print(url)
         # print(response.text)
         self.asser_api(data, response, fail)
-        self.all_response(data, response)
+        self.all_response(data, response, all_data_respone)
         if len(fail) == 0:
             content = self.get_content(json.loads(response.text))
         else:
@@ -250,7 +251,7 @@ class Http_Test:
         return content
 
     # 下文请求
-    def below_url_request(self, content, data, fail):
+    def below_url_request(self, content, data, fail, all_data_respone):
         # print(content)
         if self.data == None or self.keys == None:
             url = self.url
@@ -273,7 +274,7 @@ class Http_Test:
             response = requests.request('get', url, headers=header)
         # print(response.text)
         self.asser_api(data, response, fail)
-        self.all_response(data, response)
+        self.all_response(data, response, all_data_respone)
         return response.text
 
 
@@ -284,12 +285,14 @@ def content_request(Path, source='online'):
     above_config = config['above']
     below_config = config['below']
     above_fail = []
+    above_all_data_respone = []
     below_fail = []
+    below_all_data_respone = []
     above_test = Http_Test(above_config, source)
     below_test = Http_Test(below_config, source)
-    content = above_test.above_url_request(above_test.url_keys_data()[0], above_fail)
+    content = above_test.above_url_request(above_test.url_keys_data()[0], above_fail, above_all_data_respone)
     if len(above_fail) == 0:
-        below = below_test.below_url_request(content, below_test.url_keys_data()[0], below_fail)
+        below = below_test.below_url_request(content, below_test.url_keys_data()[0], below_fail, below_all_data_respone)
         if len(below_fail) > 0:
             result = '上文结果通过,下文结果错误，错位内容:\n' + str(below_fail)
     else:
@@ -299,6 +302,6 @@ def content_request(Path, source='online'):
 
 
 if __name__ == "__main__":
-    content_request('./case/sticker_case')
-    # content_request('./case/gif_case', 'test')
-    # content_request('./case/sticker2_package', 'online')
+    content_request('./case/backend-picture/sticker_case', 'online')
+    # content_request('./case/backend-picture/gif_case', 'test')
+    # content_request('./case/backend-picture/sticker2_package', 'online')
