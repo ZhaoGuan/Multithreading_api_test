@@ -8,11 +8,27 @@ import json
 import time
 import yaml
 import os
-import sys
+import sys, getopt
 
 PATH = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(PATH + '/../../base_function/golable_function')
-from golable_function import source_input
+
+
+def source_input():
+    argv = sys.argv[1:]
+    try:
+        opts, args = getopt.getopt(argv, "h:s:", ["source="])
+    except getopt.GetoptError:
+        print('xxx.py  -s <source>')
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt == '-h':
+            print('xx.py -s <source>')
+            sys.exit()
+        elif opt in ("-s", "--source"):
+            source = arg
+        else:
+            print('失败,未填写source')
+    return source
 
 
 def config_reader(Yaml_file):
