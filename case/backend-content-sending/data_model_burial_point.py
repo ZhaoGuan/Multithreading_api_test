@@ -8,9 +8,11 @@ import json
 import time
 import yaml
 import os
-from base_function.golable_function import source_input
+import sys
 
 PATH = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(PATH + '/../../base_function')
+from base_function.golable_function import source_input
 
 
 def config_reader(Yaml_file):
