@@ -4,7 +4,9 @@ import hashlib
 import random
 import os
 import sys
-from utils.Utils import *
+from base_function.golable_function import config_reader
+
+PATH = os.path.dirname(os.path.abspath(__file__))
 
 
 class Kika_base_request:
@@ -38,7 +40,7 @@ class Kika_base_request:
 
     # 设定header
     def set_header(self, duid, lang='en_AU', app='kika', version=1477, way='online'):
-        lange_config = config_reader('./congif/lange')
+        lange_config = config_reader(PATH + '/../config/lange')
         use_lang = lange_config[lang]
         if 'pro' == app:
             app_key = '4e5ab3a6d2140457e0423a28a094b1fd'

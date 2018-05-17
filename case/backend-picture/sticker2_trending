@@ -1,25 +1,44 @@
-url: https://api.kikakeyboard.com/v1/stickers2/trending?page=0&size=2&
-#url: http://35.162.54.159:8080/backend-picture/v1/stickers2/trending?page=0&size=10&
-cycle_times: 1
-#web0
-#url: http://sticker.pre.kikakeyboard.com/backend-content-sending/popup?
-#test
-#url: https://api-dev.kikakeyboard.com/v1/stickers2/trending?page=0&size=2&
-keys: ['duid']
-data:
-#  app: ['kika','ikey','pro']
-  app: ['ikey']
-#  kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
-  kb_lang : ['en_US']
-#  duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
-#          '920b56e9cadd743bfbbcb4126937e789']
-  duid : ['5a215835df204115ee3d2d4ec0c528aa']
-  # 算法duid
-#  duid : ['1cbea45d00704178ed555e8cd12a4f3b', 'c500d24e6f79ea93de3fe8eb7c420f0a', '8f9e30b328b3fa3f07fc7eaefff1a16e',
-#          'd3aba2d3052aa2a9aaeaa4273c8859a0']
-# version可以通过对指定对象配置版本，最后一个&后填写版本之前的都是条件用&分隔
-#  version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1478']
-  version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1478']
+operation_mode: sigle_request
+source:
+  test:
+    #url: http://35.162.54.159:8080/backend-picture/v1/stickers2/trending?page=0&size=10&
+    #url: https://api-dev.kikakeyboard.com/v1/stickers2/trending?page=0&size=2&
+    cycle_times: 1
+    keys: ['duid']
+    data:
+    #  app: ['kika','ikey','pro']
+      app: ['ikey']
+    #  kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
+      kb_lang : ['en_US']
+    #  duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
+    #          '920b56e9cadd743bfbbcb4126937e789']
+      duid : ['5a215835df204115ee3d2d4ec0c528aa']
+      # 算法duid
+    #  duid : ['1cbea45d00704178ed555e8cd12a4f3b', 'c500d24e6f79ea93de3fe8eb7c420f0a', '8f9e30b328b3fa3f07fc7eaefff1a16e',
+    #          'd3aba2d3052aa2a9aaeaa4273c8859a0']
+    # version可以通过对指定对象配置版本，最后一个&后填写版本之前的都是条件用&分隔
+    #  version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1478']
+      version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1478']
+  online:
+    url: https://api.kikakeyboard.com/v1/stickers2/trending?page=0&size=2&
+    #web0
+    #url: http://sticker.pre.kikakeyboard.com/backend-content-sending/popup?
+    cycle_times: 1
+    keys: ['duid']
+    data:
+    #  app: ['kika','ikey','pro']
+      app: ['ikey']
+    #  kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
+      kb_lang : ['en_US']
+    #  duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
+    #          '920b56e9cadd743bfbbcb4126937e789']
+      duid : ['5a215835df204115ee3d2d4ec0c528aa']
+      # 算法duid
+    #  duid : ['1cbea45d00704178ed555e8cd12a4f3b', 'c500d24e6f79ea93de3fe8eb7c420f0a', '8f9e30b328b3fa3f07fc7eaefff1a16e',
+    #          'd3aba2d3052aa2a9aaeaa4273c8859a0']
+    # version可以通过对指定对象配置版本，最后一个&后填写版本之前的都是条件用&分隔
+    #  version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1478']
+      version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1478']
 assert:
 #  返回码(只能第一层)
   code : {'key':'errorCode','value':0}
