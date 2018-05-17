@@ -7,7 +7,6 @@ import requests
 import json
 import time
 import yaml
-import httplib2
 import os
 from base_function.golable_function import source_input
 
