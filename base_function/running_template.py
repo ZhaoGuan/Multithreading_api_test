@@ -34,7 +34,7 @@ class ApiTest(unittest.TestCase):
             result = content_request(file_path, source)
             assert result
         else:
-            result = os.popen('python3 ' + file_path).read()
+            result = os.popen('python3 ' + file_path + ' -s ' + source).read()
             print(result)
             if '失败' in result:
                 assert False
@@ -63,5 +63,4 @@ def case_runner():
 
 
 if __name__ == "__main__":
-    # unittest.main()
     case_runner()
