@@ -12,8 +12,7 @@ import sys
 
 PATH = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(PATH + '/../../base_function/golable_function')
-print(PATH + '/../../base_function')
-from .golable_function import source_input
+from golable_function import source_input
 
 
 def config_reader(Yaml_file):
