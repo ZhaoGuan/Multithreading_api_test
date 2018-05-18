@@ -141,7 +141,7 @@ def case_runner(test_case, url):
         response = json.loads(response.text)
         if response['extra']['scenario'] != test_case['result']['scenario']:
             print(test_case)
-            print(response.text)
+            print(response)
             print('失败')
             print('scenario错误 ' + '预期为 ' + test_case['result']['scenario'])
             # if response['extra']['bucketName'] != test_case['result']['bucketName']:
