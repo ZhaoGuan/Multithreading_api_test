@@ -136,13 +136,13 @@ def case_runner(test_case, url):
     print(url)
     for key, value in test_case['parameter'].items():
         url = url + key + '=' + value + '&'
-        url = url[:-1]
+    url = url[:-1]
     response = requests.get(url)
     try:
         response = json.loads(response.text)
+        print(response)
         if response['extra']['scenario'] != test_case['result']['scenario']:
             print(test_case)
-            print(response)
             print('失败')
             print('scenario错误 ' + '预期为 ' + test_case['result']['scenario'])
             # if response['extra']['bucketName'] != test_case['result']['bucketName']:
