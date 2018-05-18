@@ -133,6 +133,7 @@ def constitute_test_case(data):
 
 
 def case_runner(test_case, url):
+    print(url)
     for key, value in test_case['parameter'].items():
         url = url + key + '=' + value + '&'
         url = url[:-1]
@@ -183,7 +184,6 @@ def request_test(test_case, source):
         url = 'http://172.31.21.219:8080/recommend/popup?sessionId=123&tag=ok&'
     if isinstance(url, list):
         for url_ in url:
-            print(url)
             case_runner(test_case, url_)
     else:
         case_runner(test_case, url)
