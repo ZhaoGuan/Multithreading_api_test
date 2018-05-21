@@ -161,6 +161,9 @@ def run_predict_create_kafka(data, source, p_t_time=1):
 def get_train_sessionId():
     url = 'http://172.31.23.134:8000/get_sessionId'
     response = requests.get(url)
+    if response.status_code != '200':
+        print('获取训练日志服务非200')
+        assert False
     sessionID_list = json.loads(response.text)['data']
     return sessionID_list
 
