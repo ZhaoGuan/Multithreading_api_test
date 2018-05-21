@@ -170,6 +170,7 @@ def check(data, source, p_t_time=1):
     created_sessionId = run_predict_create_kafka(data, source, p_t_time=1)
     time.sleep(30)
     train_sessionId_list = get_train_sessionId()
+    print('Train sessionId:')
     print(train_sessionId_list)
     for sessionId in created_sessionId:
         if sessionId['sessionId'] not in str(train_sessionId_list):
