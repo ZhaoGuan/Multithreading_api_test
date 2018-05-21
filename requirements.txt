@@ -3,4 +3,5 @@ pyyaml
 gsheets
 ddt
 shortuuid
+kafka-python
 sanic
