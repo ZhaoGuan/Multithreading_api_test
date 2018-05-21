@@ -3,7 +3,7 @@ above:
   source:
     test:
 #     url: http://35.162.54.159:8080/backend-picture/v1/gif/tags?
-     url: https://api-dev.kikakeyboard.com/v1/gif/tags?
+      url: https://api-dev.kikakeyboard.com/v1/gif/tags?
       keys: ['duid']
       data:
         app: ['kika']
