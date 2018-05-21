@@ -163,6 +163,7 @@ def get_train_sessionId():
     response = requests.get(url)
     if response.status_code != '200':
         print('获取训练日志服务非200')
+        print('失败')
         assert False
     sessionID_list = json.loads(response.text)['data']
     return sessionID_list
