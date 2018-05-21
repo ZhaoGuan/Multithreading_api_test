@@ -2,7 +2,7 @@ operation_mode: sigle_request
 source:
   test:
     #url: http://35.162.54.159:8080/backend-picture/v1/stickers2/trending?page=0&size=10&
-    #url: https://api-dev.kikakeyboard.com/v1/stickers2/trending?page=0&size=2&
+    url: https://api-dev.kikakeyboard.com/v1/stickers2/trending?page=0&size=2&
     cycle_times: 1
     keys: ['duid']
     data:

@@ -1,3 +1,15 @@
-gifsearch/gif_search:
-  path: gifsearch/gif_search
+backend-picture/gif_case:
+  path: backend-picture/gif_case
+  source: online
+backend-picture/sticker2_all:
+  path: backend-picture/sticker2_all
+  source: online
+backend-picture/sticker2_package:
+  path: backend-picture/sticker2_package
+  source: online
+backend-picture/sticker2_trending:
+  path: backend-picture/sticker2_trending
+  source: online
+backend-picture/sticker_case:
+  path: backend-picture/sticker_case
   source: online
