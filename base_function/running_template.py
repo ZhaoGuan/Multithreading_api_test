@@ -36,7 +36,7 @@ class ApiTest(unittest.TestCase):
         else:
             result = os.popen('python3 ' + file_path + ' -s ' + source).read()
             print(result)
-            if '失败' in result:
+            if ('失败' in result) or ('AssertionError' in result):
                 assert False
 
     def tearDown(self):
