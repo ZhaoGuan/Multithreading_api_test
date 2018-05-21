@@ -279,7 +279,6 @@ class Http_Test:
 
 
 def content_request(Path, source='online'):
-    result = '测试通过!!!!!!!!!'
     config = config_reader(Path)
     # print(config)
     above_config = config['above']
@@ -294,10 +293,14 @@ def content_request(Path, source='online'):
     if len(above_fail) == 0:
         below = below_test.below_url_request(content, below_test.url_keys_data()[0], below_fail, below_all_data_respone)
         if len(below_fail) > 0:
-            result = '上文结果通过,下文结果错误，错位内容:\n' + str(below_fail)
+            print('上文结果通过,下文结果错误，错位内容:\n' + str(below_fail))
+            result = False
+        else:
+            print('测试通过!!!!!!!!!')
+            result = True
     else:
-        result = '上文接口错误，访问内容为:\n' + str(above_fail)
-    print(result)
+        print('上文接口错误，访问内容为:\n' + str(above_fail))
+        result = False
     return result
 
 
