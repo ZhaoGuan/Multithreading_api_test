@@ -174,6 +174,7 @@ def check(data, source, p_t_time=1):
             fail.append(sessionId)
 
     if len(fail) > 0:
+        print('没有找到的sessionId')
         print(fail)
         print('失败')
 
