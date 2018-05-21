@@ -52,7 +52,7 @@ below:
   assert:
   #  返回码(只能第一层)
     code : {'key':'errorCode','value':0}
-    data_format : {'errorMsg': 'Str', 'errorCode': 'Int', 'data': {'resourceList': [{'tiny_gif': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'preview': 'HTTP', 'gif': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'source': 'Str', 'mp4': {'height': 'Int', 'width': 'Int', 'url': 'HTTP', 'duration': 'Int'}, 'source_id': 'Str', 'tinygif': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'index': 'Int', 'title': 'Str', 'tags': ['@@@']}]}}
+    data_format : {'errorMsg': 'Str', 'errorCode': 'Int', 'data': {'resourceList': [{'tiny_gif': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'preview': 'HTTP', 'gif': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'source': 'Str', 'mp4': {'height': 'Int', 'width': 'Int', 'url': 'HTTP', 'duration': '@@@'}, 'source_id': 'Str', 'tinygif': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'index': 'Int', 'title': 'Str', 'tags': ['@@@']}]}}
   other:
     way: online
     host:
