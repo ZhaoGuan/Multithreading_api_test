@@ -106,7 +106,7 @@ def create_kafka_log(url, ip, duid, tag, kb_lang, sessionId_list):
     print(sessionId)
     producer.send(item, bytes(message, 'utf-8'))
     producer.flush()
-    sessionId_list.append(sessionId)
+    sessionId_list.append({'sessionId': sessionId, 'data': {'duid': duid, 'tag': tag, 'kb_lang': kb_lang}})
 
 
 def predict_train(duid, tag, which_bucket, kb_lang, source):
@@ -126,7 +126,6 @@ def predict_train(duid, tag, which_bucket, kb_lang, source):
         # 2
         ip2 = '172.31.18.118:8080'
         ip = [ip0, ip1, ip2]
-
     mysql_data = get_test_data(source)
     url_dicet = bucket_url(mysql_data)
     try:
@@ -171,10 +170,11 @@ def check(data, source, p_t_time=1):
     created_sessionId = run_predict_create_kafka(data, source, p_t_time=1)
     train_sessionId_list = get_train_sessionId()
     for sessionId in created_sessionId:
-        if sessionId not in train_sessionId_list:
+        if sessionId['sessionId'] not in train_sessionId_list:
             fail.append(sessionId)
 
     if len(fail) > 0:
+        print(fail)
         print('失败')
 
 
