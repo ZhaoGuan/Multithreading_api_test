@@ -18,7 +18,7 @@ source:
       tag : ['ok','lol']
       version: ['1478']
   online:
-    #url: https://api.kikakeyboard.com/v1/gifsticker/search?offset=0&limite=10&
+    url: https://api.kikakeyboard.com/v1/gifsticker/search?offset=0&limite=10&
     #test
     #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
     #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
