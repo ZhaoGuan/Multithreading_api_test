@@ -6,7 +6,10 @@ import requests
 from sanic import Sanic
 from sanic.response import json as sanic_json
 import json
+import os
 
+PATH = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(PATH + '/..')
 app = Sanic()
 
 
