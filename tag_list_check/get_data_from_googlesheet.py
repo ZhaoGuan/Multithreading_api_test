@@ -5,12 +5,14 @@ import csv
 import json
 from tag_list_check.doc_reader import get_doc_data
 import sys
+import os
 
 csv.field_size_limit(sys.maxsize)
+PATH = os.path.dirname(os.path.abspath(__file__))
 
 
 def get_sheet():
-    sheet = Sheets.from_files('./client_secret-sheet.json')
+    sheet = Sheets.from_files(PATH + '/client_secret-sheet.json')
     url = 'https://docs.google.com/spreadsheets/d/1oS7en09vBpXiwJjs9zto16US4tfU_bLxdy5EHk32Rsc/edit'
     # url = 'https://docs.google.com/document/d/1YBB75VQWERNKhvT-A9vUh0I-r_ZLPukAnVeXnj2e5SU/edit'
     s = sheet.get(url)
