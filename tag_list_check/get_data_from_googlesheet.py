@@ -9,6 +9,7 @@ import os
 
 csv.field_size_limit(sys.maxsize)
 PATH = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(PATH + '/../')
 
 
 def get_sheet():
