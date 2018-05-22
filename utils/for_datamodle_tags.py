@@ -10,9 +10,6 @@ import sys
 PATH = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(PATH + '/../')
 
-from beaker.cache import cache_regions
-
-
 app = Sanic()
 
 # google_sheet部分
