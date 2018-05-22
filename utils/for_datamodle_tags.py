@@ -59,9 +59,9 @@ def get_token_data():
     # response = requests.post(url=get_token_url, data=get_token_data_body, headers=header)
     # 刷新token
     response = requests.post(url=get_token_url, data=refresh_token_data, headers=header)
-    print(get_token_url)
-    print(response)
-    print(response.text)
+    # print(get_token_url)
+    # print(response)
+    # print(response.text)
     return json.loads(response.text)['access_token']
 
 
@@ -110,7 +110,10 @@ def get_appconfig_tags():
     new_appconfig = get_tag_data(sheet_data)
     for url in new_appconfig:
         response = requests.get(url)
+        response.encoding = 'utf-8'
+        # print(response.text)
         temp_tags = json.loads(response.text)['tags']
+        # print(temp_tags)
         for tag in temp_tags:
             if tag not in tag_list:
                 tag_list.append(tag)
