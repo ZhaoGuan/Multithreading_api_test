@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 # __author__ = 'Gz'
-
-from tag_list_check.get_data_from_googlesheet import appconfig_data
 import requests
 from sanic import Sanic
 from sanic.response import json as sanic_json
 import json
 import os
+import sys
 
 PATH = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(PATH + '/../')
 app = Sanic()
+from tag_list_check.get_data_from_googlesheet import appconfig_data
 
 
 def get_appconfig_tags():
