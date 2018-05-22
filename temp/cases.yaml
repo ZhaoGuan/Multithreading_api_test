@@ -1,15 +1,18 @@
-backend-picture/gif_case:
-  path: backend-picture/gif_case
+backend-content-sending/Magictext_all:
+  path: backend-content-sending/Magictext_all
   source: online
-backend-picture/sticker2_all:
-  path: backend-picture/sticker2_all
+backend-content-sending/cache_control:
+  path: backend-content-sending/cache_control
   source: online
-backend-picture/sticker2_package:
-  path: backend-picture/sticker2_package
+backend-content-sending/crawler_for_data_modle:
+  path: backend-content-sending/crawler_for_data_modle
   source: online
-backend-picture/sticker2_trending:
-  path: backend-picture/sticker2_trending
+backend-content-sending/data_model_burial_point.py:
+  path: backend-content-sending/data_model_burial_point.py
   source: online
-backend-picture/sticker_case:
-  path: backend-picture/sticker_case
+backend-content-sending/for_data_modle:
+  path: backend-content-sending/for_data_modle
+  source: online
+backend-content-sending/test_case:
+  path: backend-content-sending/test_case
   source: online
