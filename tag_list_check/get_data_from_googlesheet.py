@@ -20,13 +20,13 @@ def get_sheet():
     for i in s:
         sheet_list.append(i)
     print(sheet_list[0])
-    sheet_list[0].to_csv('./app_config_sicker2.csv')
+    sheet_list[0].to_csv(PATH + '/app_config_sicker2.csv')
 
 
 def get_doc_data_to_csv():
     get_sheet()
     data = []
-    with open('./app_config_sicker2.csv') as csv_data:
+    with open(PATH + '/app_config_sicker2.csv') as csv_data:
         dict_data = csv.DictReader(csv_data)
         # print(dict_data)
         for i in dict_data:
@@ -35,7 +35,7 @@ def get_doc_data_to_csv():
                     i['老版本appconfig'] = get_doc_data(i['策略']).replace('﻿{', '{')
                     # print(i['appconfig'])
             data.append(i)
-    with open('./app_config_sicker2_get_doc.csv', 'w') as new_csv:
+    with open(PATH + '/app_config_sicker2_get_doc.csv', 'w') as new_csv:
         writer = csv.DictWriter(new_csv, ['产品', '语言地区', '取模', '分组', '策略', '文档链接', '新版本appconfig', '老版本appconfig', '备注'])
         writer.writeheader()
         for e in data:
@@ -50,7 +50,7 @@ def appconfig_data():
     result = []
     screen_data = []
     new_screen_data = []
-    with open('./app_config_sicker2_get_doc.csv') as csv_data:
+    with open(PATH + '/app_config_sicker2_get_doc.csv') as csv_data:
         dict_data = csv.DictReader(csv_data)
         for i in dict_data:
             data.append(i)
