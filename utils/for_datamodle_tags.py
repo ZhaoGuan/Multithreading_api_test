@@ -28,8 +28,8 @@ def get_appconfig_tags():
     return tag_list
 
 
-@app.route("/get_sessionId")
-async def get_sessionId(request):
+@app.route("/get_tags")
+async def get_tags(request):
     return sanic_json({"data": get_appconfig_tags()})
 
 
