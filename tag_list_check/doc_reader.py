@@ -15,11 +15,11 @@ try:
     flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
 except ImportError:
     flags = None
-
+PATH = os.path.dirname(os.path.abspath(__file__))
 # If modifying these scopes, delete your previously saved credentials
 # at ~/.credentials/drive-python-quickstart.json
 SCOPES = 'https://www.googleapis.com/auth/drive'
-CLIENT_SECRET_FILE = './client_secrets.json'
+CLIENT_SECRET_FILE = PATH+'/client_secrets.json'
 APPLICATION_NAME = 'Drive API Python Quickstart'
 
 
@@ -33,7 +33,7 @@ def get_credentials():
         Credentials, the obtained credential.
     """
     # home_dir = os.path.expanduser('~')
-    home_dir = os.path.expanduser('./')
+    home_dir = os.path.expanduser(PATH)
     credential_dir = os.path.join(home_dir, '.credentials')
     if not os.path.exists(credential_dir):
         os.makedirs(credential_dir)
