@@ -389,7 +389,7 @@ class Http_Test:
         print(int(time.time() - start_time))
         print('有误的配置内容:')
         print(fail)
-        all_pic = reader_table()
+        # all_pic = reader_table()
         print(len(all_pic))
         pic = self.pic_statistics(all_pic)
         print('图片统计结果:')
