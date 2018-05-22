@@ -14,7 +14,7 @@ sys.path.append(PATH + '/../')
 
 
 def get_sheet():
-    sheet = Sheets.from_files(secrets=PATH + '/client_secret-sheet.json', storage=PATH + '.credentials')
+    sheet = Sheets.from_files(secrets=PATH + '/client_secret-sheet.json', storage=PATH + '/storage.json')
     url = 'https://docs.google.com/spreadsheets/d/1oS7en09vBpXiwJjs9zto16US4tfU_bLxdy5EHk32Rsc/edit'
     # url = 'https://docs.google.com/document/d/1YBB75VQWERNKhvT-A9vUh0I-r_ZLPukAnVeXnj2e5SU/edit'
     s = sheet.get(url)
