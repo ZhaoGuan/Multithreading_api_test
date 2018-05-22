@@ -9,9 +9,6 @@ import os
 
 csv.field_size_limit(sys.maxsize)
 PATH = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(PATH)
-sys.path.append(PATH + '/../')
-os.path.join(PATH + '/.credentials')
 
 
 def get_sheet():
