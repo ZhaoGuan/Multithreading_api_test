@@ -9,7 +9,7 @@ import json
 import os
 
 PATH = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(PATH + '/..')
+sys.path.append(PATH + '/../')
 app = Sanic()
 
 
