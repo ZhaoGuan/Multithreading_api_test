@@ -20,7 +20,12 @@ source:
     url: https://api.kikakeyboard.com/v1/sticker2/MagicText/all
     cycle_times: 1
     #web0
-    #url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/sticker2/MagicText/all
+    keys: ['tag','lang']
+    data:
+      # 这里kb_lang,duid,app只是为了header
+  web0:
+    url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/sticker2/MagicText/all
+    cycle_times: 1
     keys: ['tag','lang']
     data:
       # 这里kb_lang,duid,app只是为了header

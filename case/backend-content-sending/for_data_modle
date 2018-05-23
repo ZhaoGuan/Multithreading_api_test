@@ -22,6 +22,13 @@ source:
     cycle_times: 1
     keys:
     data:
+  web0:
+    #运营
+    # 灰度
+    url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/sticker2/get_popup_map?is_debug=true
+    cycle_times: 1
+    keys:
+    data:
 assert:
 #  返回码(只能第一层)
   code : {'key':'errorCode','value':0}

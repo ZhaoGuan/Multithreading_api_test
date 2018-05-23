@@ -160,6 +160,8 @@ def popup(tag, duid, lang='en_AU', app='kika', version=2043, way='online'):
         # 线上
         url = 'https://api.kikakeyboard.com/v1/stickers2/popup?tag=%s&kb_lang=%s&sign=%s' % (
             tag, lang, sign)
+        # url = 'http://sticker.pre.kikakeyboard.com/backend-content-sending/popup?tag=%s&kb_lang=%s&sign=%s' % (
+        #     tag, lang, sign)
     # 测试
     elif way == 'test':
         # web0
@@ -167,6 +169,10 @@ def popup(tag, duid, lang='en_AU', app='kika', version=2043, way='online'):
         #     lang, tag, sign)
         url = 'http://34.214.222.244:9090/backend-content-sending/popup?tag=%s&kb_lang=%s&sign=%s&type=0' % (
             tag, lang, sign)
+    elif way == 'web0':
+        # web0
+        url = 'http://sticker.pre.kikakeyboard.com/backend-content-sending/popup?kb_lang=%s&tag=%s&sign=%s' % (
+            lang, tag, sign)
     else:
         url = 'http://172.31.23.134:9090/backend-content-sending/popup?tag=%s&kb_lang=%s&sign=%s&type=0' % (
             tag, lang, sign)

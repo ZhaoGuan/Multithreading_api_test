@@ -1,18 +1,18 @@
 backend-content-sending/Magictext_all:
   path: backend-content-sending/Magictext_all
-  source: online
+  source: web0
 backend-content-sending/cache_control:
   path: backend-content-sending/cache_control
-  source: online
+  source: web0
 backend-content-sending/crawler_for_data_modle:
   path: backend-content-sending/crawler_for_data_modle
-  source: online
+  source: web0
 backend-content-sending/data_model_burial_point.py:
   path: backend-content-sending/data_model_burial_point.py
-  source: online
+  source: web0
 backend-content-sending/for_data_modle:
   path: backend-content-sending/for_data_modle
-  source: online
+  source: web0
 backend-content-sending/test_case:
   path: backend-content-sending/test_case
-  source: online
+  source: web0
