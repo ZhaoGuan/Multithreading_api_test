@@ -1,0 +1,55 @@
+operation_mode: sigle_request
+source:
+#test
+  test:
+    #爬虫
+    url : http://34.214.222.244:9090/backend-content-sending/v1/sticker2/crawler_resource_with_tags
+#    url : http://172.31.23.134:9090/backend-content-sending/v1/sticker2/crawler_resource_with_tags
+    cycle_times: 1
+    keys:
+    data:
+  ip:
+    #爬虫
+#    url : http://34.214.222.244:9090/backend-content-sending/v1/sticker2/crawler_resource_with_tags
+    url : http://172.31.23.134:9090/backend-content-sending/v1/sticker2/crawler_resource_with_tags
+    cycle_times: 1
+    keys:
+    data:
+  online:
+    #爬虫
+    url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/sticker2/crawler_resource_with_tags
+    cycle_times: 1
+    keys:
+    data:
+  web0:
+    #爬虫
+    url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/sticker2/crawler_resource_with_tags
+    cycle_times: 1
+    keys:
+    data:
+assert:
+#  返回码(只能第一层)
+  code : {'key':'errorCode','value':0}
+#  字段格式
+# 多个返回可能的时候使用&连接可能性，使用@@@进行字段胡洛
+# 返回内容如果是个多级字段则为前置条件条件各级用&连接
+  data_format : {'data': '@@@', 'errorCode': 'Int', 'errorMsg': 'Str'}
+# 数据检查
+# 前面的值是对应的维度，后面的字典内容({"key":"value"}key是对应值的路径，value是对应应该出现的值(如果值添加问#那么只坚持对应结构是否存在忽略其具体值）
+# 填写内容验证遵守json格式，数据使用""
+# 可以使用条件进行判断
+# eg:'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&popup_duration":"5000"}${"data&popup_duration":"4000"}'
+# 维度为'ikey&920b56e9cadd743bfbbcb4126937e789'时且满足"data&popup_duration"对应字段等于5000是才进行{"data&popup_duration":"4000"}'判断
+# 在维度上有字段重复的时候使用"@数字"的形势进行区分
+# 多可能结果 eg:'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&popup_duration":"4000&500"}
+  data_content : {
+                  }
+# response_header检查
+# 可根据前面的条件检查，条件能够用&关联
+# @@@来忽略内容只坚持key
+  response_header : {
+                    }
+other:
+  way: online
+  host :
+

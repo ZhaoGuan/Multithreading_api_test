@@ -9,30 +9,23 @@ import random
 import copy
 
 from base_function.Inspection_method import Inspection_method
-from base_function.data_sqlite import *
+# from base_function.data_sqlite import *
 from base_function.kika_base_request import Kika_base_request
-
-
-def config_reader(Yaml_file):
-    yf = open(Yaml_file)
-    yx = yaml.load(yf)
-    yf.close()
-    return yx
-
+from base_function.golable_function import config_reader
 
 Inspection_method = Inspection_method()
 
 
 class Http_Test:
-    def __init__(self, config):
+    def __init__(self, config, source='online'):
         self.config = config
-        self.url = self.config['url']
+        self.url = self.config['source'][source]['url']
         try:
-            self.keys = self.config['keys']
+            self.keys = self.config['source'][source]['keys']
         except:
             self.keys = None
         try:
-            self.data = self.config['data']
+            self.data = self.config['source'][source]['data']
         except:
             self.data = None
         # version处理
@@ -207,8 +200,9 @@ class Http_Test:
             fail.append(fail_data)
 
     # 请求内容集合
-    def all_response(self, data, response):
-        instet_table(data, response.text)
+    def all_response(self, data, response, all_data_respone):
+        # instet_table(data, response.text)
+        all_data_respone.append({'data': data, 'response': response.text})
 
     # 获取list中的value
     def content_list_value(self, content, key):
@@ -234,22 +228,27 @@ class Http_Test:
         return content
 
     # 上文请求
-    def above_url_request(self, data, fail):
+    def above_url_request(self, data, fail, all_data_respone):
         if self.data == None or self.keys == None:
             url = self.url
             response = requests.request('get', url)
         else:
             lang = data['kb_lang']
-            duid = data['duid']
+            if '%' in data['duid']:
+                duid = data['duid'].replace('%', '').split('==')
+                duid = self.kika_request.get_duid_in_way(int(duid[0]), int(duid[1]))
+                data['duid'] = duid
+            else:
+                duid = data['duid']
             app = data['app']
             version = int(data['version'])
             header = self.kika_request.set_header(duid, app=app, version=version, lang=lang, way=self.way)
             url = self.url_mosaic(data)
             response = requests.request('get', url, headers=header)
-        print(url)
-        print(response.text)
+        # print(url)
+        # print(response.text)
         self.asser_api(data, response, fail)
-        self.all_response(data, response)
+        self.all_response(data, response, all_data_respone)
         if len(fail) == 0:
             content = self.get_content(json.loads(response.text))
         else:
@@ -257,8 +256,8 @@ class Http_Test:
         return content
 
     # 下文请求
-    def below_url_request(self, content, data, fail):
-        print(content)
+    def below_url_request(self, content, data, fail, all_data_respone):
+        # print(content)
         if self.data == None or self.keys == None:
             url = self.url
             response = requests.request('get', url)
@@ -268,7 +267,12 @@ class Http_Test:
                 if value == 'content':
                     data[key] = random.choice(content)
             lang = data['kb_lang']
-            duid = data['duid']
+            if '%' in data['duid']:
+                duid = data['duid'].replace('%', '').split('==')
+                duid = self.kika_request.get_duid_in_way(int(duid[0]), int(duid[1]))
+                data['duid'] = duid
+            else:
+                duid = data['duid']
             app = data['app']
             version = int(data['version'])
             header = self.kika_request.set_header(duid, app=app, version=version, lang=lang, way=self.way)
@@ -276,35 +280,41 @@ class Http_Test:
             # 为了package的临时方案
             if 'content=' in url:
                 url = url.replace('content=', '').replace('&', '?')
-            print(url)
+            # print(url)
             response = requests.request('get', url, headers=header)
-        print(response.text)
+        # print(response.text)
         self.asser_api(data, response, fail)
-        self.all_response(data, response)
+        self.all_response(data, response, all_data_respone)
         return response.text
 
 
-def content_request(Path):
-    result = '测试通过!!!!!!!!!'
+def content_request(Path, source='online'):
     config = config_reader(Path)
+    # print(config)
     above_config = config['above']
     below_config = config['below']
     above_fail = []
+    above_all_data_respone = []
     below_fail = []
-    above_test = Http_Test(above_config)
-    below_test = Http_Test(below_config)
-    content = above_test.above_url_request(above_test.url_keys_data()[0], above_fail)
+    below_all_data_respone = []
+    above_test = Http_Test(above_config, source)
+    below_test = Http_Test(below_config, source)
+    content = above_test.above_url_request(above_test.url_keys_data()[0], above_fail, above_all_data_respone)
     if len(above_fail) == 0:
-        below = below_test.below_url_request(content, below_test.url_keys_data()[0], below_fail)
+        below = below_test.below_url_request(content, below_test.url_keys_data()[0], below_fail, below_all_data_respone)
         if len(below_fail) > 0:
-            result = '上文结果通过,下文结果错误，错位内容:\n' + str(below_fail)
+            print('上文结果通过,下文结果错误，错位内容:\n' + str(below_fail))
+            result = False
+        else:
+            print('测试通过!!!!!!!!!')
+            result = True
     else:
-        result = '上文接口错误，访问内容为:\n' + str(above_fail)
-    print(result)
+        print('上文接口错误，访问内容为:\n' + str(above_fail))
+        result = False
     return result
 
 
 if __name__ == "__main__":
-    # content_request('./case/sticker_case')
-    content_request('./case/gif_case')
-    # content_request('./case/sticker2_package')
+    content_request('./case/backend-picture/sticker_case', 'online')
+    # content_request('./case/backend-picture/gif_case', 'test')
+    # content_request('./case/backend-picture/sticker2_package', 'online')

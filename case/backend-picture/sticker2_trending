@@ -1,0 +1,68 @@
+operation_mode: sigle_request
+source:
+  test:
+    #url: http://35.162.54.159:8080/backend-picture/v1/stickers2/trending?page=0&size=10&
+    url: https://api-dev.kikakeyboard.com/v1/stickers2/trending?page=0&size=2&
+    cycle_times: 1
+    keys: ['duid']
+    data:
+    #  app: ['kika','ikey','pro']
+      app: ['ikey']
+    #  kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
+      kb_lang : ['en_US']
+    #  duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
+    #          '920b56e9cadd743bfbbcb4126937e789']
+      duid : ['5a215835df204115ee3d2d4ec0c528aa']
+      # 算法duid
+    #  duid : ['1cbea45d00704178ed555e8cd12a4f3b', 'c500d24e6f79ea93de3fe8eb7c420f0a', '8f9e30b328b3fa3f07fc7eaefff1a16e',
+    #          'd3aba2d3052aa2a9aaeaa4273c8859a0']
+    # version可以通过对指定对象配置版本，最后一个&后填写版本之前的都是条件用&分隔
+    #  version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1478']
+      version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1478']
+  online:
+    url: https://api.kikakeyboard.com/v1/stickers2/trending?page=0&size=2&
+    #web0
+    #url: http://sticker.pre.kikakeyboard.com/backend-content-sending/popup?
+    cycle_times: 1
+    keys: ['duid']
+    data:
+    #  app: ['kika','ikey','pro']
+      app: ['ikey']
+    #  kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
+      kb_lang : ['en_US']
+    #  duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
+    #          '920b56e9cadd743bfbbcb4126937e789']
+      duid : ['5a215835df204115ee3d2d4ec0c528aa']
+      # 算法duid
+    #  duid : ['1cbea45d00704178ed555e8cd12a4f3b', 'c500d24e6f79ea93de3fe8eb7c420f0a', '8f9e30b328b3fa3f07fc7eaefff1a16e',
+    #          'd3aba2d3052aa2a9aaeaa4273c8859a0']
+    # version可以通过对指定对象配置版本，最后一个&后填写版本之前的都是条件用&分隔
+    #  version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1478']
+      version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1478']
+assert:
+#  返回码(只能第一层)
+  code : {'key':'errorCode','value':0}
+#  字段格式
+# 多个返回可能的时候使用&连接可能性，使用@@@进行字段忽略
+# 返回内容如果是个多级字段则为前置条件条件各级用&连接
+# *注意新增webp非gif的图片webp字段不应为null
+#  data_format : {'errorCode': 'Int', 'data': {'page': 'Int', 'data': [{'icon_big': 'HTTP', 'author': {'avatar': '@@@', 'name': '@@@', 'key': '@@@'}, 'icon': 'HTTP', 'description': 'Str', 'column_count': 'Int', 'key': 'Str', 'name': 'Str', 'stickers': [{'type': 'Int', 'key': 'Str', 'scale_type': 'Int', 'image': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'tags': [], 'name': 'Str', 'webp': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'mp4': '$$$'}]}], 'next_page': 'Int', 'size': 'Int'}, 'errorMsg': 'Str'}
+  data_format : {'errorCode': 'Int', 'data': {'page': 'Int', 'data': [{'icon_big': 'HTTP', 'author': {'avatar': '@@@', 'name': '@@@', 'key': '@@@'}, 'icon': 'HTTP', 'description': 'Str', 'column_count': 'Int', 'key': 'Str', 'name': '@@@', 'stickers': [{'type': 'Int', 'key': 'Str', 'scale_type': 'Int', 'image': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'tags': ['@@@'], 'name': 'Str', 'webp': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'mp4': '$$$'}]}], 'next_page': 'Int', 'size': 'Int'}, 'errorMsg': 'Str'}
+# 数据检查
+# 前面的值是对应的维度，后面的字典内容({"key":"value"}key是对应值的路径，value是对应应该出现的值(如果值添加问#那么只坚持对应结构是否存在忽略其具体值）
+# 填写内容验证遵守json格式，数据使用""
+# 可以使用条件进行判断
+# eg:'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&popup_duration":"5000"}${"data&popup_duration":"4000"}'
+# 维度为'ikey&920b56e9cadd743bfbbcb4126937e789'时且满足"data&popup_duration"对应字段等于5000是才进行{"data&popup_duration":"4000"}'判断
+# 在维度上有字段重复的时候使用"@数字"的形势进行区分
+# 多可能结果 eg:'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&popup_duration":"4000&500"}
+  data_content : {
+                  }
+# response_header检查
+# 可根据前面的条件检查，条件能够用&关联
+  response_header : {
+                    }
+other:
+  way: online
+  host :
+

@@ -232,6 +232,7 @@ class Tag_list_check:
     def new_cdn_check(self, data, check_value, response, fail_data):
         tags_config_url = json.loads(response.text)['data']['tags_config_url']
         tags_config_url_response = requests.get(tags_config_url)
+        tags_config_url_response.encoding = 'utf-8'
         json_tags_config_url_response = json.loads(tags_config_url_response.text)
         Im = Inspection_method().response_diff_list(check_value, json_tags_config_url_response, diff=[])
         if Im == False:
@@ -246,6 +247,7 @@ class Tag_list_check:
         header = self.set_header(duid, app=app, version=version, lang=lang, way=self.way)
         url = self.url_mosaic(data)
         response = requests.request('get', url, headers=header)
+        response.encoding = 'utf-8'
         # print(response.text)
         self.asser_api(data['data'], data['check_value'], response, fail)
         if version == self.new_ikey or version == self.new_kika or version == self.new_pro:
