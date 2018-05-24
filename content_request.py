@@ -234,7 +234,12 @@ class Http_Test:
             response = requests.request('get', url)
         else:
             lang = data['kb_lang']
-            duid = data['duid']
+            if '%' in data['duid']:
+                duid = data['duid'].replace('%', '').split('==')
+                duid = self.kika_request.get_duid_in_way(int(duid[0]), int(duid[1]))
+                data['duid'] = duid
+            else:
+                duid = data['duid']
             app = data['app']
             version = int(data['version'])
             header = self.kika_request.set_header(duid, app=app, version=version, lang=lang, way=self.way)
@@ -262,7 +267,12 @@ class Http_Test:
                 if value == 'content':
                     data[key] = random.choice(content)
             lang = data['kb_lang']
-            duid = data['duid']
+            if '%' in data['duid']:
+                duid = data['duid'].replace('%', '').split('==')
+                duid = self.kika_request.get_duid_in_way(int(duid[0]), int(duid[1]))
+                data['duid'] = duid
+            else:
+                duid = data['duid']
             app = data['app']
             version = int(data['version'])
             header = self.kika_request.set_header(duid, app=app, version=version, lang=lang, way=self.way)

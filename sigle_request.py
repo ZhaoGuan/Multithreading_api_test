@@ -209,7 +209,12 @@ class Http_Test:
             response = requests.request('get', url)
         else:
             lang = data['kb_lang']
-            duid = data['duid']
+            if '%' in data['duid']:
+                duid = data['duid'].replace('%', '').split('==')
+                duid = self.kika_request.get_duid_in_way(int(duid[0]), int(duid[1]))
+                data['duid'] = duid
+            else:
+                duid = data['duid']
             app = data['app']
             version = int(data['version'])
             header = self.kika_request.set_header(duid, app=app, version=version, lang=lang, way=self.way)
@@ -396,7 +401,7 @@ class Http_Test:
         print(pic)
 
 
-def sigle_request_runner(path, source='online'):
+def sigle_request_runner(path, source='test'):
     config = config_reader(path)
     # print(config)
     test = Http_Test(config, source)
@@ -407,7 +412,8 @@ def sigle_request_runner(path, source='online'):
 
 
 if __name__ == "__main__":
-    sigle_request_runner('./case/backend-content-sending/test_case')
+    # sigle_request_runner('./case/backend-content-sending/cache_control')
+    sigle_request_runner('./case/backend-content-sending/pro_Tenor_API_test_pt')
     # sigle_request_runner('./case/backend-content-sending/Magictext_all')
     # sigle_request_runner('./case/gifsearch/gif_search')
     # sigle_request_runner('./case/backend-content-sending/for_data_modle')

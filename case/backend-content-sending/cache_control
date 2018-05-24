@@ -7,7 +7,7 @@ source:
     data:
       app: ['kika','ikey','pro']
       kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
-      tag : ['gz_gz_gz']
+      tag : ['5A1F738E-D928-442D-A0B4-EEBA98A99F95']
       duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
               '920b56e9cadd743bfbbcb4126937e789']
     # version可以通过对指定对象配置版本，最后一个&后填写版本之前的都是条件用&分隔
@@ -20,7 +20,7 @@ source:
     data:
       app: ['kika','ikey','pro']
       kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
-      tag : ['gz_gz_gz']
+      tag : ['5A1F738E-D928-442D-A0B4-EEBA98A99F95']
       duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
               '920b56e9cadd743bfbbcb4126937e789']
     # version可以通过对指定对象配置版本，最后一个&后填写版本之前的都是条件用&分隔
@@ -35,7 +35,7 @@ source:
     data:
       app: ['kika','ikey','pro']
       kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
-      tag : ['gz_gz_gz']
+      tag : ['5A1F738E-D928-442D-A0B4-EEBA98A99F95']
       duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
               '920b56e9cadd743bfbbcb4126937e789']
     # version可以通过对指定对象配置版本，最后一个&后填写版本之前的都是条件用&分隔
@@ -48,7 +48,7 @@ source:
     data:
       app: ['kika','ikey','pro']
       kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
-      tag : ['gz_gz_gz']
+      tag : ['5A1F738E-D928-442D-A0B4-EEBA98A99F95']
       duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
               '920b56e9cadd743bfbbcb4126937e789']
     # version可以通过对指定对象配置版本，最后一个&后填写版本之前的都是条件用&分隔
