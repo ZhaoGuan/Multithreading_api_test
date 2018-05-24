@@ -126,7 +126,10 @@ def constitute_test_case(data):
             temp['parameter'].update({'userId': duid})
             for key, value in parameter.items():
                 temp['parameter'].update({key: value})
-            test_case.append(temp)
+            if ('giphy' in str(temp)) or ('tenor' in str(temp)):
+                pass
+            else:
+                test_case.append(temp)
     # print(test_case)
     # print(len(test_case))
     return test_case
@@ -163,7 +166,9 @@ def request_test(test_case, source):
         url = 'http://52.43.155.219:8080/model-sticker/recommend/popup?sessionId=123&tag=ok&'
     elif source == 'ip':
         # 内网
-        # url = 'http://172.31.23.134:8080/model-sticker/recommend/popup?sessionId=123&tag=ok&'
+        url = 'http://172.31.23.134:8080/model-sticker/recommend/popup?sessionId=123&tag=ok&'
+    elif source == 'spring':
+        # 内网
         url = 'http://172.31.23.134:10010/model-sticker/recommend/popup?sessionId=123&tag=ok&'
     elif source == 'pt_online':
         # 线上
