@@ -1,0 +1,83 @@
+operation_mode: sigle_request
+source:
+  test:
+    url: http://34.214.222.244:9090/backend-content-sending/popup?type=0&
+    cycle_times: 1
+    keys: ['kb_lang','tag','duid']
+    data:
+      app: ['kika','ikey','pro']
+      kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
+      tag : ['5A1F738E-D928-442D-A0B4-EEBA98A99F95']
+      duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
+              '920b56e9cadd743bfbbcb4126937e789']
+    # version可以通过对指定对象配置版本，最后一个&后填写版本之前的都是条件用&分隔
+      version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1478','kika&920b56e9cadd743bfbbcb4126937e789&2371','pro&920b56e9cadd743bfbbcb4126937e789&350']
+    #  version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1478']
+  ip:
+    url: http://172.31.23.134:9090/backend-content-sending/popup?type=0&
+    cycle_times: 1
+    keys: ['kb_lang','tag','duid']
+    data:
+      app: ['kika','ikey','pro']
+      kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
+      tag : ['5A1F738E-D928-442D-A0B4-EEBA98A99F95']
+      duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
+              '920b56e9cadd743bfbbcb4126937e789']
+    # version可以通过对指定对象配置版本，最后一个&后填写版本之前的都是条件用&分隔
+      version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1478','kika&920b56e9cadd743bfbbcb4126937e789&2371','pro&920b56e9cadd743bfbbcb4126937e789&350']
+    #  version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1478']
+  online:
+    url: https://api.kikakeyboard.com/v1/stickers2/popup?type=0&
+    #web0
+#    url: http://sticker.pre.kikakeyboard.com/backend-content-sending/popup?type=0&
+    cycle_times: 1
+    keys: ['kb_lang','tag','duid']
+    data:
+      app: ['kika','ikey','pro']
+      kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
+      tag : ['5A1F738E-D928-442D-A0B4-EEBA98A99F95']
+      duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
+              '920b56e9cadd743bfbbcb4126937e789']
+    # version可以通过对指定对象配置版本，最后一个&后填写版本之前的都是条件用&分隔
+      version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1478','kika&920b56e9cadd743bfbbcb4126937e789&2371','pro&920b56e9cadd743bfbbcb4126937e789&350']
+    #  version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1478']
+  web0:
+    url: http://sticker.pre.kikakeyboard.com/backend-content-sending/popup?type=0&
+    cycle_times: 1
+    keys: ['kb_lang','tag','duid']
+    data:
+      app: ['kika','ikey','pro']
+      kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
+      tag : ['5A1F738E-D928-442D-A0B4-EEBA98A99F95']
+      duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
+              '920b56e9cadd743bfbbcb4126937e789']
+    # version可以通过对指定对象配置版本，最后一个&后填写版本之前的都是条件用&分隔
+      version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1478','kika&920b56e9cadd743bfbbcb4126937e789&2371','pro&920b56e9cadd743bfbbcb4126937e789&350']
+    #  version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1478']
+assert:
+#  返回码(只能第一层)
+  code : {'key':'errorCode','value':0}
+#  字段格式
+# 多个返回可能的时候使用&连接可能性，使用@@@进行字段胡洛
+# 返回内容如果是个多级字段则为前置条件条件各级用&连接
+  data_format : {'data': '@@@', 'errorCode': 'Int', 'errorMsg': 'Str'}
+# 数据检查
+# 前面的值是对应的维度，后面的字典内容({"key":"value"}key是对应值的路径，value是对应应该出现的值(如果值添加问#那么只坚持对应结构是否存在忽略其具体值）
+# 填写内容验证遵守json格式，数据使用""
+# 可以使用条件进行判断
+# eg:'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&popup_duration":"5000"}${"data&popup_duration":"4000"}'
+# 维度为'ikey&920b56e9cadd743bfbbcb4126937e789'时且满足"data&popup_duration"对应字段等于5000是才进行{"data&popup_duration":"4000"}'判断
+# 在维度上有字段重复的时候使用"@数字"的形势进行区分
+# 多可能结果 eg:'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&popup_duration":"4000&500"}
+  data_content : {
+                  }
+# response_header检查
+# 可根据前面的条件检查，条件能够用&关联
+# @@@来忽略内容只坚持key
+  response_header : {
+  Cache-Control: "max-age=86400"
+                    }
+other:
+  way: online
+  host :
+

@@ -1,0 +1,21 @@
+backend-content-sending/Magictext_all:
+  path: backend-content-sending/Magictext_all
+  source: online
+backend-content-sending/cache_control:
+  path: backend-content-sending/cache_control
+  source: online
+backend-content-sending/crawler_for_data_modle:
+  path: backend-content-sending/crawler_for_data_modle
+  source: online
+backend-content-sending/data_model_burial_point.py:
+  path: backend-content-sending/data_model_burial_point.py
+  source: online
+backend-content-sending/for_data_modle:
+  path: backend-content-sending/for_data_modle
+  source: online
+backend-content-sending/pro_Tenor_API_test_pt:
+  path: backend-content-sending/pro_Tenor_API_test_pt
+  source: online
+backend-content-sending/test_case:
+  path: backend-content-sending/test_case
+  source: online

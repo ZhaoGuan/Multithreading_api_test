@@ -1,2 +1,7 @@
+pysqlite3
 pyyaml
 gsheets
+ddt
+shortuuid
+kafka-python
+sanic
