@@ -1,0 +1,78 @@
+operation_mode: sigle_request
+source:
+  test:
+    #test3
+    url: http://34.214.222.244:9090/backend-content-sending/popup?type=0&
+#    url: http://172.31.23.134:9090/backend-content-sending/popup?type=0&
+    cycle_times: 1
+    keys: ['kb_lang','tag','duid']
+    data:
+      app: ['pro']
+      kb_lang : ['pt_BR']
+      tag : ['ok']
+      duid : ['%4==0', '%4==1']
+  ip:
+    #test3
+#    url: http://34.214.222.244:9090/backend-content-sending/popup?type=0&
+    url: http://172.31.23.134:9090/backend-content-sending/popup?type=0&
+    cycle_times: 1
+    keys: ['kb_lang','tag','duid']
+    data:
+      app: ['pro']
+      kb_lang : ['pt_BR']
+      tag : ['ok']
+      duid : ['%4==0', '%4==1']
+  online:
+    url: https://api.kikakeyboard.com/v1/stickers2/popup?type=0&
+    #web0
+#    url: http://sticker.pre.kikakeyboard.com/backend-content-sending/popup?type=0&
+    cycle_times: 1
+    keys: ['kb_lang','tag','duid']
+    data:
+      app: ['pro']
+      kb_lang : ['pt_BR']
+      tag : ['ok']
+      duid : ['%4==0', '%4==1']
+  web0:
+    #web0
+    url: http://sticker.pre.kikakeyboard.com/backend-content-sending/popup?type=0&
+    cycle_times: 1
+    keys: ['kb_lang','tag','duid']
+    data:
+      app: ['pro']
+      kb_lang : ['pt_BR']
+      tag : ['ok']
+      duid : ['%4==0', '%4==1']
+assert:
+#  返回码(只能第一层)
+  code : {'key':'errorCode','value':0}
+#  字段格式
+# 多个返回可能的时候使用&连接可能性，使用@@@进行字段胡洛
+# 返回内容如果是个多级字段则为前置条件条件各级用&连接
+  data_format : {
+    '{"data&type":"sticker"}':{'data': {'popup_duration': 'Int', 'stickers': [{'package_id': 'Str&$$$', 'tags': ['@@@'], 'scale_type': 'Int', 'source_text': 'Str&$$$','caption':'Str&$$$','mp4': '$$$', 'name': '$$$', 'popup_duration': 'Int', 'icon_url': 'Str&$$$', 'image': {'height': 'Int', 'width': 'Int', 'url': 'Str', 'size':'Int' , 'md5':'Str'}, 'mark': 'Str&$$$', 'key': 'Str'}], 'magics': '$$$', 'extra': 'Str', 'type': 'Str'}, 'errorCode': 'Int', 'errorMsg': 'Str'},
+    '{"data&type":"magic"}':{'data': {'type': 'Str', 'magics': [{'key': 'Str', 'style': 'Str'}], 'stickers': '$$$', 'popup_duration': 'Int', 'extra': 'Str'}, 'errorMsg': 'Str', 'errorCode': 'Int'}
+    }
+# 数据检查
+# eg : '维g:度'：'{"key":"value"}'
+# 前面的值是对应的维度，后面的字典内容({"key":"value"}key是对应值的路径，value是对应应该出现的值(如果值添加问#那么只坚持对应结构是否存在忽略其具体值）
+# 填写内容验证遵守json格式，数据使用""
+# 可以使用条件进行判断
+# eg : 'ikey&94b56e9cadd743bfbbcb4126937e789':'{"data&popup_duration":"5000"}${"data&popup_duration":"4000"}'
+# 维度为'ikey&94b56e9cadd743bfbbcb4126937e789'时且满足"data&popup_duration"对应字段等于5000是才进行{"data&popup_duration":"4000"}'判断
+# 在维度上有字段重复的时候使用"@数字"的形势进行区分
+# 多可能结果 eg:'ikey&94b56e9cadd743bfbbcb4126937e789':'{"data&popup_duration":"4000&500"}
+  data_content : {
+                  'pro':'{"data&stickers":"from_giphy_api&from_tenor_api"}'
+                  }
+# response_header检查
+# 可根据前面的条件检查，条件能够用&关联
+# @@@来忽略内容只坚持key
+  response_header : {
+#                    kika: {Cache-Control: "@@@"},
+#                    pro: {Cache-Control: "@@@"}
+                    }
+other:
+  way: online
+  host :
+
