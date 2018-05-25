@@ -8,7 +8,7 @@ source:
     keys: ['kb_lang','tag','duid']
     data:
       app: ['pro']
-      kb_lang : ['pt_BR']
+      kb_lang : ['in_ID']
       tag : ['ok']
       duid : ['%4==0', '%4==1']
   ip:
@@ -19,7 +19,7 @@ source:
     keys: ['kb_lang','tag','duid']
     data:
       app: ['pro']
-      kb_lang : ['pt_BR']
+      kb_lang : ['in_ID']
       tag : ['ok']
       duid : ['%4==0', '%4==1']
   online:
@@ -30,7 +30,7 @@ source:
     keys: ['kb_lang','tag','duid']
     data:
       app: ['pro']
-      kb_lang : ['pt_BR']
+      kb_lang : ['in_ID']
       tag : ['ok']
       duid : ['%4==0', '%4==1']
   web0:
@@ -40,7 +40,7 @@ source:
     keys: ['kb_lang','tag','duid']
     data:
       app: ['pro']
-      kb_lang : ['pt_BR']
+      kb_lang : ['in_ID']
       tag : ['ok']
       duid : ['%4==0', '%4==1']
 assert:
