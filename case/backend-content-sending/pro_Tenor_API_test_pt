@@ -63,7 +63,7 @@ assert:
 # 在维度上有字段重复的时候使用"@数字"的形势进行区分
 # 多可能结果 eg:'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&popup_duration":"4000&500"}
   data_content : {
-                  'pro':'{"data&stickers":"from_giphy_api&from_tenor_api"}'
+                  'pro':'{"data&stickers&key":"from_giphy_api&from_tenor_api"}'
                   }
 # response_header检查
 # 可根据前面的条件检查，条件能够用&关联
