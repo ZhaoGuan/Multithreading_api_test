@@ -126,11 +126,11 @@ def constitute_test_case(data):
             temp['parameter'].update({'userId': duid})
             for key, value in parameter.items():
                 temp['parameter'].update({key: value})
-                if ('giphy' in str(temp)) or ('tenor' in str(temp)):
+                if ('Giphy' in str(temp)) or ('Tenor' in str(temp)):
                     test_case.append(temp)
                 else:
                     pass
-    # print(test_case)
+    print(test_case)
     # print(len(test_case))
     return test_case
 
