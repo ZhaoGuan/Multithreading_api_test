@@ -164,9 +164,9 @@ def case_runner(test_case, url):
 def request_test(test_case, source):
     if source == 'test':
         # 测试
-        url = 'http://52.43.155.219:8080/model-sticker/recommend/popup?sessionId=123&tag=ok&'
+        url = 'http://52.43.155.219:8080/model-sticker/recommend/maturity/popup?sessionId=123&tag=ok&'
     elif source == 'ip':
-        url = 'http://172.31.23.134::8080/model-sticker/recommend/popup?sessionId=123&tag=ok&'
+        url = 'http://172.31.23.134::8080/model-sticker/recommend/maturity/popup?sessionId=123&tag=ok&'
     else:
         url = 'http://172.31.31.224:8080/model-sticker/recommend/maturity/popup?sessionId=1&tag=ok&'
     if isinstance(url, list):
