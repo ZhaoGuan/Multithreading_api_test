@@ -36,7 +36,7 @@ class ApiTest(unittest.TestCase):
             assert result
         else:
             # result = os.popen('python3 ' + file_path + ' -s ' + source).read()
-            result = subprocess.Popen('python3 ' + file_path + ' -s ' + source, shell=True)
+            result = subprocess.call('python3 ' + file_path + ' -s ' + source, shell=True)
             print(result)
             if ('失败' in result) or ('AssertionError' in result):
                 assert False
