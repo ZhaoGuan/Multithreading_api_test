@@ -40,7 +40,7 @@ class ApiTest(unittest.TestCase):
                                  stderr=subprocess.STDOUT)
             result = str(p.stdout.read())
             print(result)
-            if ('失败' in result) or ('AssertionError' in result):
+            if ('失败' in result) or ('AssertionError' in result) or ('Traceback' in result):
                 assert False
 
     def tearDown(self):
