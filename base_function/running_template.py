@@ -9,6 +9,7 @@ import os
 import unittest
 from sigle_request import sigle_request_runner
 from content_request import content_request
+import subprocess
 
 PATH = os.path.dirname(os.path.abspath(__file__))
 
@@ -34,9 +35,12 @@ class ApiTest(unittest.TestCase):
             result = content_request(file_path, source)
             assert result
         else:
-            result = os.popen('python3 ' + file_path + ' -s ' + source).read()
+            # result = os.popen('python3 ' + file_path + ' -s ' + source).read()
+            p = subprocess.Popen('python3 ' + file_path + ' -s ' + source, shell=True, stdout=subprocess.PIPE,
+                                 stderr=subprocess.STDOUT)
+            result = str(p.stdout.read())
             print(result)
-            if ('失败' in result) or ('AssertionError' in result):
+            if ('失败' in result) or ('AssertionError' in result) or ('Traceback' in result):
                 assert False
 
     def tearDown(self):
@@ -56,6 +60,10 @@ def case_runner():
     # 执行用例
     # runner = unittest.TextTestRunner()
     filename = PATH + '/../report/Api_test_report.html'
+    try:
+        os.mkdir(PATH + '/../report')
+    except:
+        pass
     fp = open(filename, 'wb')
     runner = HTMLTestRunner(stream=fp, title='接口自动化测试报告', description='接口自动化测试报告')
     runner.run(suite)
