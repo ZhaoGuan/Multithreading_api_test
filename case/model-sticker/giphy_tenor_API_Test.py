@@ -168,7 +168,7 @@ def request_test(test_case, source):
         # 测试
         url = 'http://52.43.155.219:8080/model-sticker/recommend/maturity/popup?sessionId=123&tag=ok&'
     elif source == 'ip':
-        url = 'http://172.31.23.134::8080/model-sticker/recommend/maturity/popup?sessionId=123&tag=ok&'
+        url = 'http://172.31.23.134:8080/model-sticker/recommend/maturity/popup?sessionId=123&tag=ok&'
     else:
         url = 'http://172.31.31.224:8080/model-sticker/recommend/maturity/popup?sessionId=1&tag=ok&'
     if isinstance(url, list):
