@@ -38,7 +38,7 @@ class ApiTest(unittest.TestCase):
             # result = os.popen('python3 ' + file_path + ' -s ' + source).read()
             p = subprocess.Popen('python3 ' + file_path + ' -s ' + source, shell=True, stdout=subprocess.PIPE,
                                  stderr=subprocess.STDOUT)
-            result = p.stdout.read().encode('utf-8')
+            result = p.stdout.encoding
             print(result)
             if ('失败' in result) or ('AssertionError' in result):
                 assert False
