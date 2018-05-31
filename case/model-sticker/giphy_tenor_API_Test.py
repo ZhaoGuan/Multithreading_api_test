@@ -143,6 +143,8 @@ def case_runner(test_case, url):
     print(url)
     response = requests.get(url)
     print(response.text)
+    if response.text == '':
+        print('失败')
     try:
         response = json.loads(response.text)
         print(response)
