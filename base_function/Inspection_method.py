@@ -208,6 +208,7 @@ class Inspection_method():
 
     # data_content无条件判断
     def data_content_check(self, data, data_content_key_, check_data, response):
+        # 多检查内容时例如ikey@1 ikey@2
         if '@' in data_content_key_:
             data_content_key = data_content_key_.split('@')[0]
         else:
