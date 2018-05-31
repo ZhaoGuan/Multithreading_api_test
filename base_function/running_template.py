@@ -9,6 +9,7 @@ import os
 import unittest
 from sigle_request import sigle_request_runner
 from content_request import content_request
+import subprocess
 
 PATH = os.path.dirname(os.path.abspath(__file__))
 
@@ -34,7 +35,8 @@ class ApiTest(unittest.TestCase):
             result = content_request(file_path, source)
             assert result
         else:
-            result = os.popen('python3 ' + file_path + ' -s ' + source).read()
+            # result = os.popen('python3 ' + file_path + ' -s ' + source).read()
+            result = subprocess.Popen('python3 ' + file_path + ' -s ' + source)
             print(result)
             if ('失败' in result) or ('AssertionError' in result):
                 assert False
