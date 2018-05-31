@@ -56,6 +56,10 @@ def case_runner():
     # 执行用例
     # runner = unittest.TextTestRunner()
     filename = PATH + '/../report/Api_test_report.html'
+    try:
+        os.mkdir(PATH + '/../report')
+    except:
+        pass
     fp = open(filename, 'wb')
     runner = HTMLTestRunner(stream=fp, title='接口自动化测试报告', description='接口自动化测试报告')
     runner.run(suite)
