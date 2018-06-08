@@ -413,9 +413,10 @@ def sigle_request_runner(path, source='test'):
 
 if __name__ == "__main__":
     # sigle_request_runner('./case/backend-content-sending/cache_control')
-    sigle_request_runner('./case/backend-content-sending/pro_Tenor_API_test_pt')
+    # sigle_request_runner('./case/backend-content-sending/pro_Tenor_API_test_pt')
     # sigle_request_runner('./case/backend-content-sending/Magictext_all')
     # sigle_request_runner('./case/gifsearch/gif_search')
     # sigle_request_runner('./case/backend-content-sending/for_data_modle')
     # sigle_request_runner('./case/backend-picture/sticker2_trending')
     # sigle_request_runner('./case/backend-picture/sticker2_all')
+    sigle_request_runner('./case/ip_group/zk.yml')
