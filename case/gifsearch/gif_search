@@ -40,7 +40,8 @@ assert:
 #  字段格式
 # 多个返回可能的时候使用&连接可能性，使用@@@进行字段胡洛
 # 返回内容如果是个多级字段则为前置条件条件各级用&连接
-  data_format : { 'errorMsg': 'Str','errorCode': 'Int', 'data': {'infos': [{'picInfo': {'width': 'Int', 'url': 'HTTP', 'size': 'Int', 'height': 'Int'}, 'source': 'Str', 'id': 'Str', 'tinyInfo': {'width': 'Int', 'url': 'HTTP', 'size': 'Int', 'height': 'Int'}}], 'tag': 'Str'}}
+#  data_format : { 'errorMsg': 'Str','errorCode': 'Int', 'data': {'infos': [{'picInfo': {'width': 'Int', 'url': 'HTTP', 'size': 'Int', 'height': 'Int'}, 'source': 'Str', 'id': 'Str', 'tinyInfo': {'width': 'Int', 'url': 'HTTP', 'size': 'Int', 'height': 'Int'}}], 'tag': 'Str'}}
+  data_format : {'data': {'tag': 'Str', 'infos': [{'magicText': ['@@@'], 'source': 'Str', 'tinyInfo': {'width': 'Int', 'height': 'Int', 'url': 'Str', 'size': 'Int'}, 'type': 'Int', 'id': 'Str', 'picInfo': {'width': 'Int', 'height': 'Int', 'url': 'Str', 'size': 'Int'}}]}, 'errorMsg': 'Str', 'errorCode': 'Int'}
 # 数据检查
 # 前面的值是对应的维度，后面的字典内容({"key":"value"}key是对应值的路径，value是对应应该出现的值(如果值添加问#那么只坚持对应结构是否存在忽略其具体值）
 # 填写内容验证遵守json格式，数据使用""
@@ -50,6 +51,10 @@ assert:
 # 在维度上有字段重复的时候使用"@数字"的形势进行区分
 # 多可能结果 eg:'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&popup_duration":"4000&500"}
   data_content : {
+                  'ok@1':'{"data&infos&0&magicText&style":"#"}',
+                  'ok@2':'{"data&infos&0&magicText&sourceID":"#"}',
+                  'lol@1':'{"data&infos&0&magicText&style":"#"}',
+                  'lol@2':'{"data&infos&0&magicText&sourceID":"#"}'
                   }
 # response_header检查
 # 可根据前面的条件检查，条件能够用&关联
