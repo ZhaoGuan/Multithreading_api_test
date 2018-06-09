@@ -19,7 +19,7 @@ source:
     cycle_times: 1
     #web0
     #url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
-    keys: ['tag','lang']
+    keys:
     data:
       # 这里kb_lang,duid,app只是为了header
 assert:
