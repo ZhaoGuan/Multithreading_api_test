@@ -51,5 +51,3 @@ if __name__ == '__main__':
         fail_count = soup.find_all('tr', class_='failClass')
         if len(fail_count) > 0:
             SendInfo('guanzhao', text)
-        else:
-            SendInfo('guanzhao', text1)
