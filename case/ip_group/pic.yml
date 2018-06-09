@@ -40,8 +40,8 @@ assert:
 #  字段格式
 # 多个返回可能的时候使用&连接可能性，使用@@@进行字段胡洛
 # 返回内容如果是个多级字段则为前置条件条件各级用&连接
-  data_format : {}
-#  data_format : {'errorMsg': 'Str', 'data': {'resourceList': [{'gif': {'url': 'HTTP', 'width': 'Int', 'height': 'Int'}, 'tinygif': {'url': 'HTTP', 'width': 'Int', 'height': 'Int'}, 'source': 'Str', 'index': 'Int', 'tiny_gif': {'url': 'HTTP', 'width': 'Int', 'height': 'Int'}, 'preview': 'HTTP', 'mp4': {'url': 'HTTP', 'duration': -1.0, 'width': 'Int', 'height': 'Int'}, 'tags': [], 'title': 'Str', 'source_id': 'Str'}]}, 'errorCode': 'Int'}
+  data_format :
+#  data_format : {'errorMsg': 'Str', 'data': {'resourceList': [{'gif': {'url': 'HTTP', 'width': 'Int', 'height': 'Int'}, 'tinygif': {'url': 'HTTP', 'width': 'Int', 'height': 'Int'}, 'source': 'Str', 'index': 'Int', 'tiny_gif': {'url': 'HTTP', 'width': 'Int', 'height': 'Int'}, 'preview': 'HTTP', 'mp4': {'url': 'HTTP', 'duration': '@@@', 'width': 'Int', 'height': 'Int'}, 'tags': [], 'title': 'Str', 'source_id': 'Str'}]}, 'errorCode': 'Int'}
 # 数据检查
 # 前面的值是对应的维度，后面的字典内容({"key":"value"}key是对应值的路径，value是对应应该出现的值(如果值添加问#那么只坚持对应结构是否存在忽略其具体值）
 # 填写内容验证遵守json格式，数据使用""
