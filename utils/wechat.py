@@ -48,8 +48,8 @@ if __name__ == '__main__':
     with open(PATH + '/../report/Api_test_report.html') as f:
         soup = BeautifulSoup(f)
         # all_data = soup.prettify()
-        try:
-            fail_count = soup.find_all('tr', class_='failClass')
+        fail_count = soup.find_all('tr', class_='failClass')
+        if len(fail_count) > 0:
             SendInfo('guanzhao', text)
-        except:
+        else:
             SendInfo('guanzhao', text1)
