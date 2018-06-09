@@ -12,7 +12,7 @@ source:
     data:
       # 这里kb_lang,duid,app只是为了header
   online:
-    url: https://api.kikakeyboard.com/v1/ip-groups/match/worldcupnews
+    url: https://api.kikakeyboard.com/v1/ip-groups/activity/tag?activity=worldcup&style=page
     #test
     #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
     #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&

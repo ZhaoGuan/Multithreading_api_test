@@ -18,7 +18,7 @@ source:
       tag : ['ok']
       version: ['1478']
   online:
-    url: https://api.kikakeyboard.com/v1/gifsticker/search?offset=0&limite=10&
+    url: https://api.kikakeyboard.com/v1/ip-groups/activity/pic?activity=worldcup&style=page&
     #test
     #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
     #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
@@ -32,7 +32,7 @@ source:
       kb_lang : ['en_US']
       app: ['ikey']
       lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
-      tag : ['ok','lol']
+      tag : ['hot']
       version: ['1478']
 assert:
 #  返回码(只能第一层)
