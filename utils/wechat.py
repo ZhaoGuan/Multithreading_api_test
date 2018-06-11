@@ -42,12 +42,14 @@ def SendInfo(user, content):
     # print(r.text)
 
 
-if __name__ == '__main__':
-    text = 'ip_group Fail !!!!!!'
-    text1 = 'test'
+def run_wechat(project):
+    text = project + ' Fail !!!!!!'
     with open(PATH + '/../report/Api_test_report.html') as f:
         soup = BeautifulSoup(f)
-        # all_data = soup.prettify()
         fail_count = soup.find_all('tr', class_='failClass')
         if len(fail_count) > 0:
             SendInfo('guanzhao', text)
+
+
+if __name__ == '__main__':
+    run_wechat('test')
