@@ -3,3 +3,5 @@ che.py
 check.py
 *.db
 *.pyc
+*.csv
+*.pyc

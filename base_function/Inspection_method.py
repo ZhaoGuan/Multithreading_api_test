@@ -23,9 +23,12 @@ class Inspection_method():
             result = True
         else:
             if case == 'HTTP':
-                if self.Http_Resources(response) == True:
-                    result = True
-                else:
+                try:
+                    if self.Http_Resources(response) == True:
+                        result = True
+                    else:
+                        result = False
+                except:
                     result = False
             elif case == 'Bool':
                 result = isinstance(response, bool)
