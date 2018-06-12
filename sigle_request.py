@@ -277,7 +277,7 @@ class Http_Test:
         print('所有返回内容数量:' + str(len(all_data)))
         # print(all_data)
         for data in all_data:
-            print(bytearray(data)[0:2000])
+            print(str(data)[0:2000])
         if len(fail) != 0:
             print('有失败的内容！！！！！！！！！')
             result = False
