@@ -170,7 +170,7 @@ def request_test(test_case, source):
     elif source == 'ip':
         url = 'http://172.31.23.134:8080/model-sticker/recommend/maturity/popup?sessionId=123&tag=ok&'
     elif source == 'spring':
-        url = 'http://172.31.31.224:10010/model-sticker/recommend/maturity/popup?sessionId=1&tag=ok&'
+        url = 'http://172.31.23.134:10010/model-sticker/recommend/maturity/popup?sessionId=1&tag=ok&'
     else:
         url = 'http://172.31.31.224:8080/model-sticker/recommend/maturity/popup?sessionId=1&tag=ok&'
     if isinstance(url, list):
