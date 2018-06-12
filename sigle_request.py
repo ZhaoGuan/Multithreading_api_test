@@ -276,8 +276,8 @@ class Http_Test:
         # all_data = reader_table()
         print('所有返回内容数量:' + str(len(all_data)))
         # print(all_data)
-        for data in all_data:
-            print(data)
+        # for data in all_data:
+        #     print(data)
         if len(fail) != 0:
             print('有失败的内容！！！！！！！！！')
             result = False
@@ -415,8 +415,8 @@ if __name__ == "__main__":
     # sigle_request_runner('./case/backend-content-sending/cache_control')
     # sigle_request_runner('./case/backend-content-sending/pro_Tenor_API_test_pt')
     # sigle_request_runner('./case/backend-content-sending/Magictext_all')
-    # sigle_request_runner('./case/gifsearch/gif_search')
+    sigle_request_runner('./case/gifsearch/gif_search')
     # sigle_request_runner('./case/backend-content-sending/for_data_modle')
     # sigle_request_runner('./case/backend-picture/sticker2_trending')
     # sigle_request_runner('./case/backend-picture/sticker2_all')
-    sigle_request_runner('./case/ip_group/zk.yml')
+    # sigle_request_runner('./case/ip_group/zk.yml')
