@@ -209,12 +209,12 @@ class Http_Test:
     def url_request(self, data):
         if self.data == None or self.keys == None:
             url = self.url
-            header = {'Accept-Charset': 'UTF-8',
-                      'Connection': 'Keep-Alive',
-                      'Accept-Encoding': 'gzip'}
+            # header = {'Accept-Charset': 'UTF-8',
+            #           'Connection': 'Keep-Alive',
+            #           'Accept-Encoding': 'gzip'}
             # http.client.HTTPConnection._http_vsn = 10
             # http.client.HTTPConnection._http_vsn_str = 'HTTP/1.0'
-            response = requests.request('get', url, headers=header)
+            response = requests.request('get', url)
             response.encoding = 'utf-8'
         else:
             lang = data['kb_lang']
