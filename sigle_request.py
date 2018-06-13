@@ -210,9 +210,8 @@ class Http_Test:
         if self.data == None or self.keys == None:
             url = self.url
             header = {'Accept-Charset': 'UTF-8',
-                      'Connection': 'Keep-Alive',
-                      'Accept-Encoding': 'gzip'}
-            response = requests.request('get', url)
+                      'Content-type': 'application / json'}
+            response = requests.request('get', url, headers=header)
             response.encoding = 'utf-8'
         else:
             lang = data['kb_lang']
