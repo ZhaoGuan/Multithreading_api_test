@@ -278,7 +278,7 @@ class Http_Test:
         # print(all_data)
         for data in all_data:
             print(str(data)[0:2000])
-        if len(fail) != 0:
+        if len(fail) != 0 and len(all_data) > 0:
             print('有失败的内容！！！！！！！！！')
             result = False
         else:
@@ -413,9 +413,10 @@ def sigle_request_runner(path, source='test'):
 
 if __name__ == "__main__":
     # sigle_request_runner('./case/backend-content-sending/cache_control')
+    sigle_request_runner('./case/backend-content-sending/crawler_resource_with_tags_management_default', 'online')
     # sigle_request_runner('./case/backend-content-sending/pro_Tenor_API_test_pt')
     # sigle_request_runner('./case/backend-content-sending/Magictext_all')
-    sigle_request_runner('./case/gifsearch/gif_search')
+    # sigle_request_runner('./case/gifsearch/gif_search')
     # sigle_request_runner('./case/backend-content-sending/for_data_modle')
     # sigle_request_runner('./case/backend-picture/sticker2_trending')
     # sigle_request_runner('./case/backend-picture/sticker2_all')
