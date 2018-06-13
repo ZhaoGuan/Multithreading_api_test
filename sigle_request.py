@@ -10,6 +10,7 @@ from base_function.golable_function import config_reader
 import requests
 import yaml
 import os
+import threadpool
 
 from base_function.Inspection_method import Inspection_method
 # from base_function.data_sqlite import *
@@ -18,7 +19,8 @@ from base_function.kika_base_request import Kika_base_request
 Inspection_method = Inspection_method()
 PATH = os.path.dirname(os.path.abspath(__file__))
 
-
+fail_list =[]
+all_list = []
 class Http_Test:
     def __init__(self, config, source='online'):
         self.config = config
@@ -203,7 +205,7 @@ class Http_Test:
         all_data_respone.append({'data': data, 'response': response.text})
 
     # 发送请求
-    def url_request(self, data, fail, all_data):
+    def url_request(self, data):
         if self.data == None or self.keys == None:
             url = self.url
             header = header = {'Accept-Charset': 'UTF-8',
@@ -230,8 +232,8 @@ class Http_Test:
             # print(url)
             response = requests.request('get', url, headers=header)
             response.encoding = 'utf-8'
-        self.asser_api(data, response, fail)
-        self.all_response(data, response, all_data)
+        self.asser_api(data, response, fail_list)
+        self.all_response(data, response, all_list)
 
     # 图片统计
     def pic_statistics(self, all_pic):
@@ -261,29 +263,39 @@ class Http_Test:
         proc_record = []
         fail = []
         all_data = []
+        pool = threadpool.ThreadPool(200)
         for g in range(self.cycle_times):
-            for i in all_test:
-                th = threading.Thread(target=self.url_request, args=(i, fail, all_data))
-                print(th)
-                th.setDaemon(True)
-                th.start()
-                proc_record.append(th)
-            for e in proc_record:
-                e.join()
+            # for i in all_test:
+                # th = threading.Thread(target=self.url_request, args=(i, fail, all_data))
+                # print(th)
+                # th.setDaemon(True)
+                # th.start()
+                # proc_record.append(th)
+            # for e in proc_record:
+            #     e.join()
+            print('!!')
+            print(all_list)
+            pool_requests = threadpool.makeRequests(self.url_request, all_test)
+            [pool.putRequest(req) for req in pool_requests]
+            pool.wait()
+            print('##########3')
         print('所用时间:')
         print(time.time() - start_time)
         print('有误的配置内容:')
-        print('有误数量:' + str(len(fail)))
+        # print('有误数量:' + str(len(fail)))
+        print('有误数量:' + str(len(fail_list)))
         print('所有误解返回内容:')
-        # print(fail)
-        for data in fail:
+        for data in fail_list:
             print(data)
         # all_data = reader_table()
-        print('所有返回内容数量:' + str(len(all_data)))
+        # print('所有返回内容数量:' + str(len(all_data)))
+        print('所有返回内容数量:' + str(len(all_list)))
         # print(all_data)
-        for data in all_data:
+        # for data in all_data:
+        for data in all_list:
             print(str(data)[0:2000])
-        if len(fail) != 0 or len(all_data) == 0:
+        # if len(fail) != 0 or len(all_data) == 0:
+        if len(fail_list) != 0 or len(all_list) == 0:
             print('有失败的内容！！！！！！！！！')
             result = False
         else:
@@ -417,8 +429,9 @@ def sigle_request_runner(path, source='test'):
 
 
 if __name__ == "__main__":
+    sigle_request_runner('./case/backend-content-sending/test_case')
     # sigle_request_runner('./case/backend-content-sending/cache_control')
-    sigle_request_runner('./case/backend-content-sending/crawler_resource_with_tags_management_default', 'online')
+    # sigle_request_runner('./case/backend-content-sending/crawler_resource_with_tags_management_default', 'online')
     # sigle_request_runner('./case/backend-content-sending/pro_Tenor_API_test_pt')
     # sigle_request_runner('./case/backend-content-sending/Magictext_all')
     # sigle_request_runner('./case/gifsearch/gif_search')
