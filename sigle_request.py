@@ -278,7 +278,7 @@ class Http_Test:
         # print(all_data)
         for data in all_data:
             print(str(data)[0:2000])
-        if len(fail) != 0 and len(all_data) > 0:
+        if len(fail) != 0 or len(all_data) < 0:
             print('有失败的内容！！！！！！！！！')
             result = False
         else:
