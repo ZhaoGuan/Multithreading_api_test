@@ -207,7 +207,8 @@ class Http_Test:
         if self.data == None or self.keys == None:
             url = self.url
             header = {
-                'Content-Type': 'application/json;'
+                'Content-Type': 'application/json;',
+                'Accept-Charset': 'UTF-8'
             }
             response = requests.request('get', url, headers=header)
             response.encoding = 'utf-8'
