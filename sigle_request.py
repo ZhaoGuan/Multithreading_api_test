@@ -11,13 +11,14 @@ import requests
 import yaml
 import os
 import threadpool
-
+import http.client
 from base_function.Inspection_method import Inspection_method
 # from base_function.data_sqlite import *
 from base_function.kika_base_request import Kika_base_request
 
 Inspection_method = Inspection_method()
 PATH = os.path.dirname(os.path.abspath(__file__))
+
 
 
 class Http_Test:
@@ -209,9 +210,11 @@ class Http_Test:
     def url_request(self, data):
         if self.data == None or self.keys == None:
             url = self.url
-            header = header = {'Accept-Charset': 'UTF-8',
+            header = {'Accept-Charset': 'UTF-8',
                                'Connection': 'Keep-Alive',
                                'X-Model': 'D6603', 'Accept-Encoding': 'gzip'}
+            http.client.HTTPConnection._http_vsn = 10
+            http.client.HTTPConnection._http_vsn_str = 'HTTP/1.0'
             response = requests.request('get', url, headers=header)
             response.encoding = 'utf-8'
         else:
@@ -405,9 +408,9 @@ def sigle_request_runner(path, source='test'):
 
 
 if __name__ == "__main__":
-    sigle_request_runner('./case/backend-content-sending/test_case')
+    # sigle_request_runner('./case/backend-content-sending/test_case')
     # sigle_request_runner('./case/backend-content-sending/cache_control')
-    # sigle_request_runner('./case/backend-content-sending/crawler_resource_with_tags_management_default', 'online')
+    sigle_request_runner('./case/backend-content-sending/crawler_resource_with_tags_management_magictext', 'online')
     # sigle_request_runner('./case/backend-content-sending/pro_Tenor_API_test_pt')
     # sigle_request_runner('./case/backend-content-sending/Magictext_all')
     # sigle_request_runner('./case/gifsearch/gif_search')
