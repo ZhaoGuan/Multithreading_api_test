@@ -19,8 +19,7 @@ from base_function.kika_base_request import Kika_base_request
 Inspection_method = Inspection_method()
 PATH = os.path.dirname(os.path.abspath(__file__))
 
-fail_list =[]
-all_list = []
+
 class Http_Test:
     def __init__(self, config, source='online'):
         self.config = config
@@ -65,6 +64,8 @@ class Http_Test:
         # 默认version
         self.version = 1477
         self.kika_request = Kika_base_request(self.host)
+        self.fail_list = []
+        self.all_list = []
 
     # version处理
     def handle_version(self, version_data, keys_data):
@@ -263,14 +264,14 @@ class Http_Test:
         print('所用时间:')
         print(time.time() - start_time)
         print('有误的配置内容:')
-        print('有误数量:' + str(len(fail_list)))
+        print('有误数量:' + str(len(self.fail_list)))
         print('所有误解返回内容:')
-        for data in fail_list:
+        for data in self.fail_list:
             print(data[0:1000])
-        print('所有返回内容数量:' + str(len(all_list)))
-        for data in all_list:
+        print('所有返回内容数量:' + str(len(self.all_list)))
+        for data in self.all_list:
             print(str(data)[0:1000])
-        if len(fail_list) != 0 or len(all_list) == 0:
+        if len(self.fail_list) != 0 or len(self.all_list) == 0:
             print('有失败的内容！！！！！！！！！')
             result = False
         else:
