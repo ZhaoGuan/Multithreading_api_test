@@ -211,7 +211,7 @@ class Http_Test:
             url = self.url
             header = {'Accept-Charset': 'UTF-8',
                       'Content-type': 'application / json'}
-            response = requests.request('get', url, headers=header,verify=False)
+            response = requests.request('get', url, headers=header)
             print(response.raw.version)
             response.encoding = 'utf-8'
         else:
