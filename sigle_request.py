@@ -211,7 +211,7 @@ class Http_Test:
             url = self.url
             header = {'Accept-Charset': 'UTF-8',
                       'Content-type': 'application / json'}
-            response = requests.request('get', url, headers=header)
+            response = requests.request('get', url, headers=header, timeout=60)
             print(response.raw.version)
             response.encoding = 'utf-8'
         else:
@@ -407,8 +407,8 @@ def sigle_request_runner(path, source='test'):
 if __name__ == "__main__":
     # sigle_request_runner('./case/backend-content-sending/test_case')
     # sigle_request_runner('./case/backend-content-sending/cache_control')
-    # sigle_request_runner('./case/backend-content-sending/crawler_resource_with_tags_management_magictext', 'online')
-    sigle_request_runner('./case/backend-content-sending/pro_Tenor_API_test_pt')
+    sigle_request_runner('./case/backend-content-sending/crawler_resource_with_tags_management_magictext')
+    # sigle_request_runner('./case/backend-content-sending/pro_Tenor_API_test_pt')
     # sigle_request_runner('./case/backend-content-sending/Magictext_all')
     # sigle_request_runner('./case/gifsearch/gif_search')
     # sigle_request_runner('./case/backend-content-sending/for_data_modle')
