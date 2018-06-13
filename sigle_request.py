@@ -214,7 +214,7 @@ class Http_Test:
             #           'Accept-Encoding': 'gzip'}
             # http.client.HTTPConnection._http_vsn = 10
             # http.client.HTTPConnection._http_vsn_str = 'HTTP/1.0'
-            response = requests.request('get', url)
+            response = requests.request('get', url, stream=True)
             response.encoding = 'utf-8'
         else:
             lang = data['kb_lang']
