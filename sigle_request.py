@@ -250,51 +250,26 @@ class Http_Test:
     # 多线程处理,单个用例
     def Multithreading_api(self):
         result = True
-        # try:
-        #     create_table()
-        # except:
-        #     delete_table()
-        #     create_table()
         start_time = time.time()
         if self.data != None:
             all_test = self.url_keys_data()
         else:
             all_test = range(1)
-        proc_record = []
-        fail = []
-        all_data = []
         pool = threadpool.ThreadPool(200)
         for g in range(self.cycle_times):
-            # for i in all_test:
-                # th = threading.Thread(target=self.url_request, args=(i, fail, all_data))
-                # print(th)
-                # th.setDaemon(True)
-                # th.start()
-                # proc_record.append(th)
-            # for e in proc_record:
-            #     e.join()
-            print('!!')
-            print(all_list)
             pool_requests = threadpool.makeRequests(self.url_request, all_test)
             [pool.putRequest(req) for req in pool_requests]
             pool.wait()
-            print('##########3')
         print('所用时间:')
         print(time.time() - start_time)
         print('有误的配置内容:')
-        # print('有误数量:' + str(len(fail)))
         print('有误数量:' + str(len(fail_list)))
         print('所有误解返回内容:')
         for data in fail_list:
-            print(data)
-        # all_data = reader_table()
-        # print('所有返回内容数量:' + str(len(all_data)))
+            print(data[0:1000])
         print('所有返回内容数量:' + str(len(all_list)))
-        # print(all_data)
-        # for data in all_data:
         for data in all_list:
-            print(str(data)[0:2000])
-        # if len(fail) != 0 or len(all_data) == 0:
+            print(str(data)[0:1000])
         if len(fail_list) != 0 or len(all_list) == 0:
             print('有失败的内容！！！！！！！！！')
             result = False
