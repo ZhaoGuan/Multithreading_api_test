@@ -206,7 +206,10 @@ class Http_Test:
     def url_request(self, data, fail, all_data):
         if self.data == None or self.keys == None:
             url = self.url
-            response = requests.request('get', url)
+            header = {
+                'Content-Type': 'application/json;'
+            }
+            response = requests.request('get', url, headers=header)
             response.encoding = 'utf-8'
         else:
             lang = data['kb_lang']
