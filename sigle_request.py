@@ -207,6 +207,7 @@ class Http_Test:
         if self.data == None or self.keys == None:
             url = self.url
             response = requests.request('get', url)
+            response.encoding = 'utf-8'
         else:
             lang = data['kb_lang']
             if '%' in data['duid']:
