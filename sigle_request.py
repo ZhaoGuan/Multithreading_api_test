@@ -233,8 +233,8 @@ class Http_Test:
             # print(url)
             response = requests.request('get', url, headers=header)
             response.encoding = 'utf-8'
-        self.asser_api(data, response, fail_list)
-        self.all_response(data, response, all_list)
+        self.asser_api(data, response, self.fail_list)
+        self.all_response(data, response, self.all_list)
 
     # 图片统计
     def pic_statistics(self, all_pic):
@@ -308,11 +308,11 @@ class Http_Test:
 
     # 进程+线程(总返回内容会有问题）
     def process(self, single_quantity=1, process_number=4):
-        try:
-            create_table()
-        except:
-            delete_table()
-            create_table()
+        # try:
+        #     create_table()
+        # except:
+        #     delete_table()
+        #     create_table()
         queue = Queue(4)
         start_time = time.time()
         fail = []
@@ -342,10 +342,10 @@ class Http_Test:
         print('有误的配置内容:')
         print(fail)
         print('所有返回的数量:')
-        all_data = reader_table()
-        print(len(all_data))
+        # all_data = reader_table()
+        # print(len(all_data))
         print('所有返回内容:')
-        print(all_data)
+        # print(all_data)
         if len(fail) != 0:
             print('有失败的内容！！！！！！！！！')
         else:
@@ -353,11 +353,11 @@ class Http_Test:
 
     # 策略C测试
     def c_process(self, single_quantity=1, process_number=4):
-        try:
-            create_table()
-        except:
-            delete_table()
-            create_table()
+        # try:
+        #     create_table()
+        # except:
+        #     delete_table()
+        #     create_table()
         q = Queue()
         start_time = time.time()
         fail = []
