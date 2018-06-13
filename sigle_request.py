@@ -225,6 +225,7 @@ class Http_Test:
             # print(header)
             # print(url)
             response = requests.request('get', url, headers=header)
+            response.encoding = 'utf-8'
         self.asser_api(data, response, fail)
         self.all_response(data, response, all_data)
 
