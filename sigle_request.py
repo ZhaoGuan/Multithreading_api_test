@@ -10,6 +10,7 @@ from base_function.golable_function import config_reader
 import requests
 import yaml
 import os
+import httplib
 
 from base_function.Inspection_method import Inspection_method
 # from base_function.data_sqlite import *
@@ -18,6 +19,8 @@ from base_function.kika_base_request import Kika_base_request
 Inspection_method = Inspection_method()
 PATH = os.path.dirname(os.path.abspath(__file__))
 
+httplib.HTTPConnection._http_vsn = 11
+httplib.HTTPConnection._http_vsn_str = 'HTTP/1.1'
 
 class Http_Test:
     def __init__(self, config, source='online'):
