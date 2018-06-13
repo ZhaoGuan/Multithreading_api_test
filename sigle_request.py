@@ -20,7 +20,6 @@ Inspection_method = Inspection_method()
 PATH = os.path.dirname(os.path.abspath(__file__))
 
 
-
 class Http_Test:
     def __init__(self, config, source='online'):
         self.config = config
@@ -211,10 +210,10 @@ class Http_Test:
         if self.data == None or self.keys == None:
             url = self.url
             header = {'Accept-Charset': 'UTF-8',
-                               'Connection': 'Keep-Alive',
-                               'X-Model': 'D6603', 'Accept-Encoding': 'gzip'}
-            http.client.HTTPConnection._http_vsn = 10
-            http.client.HTTPConnection._http_vsn_str = 'HTTP/1.0'
+                      'Connection': 'Keep-Alive',
+                      'Accept-Encoding': 'gzip'}
+            # http.client.HTTPConnection._http_vsn = 10
+            # http.client.HTTPConnection._http_vsn_str = 'HTTP/1.0'
             response = requests.request('get', url, headers=header)
             response.encoding = 'utf-8'
         else:
