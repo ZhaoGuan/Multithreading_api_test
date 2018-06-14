@@ -153,6 +153,7 @@ def case_runner(test_case, url):
                 print(test_case)
                 print(response)
                 print('bucketName错误 ' + '预期为 ' + test_case['result']['bucketName'])
+                print('失败')
     except Exception as e:
         print(e)
         print('失败')
