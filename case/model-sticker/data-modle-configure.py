@@ -140,6 +140,7 @@ def case_runner(test_case, url):
     for key, value in test_case['parameter'].items():
         url = url + key + '=' + value + '&'
     url = url[:-1]
+    print(url)
     response = requests.get(url)
     try:
         response = json.loads(response.text)

@@ -31,6 +31,10 @@ assert:
   返回码(只能第一层)  
     code : {'key':'errorCode','value':0}
   #字段格式
+  #  字段格式
+  # 多个返回可能的时候使用&连接可能性，使用@@@进行字段胡洛
+  # 返回内容如果是个多级字段则为前置条件条件各级用&连接
+  # $$$表示内容可以为null
     data_format : {"errorCode":'Str',"errorMsg":'Str',"data":{'tag':'&&&'}}
 #数据检查
 #eg : '维g:度'：'{"key":"value"}'
