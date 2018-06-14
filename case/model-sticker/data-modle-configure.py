@@ -130,7 +130,7 @@ def constitute_test_case(data):
                     pass
                 else:
                     test_case.append(temp)
-    # print(test_case)
+    print(test_case)
     # print(len(test_case))
     return test_case
 
