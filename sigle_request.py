@@ -126,16 +126,19 @@ class Http_Test:
     def url_mosaic(self, data):
         url = self.url
         keys = self.keys
-        for i in keys:
-            if i != keys[-1]:
-                url = url + i + '=' + data[i] + '&'
-            else:
-                url = url + i + '=' + data[i]
-        if 'duid' in url:
-            sign = self.kika_request.get_sign(version=data['version'], duid=data['duid'], app=data['app'])
-            re_sign = 'sign=' + sign
-            duid = 'duid=' + data['duid']
-            url = url.replace(duid, re_sign)
+        if '&' != url[:-1]:
+            pass
+        else:
+            for i in keys:
+                if i != keys[-1]:
+                    url = url + i + '=' + data[i] + '&'
+                else:
+                    url = url + i + '=' + data[i]
+            if 'duid' in url:
+                sign = self.kika_request.get_sign(version=data['version'], duid=data['duid'], app=data['app'])
+                re_sign = 'sign=' + sign
+                duid = 'duid=' + data['duid']
+                url = url.replace(duid, re_sign)
         # print(url)
         return url
 
@@ -224,12 +227,17 @@ class Http_Test:
                 duid = data['duid']
             app = data['app']
             version = int(data['version'])
-            header = self.kika_request.set_header(duid, app=app, version=version, lang=lang, way=self.way)
+            try:
+                android_level = int(data['android_level'])
+            except:
+                android_level = 23
+            header = self.kika_request.set_header(duid, app=app, version=version, lang=lang, way=self.way,
+                                                  android_level=android_level)
             url = self.url_mosaic(data)
             # print(self.way)
             # print(self.host)
             # print(url)
-            # print(header)
+            print(header)
             # print(url)
             response = requests.request('get', url, headers=header)
             response.encoding = 'utf-8'
@@ -267,7 +275,7 @@ class Http_Test:
         print('有误数量:' + str(len(self.fail_list)))
         print('所有误解返回内容:')
         for data in self.fail_list:
-            print(data[0:1000])
+            print(str(data)[0:1000])
         print('所有返回内容数量:' + str(len(self.all_list)))
         for data in self.all_list:
             print(str(data)[0:1000])
@@ -407,7 +415,7 @@ def sigle_request_runner(path, source='test'):
 if __name__ == "__main__":
     # sigle_request_runner('./case/backend-content-sending/test_case')
     # sigle_request_runner('./case/backend-content-sending/cache_control')
-    sigle_request_runner('./case/backend-content-sending/crawler_resource_with_tags_management_magictext')
+    # sigle_request_runner('./case/backend-content-sending/Magictext_all')
     # sigle_request_runner('./case/backend-content-sending/pro_Tenor_API_test_pt')
     # sigle_request_runner('./case/backend-content-sending/Magictext_all')
     # sigle_request_runner('./case/gifsearch/gif_search')
@@ -415,3 +423,4 @@ if __name__ == "__main__":
     # sigle_request_runner('./case/backend-picture/sticker2_trending')
     # sigle_request_runner('./case/backend-picture/sticker2_all')
     # sigle_request_runner('./case/ip_group/zk.yml')
+    sigle_request_runner('./case/advertising/advertising.yml', 'ip')

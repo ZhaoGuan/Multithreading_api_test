@@ -39,7 +39,7 @@ class Kika_base_request:
         return sign
 
     # 设定header
-    def set_header(self, duid, lang='en_AU', app='kika', version=1477, way='online'):
+    def set_header(self, duid, lang='en_AU', app='kika', version=1477, way='online', android_level=23):
         lange_config = config_reader(PATH + '/../config/lange')
         use_lang = lange_config[lang]
         if 'pro' == app:
@@ -65,8 +65,8 @@ class Kika_base_request:
                       'Connection': 'Keep-Alive',
                       'Host': self.host,
                       'Accept-Language': '%s' % use_lang[0],
-                      'User-Agent': '%s/%s (%s/%s) Country/%s Language/%s System/android Version/23 Screen/480' % (
-                          package_name, version, duid, app_key, use_lang[1], use_lang[2]),
+                      'User-Agent': '%s/%s (%s/%s) Country/%s Language/%s System/android Version/%s Screen/480' % (
+                          package_name, version, duid, app_key, use_lang[1], use_lang[2], android_level),
                       'X-Model': 'D6603', 'Accept-Encoding': 'gzip'}
             # header = {
             #     'User-Agent': '%s/%s (%s/%s) Country/%s Language/%s System/android Version/23 Screen/480' % (

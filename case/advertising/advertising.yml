@@ -4,38 +4,45 @@ operation_mode: sigle_request
 source:
 #test
   test:
-    #爬虫
-    url : http://34.214.222.244:9090/backend-content-sending/v1/sticker2/crawler_resource_with_tags_management?is_debug=true
-#    url : http://172.31.23.134:9090/backend-content-sending/v1/sticker2/crawler_resource_with_tags_management
+    url : http://172.31.7.36:8080/v1/advertising/online
     cycle_times: 1
-    keys:
+    keys: ['kb_lang','tag','duid','android_level']
     data:
+      app: ['kika']
+      kb_lang : ['en_US']
+      tag : ['ok']
+      duid : ['5a215835df204115ee3d2d4ec0c528aa']
+      android_level : ['19','20']
   ip:
-    #爬虫
-#    url : http://34.214.222.244:9090/backend-content-sending/v1/sticker2/crawler_resource_with_tags_management
-    url : http://172.31.23.134:9090/backend-content-sending/v1/sticker2/crawler_resource_with_tags_management?is_debug=true
+    url : http://54.245.168.249:8080/v1/advertising/online
     cycle_times: 1
-    keys:
+    keys: ['kb_lang','tag','duid','android_level']
     data:
+      app: ['kika']
+      kb_lang : ['en_US']
+      tag : ['ok']
+      duid : ['5a215835df204115ee3d2d4ec0c528aa']
+      android_level : ['19','20']
   online:
-    #爬虫
-    url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/sticker2/crawler_resource_with_tags_management?is_debug=true
+    url: https://api.kikakeyboard.com/v1/advertising/online
     cycle_times: 1
-    keys:
+    keys: ['kb_lang','tag','duid','android_level']
     data:
-  web0:
-    #爬虫
-    url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/sticker2/crawler_resource_with_tags_management?is_debug=true
-    cycle_times: 1
-    keys:
-    data:
+      app: ['kika']
+      kb_lang : ['en_US']
+      tag : ['ok']
+      duid : ['5a215835df204115ee3d2d4ec0c528aa']
+      android_level : ['19','20']
 assert:
 #  返回码(只能第一层)
   code : {'key':'errorCode','value':0}
 #  字段格式
 # 多个返回可能的时候使用&连接可能性，使用@@@进行字段胡洛
 # 返回内容如果是个多级字段则为前置条件条件各级用&连接
-  data_format : {'data': '@@@', 'errorCode': 'Int', 'errorMsg': 'Str'}
+  data_format : {
+  '{"data&type":"h5"}':{'errorMsg': 'Str', 'data': {'red_dot': 'Bool', 'show_after_click': 'Bool', 'source_id': 'Str', 'extra': 'Str', 'h5': {'jump_url': 'HTTP'}, 'icon': 'HTTP', 'animation': '@@@', 'show_expiration': 'Int', 'type': 'Str', 'show_duration': 'Int', 'show_count': 'Int'}, 'errorCode': 'Int'},
+  '{"data&type":"koala"}':{'errorMsg': 'Str', 'data': {'red_dot': 'Bool', 'show_after_click': 'Bool', 'source_id': 'Str', 'extra': 'Str', 'h5': '@@@', 'icon': 'HTTP', 'animation': '@@@', 'show_expiration': 'Int', 'type': 'Str', 'show_duration': 'Int', 'show_count': 'Int'}, 'errorCode': 'Int'}
+  }
 # 数据检查
 # 前面的值是对应的维度，后面的字典内容({"key":"value"}key是对应值的路径，value是对应应该出现的值(如果值添加问#那么只坚持对应结构是否存在忽略其具体值）
 # 填写内容验证遵守json格式，数据使用""
@@ -50,6 +57,7 @@ assert:
 # 可根据前面的条件检查，条件能够用&关联
 # @@@来忽略内容只坚持key
   response_header : {
+  Cache-Control: "max-age=28800"
                     }
 other:
   way: online
