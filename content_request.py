@@ -123,7 +123,7 @@ class Http_Test:
     def url_mosaic(self, data):
         url = self.url
         keys = self.keys
-        if '&' != url[:-1]:
+        if '&' != url[-1]:
             pass
         else:
             for i in keys:
