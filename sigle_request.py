@@ -239,7 +239,7 @@ class Http_Test:
             url = self.url_mosaic(data)
             # print(self.way)
             # print(self.host)
-            print(url)
+            # print(url)
             # print(header)
             # print(url)
             response = requests.request('get', url, headers=header)
