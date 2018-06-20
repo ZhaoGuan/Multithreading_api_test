@@ -6,24 +6,12 @@ source:
     keys:
     data:
       # 这里kb_lang,duid,app只是为了header
-      duid :
-      kb_lang :
-      app:
-      lang :
-      tag :
-      version:
   online:
     url: http://gifkeyboard.kikakeyboard.com/v1/tag/hot
     cycle_times: 1
     keys:
     data:
       # 这里kb_lang,duid,app只是为了header
-      duid :
-      kb_lang :
-      app:
-      lang :
-      tag :
-      version:
 assert:
 #  返回码(只能第一层)
   code : {'key':'errorCode','value':0}
