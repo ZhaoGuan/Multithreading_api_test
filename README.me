@@ -7,6 +7,8 @@ assert下判断内容可以使用一致的
 # 多线程运行使用格式
 ## 格式：
 #资源来源
+如果url结尾非&那么将不会添加key在url后
+如果没有可添加的参数data下内容要为空,如果data下对应内容有空则data会默认为空
 source:
     #来源名称
     test:
@@ -17,6 +19,7 @@ source:
         keys: ['duid']
         #keys 对应的data数据
         data:
+        #其中app kb_lang(kb_lang=header中的lang) duid android_level(安卓api数,默认23) 都是header中的内容
         #app对应值必填(给header用至少1个)
           app: ['kika','ikey','pro']
         #kb_lang=lang必填(给header用至少1个)

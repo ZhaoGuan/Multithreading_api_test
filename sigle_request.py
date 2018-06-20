@@ -31,6 +31,11 @@ class Http_Test:
             self.keys = None
         try:
             self.data = self.config['source'][source]['data']
+            # 如果data中有为空的默认data为空
+            for key, value in self.data.iteams():
+                if value == None:
+                    self.data = None
+                    break
         except:
             self.data = None
         # version处理
@@ -215,7 +220,6 @@ class Http_Test:
             header = {'Accept-Charset': 'UTF-8',
                       'Content-type': 'application / json'}
             response = requests.request('get', url, headers=header, timeout=60)
-            print(response.raw.version)
             response.encoding = 'utf-8'
         else:
             lang = data['kb_lang']
@@ -423,4 +427,5 @@ if __name__ == "__main__":
     # sigle_request_runner('./case/backend-picture/sticker2_trending')
     # sigle_request_runner('./case/backend-picture/sticker2_all')
     # sigle_request_runner('./case/ip_group/zk.yml')
-    sigle_request_runner('./case/advertising/advertising.yml', 'ip')
+    # sigle_request_runner('./case/advertising/advertising.yml', 'ip')
+    sigle_request_runner('./case/gifkeyboard/tag.yml', 'online')
