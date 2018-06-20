@@ -32,10 +32,8 @@ class Http_Test:
         try:
             self.data = self.config['source'][source]['data']
             # 如果data中有为空的默认data为空
-            for key, value in self.data.iteams():
-                if value == None:
-                    self.data = None
-                    break
+            if 'None' in str(self.data):
+                self.data = None
         except:
             self.data = None
         # version处理
@@ -221,6 +219,7 @@ class Http_Test:
                       'Content-type': 'application / json'}
             response = requests.request('get', url, headers=header, timeout=60)
             response.encoding = 'utf-8'
+
         else:
             lang = data['kb_lang']
             if '%' in data['duid']:
@@ -240,7 +239,7 @@ class Http_Test:
             url = self.url_mosaic(data)
             # print(self.way)
             # print(self.host)
-            # print(url)
+            print(url)
             # print(header)
             # print(url)
             response = requests.request('get', url, headers=header)
@@ -417,15 +416,15 @@ def sigle_request_runner(path, source='test'):
 
 
 if __name__ == "__main__":
-    # sigle_request_runner('./case/backend-content-sending/test_case')
+    sigle_request_runner('./case/backend-content-sending/test_case')
     # sigle_request_runner('./case/backend-content-sending/cache_control')
     # sigle_request_runner('./case/backend-content-sending/Magictext_all')
     # sigle_request_runner('./case/backend-content-sending/pro_Tenor_API_test_pt')
     # sigle_request_runner('./case/backend-content-sending/Magictext_all')
-    # sigle_request_runner('./case/gifsearch/gif_search')
+    # sigle_request_runner('./case/gifsearch/gif_search', 'online')
     # sigle_request_runner('./case/backend-content-sending/for_data_modle')
     # sigle_request_runner('./case/backend-picture/sticker2_trending')
     # sigle_request_runner('./case/backend-picture/sticker2_all')
     # sigle_request_runner('./case/ip_group/zk.yml')
     # sigle_request_runner('./case/advertising/advertising.yml', 'ip')
-    sigle_request_runner('./case/gifkeyboard/tag.yml', 'online')
+    # sigle_request_runner('./case/gifkeyboard/tag.yml', 'online')

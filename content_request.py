@@ -27,10 +27,8 @@ class Http_Test:
         try:
             self.data = self.config['source'][source]['data']
             # 如果data中有为空的默认data为空
-            for key, value in self.data.iteams():
-                if value == None:
-                    self.data = None
-                    break
+            if 'None' in str(self.data):
+                self.data = None
         except:
             self.data = None
         # version处理
