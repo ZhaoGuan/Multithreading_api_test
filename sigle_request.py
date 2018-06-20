@@ -237,7 +237,7 @@ class Http_Test:
             # print(self.way)
             # print(self.host)
             # print(url)
-            print(header)
+            # print(header)
             # print(url)
             response = requests.request('get', url, headers=header)
             response.encoding = 'utf-8'
