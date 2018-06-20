@@ -1,0 +1,67 @@
+operation_mode: sigle_request
+source:
+  test:
+    url:
+    #test
+    #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
+    #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
+    cycle_times: 1
+    #web0
+    #url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
+    keys: ['tag','lang']
+    data:
+      # 这里kb_lang,duid,app只是为了header
+      duid : ['5a215835df204115ee3d2d4ec0c528aa']
+      kb_lang : ['en_US']
+      app: ['ikey']
+      lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
+      tag : ['ok','lol']
+      version: ['1478']
+  online:
+    url: http://gifkeyboard.kikakeyboard.com/v1/picture/hot
+    #test
+    #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
+    #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
+    cycle_times: 1
+    #web0
+    #url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
+    keys: ['tag','lang']
+    data:
+      # 这里kb_lang,duid,app只是为了header
+      duid : ['5a215835df204115ee3d2d4ec0c528aa']
+      kb_lang : ['en_US']
+      app: ['ikey']
+      lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
+      tag : ['ok','lol']
+      version: ['1478']
+assert:
+#  返回码(只能第一层)
+  code : {'key':'errorCode','value':0}
+#  字段格式
+# 多个返回可能的时候使用&连接可能性，使用@@@进行字段胡洛
+# 返回内容如果是个多级字段则为前置条件条件各级用&连接
+#  data_format : { 'errorMsg': 'Str','errorCode': 'Int', 'data': {'infos': [{'picInfo': {'width': 'Int', 'url': 'HTTP', 'size': 'Int', 'height': 'Int'}, 'source': 'Str', 'id': 'Str', 'tinyInfo': {'width': 'Int', 'url': 'HTTP', 'size': 'Int', 'height': 'Int'}}], 'tag': 'Str'}}
+  data_format : {'data': {'infos': [{'tinyInfo': {'height': 'Int', 'url': 'HTTP', 'width': 'Int', 'size': 'Int'}, 'picInfo': {'height': 'Int', 'url': 'HTTP', 'width': 'Int', 'size': 'Int'}, 'id': 'Str'}]}, 'errorMsg': 'Str', 'errorCode': 'Int'}
+# 数据检查
+# 前面的值是对应的维度，后面的字典内容({"key":"value"}key是对应值的路径，value是对应应该出现的值(如果值添加问#那么只坚持对应结构是否存在忽略其具体值）
+# 填写内容验证遵守json格式，数据使用""
+# 可以使用条件进行判断
+# eg:'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&popup_duration":"5000"}${"data&popup_duration":"4000"}'
+# 维度为'ikey&920b56e9cadd743bfbbcb4126937e789'时且满足"data&popup_duration"对应字段等于5000是才进行{"data&popup_duration":"4000"}'判断
+# 在维度上有字段重复的时候使用"@数字"的形势进行区分
+# 多可能结果 eg:'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&popup_duration":"4000&500"}
+  data_content : {
+                  'ok@1':'{"data&infos&0&magicText&style":"#"}',
+                  'ok@2':'{"data&infos&0&magicText&sourceID":"#"}',
+                  'lol@1':'{"data&infos&0&magicText&style":"#"}',
+                  'lol@2':'{"data&infos&0&magicText&sourceID":"#"}'
+                  }
+# response_header检查
+# 可根据前面的条件检查，条件能够用&关联
+# @@@来忽略内容只坚持key
+  response_header : {
+                    }
+other:
+  way: online
+  host :
+
