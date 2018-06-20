@@ -5,3 +5,4 @@ ddt
 shortuuid
 kafka-python
 sanic
+threadpool

@@ -130,7 +130,7 @@ def constitute_test_case(data):
                     pass
                 else:
                     test_case.append(temp)
-    # print(test_case)
+    print(test_case)
     # print(len(test_case))
     return test_case
 
@@ -140,6 +140,7 @@ def case_runner(test_case, url):
     for key, value in test_case['parameter'].items():
         url = url + key + '=' + value + '&'
     url = url[:-1]
+    print(url)
     response = requests.get(url)
     try:
         response = json.loads(response.text)
@@ -148,10 +149,11 @@ def case_runner(test_case, url):
             print(test_case)
             print('失败')
             print('scenario错误 ' + '预期为 ' + test_case['result']['scenario'])
-            # if response['extra']['bucketName'] != test_case['result']['bucketName']:
-            #     print(test_case)
-            #     print(response)
-            #     print('bucketName错误 ' + '预期为 ' + test_case['result']['bucketName'])
+        if response['extra']['bucketName'] != test_case['result']['bucketName']:
+            print(test_case)
+            print(response)
+            print('bucketName错误 ' + '预期为 ' + test_case['result']['bucketName'])
+            print('失败')
     except Exception as e:
         print(e)
         print('失败')

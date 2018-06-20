@@ -26,6 +26,11 @@ class Http_Test:
             self.keys = None
         try:
             self.data = self.config['source'][source]['data']
+            # 如果data中有为空的默认data为空
+            for key, value in self.data.iteams():
+                if value == None:
+                    self.data = None
+                    break
         except:
             self.data = None
         # version处理
@@ -123,16 +128,19 @@ class Http_Test:
     def url_mosaic(self, data):
         url = self.url
         keys = self.keys
-        for i in keys:
-            if i != keys[-1]:
-                url = url + i + '=' + data[i] + '&'
-            else:
-                url = url + i + '=' + data[i]
-        if 'duid' in url:
-            sign = self.kika_request.get_sign(version=data['version'], duid=data['duid'], app=data['app'])
-            re_sign = 'sign=' + sign
-            duid = 'duid=' + data['duid']
-            url = url.replace(duid, re_sign)
+        if '&' != url[-1]:
+            pass
+        else:
+            for i in keys:
+                if i != keys[-1]:
+                    url = url + i + '=' + data[i] + '&'
+                else:
+                    url = url + i + '=' + data[i]
+            if 'duid' in url:
+                sign = self.kika_request.get_sign(version=data['version'], duid=data['duid'], app=data['app'])
+                re_sign = 'sign=' + sign
+                duid = 'duid=' + data['duid']
+                url = url.replace(duid, re_sign)
         # print(url)
         return url
 
@@ -242,7 +250,12 @@ class Http_Test:
                 duid = data['duid']
             app = data['app']
             version = int(data['version'])
-            header = self.kika_request.set_header(duid, app=app, version=version, lang=lang, way=self.way)
+            try:
+                android_level = int(data['android_level'])
+            except:
+                android_level = 23
+            header = self.kika_request.set_header(duid, app=app, version=version, lang=lang, way=self.way,
+                                                  android_level=android_level)
             url = self.url_mosaic(data)
             response = requests.request('get', url, headers=header)
         # print(url)
@@ -275,7 +288,12 @@ class Http_Test:
                 duid = data['duid']
             app = data['app']
             version = int(data['version'])
-            header = self.kika_request.set_header(duid, app=app, version=version, lang=lang, way=self.way)
+            try:
+                android_level = int(data['android_level'])
+            except:
+                android_level = 23
+            header = self.kika_request.set_header(duid, app=app, version=version, lang=lang, way=self.way,
+                                                  android_level=android_level)
             url = self.url_mosaic(data)
             # 为了package的临时方案
             if 'content=' in url:

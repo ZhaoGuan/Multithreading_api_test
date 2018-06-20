@@ -105,6 +105,7 @@ assert:
 #  字段格式
 # 多个返回可能的时候使用&连接可能性，使用@@@进行字段胡洛
 # 返回内容如果是个多级字段则为前置条件条件各级用&连接
+# $$$表示内容可以为null
   data_format : {
     '{"data&type":"sticker"}':{'data': {'popup_duration': 'Int', 'stickers': [{'package_id': 'Str&$$$', 'tags': ['@@@'], 'scale_type': 'Int', 'source_text': 'Str&$$$','caption':'Str&$$$','mp4': '$$$', 'name': '$$$', 'popup_duration': 'Int', 'icon_url': 'Str&$$$', 'image': {'height': 'Int', 'width': 'Int', 'url': 'Str', 'size':'Int' , 'md5':'Str'}, 'mark': 'Str&$$$', 'key': 'Str'}], 'magics': '$$$', 'extra': 'Str', 'type': 'Str'}, 'errorCode': 'Int', 'errorMsg': 'Str'},
     '{"data&type":"magic"}':{'data': {'type': 'Str', 'magics': [{'key': 'Str', 'style': 'Str'}], 'stickers': '$$$', 'popup_duration': 'Int', 'extra': 'Str'}, 'errorMsg': 'Str', 'errorCode': 'Int'}

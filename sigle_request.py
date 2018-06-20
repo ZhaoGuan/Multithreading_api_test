@@ -10,7 +10,8 @@ from base_function.golable_function import config_reader
 import requests
 import yaml
 import os
-
+import threadpool
+import http.client
 from base_function.Inspection_method import Inspection_method
 # from base_function.data_sqlite import *
 from base_function.kika_base_request import Kika_base_request
@@ -30,6 +31,11 @@ class Http_Test:
             self.keys = None
         try:
             self.data = self.config['source'][source]['data']
+            # 如果data中有为空的默认data为空
+            for key, value in self.data.iteams():
+                if value == None:
+                    self.data = None
+                    break
         except:
             self.data = None
         # version处理
@@ -63,6 +69,8 @@ class Http_Test:
         # 默认version
         self.version = 1477
         self.kika_request = Kika_base_request(self.host)
+        self.fail_list = []
+        self.all_list = []
 
     # version处理
     def handle_version(self, version_data, keys_data):
@@ -123,16 +131,19 @@ class Http_Test:
     def url_mosaic(self, data):
         url = self.url
         keys = self.keys
-        for i in keys:
-            if i != keys[-1]:
-                url = url + i + '=' + data[i] + '&'
-            else:
-                url = url + i + '=' + data[i]
-        if 'duid' in url:
-            sign = self.kika_request.get_sign(version=data['version'], duid=data['duid'], app=data['app'])
-            re_sign = 'sign=' + sign
-            duid = 'duid=' + data['duid']
-            url = url.replace(duid, re_sign)
+        if '&' != url[-1]:
+            pass
+        else:
+            for i in keys:
+                if i != keys[-1]:
+                    url = url + i + '=' + data[i] + '&'
+                else:
+                    url = url + i + '=' + data[i]
+            if 'duid' in url:
+                sign = self.kika_request.get_sign(version=data['version'], duid=data['duid'], app=data['app'])
+                re_sign = 'sign=' + sign
+                duid = 'duid=' + data['duid']
+                url = url.replace(duid, re_sign)
         # print(url)
         return url
 
@@ -203,10 +214,13 @@ class Http_Test:
         all_data_respone.append({'data': data, 'response': response.text})
 
     # 发送请求
-    def url_request(self, data, fail, all_data):
+    def url_request(self, data):
         if self.data == None or self.keys == None:
             url = self.url
-            response = requests.request('get', url)
+            header = {'Accept-Charset': 'UTF-8',
+                      'Content-type': 'application / json'}
+            response = requests.request('get', url, headers=header, timeout=60)
+            response.encoding = 'utf-8'
         else:
             lang = data['kb_lang']
             if '%' in data['duid']:
@@ -217,7 +231,12 @@ class Http_Test:
                 duid = data['duid']
             app = data['app']
             version = int(data['version'])
-            header = self.kika_request.set_header(duid, app=app, version=version, lang=lang, way=self.way)
+            try:
+                android_level = int(data['android_level'])
+            except:
+                android_level = 23
+            header = self.kika_request.set_header(duid, app=app, version=version, lang=lang, way=self.way,
+                                                  android_level=android_level)
             url = self.url_mosaic(data)
             # print(self.way)
             # print(self.host)
@@ -225,8 +244,9 @@ class Http_Test:
             # print(header)
             # print(url)
             response = requests.request('get', url, headers=header)
-        self.asser_api(data, response, fail)
-        self.all_response(data, response, all_data)
+            response.encoding = 'utf-8'
+        self.asser_api(data, response, self.fail_list)
+        self.all_response(data, response, self.all_list)
 
     # 图片统计
     def pic_statistics(self, all_pic):
@@ -243,42 +263,27 @@ class Http_Test:
     # 多线程处理,单个用例
     def Multithreading_api(self):
         result = True
-        # try:
-        #     create_table()
-        # except:
-        #     delete_table()
-        #     create_table()
         start_time = time.time()
         if self.data != None:
             all_test = self.url_keys_data()
         else:
             all_test = range(1)
-        proc_record = []
-        fail = []
-        all_data = []
+        pool = threadpool.ThreadPool(200)
         for g in range(self.cycle_times):
-            for i in all_test:
-                th = threading.Thread(target=self.url_request, args=(i, fail, all_data))
-                print(th)
-                th.setDaemon(True)
-                th.start()
-                proc_record.append(th)
-            for e in proc_record:
-                e.join()
+            pool_requests = threadpool.makeRequests(self.url_request, all_test)
+            [pool.putRequest(req) for req in pool_requests]
+            pool.wait()
         print('所用时间:')
         print(time.time() - start_time)
         print('有误的配置内容:')
-        print('有误数量:' + str(len(fail)))
+        print('有误数量:' + str(len(self.fail_list)))
         print('所有误解返回内容:')
-        # print(fail)
-        for data in fail:
-            print(data)
-        # all_data = reader_table()
-        print('所有返回内容数量:' + str(len(all_data)))
-        # print(all_data)
-        for data in all_data:
-            print(data)
-        if len(fail) != 0:
+        for data in self.fail_list:
+            print(str(data)[0:1000])
+        print('所有返回内容数量:' + str(len(self.all_list)))
+        for data in self.all_list:
+            print(str(data)[0:1000])
+        if len(self.fail_list) != 0 or len(self.all_list) == 0:
             print('有失败的内容！！！！！！！！！')
             result = False
         else:
@@ -315,11 +320,11 @@ class Http_Test:
 
     # 进程+线程(总返回内容会有问题）
     def process(self, single_quantity=1, process_number=4):
-        try:
-            create_table()
-        except:
-            delete_table()
-            create_table()
+        # try:
+        #     create_table()
+        # except:
+        #     delete_table()
+        #     create_table()
         queue = Queue(4)
         start_time = time.time()
         fail = []
@@ -349,10 +354,10 @@ class Http_Test:
         print('有误的配置内容:')
         print(fail)
         print('所有返回的数量:')
-        all_data = reader_table()
-        print(len(all_data))
+        # all_data = reader_table()
+        # print(len(all_data))
         print('所有返回内容:')
-        print(all_data)
+        # print(all_data)
         if len(fail) != 0:
             print('有失败的内容！！！！！！！！！')
         else:
@@ -360,11 +365,11 @@ class Http_Test:
 
     # 策略C测试
     def c_process(self, single_quantity=1, process_number=4):
-        try:
-            create_table()
-        except:
-            delete_table()
-            create_table()
+        # try:
+        #     create_table()
+        # except:
+        #     delete_table()
+        #     create_table()
         q = Queue()
         start_time = time.time()
         fail = []
@@ -412,11 +417,15 @@ def sigle_request_runner(path, source='test'):
 
 
 if __name__ == "__main__":
+    # sigle_request_runner('./case/backend-content-sending/test_case')
     # sigle_request_runner('./case/backend-content-sending/cache_control')
+    # sigle_request_runner('./case/backend-content-sending/Magictext_all')
     # sigle_request_runner('./case/backend-content-sending/pro_Tenor_API_test_pt')
     # sigle_request_runner('./case/backend-content-sending/Magictext_all')
     # sigle_request_runner('./case/gifsearch/gif_search')
     # sigle_request_runner('./case/backend-content-sending/for_data_modle')
     # sigle_request_runner('./case/backend-picture/sticker2_trending')
     # sigle_request_runner('./case/backend-picture/sticker2_all')
-    sigle_request_runner('./case/ip_group/zk.yml')
+    # sigle_request_runner('./case/ip_group/zk.yml')
+    # sigle_request_runner('./case/advertising/advertising.yml', 'ip')
+    sigle_request_runner('./case/gifkeyboard/tag.yml', 'online')
