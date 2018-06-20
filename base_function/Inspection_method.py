@@ -145,25 +145,37 @@ class Inspection_method():
         check_key = [g for g in check_key_get][0]
         check_value_get = check.values()
         check_value = [z for z in check_value_get][0]
+        print(check_value)
         if '&' in check_value:
             check_value = check_value.split('&')
         response_value = self.response_value(check_key, response)
-        if isinstance(check_value, str):
-            if (str(response_value) == str(check_value)) or (str(check_value) == "#"):
+        if '~' in check_value:
+            check_value = check_value.split('~')[1]
+            print(check_value)
+            print(response_value)
+            if check_value in str(response_value):
                 pass
             else:
                 print(data_content_key_)
                 print(str(check))
-                # print(response_value)
                 data_content_result_False += 1
         else:
-            if (str(response_value) in list(check_value)) or (response_value == check_value):
-                pass
+            if isinstance(check_value, str):
+                if (str(response_value) == str(check_value)) or (str(check_value) == "#"):
+                    pass
+                else:
+                    print(data_content_key_)
+                    print(str(check))
+                    # print(response_value)
+                    data_content_result_False += 1
             else:
-                print(data_content_key_)
-                print(str(check))
-                # print(response_value)
-                data_content_result_False += 1
+                if (str(response_value) in list(check_value)) or (response_value == check_value):
+                    pass
+                else:
+                    print(data_content_key_)
+                    print(str(check))
+                    # print(response_value)
+                    data_content_result_False += 1
         return data_content_result_False
 
     # 有条件数据判断

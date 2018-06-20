@@ -40,8 +40,8 @@ assert:
 # 多个返回可能的时候使用&连接可能性，使用@@@进行字段胡洛
 # 返回内容如果是个多级字段则为前置条件条件各级用&连接
   data_format : {
-  '{"data&type":"h5"}':{'errorMsg': 'Str', 'data': {'red_dot': 'Bool', 'show_after_click': 'Bool', 'source_id': 'Str', 'extra': 'Str', 'h5': {'jump_url': 'HTTP'}, 'icon': 'HTTP', 'animation': '@@@', 'show_expiration': 'Int', 'type': 'Str', 'show_duration': 'Int', 'show_count': 'Int'}, 'errorCode': 'Int'},
-  '{"data&type":"koala"}':{'errorMsg': 'Str', 'data': {'red_dot': 'Bool', 'show_after_click': 'Bool', 'source_id': 'Str', 'extra': 'Str', 'h5': '@@@', 'icon': 'HTTP', 'animation': '@@@', 'show_expiration': 'Int', 'type': 'Str', 'show_duration': 'Int', 'show_count': 'Int'}, 'errorCode': 'Int'}
+  '{"data&type":"h5"}':{'data': {'type': 'Str', 'extra': 'Str', 'source_id': 'Str', 'h5': {'animation': 'HTTP&$$$', 'show_after_click': 'Bool', 'show_duration': 'Int', 'jump_url': 'HTTP', 'red_dot': 'Bool', 'show_count': 'Int', 'icon': 'HTTP', 'show_expiration': 'Int'}}, 'errorMsg': 'Str', 'errorCode': 'Int'},
+  '{"data&type":"koala"}':{'data': {'type': 'Str', 'extra': 'Str', 'source_id': 'Str', 'h5': '$$$'}, 'errorMsg': 'Str', 'errorCode': 'Int'},
   }
 # 数据检查
 # 前面的值是对应的维度，后面的字典内容({"key":"value"}key是对应值的路径，value是对应应该出现的值(如果值添加问#那么只坚持对应结构是否存在忽略其具体值）
