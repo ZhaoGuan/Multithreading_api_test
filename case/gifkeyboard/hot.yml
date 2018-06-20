@@ -2,38 +2,28 @@ operation_mode: sigle_request
 source:
   test:
     url:
-    #test
-    #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
-    #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
     cycle_times: 1
-    #web0
-    #url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
-    keys: ['tag','lang']
+    keys:
     data:
       # 这里kb_lang,duid,app只是为了header
-      duid : ['5a215835df204115ee3d2d4ec0c528aa']
-      kb_lang : ['en_US']
-      app: ['ikey']
-      lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
-      tag : ['ok','lol']
-      version: ['1478']
+      duid :
+      kb_lang :
+      app:
+      lang :
+      tag :
+      version:
   online:
     url: http://gifkeyboard.kikakeyboard.com/v1/picture/hot
-    #test
-    #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
-    #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
     cycle_times: 1
-    #web0
-    #url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
-    keys: ['tag','lang']
+    keys:
     data:
       # 这里kb_lang,duid,app只是为了header
-      duid : ['5a215835df204115ee3d2d4ec0c528aa']
-      kb_lang : ['en_US']
-      app: ['ikey']
-      lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
-      tag : ['ok','lol']
-      version: ['1478']
+      duid :
+      kb_lang :
+      app:
+      lang :
+      tag :
+      version:
 assert:
 #  返回码(只能第一层)
   code : {'key':'errorCode','value':0}
@@ -51,10 +41,6 @@ assert:
 # 在维度上有字段重复的时候使用"@数字"的形势进行区分
 # 多可能结果 eg:'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&popup_duration":"4000&500"}
   data_content : {
-                  'ok@1':'{"data&infos&0&magicText&style":"#"}',
-                  'ok@2':'{"data&infos&0&magicText&sourceID":"#"}',
-                  'lol@1':'{"data&infos&0&magicText&style":"#"}',
-                  'lol@2':'{"data&infos&0&magicText&sourceID":"#"}'
                   }
 # response_header检查
 # 可根据前面的条件检查，条件能够用&关联
