@@ -49,7 +49,7 @@ def run_wechat(project):
         fail_count = soup.find_all('tr', class_='failClass')
         print('failClass数量:')
         print(fail_count)
-        fail_count = 1
+        fail_count = [1]
         if len(fail_count) > 0:
             print('发送失败结果')
             SendInfo('guanzhao', text)
