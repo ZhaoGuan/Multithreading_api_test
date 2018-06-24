@@ -331,6 +331,6 @@ def content_request(Path, source='online'):
 
 
 if __name__ == "__main__":
-    # content_request('./case/backend-picture/sticker_case', 'online')
-    content_request('./case/backend-picture/gif_case', 'online')
+    content_request('./case/backend-picture/sticker_case', 'online')
+    # content_request('./case/backend-picture/gif_case', 'online')
     # content_request('./case/backend-picture/sticker2_package', 'online')
