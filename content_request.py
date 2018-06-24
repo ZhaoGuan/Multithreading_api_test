@@ -126,7 +126,7 @@ class Http_Test:
     def url_mosaic(self, data):
         url = self.url
         keys = self.keys
-        if ('&' == url[-1]) or ('?' == url[-1]):
+        if ('&' == url[-1]) or ('?' == url[-1]) or ('/' == url[-1]):
             for i in keys:
                 if i != keys[-1]:
                     url = url + i + '=' + data[i] + '&'
@@ -331,6 +331,6 @@ def content_request(Path, source='online'):
 
 
 if __name__ == "__main__":
-    content_request('./case/backend-picture/sticker_case', 'online')
+    # content_request('./case/backend-picture/sticker_case', 'online')
     # content_request('./case/backend-picture/gif_case', 'online')
-    # content_request('./case/backend-picture/sticker2_package', 'online')
+    content_request('./case/backend-picture/sticker2_package', 'online')

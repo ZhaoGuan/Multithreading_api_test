@@ -40,7 +40,6 @@ below:
         kb_lang : ['en_US']
         duid : ['5a215835df204115ee3d2d4ec0c528aa']
         content: ['content']
-        version :
     online:
       url: https://api.kikakeyboard.com/v1/stickers2/
       keys: ['content','duid']
@@ -49,7 +48,6 @@ below:
         kb_lang : ['en_US']
         duid : ['5a215835df204115ee3d2d4ec0c528aa']
         content: ['content']
-        version :
   assert:
   #  返回码(只能第一层)
     code : {'key':'errorCode','value':0}
