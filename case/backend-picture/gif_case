@@ -9,7 +9,6 @@ above:
         app: ['kika']
         kb_lang : ['en_US']
         duid : ['5a215835df204115ee3d2d4ec0c528aa']
-        version :
     online:
       url: https://api.kikakeyboard.com/v1/gif/tags?
       keys: ['duid']
@@ -17,7 +16,6 @@ above:
         app: ['kika']
         kb_lang : ['en_US']
         duid : ['5a215835df204115ee3d2d4ec0c528aa']
-        version :
   assert:
   #  返回码(只能第一层)
     code : {'key':'errorCode','value':0}
@@ -39,7 +37,6 @@ below:
         kb_lang : ['en_US']
         duid : ['5a215835df204115ee3d2d4ec0c528aa']
         query: ['content']
-        version :
     online:
       url: http://api.kikakeyboard.com/v1/gif/search?
       keys: ['duid','query']
@@ -48,7 +45,6 @@ below:
         kb_lang : ['en_US']
         duid : ['5a215835df204115ee3d2d4ec0c528aa']
         query: ['content']
-        version :
   assert:
   #  返回码(只能第一层)
     code : {'key':'errorCode','value':0}

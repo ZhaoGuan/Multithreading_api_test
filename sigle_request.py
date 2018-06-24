@@ -129,9 +129,7 @@ class Http_Test:
     def url_mosaic(self, data):
         url = self.url
         keys = self.keys
-        if '&' != url[-1]:
-            pass
-        else:
+        if ('&' == url[-1]) or ('?' == url[-1]):
             for i in keys:
                 if i != keys[-1]:
                     url = url + i + '=' + data[i] + '&'
@@ -142,6 +140,8 @@ class Http_Test:
                 re_sign = 'sign=' + sign
                 duid = 'duid=' + data['duid']
                 url = url.replace(duid, re_sign)
+        else:
+            pass
         # print(url)
         return url
 
@@ -416,15 +416,15 @@ def sigle_request_runner(path, source='test'):
 
 
 if __name__ == "__main__":
-    sigle_request_runner('./case/backend-content-sending/test_case')
+    # sigle_request_runner('./case/backend-content-sending/test_case')
     # sigle_request_runner('./case/backend-content-sending/cache_control')
     # sigle_request_runner('./case/backend-content-sending/Magictext_all')
     # sigle_request_runner('./case/backend-content-sending/pro_Tenor_API_test_pt')
     # sigle_request_runner('./case/backend-content-sending/Magictext_all')
-    # sigle_request_runner('./case/gifsearch/gif_search', 'online')
+    # sigle_request_runner('./case/gifsearch/gif_search', 'test')
     # sigle_request_runner('./case/backend-content-sending/for_data_modle')
     # sigle_request_runner('./case/backend-picture/sticker2_trending')
     # sigle_request_runner('./case/backend-picture/sticker2_all')
     # sigle_request_runner('./case/ip_group/zk.yml')
-    # sigle_request_runner('./case/advertising/advertising.yml', 'ip')
+    sigle_request_runner('./case/advertising/advertising.yml', 'online')
     # sigle_request_runner('./case/gifkeyboard/tag.yml', 'online')
