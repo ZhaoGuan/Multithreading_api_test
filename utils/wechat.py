@@ -47,7 +47,10 @@ def run_wechat(project):
     with open(PATH + '/../report/Api_test_report.html') as f:
         soup = BeautifulSoup(f)
         fail_count = soup.find_all('tr', class_='failClass')
+        print('failClass数量:')
+        print(fail_count)
         if len(fail_count) > 0:
+            print('发送失败结果')
             SendInfo('guanzhao', text)
 
 
