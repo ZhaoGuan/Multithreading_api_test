@@ -38,7 +38,6 @@ below:
         kb_lang : ['en_US']
         duid : ['5a215835df204115ee3d2d4ec0c528aa']
         query: ['content']
-        version :
     online:
       url: https://api.kikakeyboard.com/v1/sticker/search?
       keys: ['duid','query']
@@ -47,7 +46,6 @@ below:
         kb_lang : ['en_US']
         duid : ['5a215835df204115ee3d2d4ec0c528aa']
         query: ['content']
-        version :
   assert:
   #  返回码(只能第一层)
     code : {'key':'errorCode','value':0}
