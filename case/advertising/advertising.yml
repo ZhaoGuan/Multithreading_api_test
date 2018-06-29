@@ -32,7 +32,7 @@ source:
       kb_lang : ['en_US']
       tag : ['ok']
       duid : ['5a215835df204115ee3d2d4ec0c528aa']
-      android_level : ['18','19','20']
+      android_level : ['19','20']
 assert:
 #  返回码(只能第一层)
   code : {'key':'errorCode','value':0}
