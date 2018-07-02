@@ -8,31 +8,34 @@ source:
     cycle_times: 1
     keys: ['kb_lang','tag','duid','android_level']
     data:
-      app: ['kika']
+      app: ['kika','ikey']
       kb_lang : ['en_US']
       tag : ['ok']
       duid : ['5a215835df204115ee3d2d4ec0c528aa']
       android_level : ['19','20']
+    check_way : ['kika']
   ip:
     url : http://54.245.168.249:8080/v1/advertising/online
     cycle_times: 1
     keys: ['kb_lang','tag','duid','android_level']
     data:
-      app: ['kika']
+      app: ['kika',]
       kb_lang : ['en_US']
       tag : ['ok']
       duid : ['5a215835df204115ee3d2d4ec0c528aa']
       android_level : ['19','20']
+    check_way :
   online:
     url: https://api.kikakeyboard.com/v1/advertising/online
     cycle_times: 1
-    keys: ['kb_lang','tag','duid','android_level']
+    keys: ['kb_lang','tag','duid','android_level','app']
     data:
-      app: ['kika']
+      app: ['kika','ikey']
       kb_lang : ['en_US']
       tag : ['ok']
       duid : ['5a215835df204115ee3d2d4ec0c528aa']
       android_level : ['19','20']
+    check_way : ['kika']
 assert:
 #  返回码(只能第一层)
   code : {'key':'errorCode','value':0}

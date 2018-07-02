@@ -145,10 +145,11 @@ class Inspection_method():
         check_key = [g for g in check_key_get][0]
         check_value_get = check.values()
         check_value = [z for z in check_value_get][0]
-        print(check_value)
+        # 多种结果可能性
         if '&' in check_value:
             check_value = check_value.split('&')
         response_value = self.response_value(check_key, response)
+        # 字段包括在内的判断
         if '~' in check_value:
             check_value = check_value.split('~')[1]
             print(check_value)

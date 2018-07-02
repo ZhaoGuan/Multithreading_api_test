@@ -35,5 +35,6 @@ if __name__ == '__main__':
     # create_case_list('backend-content-sending', 'web0')
     # create_case_list('backend-content-sending', 'test')
     # create_case_list('gifsearch', 'online')
-    # create_case_list('backend-picture', 'online')
-    create_case_list('ip_group', 'online')
+    create_case_list('backend-picture', 'test')
+    # create_case_list('ip_group', 'online')
+    # create_case_list('gifkeyboard', 'online')

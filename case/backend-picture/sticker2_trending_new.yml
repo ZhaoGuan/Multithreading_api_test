@@ -19,6 +19,7 @@ source:
     # version可以通过对指定对象配置版本，最后一个&后填写版本之前的都是条件用&分隔
     #  version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1478']
       version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1478']
+    check_way : ['5a215835df204115ee3d2d4ec0c528aa']
   online:
     url: https://api.kikakeyboard.com/v1/stickers2/trending?page=0&size=2&
     #web0
@@ -39,6 +40,7 @@ source:
     # version可以通过对指定对象配置版本，最后一个&后填写版本之前的都是条件用&分隔
     #  version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1478']
       version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1478']
+    check_way : ['5a215835df204115ee3d2d4ec0c528aa']
 assert:
 #  返回码(只能第一层)
   code : {'key':'errorCode','value':0}

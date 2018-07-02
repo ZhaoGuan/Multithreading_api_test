@@ -38,6 +38,10 @@ class Http_Test:
         except:
             pass
         try:
+            self.check_way = self.config['source'][source]['check_way']
+        except:
+            self.check_way = None
+        try:
             self.other = self.config['other']
         except:
             self.version = 1477
@@ -82,6 +86,22 @@ class Http_Test:
         else:
             keys_data.update({'version': version_data})
 
+            # now_way
+
+    def check_the_way(self, all_data):
+        if (self.check_way == None) or (self.check_way == []):
+            return all_data
+        else:
+            temp = []
+            for check in self.check_way:
+                for data in all_data:
+                    if check in str(data):
+                        data.update({'check': 'new'})
+                        temp.append(data)
+                    else:
+                        temp.append(data)
+                return temp
+
     # url key 数据整理
     def url_keys_data(self):
         all_data = []
@@ -105,6 +125,7 @@ class Http_Test:
                     for g in temp:
                         temp_all.append(g)
                 all_data = temp_all
+        all_data = self.check_the_way(all_data)
         # 处理version
         temp_all_data = []
         for data in all_data:
@@ -123,7 +144,7 @@ class Http_Test:
         return all_data
 
     # url 重新拼接
-    def url_mosaic(self, data):
+    def url_mosaic(self, data, header):
         url = self.url
         keys = self.keys
         if ('&' == url[-1]) or ('?' == url[-1]) or ('/' == url[-1]):
@@ -133,7 +154,11 @@ class Http_Test:
                 else:
                     url = url + i + '=' + data[i]
             if 'duid' in url:
-                sign = self.kika_request.get_sign(version=data['version'], duid=data['duid'], app=data['app'])
+                if ('check' in list(data.keys())):
+                    sign = self.kika_request.get_new_sign(version=data['version'], duid=data['duid'], app=data['app'],
+                                                          requestime=header['Request-Time'])
+                else:
+                    sign = self.kika_request.get_sign(version=data['version'], duid=data['duid'], app=data['app'])
                 re_sign = 'sign=' + sign
                 duid = 'duid=' + data['duid']
                 url = url.replace(duid, re_sign)
@@ -252,12 +277,17 @@ class Http_Test:
                 android_level = int(data['android_level'])
             except:
                 android_level = 23
-            header = self.kika_request.set_header(duid, app=app, version=version, lang=lang, way=self.way,
-                                                  android_level=android_level)
-            url = self.url_mosaic(data)
+            if ('check' in list(data.keys())):
+                header = self.kika_request.set_new_header(duid, app=app, version=version, lang=lang, way=self.way,
+                                                          android_level=android_level)
+            else:
+                header = self.kika_request.set_header(duid, app=app, version=version, lang=lang, way=self.way,
+                                                      android_level=android_level)
+            url = self.url_mosaic(data, header)
             response = requests.request('get', url, headers=header)
         # print(url)
-        # print(response.text)
+        print(header)
+        print(response.text)
         self.asser_api(data, response, fail)
         self.all_response(data, response, all_data_respone)
         if len(fail) == 0:
@@ -290,15 +320,19 @@ class Http_Test:
                 android_level = int(data['android_level'])
             except:
                 android_level = 23
-            header = self.kika_request.set_header(duid, app=app, version=version, lang=lang, way=self.way,
-                                                  android_level=android_level)
-            url = self.url_mosaic(data)
+            if ('check' in list(data.keys())):
+                header = self.kika_request.set_new_header(duid, app=app, version=version, lang=lang, way=self.way,
+                                                          android_level=android_level)
+            else:
+                header = self.kika_request.set_header(duid, app=app, version=version, lang=lang, way=self.way,
+                                                      android_level=android_level)
+            url = self.url_mosaic(data, header)
             # 为了package的临时方案
             if 'content=' in url:
                 url = url.replace('content=', '').replace('&', '?')
             # print(url)
             response = requests.request('get', url, headers=header)
-        # print(response.text)
+        print(response.text)
         self.asser_api(data, response, fail)
         self.all_response(data, response, all_data_respone)
         return response.text
@@ -331,6 +365,6 @@ def content_request(Path, source='online'):
 
 
 if __name__ == "__main__":
-    # content_request('./case/backend-picture/sticker_case', 'online')
-    # content_request('./case/backend-picture/gif_case', 'online')
-    content_request('./case/backend-picture/sticker2_package', 'online')
+    # content_request('./case/backend-picture/sticker_case', 'test')
+    content_request('./case/backend-picture/gif_case', 'test')
+    # content_request('./case/backend-picture/sticker2_package', 'online')

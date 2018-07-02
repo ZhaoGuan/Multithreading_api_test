@@ -48,6 +48,7 @@ below:
         kb_lang : ['en_US']
         duid : ['5a215835df204115ee3d2d4ec0c528aa']
         query: ['content']
+      check_way : ['5a215835df204115ee3d2d4ec0c528aa']
   assert:
   #  返回码(只能第一层)
     code : {'key':'errorCode','value':0}
