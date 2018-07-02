@@ -9,7 +9,6 @@ above:
         app: ['kika']
         kb_lang : ['en_US']
         duid : ['5a215835df204115ee3d2d4ec0c528aa']
-      check_way : ['5a215835df204115ee3d2d4ec0c528aa']
     online:
       url: https://api.kikakeyboard.com/v1/sticker/categories?
       keys: ['duid']
@@ -17,7 +16,6 @@ above:
         app: ['kika']
         kb_lang : ['en_US']
         duid : ['5a215835df204115ee3d2d4ec0c528aa']
-      check_way : ['5a215835df204115ee3d2d4ec0c528aa']
   assert:
   #  返回码(只能第一层)
     code : {'key':'errorCode','value':0}
