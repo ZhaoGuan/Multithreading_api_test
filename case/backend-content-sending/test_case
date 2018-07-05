@@ -123,8 +123,8 @@ assert:
                   'ikey@1':'{"data&type":"sticker"}${"data&popup_duration":"5000"}',
                   'ikey@2':'{"data&type":"magic"}${"data&popup_duration":"0"}',
                   'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&extra":"~mptyBucket"}',
-                  'ikey&920b56e9cadd743bfbbcb4126937e789&en':'{"data&extra":"~IkeyEnEmptyScenario"}',
-                  'ikey&920b56e9cadd743bfbbcb4126937e789&pt':'{"data&extra":"~IkeyPtEmptyScenario"}',
+#                  'ikey&920b56e9cadd743bfbbcb4126937e789&en':'{"data&extra":"~IkeyEnEmptyScenario"}',
+#                  'ikey&920b56e9cadd743bfbbcb4126937e789&pt':'{"data&extra":"~IkeyPtEmptyScenario"}',
                   # ikey1477以下版本不支持magic
                   'ikey&1477':'{"data&type":"sticker"}',
                   'ikey&1478':'{"data&type":"magic&sticker"}',
