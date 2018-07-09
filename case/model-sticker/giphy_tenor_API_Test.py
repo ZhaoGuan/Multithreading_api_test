@@ -201,7 +201,7 @@ def request_test(test_case, source):
         # url = 'http://kika-en.recommend.model.intranet.com/recommend/popup?sessionId=123&tag=ok&'
         url = 'http://172.31.21.219:8080/recommend/maturity/popup?sessionId=123&tag=ok&'
     elif source == 'business':
-        url = 'http://172.31.31.224:8080/recommend/popup?sessionId=123&tag=ok&'
+        url = 'http://172.31.31.224:8080/recommend/maturity/popup?sessionId=123&tag=ok&'
     if isinstance(url, list):
         for url_ in url:
             case_runner(test_case, url_)
