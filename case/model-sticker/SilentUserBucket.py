@@ -166,40 +166,40 @@ def case_runner(test_case, url):
 def request_test(test_case, source):
     # if source == 'test':
     # 测试
-    # url = 'http://52.43.155.219:8080/model-sticker/recommend/maturity/popup?sessionId=123&tag=ok&'
+    # url = 'http://52.43.155.219:8080/model-sticker/recommend/popup?sessionId=123&tag=ok&'
     # elif source == 'ip':
-    #     url = 'http://172.31.23.134:8080/model-sticker/recommend/maturity/popup?sessionId=123&tag=ok&'
+    #     url = 'http://172.31.23.134:8080/model-sticker/recommend/popup?sessionId=123&tag=ok&'
     # elif source == 'spring':
-    #     url = 'http://172.31.23.134:10010/model-sticker/recommend/maturity/popup?sessionId=1&tag=ok&'
+    #     url = 'http://172.31.23.134:10010/model-sticker/recommend/popup?sessionId=1&tag=ok&'
     # else:
-    #     url = 'http://172.31.31.224:8080/model-sticker/recommend/maturity/popup?sessionId=1&tag=ok&'
+    #     url = 'http://172.31.31.224:8080/model-sticker/recommend/popup?sessionId=1&tag=ok&'
     if source == 'test':
         # 测试
         # 外网
-        url = 'http://52.43.155.219:8080/model-sticker/recommend/maturity/popup?sessionId=123&tag=ok&'
+        url = 'http://52.43.155.219:8080/model-sticker/recommend/popup?sessionId=123&tag=ok&'
     elif source == 'ip':
         # 内网
-        url = 'http://172.31.23.134:8080/model-sticker/recommend/maturity/popup?sessionId=123&tag=ok&'
+        url = 'http://172.31.23.134:8080/model-sticker/recommend/popup?sessionId=123&tag=ok&'
     elif source == 'spring':
         # 内网
-        url = 'http://172.31.23.134:10010/model-sticker/recommend/maturity/popup?sessionId=123&tag=ok&'
+        url = 'http://172.31.23.134:10010/model-sticker/recommend/popup?sessionId=123&tag=ok&'
     elif source == 'pt_online':
         # 线上
         # pt
-        url = 'http://172.31.21.95:8080/recommend/maturity/popup?sessionId=123&tag=ok&'
+        url = 'http://172.31.21.95:8080/recommend/popup?sessionId=123&tag=ok&'
     elif source == 'en_online':
         # en
         # 0
-        url0 = 'http://172.31.17.179:8080/recommend/maturity/popup?sessionId=123&tag=ok&'
+        url0 = 'http://172.31.17.179:8080/recommend/popup?sessionId=123&tag=ok&'
         # 1
-        url1 = 'http://172.31.28.21:8080/recommend/maturity/popup?sessionId=123&tag=ok&'
+        url1 = 'http://172.31.28.21:8080/recommend/popup?sessionId=123&tag=ok&'
         # 2
-        url2 = 'http://172.31.18.118:8080/recommend/maturity/popup?sessionId=123&tag=ok&'
+        url2 = 'http://172.31.18.118:8080/recommend/popup?sessionId=123&tag=ok&'
         url = [url0, url1, url2]
     elif source == 'kika_online':
         # kika
         # url = 'http://kika-en.recommend.model.intranet.com/recommend/popup?sessionId=123&tag=ok&'
-        url = 'http://172.31.21.219:8080/recommend/maturity/popup?sessionId=123&tag=ok&'
+        url = 'http://172.31.21.219:8080/recommend/popup?sessionId=123&tag=ok&'
     elif source == 'business':
         url = 'http://172.31.31.224:8080/recommend/popup?sessionId=123&tag=ok&'
     if isinstance(url, list):
