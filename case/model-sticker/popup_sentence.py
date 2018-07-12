@@ -126,7 +126,7 @@ def constitute_test_case(data):
             temp['parameter'].update({'userId': duid})
             for key, value in parameter.items():
                 temp['parameter'].update({key: value})
-                if ('Giphy' in str(temp)) or ('Tenor' in str(temp)):
+                if 'SilentUserBucket' in str(temp):
                     test_case.append(temp)
                 else:
                     pass
@@ -165,43 +165,43 @@ def case_runner(test_case, url):
 
 def request_test(test_case, source):
     # if source == 'test':
-        # 测试
-        # url = 'http://52.43.155.219:8080/model-sticker/recommend/maturity/popup?sessionId=123&tag=ok&'
+    # 测试
+    # url = 'http://52.43.155.219:8080/model-sticker/recommend/popup-sentence?sessionId=123&sentence=ok&'
     # elif source == 'ip':
-    #     url = 'http://172.31.23.134:8080/model-sticker/recommend/maturity/popup?sessionId=123&tag=ok&'
+    #     url = 'http://172.31.23.134:8080/model-sticker/recommend/popup-sentence?sessionId=123&sentence=ok&'
     # elif source == 'spring':
-    #     url = 'http://172.31.23.134:10010/model-sticker/recommend/maturity/popup?sessionId=1&tag=ok&'
+    #     url = 'http://172.31.23.134:10010/model-sticker/recommend/popup-sentence?sessionId=1&sentence=ok&'
     # else:
-    #     url = 'http://172.31.31.224:8080/model-sticker/recommend/maturity/popup?sessionId=1&tag=ok&'
+    #     url = 'http://172.31.31.224:8080/model-sticker/recommend/popup-sentence?sessionId=1&sentence=ok&'
     if source == 'test':
         # 测试
         # 外网
-        url = 'http://52.43.155.219:8080/model-sticker/recommend/maturity/popup?sessionId=123&tag=ok&'
+        url = 'http://52.43.155.219:8080/model-sticker/recommend/popup-sentence?sessionId=123&sentence=ok&'
     elif source == 'ip':
         # 内网
-        url = 'http://172.31.23.134:8080/model-sticker/recommend/maturity/popup?sessionId=123&tag=ok&'
+        url = 'http://172.31.23.134:8080/model-sticker/recommend/popup-sentence?sessionId=123&sentence=ok&'
     elif source == 'spring':
         # 内网
-        url = 'http://172.31.23.134:10010/model-sticker/recommend/maturity/popup?sessionId=123&tag=ok&'
+        url = 'http://172.31.23.134:10010/model-sticker/recommend/popup-sentence?sessionId=123&sentence=ok&'
     elif source == 'pt_online':
         # 线上
         # pt
-        url = 'http://172.31.21.95:8080/recommend/maturity/popup?sessionId=123&tag=ok&'
+        url = 'http://172.31.21.95:8080/recommend/popup-sentence?sessionId=123&sentence=ok&'
     elif source == 'en_online':
         # en
         # 0
-        url0 = 'http://172.31.17.179:8080/recommend/maturity/popup?sessionId=123&tag=ok&'
+        url0 = 'http://172.31.17.179:8080/recommend/popup-sentence?sessionId=123&sentence=ok&'
         # 1
-        url1 = 'http://172.31.28.21:8080/recommend/maturity/popup?sessionId=123&tag=ok&'
+        url1 = 'http://172.31.28.21:8080/recommend/popup-sentence?sessionId=123&sentence=ok&'
         # 2
-        url2 = 'http://172.31.18.118:8080/recommend/maturity/popup?sessionId=123&tag=ok&'
+        url2 = 'http://172.31.18.118:8080/recommend/popup-sentence?sessionId=123&sentence=ok&'
         url = [url0, url1, url2]
     elif source == 'kika_online':
         # kika
-        # url = 'http://kika-en.recommend.model.intranet.com/recommend/popup?sessionId=123&tag=ok&'
-        url = 'http://172.31.21.219:8080/recommend/maturity/popup?sessionId=123&tag=ok&'
+        # url = 'http://kika-en.recommend.model.intranet.com/recommend/popup-sentence?sessionId=123&sentence=ok&'
+        url = 'http://172.31.21.219:8080/recommend/popup-sentence?sessionId=123&sentence=ok&'
     elif source == 'business':
-        url = 'http://172.31.31.224:8080/recommend/maturity/popup?sessionId=123&tag=ok&'
+        url = 'http://172.31.31.224:8080/recommend/popup-sentence?sessionId=123&sentence=ok&'
     if isinstance(url, list):
         for url_ in url:
             case_runner(test_case, url_)
