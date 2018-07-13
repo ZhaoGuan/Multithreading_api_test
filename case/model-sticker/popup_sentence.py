@@ -126,7 +126,7 @@ def constitute_test_case(data):
             temp['parameter'].update({'userId': duid})
             for key, value in parameter.items():
                 temp['parameter'].update({key: value})
-                if 'SilentUserBucket' in str(temp):
+                if 'sentence' in str(temp):
                     test_case.append(temp)
                 else:
                     pass
