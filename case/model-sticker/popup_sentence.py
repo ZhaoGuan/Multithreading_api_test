@@ -17,7 +17,7 @@ config = {'errorCode': 'Int', 'limitScore': '@@@',
           'extra': {'bucketName': 'Str', 'language': 'Str', 'tag': 'Str', 'management': 'Str', 'product': 'Str',
                     'popup_mode': 'Str', 'source': 'Str', 'param': 'Str', 'sessionId': 'Str', 'taghit': 'Str',
                     'sentence': 'Str', 'scenario': 'Str'}, 'model': 'Str', 'md5': 'Str', 'score': '@@@',
-          'errorMsg': 'Str'}
+          'errorMsg': '@@@'}
 
 
 # 获取数据库信息作为用例准备
