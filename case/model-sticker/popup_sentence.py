@@ -153,12 +153,12 @@ def case_runner(test_case, url):
     if response.text == '':
         print('失败')
     diff = []
-    config_diff = Inspection_method().response_diff_list(config, response.text, diff)
-    if config_diff == False:
-        print('数据结构有误')
-        print('失败')
     try:
         response = json.loads(response.text)
+        config_diff = Inspection_method().response_diff_list(config, response.text, diff)
+        if config_diff == False:
+            print('数据结构有误')
+            print('失败')
         print(response)
         if response['extra']['scenario'] != test_case['result']['scenario']:
             print(test_case)
