@@ -11,6 +11,13 @@ import sys
 PATH = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(PATH + '/../../')
 from base_function.golable_function import source_input
+from base_function.Inspection_method import Inspection_method
+
+config = {'errorCode': 'Int', 'limitScore': 'Int',
+          'extra': {'bucketName': 'Str', 'language': 'Str', 'tag': 'Str', 'management': 'Str', 'product': 'Str',
+                    'popup_mode': 'Str', 'source': 'Str', 'param': 'Str', 'sessionId': 'Str', 'taghit': 'Str',
+                    'sentence': 'Str', 'scenario': 'Str'}, 'model': 'Str', 'md5': 'Str', 'score': 'Int',
+          'errorMsg': 'Str'}
 
 
 # 获取数据库信息作为用例准备
@@ -144,6 +151,11 @@ def case_runner(test_case, url):
     response = requests.get(url)
     print(response.text)
     if response.text == '':
+        print('失败')
+    diff = []
+    config_diff = Inspection_method().response_diff_list(config, response.text, diff)
+    if config_diff == False:
+        print('数据结构有误')
         print('失败')
     try:
         response = json.loads(response.text)
