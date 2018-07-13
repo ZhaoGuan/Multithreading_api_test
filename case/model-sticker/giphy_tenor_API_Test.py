@@ -151,7 +151,7 @@ def case_runner(test_case, url):
     try:
         response = json.loads(response.text)
         print(response)
-        # config_diff = Inspection_method().response_diff_list(config, response.text, diff)
+        # config_diff = Inspection_method().response_diff_list(config, response, diff)
         # if config_diff == False:
         #     print('数据结构有误')
         #     print('失败')
