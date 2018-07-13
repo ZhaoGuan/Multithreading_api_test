@@ -40,6 +40,8 @@ class Inspection_method():
                     result = False
             elif case == 'Int':
                 result = isinstance(response, int)
+            elif case == 'Float':
+                result = isinstance(response, float)
             else:
                 # None处理
                 if response == None:
