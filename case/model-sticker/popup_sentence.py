@@ -16,7 +16,7 @@ from base_function.Inspection_method import Inspection_method
 config = {'errorCode': 'Int', 'limitScore': 'Int',
           'extra': {'bucketName': 'Str', 'language': 'Str', 'tag': 'Str', 'management': 'Str', 'product': 'Str',
                     'popup_mode': 'Str', 'source': 'Str', 'param': 'Str', 'sessionId': 'Str', 'taghit': 'Str',
-                    'sentence': 'Str', 'scenario': 'Str'}, 'model': 'Str', 'md5': 'Str', 'score': 'Int',
+                    'sentence': 'Str', 'scenario': 'Str'}, 'model': 'Str', 'md5': 'Str', 'score': '@@@',
           'errorMsg': '@@@'}
 
 
