@@ -194,6 +194,7 @@ def request_test(test_case, source):
         # 2
         url2 = 'http://172.31.18.118:8080/recommend/popup?sessionId=123&tag=ok&'
         url = [url0, url1, url2]
+        url = [url0]
     elif source == 'kika_online':
         # kika
         # url = 'http://kika-en.recommend.model.intranet.com/recommend/popup?sessionId=123&tag=ok&'
