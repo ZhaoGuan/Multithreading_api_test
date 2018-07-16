@@ -131,7 +131,7 @@ def constitute_test_case(data):
                 temp['parameter'].update({key: value})
                 if ('Giphy' in str(temp)) or ('Tenor' in str(temp)):
                     pass
-                elif 'SilentUserBucket' in str(temp):
+                elif ('SilentUserBucket' in str(temp)) or ('sentence' in str(temp)):
                     pass
                 else:
                     test_case.append(temp)
