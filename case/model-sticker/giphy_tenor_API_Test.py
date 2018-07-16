@@ -194,16 +194,16 @@ def request_test(test_case, source):
         # 线上
         # pt
         url = 'http://172.31.21.95:8080/recommend/maturity/popup?sessionId=123&tag=ok&'
-    elif source == 'en_online':
+    elif source == 'en_online0':
         # en
         # 0
-        url0 = 'http://172.31.17.179:8080/recommend/maturity/popup?sessionId=123&tag=ok&'
+        url = 'http://172.31.17.179:8080/recommend/maturity/popup?sessionId=123&tag=ok&'
+    elif source == 'en_online1':
         # 1
-        url1 = 'http://172.31.28.21:8080/recommend/maturity/popup?sessionId=123&tag=ok&'
+        url = 'http://172.31.28.21:8080/recommend/maturity/popup?sessionId=123&tag=ok&'
+    elif source == 'en_online2':
         # 2
-        url2 = 'http://172.31.18.118:8080/recommend/maturity/popup?sessionId=123&tag=ok&'
-        url = [url0, url1, url2]
-        url = [url2]
+        url = 'http://172.31.18.118:8080/recommend/maturity/popup?sessionId=123&tag=ok&'
     elif source == 'kika_online':
         # kika
         # url = 'http://kika-en.recommend.model.intranet.com/recommend/popup?sessionId=123&tag=ok&'
