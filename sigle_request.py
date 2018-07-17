@@ -69,7 +69,9 @@ class Http_Test:
         except:
             self.Assert = None
         # 默认version
-        self.version = 1477
+        # self.version = 1477
+        # ikey 1477以上支持magictext
+        self.version = 1478
         self.kika_request = Kika_base_request(self.host)
         self.fail_list = []
         self.all_list = []
@@ -318,6 +320,7 @@ class Http_Test:
             print('测试通过！！！！')
         return result
 
+    # 以下弃用
     # 线程
     def threading(self, fail, queue, single_quantity):
         # 多少组测试数据
@@ -445,9 +448,10 @@ def sigle_request_runner(path, source='test'):
 
 
 if __name__ == "__main__":
-    # sigle_request_runner('./case/backend-content-sending/test_case')
+    sigle_request_runner('./case/backend-content-sending/test_case', 'online')
+    # sigle_request_runner('./case/backend-content-sending/sentence-popup.yml', 'test')
     # sigle_request_runner('./case/backend-content-sending/cache_control')
-    # sigle_request_runner('./case/backend-content-sending/Magictext_all')
+    # sigle_request_runner('./case/backend-content-sending/Magictext_all', 'web0')
     # sigle_request_runner('./case/backend-content-sending/pro_Tenor_API_test_pt')
     # sigle_request_runner('./case/backend-content-sending/Magictext_all')
     # sigle_request_runner('./case/gifsearch/gif_search', 'test')
@@ -455,6 +459,7 @@ if __name__ == "__main__":
     # sigle_request_runner('./case/backend-picture/sticker2_trending')
     # sigle_request_runner('./case/backend-picture/sticker2_all')
     # sigle_request_runner('./case/ip_group/zk.yml', 'online')
-    sigle_request_runner('./case/advertising/advertising.yml', 'online')
+    # sigle_request_runner('./case/advertising/advertising.yml', 'online')
+    # sigle_request_runner('./case/advertising/recommendconfig_magictext_list.yml', 'online')
     # sigle_request_runner('./case/gifkeyboard/tag.yml', 'online')
-    # sigle_request_runner('./case/gifsearch/social', 'online')
+    # sigle_request_runner('./case/gifsearch/social', 'test')

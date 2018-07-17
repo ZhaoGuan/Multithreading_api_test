@@ -66,7 +66,7 @@ below:
   #  返回码(只能第一层)
     code : {'key':'errorCode','value':0}
 #    data_format : {'errorMsg': 'Str', 'errorCode': 'Int', 'data': {'resourceList': [{'tiny_gif': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'preview': 'HTTP', 'gif': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'source': 'Str', 'mp4': {'height': 'Int', 'width': 'Int', 'url': 'HTTP', 'duration': '@@@'}, 'source_id': 'Str', 'tinygif': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'index': 'Int', 'title': 'Str', 'tags': ['@@@']}]}}
-    data_format : {'errorCode': 'Int', 'errorMsg': 'Str', 'data': {'resourceList': [{'preview': 'HTTP', 'tinygif': {'width': 'Int', 'height': 'Int', 'url': 'HTTP'}, 'tiny_gif': {'width': 'Int', 'height': 'Int', 'url': 'HTTP'}, 'gif': {'width': 'Int', 'height': 'Int', 'url': 'HTTP'}, 'source_id': 'Str', 'source': 'Str', 'mp4': {'width': 'Int', 'duration': '@@@', 'height': 'Int', 'url': 'HTTP'}, 'index': 'Int', 'title': '@@@', 'tags': ['@@@']}]}}
+    data_format : {'errorCode': 'Int', 'errorMsg': 'Str', 'data': {'resourceList': [{'preview': 'HTTP', 'tinygif': {'width': 'Int', 'height': 'Int', 'url': 'HTTP'}, 'tiny_gif': {'width': 'Int', 'height': 'Int', 'url': 'HTTP'}, 'gif': {'width': 'Int', 'height': 'Int', 'url': 'HTTP'}, 'source_id': 'Str', 'source': 'Str', 'mp4': {'width': 'Int', 'duration': 'Float', 'height': 'Int', 'url': 'HTTP'}, 'index': 'Int', 'title': '@@@', 'tags': ['@@@']}]}}
   other:
     way: online
     host:
