@@ -32,7 +32,7 @@ source:
     cycle_times: 1
     keys: ['kb_lang','sentence','duid']
     data:
-      app: ['kika','ikey','pro']
+      app: ['ikey']
     #  app: ['ikey']
 #      kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
       kb_lang : ['en_US']
