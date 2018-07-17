@@ -35,7 +35,7 @@ source:
       app: ['kika','ikey','pro']
     #  app: ['ikey']
 #      kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
-#      kb_lang : [en_US, 'en_AU']
+      kb_lang : ['en_US']
     #  kb_lang : ['pt_BR']
       sentence : ['awawad ok']
       duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
