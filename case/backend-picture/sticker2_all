@@ -41,7 +41,7 @@ source:
     #  version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1478']
       version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1478']
   online:
-    url: https://api.kikakeyboard.com/v1/stickers2/all?page=0&size=2&
+    url: https://api.kikakeyboard.com/v1/stickers2/all?page=0&size=10&
     #web0
     #url: http://sticker.pre.kikakeyboard.com/backend-content-sending/popup?
     cycle_times: 1
