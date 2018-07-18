@@ -176,6 +176,21 @@ def case_runner(test_case, url):
         if response['limitScore'] != 0.0:
             print('limitscore不为0.0')
             print('失败')
+        if response['extra']['taghit'] == 'hit':
+            if 'rmd_hit' in list(response['extra'].keys()):
+                if response['extra']['rmd_hit'] == '0':
+                    if response['md5'] != '':
+                        print('命中但md5为空')
+                        print('失败')
+
+                else:
+                    if response['md5'] == '':
+                        print('md5不应该有返回')
+                        print('失败')
+            else:
+                if response['md5'] != '':
+                    print('命中但md5为空')
+                    print('失败')
 
     except Exception as e:
         print(e)
