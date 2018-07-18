@@ -151,23 +151,27 @@ class Http_Test:
     def url_mosaic(self, data, header):
         url = self.url
         keys = self.keys
-        if ('&' == url[-1]) or ('?' == url[-1]):
-            for i in keys:
-                if i != keys[-1]:
-                    url = url + i + '=' + data[i] + '&'
-                else:
-                    url = url + i + '=' + data[i]
-            if 'duid' in url:
-                if ('check' in list(data.keys())):
-                    sign = self.kika_request.get_new_sign(version=data['version'], duid=data['duid'], app=data['app'],
-                                                          requestime=header['Request-Time'])
-                else:
-                    sign = self.kika_request.get_sign(version=data['version'], duid=data['duid'], app=data['app'])
-                re_sign = 'sign=' + sign
-                duid = 'duid=' + data['duid']
-                url = url.replace(duid, re_sign)
-        else:
+        if keys == None:
             pass
+        else:
+            if ('&' == url[-1]) or ('?' == url[-1]):
+                for i in keys:
+                    if i != keys[-1]:
+                        url = url + i + '=' + data[i] + '&'
+                    else:
+                        url = url + i + '=' + data[i]
+                if 'duid' in url:
+                    if ('check' in list(data.keys())):
+                        sign = self.kika_request.get_new_sign(version=data['version'], duid=data['duid'],
+                                                              app=data['app'],
+                                                              requestime=header['Request-Time'])
+                    else:
+                        sign = self.kika_request.get_sign(version=data['version'], duid=data['duid'], app=data['app'])
+                    re_sign = 'sign=' + sign
+                    duid = 'duid=' + data['duid']
+                    url = url.replace(duid, re_sign)
+            else:
+                pass
         # print(url)
         return url
 
@@ -272,7 +276,7 @@ class Http_Test:
             # print(self.host)
             # print(url)
             # print(header)
-            # print(url)
+            print(url)
             response = requests.request('get', url, headers=header)
             response.encoding = 'utf-8'
         self.asser_api(data, response, self.fail_list)
@@ -448,8 +452,8 @@ def sigle_request_runner(path, source='test'):
 
 
 if __name__ == "__main__":
-    sigle_request_runner('./case/backend-content-sending/test_case', 'online')
-    # sigle_request_runner('./case/backend-content-sending/sentence-popup.yml', 'test')
+    # sigle_request_runner('./case/backend-content-sending/test_case', 'online')
+    # sigle_request_runner('./case/backend-content-sending/sentence-popup_type=1.yml', 'web0')
     # sigle_request_runner('./case/backend-content-sending/cache_control')
     # sigle_request_runner('./case/backend-content-sending/Magictext_all', 'web0')
     # sigle_request_runner('./case/backend-content-sending/pro_Tenor_API_test_pt')
@@ -459,7 +463,8 @@ if __name__ == "__main__":
     # sigle_request_runner('./case/backend-picture/sticker2_trending')
     # sigle_request_runner('./case/backend-picture/sticker2_all')
     # sigle_request_runner('./case/ip_group/zk.yml', 'online')
-    # sigle_request_runner('./case/advertising/advertising.yml', 'online')
+    sigle_request_runner('./case/advertising/advertising.yml', 'online')
     # sigle_request_runner('./case/advertising/recommendconfig_magictext_list.yml', 'online')
+    # sigle_request_runner('./case/advertising/game.yml', 'test')
     # sigle_request_runner('./case/gifkeyboard/tag.yml', 'online')
     # sigle_request_runner('./case/gifsearch/social', 'test')

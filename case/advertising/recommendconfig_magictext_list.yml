@@ -1,5 +1,6 @@
 # 默认不应该有magictext
 # 风险只检查接口基本形式其中明确内容结构无法坚持
+# data 中 app kb_lang duid 必填一个
 operation_mode: sigle_request
 source:
 #test

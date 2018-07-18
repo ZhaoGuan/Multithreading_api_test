@@ -147,23 +147,27 @@ class Http_Test:
     def url_mosaic(self, data, header):
         url = self.url
         keys = self.keys
-        if ('&' == url[-1]) or ('?' == url[-1]) or ('/' == url[-1]):
-            for i in keys:
-                if i != keys[-1]:
-                    url = url + i + '=' + data[i] + '&'
-                else:
-                    url = url + i + '=' + data[i]
-            if 'duid' in url:
-                if ('check' in list(data.keys())):
-                    sign = self.kika_request.get_new_sign(version=data['version'], duid=data['duid'], app=data['app'],
-                                                          requestime=header['Request-Time'])
-                else:
-                    sign = self.kika_request.get_sign(version=data['version'], duid=data['duid'], app=data['app'])
-                re_sign = 'sign=' + sign
-                duid = 'duid=' + data['duid']
-                url = url.replace(duid, re_sign)
-        else:
+        if keys == None:
             pass
+        else:
+            if ('&' == url[-1]) or ('?' == url[-1]):
+                for i in keys:
+                    if i != keys[-1]:
+                        url = url + i + '=' + data[i] + '&'
+                    else:
+                        url = url + i + '=' + data[i]
+                if 'duid' in url:
+                    if ('check' in list(data.keys())):
+                        sign = self.kika_request.get_new_sign(version=data['version'], duid=data['duid'],
+                                                              app=data['app'],
+                                                              requestime=header['Request-Time'])
+                    else:
+                        sign = self.kika_request.get_sign(version=data['version'], duid=data['duid'], app=data['app'])
+                    re_sign = 'sign=' + sign
+                    duid = 'duid=' + data['duid']
+                    url = url.replace(duid, re_sign)
+            else:
+                pass
         # print(url)
         return url
 
@@ -365,6 +369,7 @@ def content_request(Path, source='online'):
 
 
 if __name__ == "__main__":
-    # content_request('./case/backend-picture/sticker_case', 'test')
-    content_request('./case/backend-picture/gif_case', 'test')
-    # content_request('./case/backend-picture/sticker2_package', 'online')
+    # content_request('./case/backend-picture/sticker_case', 'online')
+    # content_request('./case/backend-picture/gif_case_new.yml', 'test')
+    # content_request('./case/backend-picture/sticker2_all_new.yml', 'test')
+    content_request('./case/backend-picture/sticker2_package', 'online')
