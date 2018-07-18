@@ -69,11 +69,15 @@ class Inspection_method():
         if True in result:
             return True
         else:
+            print('错误内容:')
+            print('case:' + case)
+            print('response' + response)
             return False
 
     # 返回不同检查数据处理
     # 遇到list不检查list的数量去case中的第一个模板跟response中的内容最对比
     def response_diff_list(self, case, response, diff=[]):
+        # print(response)
         # if response == None:
         #     pass
         # else:
@@ -89,6 +93,9 @@ class Inspection_method():
             except Exception as e:
                 diff.append(False)
                 print(e)
+                print('错误内容:')
+                print('case:' + case)
+                print('response' + response)
         elif isinstance(case, dict):
             try:
                 if case.keys() == response.keys():
@@ -113,6 +120,9 @@ class Inspection_method():
             except Exception as e:
                 diff.append(False)
                 print(e)
+                print('错误内容:')
+                print('case:' + case)
+                print('response' + response)
         else:
             diff.append(self.response_data_check(case, response))
 

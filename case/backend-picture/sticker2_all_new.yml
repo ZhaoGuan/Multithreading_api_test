@@ -70,7 +70,7 @@ assert:
 #  字段格式
 # 多个返回可能的时候使用&连接可能性，使用@@@进行字段忽略
 # 返回内容如果是个多级字段则为前置条件条件各级用&连接
-  data_format :  {'errorMsg': 'Str', 'data': {'page': 'Int', 'next_page': 'Int', 'data': [{'icon_big': 'HTTP', 'icon': 'HTTP', 'column_count': 'Int', 'description': 'Str', 'key': 'Str', 'stickers': [{'scale_type': 'Int', 'image': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'tags': ['@@@'], 'webp': '@@@', 'key': 'Str', 'mp4': '$$$', 'name': 'Str', 'type': 'Int'}], 'name': 'Str', 'author': {'avatar': '@@@', 'key': '@@@', 'name': '@@@'}}], 'size': 'Int'}, 'errorCode': 'Int'}
+  data_format :  {'errorMsg': 'Str', 'data': {'page': 'Int', 'next_page': 'Int', 'data': [{'icon_big': 'HTTP', 'icon': 'HTTP', 'column_count': 'Int', 'description': 'Str', 'key': 'Str', 'stickers': [{'scale_type': 'Int', 'image': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'tags': ['@@@'], 'webp': '@@@', 'key': 'Str', 'mp4': '@@@', 'name': 'Str', 'type': 'Int'}], 'name': 'Str', 'author': {'avatar': '@@@', 'key': '@@@', 'name': '@@@'}}], 'size': 'Int'}, 'errorCode': 'Int'}
 # 数据检查
 # 前面的值是对应的维度，后面的字典内容({"key":"value"}key是对应值的路径，value是对应应该出现的值(如果值添加问#那么只坚持对应结构是否存在忽略其具体值）
 # 填写内容验证遵守json格式，数据使用""
