@@ -176,13 +176,12 @@ def case_runner(test_case, url):
                     if response['md5'] != '':
                         print('命中但md5为空')
                         print('失败')
-
                 else:
                     if response['md5'] == '':
                         print('md5不应该有返回')
                         print('失败')
             else:
-                if response['md5'] != '':
+                if response['md5'] == '':
                     print('命中但md5为空')
                     print('失败')
     except Exception as e:
