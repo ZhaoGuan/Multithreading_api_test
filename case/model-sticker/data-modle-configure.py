@@ -168,7 +168,7 @@ def case_runner(test_case, url):
             print('score值小于0了')
             print('失败')
         if response['limitScore'] != 0.0:
-            print('limitscore不为0')
+            print('limitscore不为0.0')
             print('失败')
     except Exception as e:
         print(e)
