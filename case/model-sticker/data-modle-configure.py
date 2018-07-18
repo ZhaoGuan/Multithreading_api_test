@@ -163,6 +163,13 @@ def case_runner(test_case, url):
             print(response)
             print('bucketName错误 ' + '预期为 ' + test_case['result']['bucketName'])
             print('失败')
+        # 与content-sending之间的关联主要有两个值一个是MD5(图片id)和score,如果有MD5会判断score的值如果大于等于limitScore(默认值为0.0，或者跟着传来的值)则会返回MD5值。否则会走随机逻辑
+        if response['score'] < 0:
+            print('score值小于0了')
+            print('失败')
+        if response['limitScore'] != 0.0:
+            print('limitscore不为0')
+            print('失败')
     except Exception as e:
         print(e)
         print('失败')
