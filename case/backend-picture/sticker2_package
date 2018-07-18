@@ -59,7 +59,7 @@ below:
         duid : ['5a215835df204115ee3d2d4ec0c528aa']
         content: ['content']
     online:
-      url: https://api.kikakeyboard.com/v1/stickers2/
+      url: https://api.kikakeyboard.com/v1/stickers2/?
       keys: ['content','duid']
       data:
         app: ['kika']
