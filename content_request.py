@@ -147,6 +147,7 @@ class Http_Test:
     def url_mosaic(self, data, header):
         url = self.url
         keys = self.keys
+        print(keys)
         if keys == None:
             pass
         else:
@@ -290,7 +291,7 @@ class Http_Test:
             url = self.url_mosaic(data, header)
             response = requests.request('get', url, headers=header)
         # print(url)
-        print(header)
+        # print(header)
         print(response.text)
         self.asser_api(data, response, fail)
         self.all_response(data, response, all_data_respone)
@@ -331,10 +332,11 @@ class Http_Test:
                 header = self.kika_request.set_header(duid, app=app, version=version, lang=lang, way=self.way,
                                                       android_level=android_level)
             url = self.url_mosaic(data, header)
+            # print(url)
             # 为了package的临时方案
             if 'content=' in url:
-                url = url.replace('content=', '').replace('&', '?')
-            # print(url)
+                url = url.replace('content=', '').replace('&', '?').replace('/?', '/')
+            print(url)
             response = requests.request('get', url, headers=header)
         print(response.text)
         self.asser_api(data, response, fail)
@@ -354,6 +356,7 @@ def content_request(Path, source='online'):
     above_test = Http_Test(above_config, source)
     below_test = Http_Test(below_config, source)
     content = above_test.above_url_request(above_test.url_keys_data()[0], above_fail, above_all_data_respone)
+    # print(content)
     if len(above_fail) == 0:
         below = below_test.below_url_request(content, below_test.url_keys_data()[0], below_fail, below_all_data_respone)
         if len(below_fail) > 0:
