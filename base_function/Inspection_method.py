@@ -8,8 +8,10 @@ class Inspection_method():
     # http资源验证
     def Http_Resources(self, url):
         # resources = request.
-        resources = requests.request('get', url)
-        # print(resources.status_code)
+        url = str(url)
+        print(str(url))
+        resources = requests.request('head', url)
+        print(resources.status_code)
         if resources.status_code == 200:
             resources_result = True
         else:
