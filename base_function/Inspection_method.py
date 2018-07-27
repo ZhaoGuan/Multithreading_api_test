@@ -161,6 +161,7 @@ class Inspection_method():
         check_key = [g for g in check_key_get][0]
         check_value_get = check.values()
         check_value = [z for z in check_value_get][0]
+        data_content_result_False = 0
         # 多种结果可能性
         if '&' in check_value:
             check_value = check_value.split('&')
@@ -168,14 +169,17 @@ class Inspection_method():
         # 字段包括在内的判断
         if '~' in check_value:
             check_value = check_value.split('~')[1]
-            print(check_value)
-            print(response_value)
+            # print(check_value)
+            # print(response_value)
             if check_value in str(response_value):
                 pass
             else:
-                print(data_content_key_)
-                print(str(check))
+                print('数据错误:')
+                # print(data_content_key_)
+                # print(str(check))
+                print(response)
                 data_content_result_False += 1
+                print(data_content_result_False)
         else:
             if isinstance(check_value, str):
                 if (str(response_value) == str(check_value)) or (str(check_value) == "#"):
@@ -183,7 +187,7 @@ class Inspection_method():
                 else:
                     print(data_content_key_)
                     print(str(check))
-                    # print(response_value)
+                    print(response_value)
                     data_content_result_False += 1
             else:
                 if (str(response_value) in list(check_value)) or (response_value == check_value):
@@ -191,7 +195,7 @@ class Inspection_method():
                 else:
                     print(data_content_key_)
                     print(str(check))
-                    # print(response_value)
+                    print(response_value)
                     data_content_result_False += 1
         return data_content_result_False
 
@@ -226,15 +230,19 @@ class Inspection_method():
                         pass
                     else:
                         print(data_content_key_)
-                        print(str(check))
+                        # print(str(check))
                         # print(response_value)
                         data_content_result_False += 1
             else:
+                print('数据内容错误:')
                 print(data_content_key_ + '对应条件值不存在')
                 print('对应判断条件值为：' + str(self.response_value(condition_key, response)))
         except Exception as e:
             print('条件路径有误')
             print(e)
+            print(data_content_key_)
+            # print(str(check))
+            print(response_value)
             data_content_result_False += 1
         return data_content_result_False
 
