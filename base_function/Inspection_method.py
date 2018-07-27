@@ -71,9 +71,10 @@ class Inspection_method():
         if True in result:
             return True
         else:
+            print(result)
             print('错误内容:')
             print('case:' + case)
-            print('response' + response)
+            print('response:' + response)
             return False
 
     # 返回不同检查数据处理
@@ -247,7 +248,7 @@ class Inspection_method():
         data_content_result_False = 0
         try:
             check = check_data
-            check = json.loads(check)
+            check = jison.loads(check)
             if '&' in data_content_key:
                 data_content_key_ = data_content_key.split('&')
                 keys = [f for f in data_content_key_]
