@@ -23,7 +23,7 @@ source:
     # 24e7edfba2194dc382288036b631ba44 有magictext 的情况 但是算法未处理1477的逻辑，暂时看无影响。
     #  duid : ['24e7edfba2194dc382288036b631ba44','6f033426b0b44ae2864a23f0ab164ba5','1d73d538d4dc999a1d1a082885de283d']
     # version可以通过对指定对象配置版本，最后一个&后填写版本之前的都是条件用&分隔
-      version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1477','kika&920b56e9cadd743bfbbcb4126937e789&2371','pro&920b56e9cadd743bfbbcb4126937e789&350']
+#      version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1477','kika&920b56e9cadd743bfbbcb4126937e789&2371','pro&920b56e9cadd743bfbbcb4126937e789&350']
     #  version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1477']
   ip:
     #test3
@@ -48,7 +48,7 @@ source:
     # 24e7edfba2194dc382288036b631ba44 有magictext 的情况 但是算法未处理1477的逻辑，暂时看无影响。
     #  duid : ['24e7edfba2194dc382288036b631ba44','6f033426b0b44ae2864a23f0ab164ba5','1d73d538d4dc999a1d1a082885de283d']
     # version可以通过对指定对象配置版本，最后一个&后填写版本之前的都是条件用&分隔
-      version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1477','kika&920b56e9cadd743bfbbcb4126937e789&2371','pro&920b56e9cadd743bfbbcb4126937e789&350']
+#      version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1477','kika&920b56e9cadd743bfbbcb4126937e789&2371','pro&920b56e9cadd743bfbbcb4126937e789&350']
     #  version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1477']
   online:
     url: https://api.kikakeyboard.com/v1/stickers2/popup?type=0&
@@ -73,7 +73,7 @@ source:
     # 24e7edfba2194dc382288036b631ba44 有magictext 的情况 但是算法未处理1477的逻辑，暂时看无影响。
     #  duid : ['24e7edfba2194dc382288036b631ba44','6f033426b0b44ae2864a23f0ab164ba5','1d73d538d4dc999a1d1a082885de283d']
     # version可以通过对指定对象配置版本，最后一个&后填写版本之前的都是条件用&分隔
-      version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1477','kika&920b56e9cadd743bfbbcb4126937e789&2370','pro&920b56e9cadd743bfbbcb4126937e789&490']
+#      version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1477','kika&920b56e9cadd743bfbbcb4126937e789&2370','pro&920b56e9cadd743bfbbcb4126937e789&490']
     #  version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1477']
   web0:
     #web0
@@ -97,7 +97,7 @@ source:
     # 24e7edfba2194dc382288036b631ba44 有magictext 的情况 但是算法未处理1477的逻辑，暂时看无影响。
     #  duid : ['24e7edfba2194dc382288036b631ba44','6f033426b0b44ae2864a23f0ab164ba5','1d73d538d4dc999a1d1a082885de283d']
     # version可以通过对指定对象配置版本，最后一个&后填写版本之前的都是条件用&分隔
-      version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1477','kika&920b56e9cadd743bfbbcb4126937e789&2370','pro&920b56e9cadd743bfbbcb4126937e789&490']
+#      version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1477','kika&920b56e9cadd743bfbbcb4126937e789&2370','pro&920b56e9cadd743bfbbcb4126937e789&490']
     #  version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1477']
 assert:
 #  返回码(只能第一层)
@@ -126,12 +126,12 @@ assert:
                   'ikey&920b56e9cadd743bfbbcb4126937e789&en':'{"data&extra":"~IkeyEnEmptyScenario"}',
                   'ikey&920b56e9cadd743bfbbcb4126937e789&pt':'{"data&extra":"~IkeyPtEmptyScenario"}',
                   # ikey1477以下版本不支持magic
-                  'ikey&1477':'{"data&type":"sticker"}',
-                  'ikey&1478':'{"data&type":"magic&sticker"}',
+#                  'ikey&1477':'{"data&type":"sticker"}',
+#                  'ikey&1478':'{"data&type":"magic&sticker"}',
                   # pro 350以下版本不支持magic
-                  'pro&490':'{"data&type":"sticker"}',
+#                  'pro&349':'{"data&type":"sticker"}',
                   # kika 2371以下版本不支持magic
-                  'kika&2370':'{"data&type":"sticker"}',
+#                  'kika&2370':'{"data&type":"sticker"}',
                   # kika pro 展示时间判断
                   'kika@1':'{"data&type":"sticker"}${"data&popup_duration":"5000"}',
                   'kika@2':'{"data&type":"magic"}${"data&popup_duration":"0"}',
