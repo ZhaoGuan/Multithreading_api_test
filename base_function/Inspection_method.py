@@ -248,7 +248,7 @@ class Inspection_method():
         data_content_result_False = 0
         try:
             check = check_data
-            check = jison.loads(check)
+            check = json.loads(check)
             if '&' in data_content_key:
                 data_content_key_ = data_content_key.split('&')
                 keys = [f for f in data_content_key_]
