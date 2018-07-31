@@ -6,3 +6,4 @@ shortuuid
 kafka-python
 sanic
 threadpool
+beautifulsoup4

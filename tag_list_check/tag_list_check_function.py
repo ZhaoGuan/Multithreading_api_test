@@ -74,6 +74,9 @@ class Tag_list_check:
         self.new_kika = 2485
         self.old_pro = 370
         self.new_pro = 371
+        self.new2_kika = 2879
+        self.new2_ikey = 2879
+        self.new2_pro = 2879
         self.host = 'api.kikakeyboard.com'
         self.way = 'online'
         self.tags_config_format = {
@@ -166,6 +169,13 @@ class Tag_list_check:
                     i['data'].update({'version': self.new_kika})
                 elif i['data']['product'] == 'pro':
                     i['data'].update({'version': self.new_pro})
+            elif i['data']['style'] == 'new2':
+                if i['data']['product'] == 'ikey':
+                    i['data'].update({'version': self.new2_ikey})
+                elif i['data']['product'] == 'kika':
+                    i['data'].update({'version': self.new2_kika})
+                elif i['data']['product'] == 'pro':
+                    i['data'].update({'version': self.new2_pro})
             else:
                 if i['data']['product'] == 'ikey':
                     i['data'].update({'version': self.old_ikey})

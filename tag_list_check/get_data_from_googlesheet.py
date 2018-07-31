@@ -36,7 +36,8 @@ def get_doc_data_to_csv():
                     # print(i['appconfig'])
             data.append(i)
     with open(PATH + '/app_config_sicker2_get_doc.csv', 'w') as new_csv:
-        writer = csv.DictWriter(new_csv, ['产品', '语言地区', '取模', '分组', '策略', '文档链接', '新版本appconfig', '老版本appconfig', '备注'])
+        writer = csv.DictWriter(new_csv, ['产品', '语言地区', '取模', '分组', '策略', '文档链接', '新版本appconfig 2', '新版本appconfig',
+                                          '老版本appconfig', '备注'])
         writer.writeheader()
         for e in data:
             # print(e)
@@ -50,6 +51,7 @@ def appconfig_data():
     result = []
     screen_data = []
     new_screen_data = []
+    new_screen_data2 = []
     with open(PATH + '/app_config_sicker2_get_doc.csv') as csv_data:
         dict_data = csv.DictReader(csv_data)
         for i in dict_data:
@@ -76,11 +78,10 @@ def appconfig_data():
             result.append(temp)
     # 新数据整理
     for n_f in data:
-        if n_f['新版本appconfig'] == None:
+        if (n_f['新版本appconfig'] == None) or (n_f['新版本appconfig'] == ''):
             pass
         else:
             new_screen_data.append(n_f)
-    # 老版本appconfig数据整理
     for n_e in new_screen_data:
         try:
             value = json.loads(n_e['新版本appconfig'])
@@ -93,12 +94,31 @@ def appconfig_data():
         temp = {'data': {'product': n_e['产品'], 'language': n_e['语言地区'], 'duid': duid, 'style': 'new'},
                 'check_value': value}
         result.append(temp)
-    print(len(result))
+    # 新数据整理2
+    for n2_f in data:
+        if (n2_f['新版本appconfig 2'] == None) or (n2_f['新版本appconfig 2'] == ''):
+            pass
+        else:
+            new_screen_data2.append(n2_f)
+    for n2_e in new_screen_data2:
+        try:
+            value = json.loads(n2_e['新版本appconfig 2'])
+        except:
+            pass
+            # print(n_e['策略'])
+        duid = n2_e['取模'].replace('%', '').split('==')
+        if duid == ['']:
+            duid = 'random'
+        temp = {'data': {'product': n2_e['产品'], 'language': n2_e['语言地区'], 'duid': duid, 'style': 'new2'},
+                'check_value': value}
+        result.append(temp)
     return result
 
 
 if __name__ == "__main__":
     # get_sheet()
     result = appconfig_data()
+    # for i in result:
+    #     print(i)
     # print(result)
     # get_doc_data_to_csv()
