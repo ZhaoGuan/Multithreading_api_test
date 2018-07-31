@@ -218,7 +218,16 @@ class Inspection_method():
         try:
             if str(self.response_value(condition_key, response)) == str(condition_value):
                 if isinstance(str(check_value), str):
-                    if (str(response_value) == str(check_value)) or (str(check_value) == "#"):
+                    # 有条件数据类型检查
+                    if "#" in str(check_value) and str(check_value) != "#":
+                        check_value_ = check_value[1:]
+                        if self.response_data_check(check_value_, str(response_value)):
+                            pass
+                        else:
+                            data_content_result_False += 1
+                    elif str(response_value) == str(check_value):
+                        pass
+                    elif str(check_value) == "#":
                         pass
                     else:
                         print(data_content_key_)

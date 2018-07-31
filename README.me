@@ -41,7 +41,7 @@ assert:
     data_format : {"errorCode":'Str',"errorMsg":'Str',"data":{'tag':'&&&'}}
 #数据检查
 #eg : '维g:度'：'{"key":"value"}'
-#前面的值是对应的维度，后面的字典内容key是对应值的路径，value是对应应该出现的值(如果值添加问#那么只坚持对应结构是否存在忽略其具体值)(单引号需要用''来表示)
+#前面的值是对应的维度，后面的字典内容key是对应值的路径，value是对应应该出现的值(如果值添加问#那么只坚持对应结构是否存在忽略其具体值,#Str表明检查内容为str类型,#Int表明为int类型#Bool表明为bool类型,#Float表明为float类型)(单引号需要用''来表示)
 #填写内容验证遵守json格式，数据使用""
 #可以使用条件进行判断
 #eg:'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&type":"sticker"}${"data&popup_duration":"5000"}'
