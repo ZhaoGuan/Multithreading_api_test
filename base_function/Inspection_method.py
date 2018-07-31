@@ -72,9 +72,9 @@ class Inspection_method():
             return True
         else:
             print(result)
-            print('错误内容:')
-            print('case:' + case)
-            print('response:' + response)
+            print('返回数据校验错误,错误内容:')
+            print('case:' + str(case))
+            print('response:' + str(response))
             return False
 
     # 返回不同检查数据处理
@@ -97,8 +97,8 @@ class Inspection_method():
                 diff.append(False)
                 print(e)
                 print('错误内容:')
-                print('case:' + case)
-                print('response' + response)
+                print('case:' + str(case))
+                print('response:' + response)
         elif isinstance(case, dict):
             try:
                 if case.keys() == response.keys():
@@ -117,15 +117,18 @@ class Inspection_method():
                             if isinstance(case[key], str):
                                 diff.append(self.response_data_check(case[key], response[key]))
                             else:
-                                self.response_diff_list(case[key], response[key], diff)
+                                if case[key] == response[key]:
+                                    pass
+                                else:
+                                    self.response_diff_list(case[key], response[key], diff)
                 else:
                     diff.append(False)
             except Exception as e:
                 diff.append(False)
                 print(e)
                 print('错误内容:')
-                print('case:' + case)
-                print('response' + response)
+                print('case:' + str(case))
+                print('response:' + str(response))
         else:
             diff.append(self.response_data_check(case, response))
 
@@ -152,6 +155,7 @@ class Inspection_method():
             except Exception as e:
                 print('不存在字段，内容报错:')
                 print(i)
+                print(response)
                 print(e)
         return response
 
@@ -215,19 +219,13 @@ class Inspection_method():
         if '&' in condition_value:
             condition_value = condition.split('&')
         response_value = self.response_value(check_key, response)
+        print('!!!!!!!!!!!!!!!!!!!!!!')
+        print(response_value)
         try:
             if str(self.response_value(condition_key, response)) == str(condition_value):
                 if isinstance(str(check_value), str):
                     # 有条件数据类型检查
-                    if "#" in str(check_value) and str(check_value) != "#":
-                        check_value_ = check_value[1:]
-                        if self.response_data_check(check_value_, str(response_value)):
-                            pass
-                        else:
-                            data_content_result_False += 1
-                    elif str(response_value) == str(check_value):
-                        pass
-                    elif str(check_value) == "#":
+                    if str(response_value) == str(check_value) or str(check_value) == "#":
                         pass
                     else:
                         print(data_content_key_)
@@ -290,6 +288,54 @@ class Inspection_method():
 
     # data_content有条件判断
     def data_content_check_condition(self, data, data_content_key_, condition, check_data, response):
+        if '*' in data_content_key_:
+            data_content_check_condition_result = self.data_content_check_condition_format(data, data_content_key_,
+                                                                                           condition, check_data,
+                                                                                           response)
+
+            return data_content_check_condition_result
+        else:
+            data_content_check_condition_result = self.data_content_check_condition_content(data, data_content_key_,
+                                                                                            condition, check_data,
+                                                                                            response)
+            return data_content_check_condition_result
+
+    # 检查数据结构
+    def data_content_check_condition_format(self, data, data_content_key_, condition, check_data, response):
+        # if '@' in data_content_key_:
+        #     data_content_key = data_content_key_.split('@')[0]
+        # else:
+        #     data_content_key = data_content_key_
+        data_content_result_False = 0
+        try:
+            condition = json.loads(condition)
+            check_data = json.loads(check_data)
+            for key, value in condition.items():
+                if self.response_value(key, response) != value:
+                    pass
+                else:
+                    for check_data_key, check_data_value in check_data.items():
+                        result = self.response_diff_list(check_data_value,
+                                                         self.response_value(str(check_data_key), response), diff=[])
+                        if result:
+                            pass
+                        else:
+                            data_content_result_False += 1
+
+        except Exception as e:
+            print('data_format数据检查,数据格式有误')
+            print(str(condition))
+            print(str(check_data))
+            print(response)
+            print(e)
+            data_content_result_False += 1
+        if data_content_result_False > 0:
+            return False
+        else:
+            return True
+
+    # 检查数据值
+    def data_content_check_condition_content(self, data, data_content_key_, condition, check_data, response):
         if '@' in data_content_key_:
             data_content_key = data_content_key_.split('@')[0]
         else:
@@ -299,8 +345,8 @@ class Inspection_method():
             check = check_data
             check = json.loads(check)
             condition = json.loads(condition)
-            if '&' in data_content_key:
-                data_content_key_ = data_content_key.split('&')
+            if '^' in data_content_key:
+                data_content_key_ = data_content_key.split('^')
                 keys = [f for f in data_content_key_]
                 data_list = list(data.values())
                 key_result = [g for g in keys if g in str(data_list)]
@@ -326,8 +372,8 @@ class Inspection_method():
     def data_content(self, data, Assert_data_content, response):
         data_content_result_false = 0
         for key, value in Assert_data_content.items():
-            if '$' in value:
-                check_data_all = value.split('$')
+            if '^' in value:
+                check_data_all = value.split('^')
                 check_condition = check_data_all[0]
                 check_data = check_data_all[-1]
                 data_content_result = self.data_content_check_condition(data, key, check_condition, check_data,

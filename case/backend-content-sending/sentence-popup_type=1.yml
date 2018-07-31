@@ -114,22 +114,22 @@ assert:
 # 前面的值是对应的维度，后面的字典内容({"key":"value"}key是对应值的路径，value是对应应该出现的值(如果值添加问#那么只坚持对应结构是否存在忽略其具体值）
 # 填写内容验证遵守json格式，数据使用""
 # 可以使用条件进行判断
-# eg:'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&popup_duration":"5000"}${"data&popup_duration":"4000"}'
+# eg:'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&popup_duration":"5000"}^{"data&popup_duration":"4000"}'
 # 维度为'ikey&920b56e9cadd743bfbbcb4126937e789'时且满足"data&popup_duration"对应字段等于5000是才进行{"data&popup_duration":"4000"}'判断
 # 在维度上有字段重复的时候使用"@数字"的形势进行区分
 # 多可能结果 eg:'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&popup_duration":"4000&500"}
   data_content : {
                   # ikey sticker和magic展示时间判断
-                  'ikey@1':'{"data&type":"sticker"}${"data&popup_duration":"5000"}',
-                  'ikey@2':'{"data&type":"magic"}${"data&popup_duration":"0"}',
+                  'ikey@1':'{"data&type":"sticker"}^{"data&popup_duration":"5000"}',
+                  'ikey@2':'{"data&type":"magic"}^{"data&popup_duration":"0"}',
                   'ikey@3':'{"data&extra":"~IkeyEnSentenceScenario"}',
 #                  'ikey&1478':'{"data&type":"magic&sticker"}',
                   # kika pro 展示时间判断
-#                  'kika@1':'{"data&type":"sticker"}${"data&popup_duration":"5000"}',
-#                  'kika@2':'{"data&type":"magic"}${"data&popup_duration":"0"}',
-#                  'pro@1':'{"data&type":"sticker"}${"data&sentence_duration":"5000"}',
-#                  'pro@2':'{"data&type":"magic"}${"data&sentence_duration":"0"}',
-#                  'ikey@3':'{"data&type":"sticker"}${"data&stickers&0&sentences&0":"awawad ok"}',
+#                  'kika@1':'{"data&type":"sticker"}^{"data&popup_duration":"5000"}',
+#                  'kika@2':'{"data&type":"magic"}^{"data&popup_duration":"0"}',
+#                  'pro@1':'{"data&type":"sticker"}^{"data&sentence_duration":"5000"}',
+#                  'pro@2':'{"data&type":"magic"}^{"data&sentence_duration":"0"}',
+#                  'ikey@3':'{"data&type":"sticker"}^{"data&stickers&0&sentences&0":"awawad ok"}',
 #                  'kika@2':'{"data&stickers&0&sentences&0":"awawad ok"}',
 #                  'pro@@2':'{"data&stickers&0&sentences&0":"awawad ok"}'
                   }
