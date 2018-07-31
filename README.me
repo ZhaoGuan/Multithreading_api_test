@@ -37,20 +37,22 @@ assert:
   #  字段格式
   # 多个返回可能的时候使用&连接可能性，使用@@@进行字段胡洛
   # 返回内容如果是个多级字段则为前置条件条件各级用&连接
-  # $$$表示内容可以为null
+  # $$$表示内容可以为null或使用null
     data_format : {"errorCode":'Str',"errorMsg":'Str',"data":{'tag':'&&&'}}
 #数据检查
 #eg : '维g:度'：'{"key":"value"}'
-#前面的值是对应的维度，后面的字典内容key是对应值的路径，value是对应应该出现的值(如果值添加问#那么只坚持对应结构是否存在忽略其具体值,#Str表明检查内容为str类型,#Int表明为int类型#Bool表明为bool类型,#Float表明为float类型)(单引号需要用''来表示)
+#前面的值是对应的维度，后面的字典内容key是对应值的路径，value是对应应该出现的值(如果值添加问#那么只坚持对应结构是否存在忽略其具体值)(单引号需要用''来表示)
 #填写内容验证遵守json格式，数据使用""
 #可以使用条件进行判断
-#eg:'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&type":"sticker"}${"data&popup_duration":"5000"}'
+#eg:'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&type":"sticker"}^{"data&popup_duration":"5000"}'
 #维度为'ikey&920b56e9cadd743bfbbcb4126937e789'时且满足"data&type":"sticker"对应字段等于5000是才进行{"data&popup_duration":"4000"}'判断
 #在维度上有字段重复的时候使用"@数字"的形势进行区分
 #多可能结果 eg:'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&popup_duration":"4000&500"}
-    data_content : {'ikey':'{"data&stickers&0&popup_duration":"5000"}'}
+#检查特定字段下的数据结构 eg: '*@1':'{"data&popupList&0&type":"sticker"}^{"data&popupList&0":{"magic": null, "type": "Str", "sticker": {"key": "Str", "sourceText": "Str", "iconUrl": "$$$&HTTP","image": {"width": "Int", "md5": "Str", "height": "Int", "url": "HTTP","size": "Int"}, "packageId": "$$$&Int&Str"}}}'
 #内容中带有关键字 eg:'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&extra":"~EmptyScenario"}'
-    data下extra字段中要包含EmptyScenario这个字段其中~代表包含
+data下extra字段中要包含EmptyScenario这个字段其中~代表包含
+    data_content : {'ikey':'{"data&stickers&0&popup_duration":"5000"}'}
+
 #其他内容设定
 other:
 #header的选择(其实就是api或api-dev)
