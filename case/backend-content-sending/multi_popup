@@ -9,8 +9,8 @@ source:
     data:
       app: ['kika','ikey','pro']
 #      app: ['ikey']
-      kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
-#      kb_lang : ['en_US']
+#      kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
+      kb_lang : ['en_US']
     #  kb_lang : ['pt_BR']
       tag : ['ok']
       duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
@@ -51,9 +51,10 @@ source:
 #      version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1477','kika&920b56e9cadd743bfbbcb4126937e789&2371','pro&920b56e9cadd743bfbbcb4126937e789&350']
     #  version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1477']
   online:
-    url: https://api.kikakeyboard.com/v1/stickers2/multi/popup?type=0&
+#    url: https://api.kikakeyboard.com/v1/stickers2/multi/popup?type=0&
     #web0
 #    url: http://sticker.pre.kikakeyboard.com/backend-content-sending/multi/popup?type=0&
+    url: http://sticker.pre.kikakeyboard.com/backend-content-sending/multi/popup?type=0&
     cycle_times: 1
     keys: ['kb_lang','tag','duid']
     data:
