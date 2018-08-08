@@ -46,7 +46,7 @@ def run_wechat(project):
     text = project + ' Fail !!!!!!'
     with open(PATH + '/../report/Api_test_report.html') as f:
         soup = BeautifulSoup(f)
-        fail_count = soup.find_all('td', class_='failClass')
+        fail_count = soup.find_all('td', class_='failCase')
         print('failClass数量:')
         print(len(fail_count))
         if len(fail_count) > 0:
