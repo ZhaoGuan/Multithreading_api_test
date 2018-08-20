@@ -1,7 +1,7 @@
 operation_mode: sigle_request
 source:
   test:
-    url: http://34.214.222.244:8080/backend-content-sending-gif-search/v1/gifsticker/search?offset=0&limite=10&
+    url: http://34.214.222.244:808/backend-content-sending-gif-search/v1/gifsticker/search?offset=0&limite=10&
     #test
     #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
     #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&

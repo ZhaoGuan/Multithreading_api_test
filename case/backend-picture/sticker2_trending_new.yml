@@ -69,7 +69,7 @@ assert:
 # 返回内容如果是个多级字段则为前置条件条件各级用&连接
 # *注意新增webp非gif的图片webp字段不应为null
 #  data_format : {'errorCode': 'Int', 'data': {'page': 'Int', 'data': [{'icon_big': 'HTTP', 'author': {'avatar': '@@@', 'name': '@@@', 'key': '@@@'}, 'icon': 'HTTP', 'description': 'Str', 'column_count': 'Int', 'key': 'Str', 'name': 'Str', 'stickers': [{'type': 'Int', 'key': 'Str', 'scale_type': 'Int', 'image': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'tags': [], 'name': 'Str', 'webp': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'mp4': '$$$'}]}], 'next_page': 'Int', 'size': 'Int'}, 'errorMsg': 'Str'}
-  data_format : {'errorCode': 'Int', 'data': {'page': 'Int', 'data': [{'icon_big': 'HTTP', 'author': {'avatar': '@@@', 'name': '@@@', 'key': '@@@'}, 'icon': 'HTTP', 'description': 'Str', 'column_count': 'Int', 'key': 'Str', 'name': '@@@', 'stickers': [{'type': 'Int', 'key': 'Str', 'scale_type': 'Int', 'image': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'tags': ['@@@'], 'name': '@@@', 'webp': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'mp4': '$$$'}]}], 'next_page': 'Int', 'size': 'Int'}, 'errorMsg': 'Str'}
+  data_format : {'errorCode': 'Int', 'data': {'page': 'Int', 'data': [{'icon_big': 'HTTP', 'author': {'avatar': '@@@', 'name': '@@@', 'key': '@@@'}, 'icon': 'HTTP', 'description': 'Str', 'column_count': 'Int&$$$', 'key': 'Str', 'name': '@@@', 'stickers': [{'type': 'Int', 'key': 'Str', 'scale_type': 'Int', 'image': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'tags': ['@@@'], 'name': '@@@', 'webp': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'mp4': '$$$'}]}], 'next_page': 'Int', 'size': 'Int'}, 'errorMsg': 'Str'}
 # 数据检查
 # 前面的值是对应的维度，后面的字典内容({"key":"value"}key是对应值的路径，value是对应应该出现的值(如果值添加问#那么只坚持对应结构是否存在忽略其具体值）
 # 填写内容验证遵守json格式，数据使用""
