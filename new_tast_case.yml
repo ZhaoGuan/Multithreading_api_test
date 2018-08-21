@@ -1,0 +1,84 @@
+assert:
+  code: {key: errorCode, value: 0}
+  data_content: {ikey&920b56e9cadd743bfbbcb4126937e789: '{"data&extra":"~mptyBucket"}',
+    ikey&920b56e9cadd743bfbbcb4126937e789&en: '{"data&extra":"~IkeyEnEmptyScenario"}',
+    ikey&920b56e9cadd743bfbbcb4126937e789&pt: '{"data&extra":"~IkeyPtEmptyScenario"}',
+    ikey@1: '{"data&type":"sticker"}^{"data&popup_duration":"5000"}', ikey@2: '{"data&type":"magic"}^{"data&popup_duration":"0"}',
+    kika@1: '{"data&type":"sticker"}^{"data&popup_duration":"5000"}', kika@2: '{"data&type":"magic"}^{"data&popup_duration":"0"}',
+    pro@1: '{"data&type":"sticker"}^{"data&popup_duration":"5000"}', pro@2: '{"data&type":"magic"}^{"data&popup_duration":"0"}'}
+  data_format:
+    '{"data&type":"magic"}':
+      data:
+        extra: Str
+        magics:
+        - {key: Str, style: Str}
+        popup_duration: Int
+        stickers: $$$
+        type: Str
+      errorCode: Int
+      errorMsg: Str
+    '{"data&type":"sticker"}':
+      data:
+        extra: Str
+        magics: $$$
+        popup_duration: Int
+        stickers:
+        - caption: Str&$$$
+          icon_url: Str&$$$
+          image: {height: Int, md5: Str, size: Int, url: Str, width: Int}
+          key: Str
+          mark: Str&$$$
+          mp4: $$$
+          name: $$$
+          package_id: Str&$$$
+          popup_duration: Int
+          scale_type: Int
+          source_text: Str&$$$
+          tags: ['@@@']
+        type: Str
+      errorCode: Int
+      errorMsg: Str
+  response_header: {}
+operation_mode: sigle_request
+other: {host: null, way: online}
+source:
+  ip:
+    cycle_times: 1
+    data:
+      app: [kika, ikey, pro]
+      duid: [5a215835df204115ee3d2d4ec0c528aa, adad79631d9339915e3be1c9e783e82d, a2bb5434f3541bf5aa64186ec8c2b77f,
+        920b56e9cadd743bfbbcb4126937e789]
+      kb_lang: [en_US, en_AU, es_AR, pt_BR, in_ID, fr]
+      tag: [ok]
+    keys: [kb_lang, tag, duid]
+    url: http://172.31.23.134:9090/backend-content-sending/popup?type=0&
+  online:
+    cycle_times: 1
+    data:
+      app: [kika, ikey, pro]
+      duid: [5a215835df204115ee3d2d4ec0c528aa, adad79631d9339915e3be1c9e783e82d, a2bb5434f3541bf5aa64186ec8c2b77f,
+        920b56e9cadd743bfbbcb4126937e789]
+      kb_lang: [en_US, en_AU, es_AR, pt_BR, in_ID, fr]
+      tag: [ok]
+    keys: [kb_lang, tag, duid]
+    url: https://api.kikakeyboard.com/v1/stickers2/popup?type=0&
+  test:
+    cycle_times: 1
+    data:
+      app: [kika, ikey, pro]
+      duid: [5a215835df204115ee3d2d4ec0c528aa, adad79631d9339915e3be1c9e783e82d, a2bb5434f3541bf5aa64186ec8c2b77f,
+        920b56e9cadd743bfbbcb4126937e789]
+      kb_lang: [en_US, en_AU, es_AR, pt_BR, in_ID, fr]
+      tag: [ok]
+    keys: [kb_lang, tag, duid]
+    url: http://34.214.222.244:9090/backend-content-sending/popup?type=0&
+  web0:
+    cycle_times: 1
+    data:
+      app: [kika, ikey, pro]
+      duid: [5a215835df204115ee3d2d4ec0c528aa, adad79631d9339915e3be1c9e783e82d, a2bb5434f3541bf5aa64186ec8c2b77f,
+        920b56e9cadd743bfbbcb4126937e789]
+      kb_lang: [en_US, en_AU, es_AR, pt_BR, in_ID, fr]
+      tag: [ok]
+    keys: [kb_lang, tag, duid]
+    url: http://sticker.pre.kikakeyboard.com/backend-content-sending/popup?type=0&
