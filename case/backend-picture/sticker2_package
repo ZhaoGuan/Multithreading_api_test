@@ -71,7 +71,7 @@ below:
     code : {'key':'errorCode','value':0}
   # *注意新增webp非gif的图片webp字段不应为null
 #    data_format : {'errorCode': 'Int', 'errorMsg': 'Str', 'data': {'icon': 'HTTP', 'stickers': [{'mp4': '@@@','webp':'$$$', 'image': {'url': 'HTTP', 'height': 'Int', 'width': 'Int'}, 'key': 'Str', 'name': 'Str', 'type': 'Int', 'tags': ['@@@'], 'scale_type': 'Int'}], 'author': {'key': '@@@', 'avatar': '@@@', 'name': '@@@'}, 'key': 'Str', 'column_count': 'Int', 'description': 'Str', 'name': 'Str', 'icon_big': 'HTTP'}}
-  data_format : {'data': {'icon_big': 'HTTP', 'column_count': 'Int&$$$', 'icon': 'HTTP', 'description': 'Str', 'name': '@@@', 'key': 'Str', 'stickers': [{'tags': ['@@@'], 'mp4': '$$$', 'type': 'Int', 'webp': {'width': 'Int', 'height': 'Int', 'url': 'HTTP'}, 'name': '@@@', 'image': {'width': 'Int', 'height': 'Int', 'url': 'HTTP'}, 'key': 'Str', 'scale_type': 'Int'}], 'author': {'name': '@@@', 'avatar': '@@@', 'key': '@@@'}}, 'errorCode': 'Int', 'errorMsg': 'Str'}
+  data_format : {'data': {'icon_big': 'HTTP', 'column_count': 'Int&$$$', 'icon': 'HTTP', 'description': 'Str', 'name': '@@@', 'key': 'Str', 'stickers': [{'tags': ['@@@'], 'mp4': '$$$&@@@', 'type': 'Int', 'webp': {'width': 'Int', 'height': 'Int', 'url': 'HTTP'}, 'name': '@@@', 'image': {'width': 'Int', 'height': 'Int', 'url': 'HTTP'}, 'key': 'Str', 'scale_type': 'Int'}], 'author': {'name': '@@@', 'avatar': '@@@', 'key': '@@@'}}, 'errorCode': 'Int', 'errorMsg': 'Str'}
   other:
     way: online
     host:
