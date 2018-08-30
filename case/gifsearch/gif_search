@@ -15,7 +15,7 @@ source:
       kb_lang : ['en_US']
       app: ['ikey']
       lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
-      tag : ['ok','lol']
+      tag : ['ok','lol','']
       version: ['1478']
   ip:
     url: http://172.31.23.134:8080/backend-content-sending-gif-search/v1/gifsticker/search?offset=0&limite=10&
@@ -32,7 +32,7 @@ source:
       kb_lang : ['en_US']
       app: ['ikey']
       lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
-      tag : ['ok','lol']
+      tag : ['ok','lol','']
       version: ['1478']
 
   online:
@@ -50,7 +50,7 @@ source:
       kb_lang : ['en_US']
       app: ['ikey']
       lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
-      tag : ['ok','lol']
+      tag : ['ok','lol','']
       version: ['1478']
 assert:
 #  返回码(只能第一层)
