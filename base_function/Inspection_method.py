@@ -107,28 +107,28 @@ class Inspection_method():
                 print('response:' + str(response))
         elif isinstance(case, dict):
             try:
-                if case.keys() == response.keys():
-                    for key in case.keys():
-                        # 值得类型是list进行忽略检查
-                        if isinstance(case[key], list):
-                            if isinstance(case[key][0], dict):
-                                self.response_diff_list(case[key], response[key], diff)
-                            else:
-                                # dict value检查有@@@忽略(强制转化了下期中的内容），这里是对list数量不对称的处理
-                                if '@@@' in case[key]:
-                                    continue
-                                else:
-                                    self.response_diff_list(case[key], response[key], diff)
+                # if case.keys() == response.keys():
+                for key in case.keys():
+                    # 值得类型是list进行忽略检查
+                    if isinstance(case[key], list):
+                        if isinstance(case[key][0], dict):
+                            self.response_diff_list(case[key], response[key], diff)
                         else:
-                            if isinstance(case[key], str):
-                                diff.append(self.response_data_check(case[key], response[key]))
+                            # dict value检查有@@@忽略(强制转化了下期中的内容），这里是对list数量不对称的处理
+                            if '@@@' in case[key]:
+                                continue
                             else:
-                                if case[key] == response[key]:
-                                    pass
-                                else:
-                                    self.response_diff_list(case[key], response[key], diff)
-                else:
-                    diff.append(False)
+                                self.response_diff_list(case[key], response[key], diff)
+                    else:
+                        if isinstance(case[key], str):
+                            diff.append(self.response_data_check(case[key], response[key]))
+                        else:
+                            if case[key] == response[key]:
+                                pass
+                            else:
+                                self.response_diff_list(case[key], response[key], diff)
+                # else:
+                #     diff.append(False)
             except Exception as e:
                 diff.append(False)
                 print(e)
