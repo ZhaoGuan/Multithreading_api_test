@@ -43,18 +43,26 @@ def SendInfo(user, content):
 
 
 def run_wechat(project):
-    text = project + ' Fail !!!!!!'
-    with open(PATH + '/../report/Api_test_report.html') as f:
+    text = project + ' Fail !!!!!! \n'
+    fail_case = 'fail_case: \n'
+    # with open(PATH + '/../report/Api_test_report.html') as f:
+    with open(
+            './Api_test_report.html') as f:
         soup = BeautifulSoup(f)
-        fail_count = soup.find_all('td', class_='failCase')
+        fail_cases = soup.find_all('td', class_='failCase')
+        for case in fail_cases:
+            case_test = case.string
+            fail_case += case_test + '\n'
         print('failClass数量:')
-        print(len(fail_count))
-        if len(fail_count) > 0:
+        print(len(fail_cases))
+        if len(fail_cases) > 0:
             print('发送失败结果')
+            text += fail_case
             SendInfo('guanzhao', text + ' FailCount:' + str(len(fail_count)))
 
 
 if __name__ == '__main__':
     # run_wechat('test')
-    content = 'test'
-    SendInfo('guanzhao', content)
+    # content = 'test'
+    # SendInfo('guanzhao', content)
+    run_wechat('112312')
