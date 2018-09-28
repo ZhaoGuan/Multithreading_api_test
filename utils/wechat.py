@@ -59,11 +59,11 @@ def run_wechat(project):
         if len(fail_cases) > 0:
             print('发送失败结果')
             text += fail_case
-            SendInfo('guanzhao', text + ' FailCount:' + str(fail_count))
+            SendInfo('guanzhao|zhangtong', text + ' FailCount:' + str(fail_count))
 
 
 if __name__ == '__main__':
     # run_wechat('test')
-    # content = 'test'
-    # SendInfo('guanzhao', content)
-    run_wechat('112312')
+    content = 'test'
+    SendInfo('guanzhao|zhangtong', content)
+    # run_wechat('112312')
