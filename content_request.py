@@ -4,19 +4,17 @@
 import json
 
 import requests
-import yaml
 import random
 import copy
 
-from base_function.Inspection_method import Inspection_method
-# from base_function.data_sqlite import *
+from base_function.Inspection_method import InspectionMethod
 from base_function.kika_base_request import Kika_base_request
 from base_function.golable_function import config_reader
 
-Inspection_method = Inspection_method()
+Inspection_method = InspectionMethod()
 
 
-class Http_Test:
+class HttpTest:
     def __init__(self, config, source='online'):
         self.config = config
         self.url = self.config['source'][source]['url']
@@ -60,9 +58,9 @@ class Http_Test:
         except:
             self.host = None
         try:
-            self.Assert = self.config['assert']
+            self.assert_data = self.config['assert']
         except:
-            self.Assert = None
+            self.assert_data = None
         # 默认version
         self.version = 1477
         self.kika_request = Kika_base_request(self.host)
@@ -139,8 +137,6 @@ class Http_Test:
                         copy_data.update({'version': self.version})
                     temp_all_data.append(copy_data)
                 all_data = temp_all_data
-        # print(all_data)
-        # print(len(all_data))
         return all_data
 
     # url 重新拼接
@@ -148,9 +144,7 @@ class Http_Test:
         url = self.url
         keys = self.keys
         print(keys)
-        if keys == None:
-            pass
-        else:
+        if keys != None:
             if ('&' == url[-1]) or ('?' == url[-1]):
                 for i in keys:
                     if i != keys[-1]:
@@ -174,35 +168,35 @@ class Http_Test:
 
     # 检查
     def asser_api(self, data, response, fail):
-        Assert = self.Assert
+        assert_data = self.assert_data
         try:
-            Assert_code = Assert['code']
+            assert_data_code = assert_data['code']
         except:
-            Assert_code = None
+            assert_data_code = None
         try:
-            Assert_data_format = Assert['data_format']
+            assert_data_data_format = assert_data['data_format']
         except:
-            Assert_data_format = None
+            assert_data_data_format = None
         try:
-            Assert_data_content = Assert['data_content']
+            assert_data_data_content = assert_data['data_content']
         except:
-            Assert_data_content = None
+            assert_data_data_content = None
         try:
-            Assert_data_response_header = Assert['response_header']
+            assert_data_data_response_header = assert_data['response_header']
         except:
-            Assert_data_response_header = None
+            assert_data_data_response_header = None
         fail_data = {}
         reason = []
         if response.status_code != 200:
             reason.append('接口返回值不等于200')
         try:
             response_data = json.loads(response.text)
-            if Assert_code != None:
-                code = response_data[Assert['code']['key']]
-                if code != int(Assert['code']['value']):
-                    reason.append('接口对应code' + Assert['code']['key'] + '值错误,返回内容为' + str(code))
-            if Assert_data_format != None:
-                case = Assert['data_format']
+            if assert_data_code != None:
+                code = response_data[assert_data['code']['key']]
+                if code != int(assert_data['code']['value']):
+                    reason.append('接口对应code' + assert_data['code']['key'] + '值错误,返回内容为' + str(code))
+            if assert_data_data_format != None:
+                case = assert_data['data_format']
                 if '&' in str(case.keys()):
                     for i in case.keys():
                         condition = json.loads(i)
@@ -215,22 +209,19 @@ class Http_Test:
                     data_format_result = Inspection_method.response_diff_list(case, response_data, [])
                 if data_format_result == False:
                     reason.append('接口数据格式错误,返回格式为:' + response.text)
-            if Assert_data_content != None:
-                data_content_result = Inspection_method.data_content(data, Assert_data_content, response_data)
+            if assert_data_data_content != None:
+                data_content_result = Inspection_method.data_content(data, assert_data_data_content, response_data)
                 if data_content_result == False:
                     reason.append('接口数据错误,返回数据为:' + response.text)
-            if Assert_data_response_header != None:
+            if assert_data_data_response_header != None:
                 data_response_header_result = Inspection_method.response_headers_check(data,
-                                                                                       Assert_data_response_header,
+                                                                                       assert_data_data_response_header,
                                                                                        response)
                 if data_response_header_result == False:
                     reason.append('接口response header数据错误,headers数据为:' + str(response.headers))
         except Exception as e:
             print(e)
             print('非JSON')
-            # fail_data.update({'data': data, 'reason': '带有非JSON内容'})
-            # fail.append(fail_data)
-            pass
         if len(reason) > 0:
             fail_data.update({'data': data, 'reason': reason})
             fail.append(fail_data)
@@ -290,8 +281,6 @@ class Http_Test:
                                                       android_level=android_level)
             url = self.url_mosaic(data, header)
             response = requests.request('get', url, headers=header)
-        # print(url)
-        # print(header)
         print(response.text)
         self.asser_api(data, response, fail)
         self.all_response(data, response, all_data_respone)
@@ -344,8 +333,8 @@ class Http_Test:
         return response.text
 
 
-def content_request(Path, source='online'):
-    config = config_reader(Path)
+def content_request(path, source='online'):
+    config = config_reader(path)
     # print(config)
     above_config = config['above']
     below_config = config['below']
@@ -353,12 +342,12 @@ def content_request(Path, source='online'):
     above_all_data_respone = []
     below_fail = []
     below_all_data_respone = []
-    above_test = Http_Test(above_config, source)
-    below_test = Http_Test(below_config, source)
+    above_test = HttpTest(above_config, source)
+    below_test = HttpTest(below_config, source)
     content = above_test.above_url_request(above_test.url_keys_data()[0], above_fail, above_all_data_respone)
     # print(content)
     if len(above_fail) == 0:
-        below = below_test.below_url_request(content, below_test.url_keys_data()[0], below_fail, below_all_data_respone)
+        below_test.below_url_request(content, below_test.url_keys_data()[0], below_fail, below_all_data_respone)
         if len(below_fail) > 0:
             print('上文结果通过,下文结果错误，错位内容:\n' + str(below_fail))
             result = False

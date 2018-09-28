@@ -44,9 +44,3 @@ def delete_table():
     conn.commit()
     conn.close()
 
-
-if __name__ == "__main__":
-    # create_table()
-    # instet_table('asdadadadasdasd', 'dadadasdasdadadadasdassssssssssssssssssssssss')
-    # delete_table()
-    print(reader_table())

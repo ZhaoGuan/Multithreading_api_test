@@ -4,8 +4,8 @@ import yaml
 import sys, getopt
 
 
-def config_reader(Yaml_file):
-    yf = open(Yaml_file)
+def config_reader(yamlfile):
+    yf = open(yamlfile)
     yx = yaml.load(yf)
     yf.close()
     return yx
