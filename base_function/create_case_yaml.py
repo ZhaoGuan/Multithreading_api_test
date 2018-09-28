@@ -21,20 +21,11 @@ def create_case_list(folder_name, source='online'):
     case_result = {}
     caselist = case_list(folder_name)
     for case in caselist:
-        if '!' in case:
-            pass
-        else:
+        if '!' not in  case:
             case_result.update({case: {'path': case, 'source': source}})
     with open(PATH + '/../temp/cases.yaml', 'w') as case:
         yaml.dump(case_result, case, default_flow_style=False)
 
 
 if __name__ == '__main__':
-    # case_list('backend-content-sending')
-    # create_case_list('backend-content-sending', 'online')
-    # create_case_list('backend-content-sending', 'web0')
-    # create_case_list('backend-content-sending', 'test')
-    # create_case_list('gifsearch', 'online')
     create_case_list('backend-picture', 'test')
-    # create_case_list('ip_group', 'online')
-    # create_case_list('gifkeyboard', 'online')

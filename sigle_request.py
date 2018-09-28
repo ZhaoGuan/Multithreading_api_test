@@ -13,7 +13,6 @@ import os
 import threadpool
 import http.client
 from base_function.Inspection_method import Inspection_method
-# from base_function.data_sqlite import *
 from base_function.kika_base_request import Kika_base_request
 
 Inspection_method = Inspection_method()
@@ -143,17 +142,13 @@ class Http_Test:
                         copy_data.update({'version': self.version})
                     temp_all_data.append(copy_data)
                 all_data = temp_all_data
-        # print(all_data)
-        # print(len(all_data))
         return all_data
 
     # url 重新拼接
     def url_mosaic(self, data, header):
         url = self.url
         keys = self.keys
-        if keys == None:
-            pass
-        else:
+        if keys != None:
             if ('&' == url[-1]) or ('?' == url[-1]):
                 for i in keys:
                     if i != keys[-1]:
@@ -170,9 +165,6 @@ class Http_Test:
                     re_sign = 'sign=' + sign
                     duid = 'duid=' + data['duid']
                     url = url.replace(duid, re_sign)
-            else:
-                pass
-        # print(url)
         return url
 
     # 检查
@@ -272,9 +264,6 @@ class Http_Test:
                 header = self.kika_request.set_header(duid, app=app, version=version, lang=lang, way=self.way,
                                                       android_level=android_level)
             url = self.url_mosaic(data, header)
-            # print(self.way)
-            # print(self.host)
-            # print(url)
             print(header)
             print(url)
             response = requests.request('get', url, headers=header)
@@ -356,11 +345,6 @@ class Http_Test:
 
     # 进程+线程(总返回内容会有问题）
     def process(self, single_quantity=1, process_number=4):
-        # try:
-        #     create_table()
-        # except:
-        #     delete_table()
-        #     create_table()
         queue = Queue(4)
         start_time = time.time()
         fail = []
@@ -390,10 +374,7 @@ class Http_Test:
         print('有误的配置内容:')
         print(fail)
         print('所有返回的数量:')
-        # all_data = reader_table()
-        # print(len(all_data))
         print('所有返回内容:')
-        # print(all_data)
         if len(fail) != 0:
             print('有失败的内容！！！！！！！！！')
         else:
@@ -401,11 +382,6 @@ class Http_Test:
 
     # 策略C测试
     def c_process(self, single_quantity=1, process_number=4):
-        # try:
-        #     create_table()
-        # except:
-        #     delete_table()
-        #     create_table()
         q = Queue()
         start_time = time.time()
         fail = []
@@ -435,7 +411,6 @@ class Http_Test:
         print(int(time.time() - start_time))
         print('有误的配置内容:')
         print(fail)
-        # all_pic = reader_table()
         print(len(all_pic))
         pic = self.pic_statistics(all_pic)
         print('图片统计结果:')
@@ -444,10 +419,7 @@ class Http_Test:
 
 def sigle_request_runner(path, source='test'):
     config = config_reader(path)
-    # print(config)
     test = Http_Test(config, source)
-    # test.c_process(10)
-    # test.process(single_quantity=10)
     result = test.Multithreading_api()
     return result
 

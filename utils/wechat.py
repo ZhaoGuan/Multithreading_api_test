@@ -64,6 +64,6 @@ def run_wechat(project):
 
 if __name__ == '__main__':
     # run_wechat('test')
-    # content = 'test'
-    # SendInfo('guanzhao', content)
-    run_wechat('112312')
+    content = 'test'
+    SendInfo('guanzhao|zhangtong', content)
+    # run_wechat('112312')

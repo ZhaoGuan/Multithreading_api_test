@@ -93,9 +93,6 @@ class Kika_base_request:
                       'User-Agent': '%s/%s (%s/%s) Country/%s Language/%s System/android Version/%s Screen/480' % (
                           package_name, version, duid, app_key, use_lang[1], use_lang[2], android_level),
                       'X-Model': 'D6603', 'Accept-Encoding': 'gzip'}
-            # header = {
-            #     'User-Agent': '%s/%s (%s/%s) Country/%s Language/%s System/android Version/23 Screen/480' % (
-            #         package_name, version, duid, app_key, use_lang[1], use_lang[2])}
         else:
             # 测试
             header = {'Accept-Charset': 'UTF-8',
@@ -139,9 +136,6 @@ class Kika_base_request:
                           package_name, version, app_key, use_lang[1], use_lang[2], android_level),
                       'X-Model': 'D6603', 'Accept-Encoding': 'gzip',
                       'Request-Time': str(int(str(int(time.time())) + '000'))}
-            # header = {
-            #     'User-Agent': '%s/%s (%s/%s) Country/%s Language/%s System/android Version/23 Screen/480' % (
-            #         package_name, version, duid, app_key, use_lang[1], use_lang[2])}
         else:
             # 测试
             header = {'Accept-Charset': 'UTF-8',
@@ -187,8 +181,6 @@ class Kika_base_request:
     def which_group(self, way, duid):
         duid_value = self.sum_duid(duid)
         group = duid_value % int(way)
-        # print('取模结果：')
-        # print(group)
         return group
 
     # 获取对应取模值的duid
@@ -201,6 +193,4 @@ class Kika_base_request:
 
 
 if __name__ == "__main__":
-    # kika = Kika_base_request('kika')
-    # header = kika.set_new_header()
     print(int(str(int(time.time())) + '000'))

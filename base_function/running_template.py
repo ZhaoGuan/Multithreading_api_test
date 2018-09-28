@@ -35,7 +35,6 @@ class ApiTest(unittest.TestCase):
             result = content_request(file_path, source)
             assert result
         else:
-            # result = os.popen('python3 ' + file_path + ' -s ' + source).read()
             p = subprocess.Popen('python3 ' + file_path + ' -s ' + source, shell=True, stdout=subprocess.PIPE,
                                  stderr=subprocess.STDOUT)
             result = str(p.stdout.read().decode())
