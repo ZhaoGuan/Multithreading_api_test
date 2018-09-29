@@ -40,7 +40,7 @@ class Inspection_method():
         elif case == 'Float':
             result = isinstance(response, float)
         else:
-            if case != response:
+            if case != response and case != '@@@':
                 result = False
         return result
 
