@@ -10,9 +10,12 @@ class Inspection_method():
         # resources = request.
         url = str(url)
         print(str(url))
-        resources = requests.request('head', url)
-        print(resources.status_code)
-        if resources.status_code == 200:
+        if 'http' in url:
+            resources = requests.request('head', url).status_code
+        else:
+            resources =200
+        print(resources)
+        if resources == 200:
             resources_result = True
         else:
             resources_result = False
