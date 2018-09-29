@@ -13,7 +13,7 @@ class Inspection_method():
         if 'http' in url:
             resources = requests.request('head', url).status_code
         else:
-            resources =200
+            resources = 200
         print(resources)
         if resources == 200:
             resources_result = True
@@ -144,7 +144,7 @@ class Inspection_method():
         check_key = [g for g in check_key_get][0]
         check_value_get = check.values()
         check_value = [z for z in check_value_get][0]
-        data_content_result_False = 0
+        result_false_count = 0
         # 多种结果可能性
         if '&' in check_value:
             check_value = check_value.split('&')
@@ -157,20 +157,22 @@ class Inspection_method():
                 print(data_content_key_)
                 print(str(check))
                 print(response)
-                data_content_result_False += 1
-                print(data_content_result_False)
+                result_false_count += 1
+                print(result_false_count)
         else:
             if (isinstance(check_value, str) and (
                         (str(response_value) != str(check_value)) or (str(check_value) != "#"))) or (
-                        str(response_value) not in list(check_value)) or (response_value != check_value):
+                        str(response_value) not in list(check_value)):
                 print(data_content_key_)
                 print(str(check))
                 print(response_value)
-                data_content_result_False += 1
-        return data_content_result_False
+                result_false_count += 1
+        print(result_false_count)
+        return result_false_count
 
     # 有条件数据判断
     def content_check_condition(self, check, condition, data_content_key_, response):
+        result_false_count = 0
         check_key_get = check.keys()
         check_key = [g for g in check_key_get][0]
         check_value_get = check.values()
@@ -194,7 +196,7 @@ class Inspection_method():
                     print(data_content_key_)
                     print(str(check))
                     print(response_value)
-                    data_content_result_False += 1
+                    result_false_count += 1
             else:
                 print('数据内容错误:')
                 print(data_content_key_ + '对应条件值不存在')
@@ -205,8 +207,8 @@ class Inspection_method():
             print(data_content_key_)
             print(str(check))
             print(response_value)
-            data_content_result_False += 1
-        return data_content_result_False
+            result_false_count += 1
+        return result_false_count
 
     # data_content无条件判断
     def data_content_check(self, data, data_content_key_, check_data, response):
@@ -215,7 +217,7 @@ class Inspection_method():
             data_content_key = data_content_key_.split('@')[0]
         else:
             data_content_key = data_content_key_
-        data_content_result_False = 0
+        result_false_count = 0
         try:
             check = check_data
             check = json.loads(check)
@@ -226,18 +228,18 @@ class Inspection_method():
                 data_list = list(data.values())
                 key_result = [g for g in keys if g in str(data_list)]
                 if len(key_result) == len(keys):
-                    data_content_result_False = self.content_check(check, data_content_key_,
-                                                                   response)
+                    result_false_count = self.content_check(check, data_content_key_,
+                                                            response)
             else:
                 if data_content_key in list(data.values()):
-                    data_content_result_False = self.content_check(check, data_content_key_,
-                                                                   response)
+                    result_false_count = self.content_check(check, data_content_key_,
+                                                            response)
         except Exception as e:
             print('data_content数据检查,数据格式有误')
             print(check_data)
             print(e)
-            data_content_result_False += 1
-        if data_content_result_False > 0:
+            result_false_count += 1
+        if result_false_count > 0:
             return False
         else:
             return True
@@ -258,7 +260,7 @@ class Inspection_method():
 
     # 检查数据结构
     def data_content_check_condition_format(self, data, data_content_key_, condition, check_data, response):
-        data_content_result_False = 0
+        result_false_count = 0
         try:
             condition = json.loads(condition)
             check_data = json.loads(check_data)
@@ -268,7 +270,7 @@ class Inspection_method():
                         result = self.response_diff_list(check_data_value,
                                                          self.response_value(str(check_data_key), response), diff=[])
                         if result is False:
-                            data_content_result_False += 1
+                            result_false_count += 1
         except Exception as e:
             print('data_format数据检查,数据格式有误')
             print(data_content_key_)
@@ -277,8 +279,8 @@ class Inspection_method():
             print(str(check_data))
             print(response)
             print(e)
-            data_content_result_False += 1
-        if data_content_result_False > 0:
+            result_false_count += 1
+        if result_false_count > 0:
             return False
         else:
             return True
@@ -289,7 +291,7 @@ class Inspection_method():
             data_content_key = data_content_key_.split('@')[0]
         else:
             data_content_key = data_content_key_
-        data_content_result_False = 0
+        result_false_count = 0
         try:
             check = check_data
             check = json.loads(check)
@@ -300,27 +302,27 @@ class Inspection_method():
                 data_list = list(data.values())
                 key_result = [g for g in keys if g in str(data_list)]
                 if len(key_result) == len(keys):
-                    data_content_result_False = self.content_check_condition(check,
-                                                                             condition, data_content_key_, response)
+                    result_false_count = self.content_check_condition(check,
+                                                                      condition, data_content_key_, response)
             else:
                 if data_content_key in list(data.values()):
-                    data_content_result_False = self.content_check_condition(check,
-                                                                             condition, data_content_key_, response)
+                    result_false_count = self.content_check_condition(check,
+                                                                      condition, data_content_key_, response)
 
         except Exception as e:
             print('data_content数据检查,数据格式有误')
             print(check_data)
             print(e)
-            data_content_result_False += 1
-        if data_content_result_False > 0:
+            result_false_count += 1
+        if result_false_count > 0:
             return False
         else:
             return True
 
     # 对应字段返回对应值
-    def data_content(self, data, Assert_data_content, response):
-        data_content_result_false = 0
-        for key, value in Assert_data_content.items():
+    def data_content(self, data, content, response):
+        result_false_count = 0
+        for key, value in content.items():
             # 有条件
             if '^' in value:
                 check_data_all = value.split('^')
@@ -331,7 +333,7 @@ class Inspection_method():
                 data_content_result = self.data_content_check_condition(data, key, check_condition, check_data,
                                                                         response)
                 if data_content_result == False:
-                    data_content_result_false += 1
+                    result_false_count += 1
                 else:
                     pass
             # 无条件
@@ -339,8 +341,8 @@ class Inspection_method():
                 check_data = value
                 data_content_result = self.data_content_check(data, key, check_data, response)
                 if data_content_result is False:
-                    data_content_result_false += 1
-        if data_content_result_false > 0:
+                    result_false_count += 1
+        if result_false_count > 0:
             return False
         else:
             return True
