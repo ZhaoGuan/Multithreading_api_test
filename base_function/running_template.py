@@ -49,7 +49,7 @@ class ApiTest(unittest.TestCase):
 def case_runner():
     # 编辑用例
     # unittest.main()
-    a = ApiTest()
+    ApiTest()
     suite = unittest.TestSuite()
     # DDT的坑
     discover = unittest.defaultTestLoader.discover(PATH, pattern='running_template.py', top_level_dir=None)
