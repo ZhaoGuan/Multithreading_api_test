@@ -162,7 +162,7 @@ class Inspection_method():
         else:
             if (isinstance(check_value, str) and (
                         (str(response_value) != str(check_value)) or (str(check_value) != "#"))) or (
-                        str(response_value) not in list(check_value)) :
+                        str(response_value) not in list(check_value)):
                 print(data_content_key_)
                 print(str(check))
                 print(response_value)
