@@ -161,8 +161,9 @@ class Inspection_method():
                 print(result_false_count)
         else:
             if (isinstance(check_value, str) and (
-                        (str(response_value) != str(check_value)) or (str(check_value) != "#"))) or (
-                        str(response_value) not in list(check_value)):
+                            str(response_value) != str(check_value) and str(check_value) != "#")) or (
+                        isinstance(check_value, list) and (str(response_value) not in check_value)) or (
+                        isinstance(check_value, dict) and response_value != check_value):
                 print(data_content_key_)
                 print(str(check))
                 print(response_value)
@@ -188,10 +189,17 @@ class Inspection_method():
             condition_value = condition.split('&')
         response_value = self.response_value(check_key, response)
         try:
+            print('!!!!!!!!!!!!!!1')
+            print(response_value)
+            print(check_value)
+            print(condition_value)
+            print(str(self.response_value(condition_key, response)))
+            print(result_false_count)
             if str(self.response_value(condition_key, response)) == str(condition_value):
-                if (isinstance(str(check_value), str) and (
-                                str(response_value) != str(check_value) or str(check_value) != "#")) or (
-                            (str(response_value) not in list(check_value)) or (response_value != check_value)):
+                if (isinstance(check_value, str) and (
+                                str(response_value) != str(check_value) and str(check_value) != "#")) or (
+                            isinstance(check_value, list) and (str(response_value) not in check_value)) or (
+                            isinstance(check_value, dict) and response_value != check_value):
                     print('对应条件判断值有误：')
                     print(data_content_key_)
                     print(str(check))
@@ -308,6 +316,7 @@ class Inspection_method():
                 if data_content_key in list(data.values()):
                     result_false_count = self.content_check_condition(check,
                                                                       condition, data_content_key_, response)
+                    print(result_false_count)
 
         except Exception as e:
             print('data_content数据检查,数据格式有误')
