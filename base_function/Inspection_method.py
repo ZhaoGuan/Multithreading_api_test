@@ -28,7 +28,7 @@ class Inspection_method():
         if response == None:
             response = '$$$'
         if case == 'HTTP':
-            if self.Http_Resources(response) != True:
+            if self.Http_Resources(response):
                 result = False
         elif case == 'Bool':
             result = isinstance(response, bool)
