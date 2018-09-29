@@ -10,9 +10,12 @@ class Inspectionethod():
         # resources = request.
         url = str(url)
         print(str(url))
-        resources = requests.request('head', url)
-        print(resources.status_code)
-        if resources.status_code == 200:
+        if 'http' in url:
+            resources = requests.request('head', url).status_code
+        else:
+            resources = 200
+        print(resources)
+        if resources == 200:
             resources_result = True
         else:
             resources_result = False
@@ -21,13 +24,11 @@ class Inspectionethod():
     # 返回数据详细校验
     def response_data_check_(self, case, response):
         # None处理
+        result = True
         if response == None:
             response = '$$$'
-        result = True
         if case == 'HTTP':
-            if self.http_resources(response):
-                result = True
-            else:
+            if self.Http_Resources(response) is False:
                 result = False
         elif case == 'Bool':
             result = isinstance(response, bool)
@@ -42,8 +43,8 @@ class Inspectionethod():
         elif case == 'Float':
             result = isinstance(response, float)
         else:
-            if case != response:
-                result = True
+            if case != response and case != '@@@':
+                result = False
         return result
 
     # 返回数据校验
@@ -94,10 +95,9 @@ class Inspectionethod():
                 for key in case.keys():
                     # 值得类型是list进行忽略检查
                     if isinstance(case[key], list):
-                        if (isinstance(case[key][0], dict)) or ('@@@' not in case[key]):
+                        if isinstance(case[key][0], dict) and ('@@@' not in case[key]):
                             self.response_diff_list(case[key], response[key], diff)
                         else:
-                            # dict value检查有@@@忽略(强制转化了下期中的内容），这里是对list数量不对称的处理
                             continue
                     else:
                         if isinstance(case[key], str):
@@ -113,7 +113,6 @@ class Inspectionethod():
                 print('response:' + str(response))
         else:
             diff.append(self.response_data_check(case, response))
-
         if False in diff:
             return False
         else:
@@ -161,17 +160,20 @@ class Inspectionethod():
                 result_false_count += 1
                 print(result_false_count)
         else:
-            if (isinstance(check_value, str) and
-                    (str(response_value) != str(check_value)) or (str(check_value) != "#")) or \
-                    ((str(response_value) not in list(check_value)) or (response_value != check_value)):
+            if (isinstance(check_value, str) and (
+                            str(response_value) != str(check_value) and str(check_value) != "#")) or (
+                        isinstance(check_value, list) and (str(response_value) not in check_value)) or (
+                        isinstance(check_value, dict) and response_value != check_value):
                 print(data_content_key_)
                 print(str(check))
                 print(response_value)
                 result_false_count += 1
+        print(result_false_count)
         return result_false_count
 
     # 有条件数据判断
-    def content_check_condition(self, result_false_count, check, condition, data_content_key_, response):
+    def content_check_condition(self, check, condition, data_content_key_, response):
+        result_false_count = 0
         check_key_get = check.keys()
         check_key = [g for g in check_key_get][0]
         check_value_get = check.values()
@@ -187,11 +189,17 @@ class Inspectionethod():
             condition_value = condition.split('&')
         response_value = self.response_value(check_key, response)
         try:
+            print('!!!!!!!!!!!!!!1')
+            print(response_value)
+            print(check_value)
+            print(condition_value)
+            print(str(self.response_value(condition_key, response)))
+            print(result_false_count)
             if str(self.response_value(condition_key, response)) == str(condition_value):
-                if (isinstance(str(check_value), str) and
-                        (str(response_value) != str(check_value) or str(check_value) != "#")) \
-                        or ((str(response_value) not in list(check_value)) or (response_value != check_value)):
-                    # 有条件数据类型检查
+                if (isinstance(check_value, str) and (
+                                str(response_value) != str(check_value) and str(check_value) != "#")) or (
+                            isinstance(check_value, list) and (str(response_value) not in check_value)) or (
+                            isinstance(check_value, dict) and response_value != check_value):
                     print('对应条件判断值有误：')
                     print(data_content_key_)
                     print(str(check))
@@ -302,12 +310,13 @@ class Inspectionethod():
                 data_list = list(data.values())
                 key_result = [g for g in keys if g in str(data_list)]
                 if len(key_result) == len(keys):
-                    result_false_count = self.content_check_condition(result_false_count, check,
+                    result_false_count = self.content_check_condition(check,
                                                                       condition, data_content_key_, response)
             else:
                 if data_content_key in list(data.values()):
-                    result_false_count = self.content_check_condition(result_false_count, check,
+                    result_false_count = self.content_check_condition(check,
                                                                       condition, data_content_key_, response)
+                    print(result_false_count)
 
         except Exception as e:
             print('data_content数据检查,数据格式有误')
@@ -340,7 +349,7 @@ class Inspectionethod():
             else:
                 check_data = value
                 data_content_result = self.data_content_check(data, key, check_data, response)
-                if data_content_result == False:
+                if data_content_result is False:
                     result_false_count += 1
         if result_false_count > 0:
             return False
@@ -351,16 +360,16 @@ class Inspectionethod():
     def key_not_existence_value_not_equal(self, key, value, response_header, result):
         if key in response_header.keys():
             # 只坚持key
-            if (value != '@@@') and (response_header[key] != value):
+            if value == '@@@' and response_header[key] != value:
                 result.append(False)
         else:
             result.append(False)
 
     # response返回内容检查
-    def response_headers_check(self, data, header, response):
+    def response_headers_check(self, data, herader, response):
         response_header = eval(str(response.headers))
         result = []
-        for key, value in header.items():
+        for key, value in herader.items():
             if isinstance(value, str):
                 # 检查是否有对应的key有检查是否相等没有为错误
                 self.key_not_existence_value_not_equal(key, value, response_header, result)

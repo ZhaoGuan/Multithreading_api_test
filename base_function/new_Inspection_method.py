@@ -19,12 +19,12 @@ class InspectionMethod():
 
     # 返回数据详细校验
     def response_data_check_(self, case, response):
-        result = True
         # None处理
+        result = True
         if response == None:
             response = '$$$'
         if case == 'HTTP':
-            if self.http_resources(response) is False:
+            if self.Http_Resources(response) is False:
                 result = False
         elif case == 'Bool':
             result = isinstance(response, bool)
@@ -39,9 +39,7 @@ class InspectionMethod():
         elif case == 'Float':
             result = isinstance(response, float)
         else:
-            if case == response:
-                result = True
-            else:
+            if case != response and case != '@@@':
                 result = False
         return result
 
@@ -161,9 +159,10 @@ class InspectionMethod():
                 result_false_count += 1
                 print(result_false_count)
         else:
-            if (isinstance(check_value, str)
-                and (str(response_value) != str(check_value)) or (str(check_value) != "#")) or \
-                    ((str(response_value) not in list(check_value)) or (response_value != check_value)):
+            if (isinstance(check_value, str) and (
+                            str(response_value) != str(check_value) and str(check_value) != "#")) or (
+                        isinstance(check_value, list) and (str(response_value) not in check_value)) or (
+                        isinstance(check_value, dict) and response_value != check_value):
                 print(data_content_key_)
                 print(str(check))
                 print(response_value)
@@ -190,9 +189,10 @@ def content_check_condition(self, check, condition, data_content_key_, response)
     response_value = self.response_value(check_key, response)
     try:
         if str(self.response_value(condition_key, response)) == str(condition_value):
-            if (isinstance(str(check_value), str) and
-                    (str(response_value) != str(check_value) or str(check_value) != "#")) \
-                    or ((str(response_value) not in list(check_value)) or (response_value != check_value)):
+            if (isinstance(check_value, str) and (
+                            str(response_value) != str(check_value) and str(check_value) != "#")) or (
+                        isinstance(check_value, list) and (str(response_value) not in check_value)) or (
+                        isinstance(check_value, dict) and response_value != check_value):
                 # 有条件数据类型检查
                 print('对应条件判断值有误：')
                 print(data_content_key_)

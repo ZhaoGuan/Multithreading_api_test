@@ -423,13 +423,13 @@ def sigle_request_runner(path, source='test'):
 
 
 if __name__ == "__main__":
-    sigle_request_runner('./case/backend-content-sending/test_case', 'test')
-    # sigle_request_runner('./case/backend-content-sending/sentence-popup_type=1.yml', 'web0')
+    # sigle_request_runner('./case/backend-content-sending/test_case', 'test')
+    sigle_request_runner('./case/backend-content-sending/sentence-popup_type=1.yml', 'online')
     # sigle_request_runner('./case/backend-content-sending/cache_control')
     # sigle_request_runner('./case/backend-content-sending/Magictext_all', 'web0')
-    # sigle_request_runner('./case/backend-content-sending/pro_Tenor_API_test_pt')
+    # sigle_request_runner('./case/backend-content-sending/pro_Tenor_API_test_pt', 'online')
     # sigle_request_runner('./case/backend-content-sending/Magictext_all')
-    # sigle_request_runner('./case/gifsearch/gif_search', 'test')
+    # sigle_request_runner('./case/gifsearch/gif_search', 'online')
     # sigle_request_runner('./case/gifsearch/voice', 'online')
     # sigle_request_runner('./case/backend-content-sending/for_data_modle')
     # sigle_request_runner('./case/backend-picture/sticker2_trending')
