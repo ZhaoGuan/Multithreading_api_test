@@ -39,8 +39,6 @@ def sum_duid(duid):
 def which_group(duid, way):
     duid_value = sum_duid(duid)
     group = duid_value % way
-    # print('取模结果：')
-    # print(group)
     return group
 
 
@@ -89,8 +87,6 @@ def get_sign(app, version, duid):
 def set_header(duid, lang='en_AU', app='kika', version=2043, way='online'):
     lange_config = config_reader(PATH + '/../../config/lange')
     use_lang = lange_config[lang]
-    # print('@@@@@@@@')
-    # print(use_lang)
     if 'pro' == app:
         app_key = '4e5ab3a6d2140457e0423a28a094b1fd'
         security_key = '58d71c3fd1b5b17db9e0be0acc1b8048'
@@ -119,16 +115,11 @@ def set_header(duid, lang='en_AU', app='kika', version=2043, way='online'):
                   'X-Model': 'D6603',
                   'Accept-Encoding': 'gzip'
                   }
-        # header = {
-        #     'User-Agent': '%s/%s (%s/%s) Country/%s Language/%s System/android Version/23 Screen/480' % (
-        #         package_name, version, duid, app_key, use_lang[1], use_lang[2])}
     else:
         # 测试
         header = {
-            # {'Accept-Charset': 'UTF-8',
             'Kika-Install-Time': '1505198889124',
             'Connection': 'Keep-Alive',
-            # 'Host': 'api-dev.kikakeyboard.com',
             'Accept-Language': '%s' % use_lang[0],
             'User-Agent': '%s/%s (%s/%s) Country/%s Language/%s System/android Version/23 Screen/480' % (
                 package_name, version, duid, app_key, use_lang[1], use_lang[2]),
@@ -164,9 +155,6 @@ def popup(tag, duid, lang='en_AU', app='kika', version=2043, way='online'):
         #     tag, lang, sign)
     # 测试
     elif way == 'test':
-        # web0
-        # url = 'http://sticker.pre.kikakeyboard.com/backend-content-sending/popup?kb_lang=%s&tag=%s&sign=%s' % (
-        #     lang, tag, sign)
         url = 'http://34.214.222.244:9090/backend-content-sending/popup?tag=%s&kb_lang=%s&sign=%s&type=0' % (
             tag, lang, sign)
     elif way == 'web0':
@@ -188,7 +176,6 @@ def popup(tag, duid, lang='en_AU', app='kika', version=2043, way='online'):
         assert False == True, 'popup接口有误'
     print(json.loads(response.text))
     return response.text
-    # return response.headers
 
 
 def molde4():
@@ -510,8 +497,6 @@ def run(source):
         # try:
         if extra_data['alg_hit'] == '1':
             '''目前'thresholdScore', 'source'不统计'''
-            # shall_be_keys = ['bucket', 'taghit', 'scenario', 'status',
-            #                  'recommend', 'sessionId', 'alg_hit']
             shall_be_keys = ['bucket', 'taghit', 'scenario',
                              'recommend', 'sessionId', 'alg_hit']
             for key in shall_be_keys:
@@ -525,7 +510,6 @@ def run(source):
                     #     assert False
                     #     break
         elif extra_data['alg_hit'] == '0':
-            # shall_be_keys = ['bucket', 'scenario', 'sessionId', 'alg_hit', 'status']
             shall_be_keys = ['bucket', 'scenario', 'sessionId', 'alg_hit']
             for key in shall_be_keys:
                 if key not in extra_data.keys():
