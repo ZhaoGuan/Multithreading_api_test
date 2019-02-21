@@ -13,7 +13,6 @@ import os
 import threadpool
 import http.client
 from base_function.Inspection_method import Inspection_method
-# from base_function.data_sqlite import *
 from base_function.kika_base_request import Kika_base_request
 
 Inspection_method = Inspection_method()
@@ -32,12 +31,14 @@ class Http_Test:
         try:
             self.data = self.config['source'][source]['data']
             # 如果data中有为空的默认data为空
-            for key, value in self.data.iteams():
-                if value == None:
-                    self.data = None
-                    break
+            if 'None' in str(self.data):
+                self.data = None
         except:
             self.data = None
+        try:
+            self.check_way = self.config['source'][source]['check_way']
+        except:
+            self.check_way = None
         # version处理
         try:
             if self.data['version'] == None:
@@ -67,7 +68,9 @@ class Http_Test:
         except:
             self.Assert = None
         # 默认version
-        self.version = 1477
+        # self.version = 1477
+        # ikey 1477以上支持magictext
+        self.version = 2732
         self.kika_request = Kika_base_request(self.host)
         self.fail_list = []
         self.all_list = []
@@ -86,6 +89,21 @@ class Http_Test:
                 keys_data.update({'version': version})
         else:
             keys_data.update({'version': version_data})
+
+    # now_way
+    def check_the_way(self, all_data):
+        if (self.check_way == None) or (self.check_way == []):
+            return all_data
+        else:
+            temp = []
+            for check in self.check_way:
+                for data in all_data:
+                    if check in str(data):
+                        data.update({'check': 'new'})
+                        temp.append(data)
+                    else:
+                        temp.append(data)
+                return temp
 
     # url key 数据整理
     def url_keys_data(self):
@@ -110,6 +128,7 @@ class Http_Test:
                     for g in temp:
                         temp_all.append(g)
                 all_data = temp_all
+        all_data = self.check_the_way(all_data)
         # 处理version
         temp_all_data = []
         for data in all_data:
@@ -123,28 +142,29 @@ class Http_Test:
                         copy_data.update({'version': self.version})
                     temp_all_data.append(copy_data)
                 all_data = temp_all_data
-        # print(all_data)
-        # print(len(all_data))
         return all_data
 
     # url 重新拼接
-    def url_mosaic(self, data):
+    def url_mosaic(self, data, header):
         url = self.url
         keys = self.keys
-        if '&' != url[-1]:
-            pass
-        else:
-            for i in keys:
-                if i != keys[-1]:
-                    url = url + i + '=' + data[i] + '&'
-                else:
-                    url = url + i + '=' + data[i]
-            if 'duid' in url:
-                sign = self.kika_request.get_sign(version=data['version'], duid=data['duid'], app=data['app'])
-                re_sign = 'sign=' + sign
-                duid = 'duid=' + data['duid']
-                url = url.replace(duid, re_sign)
-        # print(url)
+        if keys != None:
+            if ('&' == url[-1]) or ('?' == url[-1]):
+                for i in keys:
+                    if i != keys[-1]:
+                        url = url + i + '=' + data[i] + '&'
+                    else:
+                        url = url + i + '=' + data[i]
+                if 'duid' in url:
+                    if ('check' in list(data.keys())):
+                        sign = self.kika_request.get_new_sign(version=data['version'], duid=data['duid'],
+                                                              app=data['app'],
+                                                              requestime=header['Request-Time'])
+                    else:
+                        sign = self.kika_request.get_sign(version=data['version'], duid=data['duid'], app=data['app'])
+                    re_sign = 'sign=' + sign
+                    duid = 'duid=' + data['duid']
+                    url = url.replace(duid, re_sign)
         return url
 
     # 检查
@@ -221,6 +241,7 @@ class Http_Test:
                       'Content-type': 'application / json'}
             response = requests.request('get', url, headers=header, timeout=60)
             response.encoding = 'utf-8'
+
         else:
             lang = data['kb_lang']
             if '%' in data['duid']:
@@ -235,16 +256,19 @@ class Http_Test:
                 android_level = int(data['android_level'])
             except:
                 android_level = 23
-            header = self.kika_request.set_header(duid, app=app, version=version, lang=lang, way=self.way,
-                                                  android_level=android_level)
-            url = self.url_mosaic(data)
-            # print(self.way)
-            # print(self.host)
-            # print(url)
-            # print(header)
-            # print(url)
+            print(data)
+            if ('check' in list(data.keys())):
+                header = self.kika_request.set_new_header(duid, app=app, version=version, lang=lang, way=self.way,
+                                                          android_level=android_level)
+            else:
+                header = self.kika_request.set_header(duid, app=app, version=version, lang=lang, way=self.way,
+                                                      android_level=android_level)
+            url = self.url_mosaic(data, header)
+            print(header)
+            print(url)
             response = requests.request('get', url, headers=header)
             response.encoding = 'utf-8'
+            # print(response.headers)
         self.asser_api(data, response, self.fail_list)
         self.all_response(data, response, self.all_list)
 
@@ -290,6 +314,7 @@ class Http_Test:
             print('测试通过！！！！')
         return result
 
+    # 以下弃用
     # 线程
     def threading(self, fail, queue, single_quantity):
         # 多少组测试数据
@@ -320,11 +345,6 @@ class Http_Test:
 
     # 进程+线程(总返回内容会有问题）
     def process(self, single_quantity=1, process_number=4):
-        # try:
-        #     create_table()
-        # except:
-        #     delete_table()
-        #     create_table()
         queue = Queue(4)
         start_time = time.time()
         fail = []
@@ -354,10 +374,7 @@ class Http_Test:
         print('有误的配置内容:')
         print(fail)
         print('所有返回的数量:')
-        # all_data = reader_table()
-        # print(len(all_data))
         print('所有返回内容:')
-        # print(all_data)
         if len(fail) != 0:
             print('有失败的内容！！！！！！！！！')
         else:
@@ -365,11 +382,6 @@ class Http_Test:
 
     # 策略C测试
     def c_process(self, single_quantity=1, process_number=4):
-        # try:
-        #     create_table()
-        # except:
-        #     delete_table()
-        #     create_table()
         q = Queue()
         start_time = time.time()
         fail = []
@@ -399,7 +411,6 @@ class Http_Test:
         print(int(time.time() - start_time))
         print('有误的配置内容:')
         print(fail)
-        # all_pic = reader_table()
         print(len(all_pic))
         pic = self.pic_statistics(all_pic)
         print('图片统计结果:')
@@ -408,24 +419,27 @@ class Http_Test:
 
 def sigle_request_runner(path, source='test'):
     config = config_reader(path)
-    # print(config)
     test = Http_Test(config, source)
-    # test.c_process(10)
-    # test.process(single_quantity=10)
     result = test.Multithreading_api()
     return result
 
 
 if __name__ == "__main__":
-    # sigle_request_runner('./case/backend-content-sending/test_case')
+    # sigle_request_runner('./case/backend-content-sending/test_case', 'test')
+    sigle_request_runner('./case/backend-content-sending/sentence-popup_type=1.yml', 'online')
     # sigle_request_runner('./case/backend-content-sending/cache_control')
+    # sigle_request_runner('./case/backend-content-sending/Magictext_all', 'web0')
+    # sigle_request_runner('./case/backend-content-sending/pro_Tenor_API_test_pt', 'online')
     # sigle_request_runner('./case/backend-content-sending/Magictext_all')
-    # sigle_request_runner('./case/backend-content-sending/pro_Tenor_API_test_pt')
-    # sigle_request_runner('./case/backend-content-sending/Magictext_all')
-    # sigle_request_runner('./case/gifsearch/gif_search')
+    # sigle_request_runner('./case/gifsearch/gif_search', 'online')
+    # sigle_request_runner('./case/gifsearch/voice', 'online')
     # sigle_request_runner('./case/backend-content-sending/for_data_modle')
     # sigle_request_runner('./case/backend-picture/sticker2_trending')
-    # sigle_request_runner('./case/backend-picture/sticker2_all')
-    # sigle_request_runner('./case/ip_group/zk.yml')
-    # sigle_request_runner('./case/advertising/advertising.yml', 'ip')
-    sigle_request_runner('./case/gifkeyboard/tag.yml', 'online')
+    # sigle_request_runner('./case/backend-picture/sticker2_all', 'online')
+    # sigle_request_runner('./case/backend-picture/sticker2_all', 'online')
+    # sigle_request_runner('./case/ip_group/zk.yml', 'online')
+    # sigle_request_runner('./case/advertising/advertising.yml', 'online')
+    # sigle_request_runner('./case/advertising/recommendconfig_magictext_list.yml', 'online')
+    # sigle_request_runner('./case/advertising/game.yml', 'online')
+    # sigle_request_runner('./case/gifkeyboard/tag.yml', 'online')
+    # sigle_request_runner('./case/gifsearch/social', 'test')

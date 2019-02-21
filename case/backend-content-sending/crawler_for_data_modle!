@@ -1,36 +1,40 @@
 operation_mode: sigle_request
 source:
+#test
   test:
-    url: http://34.214.222.244:19091/group/v1/match/worldcupnews
-    #test
-    #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
-    #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
+    #爬虫
+    url : http://34.214.222.244:9090/backend-content-sending/v1/sticker2/crawler_resource_with_tags
+#    url : http://172.31.23.134:9090/backend-content-sending/v1/sticker2/crawler_resource_with_tags
     cycle_times: 1
-    #web0
-    #url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
     keys:
     data:
-      # 这里kb_lang,duid,app只是为了header
+  ip:
+    #爬虫
+#    url : http://34.214.222.244:9090/backend-content-sending/v1/sticker2/crawler_resource_with_tags
+    url : http://172.31.23.134:9090/backend-content-sending/v1/sticker2/crawler_resource_with_tags
+    cycle_times: 1
+    keys:
+    data:
   online:
-    url: https://api.kikakeyboard.com/v1/ip-groups/activity/tag?activity=worldcup&style=page
-    #test
-    #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
-    #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
+    #爬虫
+    url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/sticker2/crawler_resource_with_tags
     cycle_times: 1
-    #web0
-    #url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
     keys:
     data:
-      # 这里kb_lang,duid,app只是为了header
+  web0:
+    #爬虫
+    url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/sticker2/crawler_resource_with_tags
+    cycle_times: 1
+    keys:
+    data:
 assert:
 #  返回码(只能第一层)
   code : {'key':'errorCode','value':0}
 #  字段格式
 # 多个返回可能的时候使用&连接可能性，使用@@@进行字段胡洛
 # 返回内容如果是个多级字段则为前置条件条件各级用&连接
-  data_format :
-#  data_format : {'errorMsg': 'Str', 'errorCode': 'Int', 'data': {'current': 'Int', 'newInfo': [{'zc': {'icon': 'HTTP&Str', 'name': 'Str'}, 'trueTime': 'Str', 'kc': {'icon': 'HTTP&Str', 'name': 'Str'}, 'info': 'Str', 'time': 'Int', 'score': ['Int']}]}}
-# 数据检查'http://34.214.222.244:19091/group/v1/activity/pic?activity=worldcup&tag=ok'
+  data_format : {'data': '@@@', 'errorCode': 'Int', 'errorMsg': 'Str'}
+# 数据检查
 # 前面的值是对应的维度，后面的字典内容({"key":"value"}key是对应值的路径，value是对应应该出现的值(如果值添加问#那么只坚持对应结构是否存在忽略其具体值）
 # 填写内容验证遵守json格式，数据使用""
 # 可以使用条件进行判断

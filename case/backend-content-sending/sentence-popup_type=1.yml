@@ -2,17 +2,17 @@ operation_mode: sigle_request
 source:
   test:
     #test3
-    url: http://34.214.222.244:9090/backend-content-sending/popup?type=0&
-#    url: http://172.31.23.134:9090/backend-content-sending/popup?type=0&
+    url: http://34.214.222.244:9090/backend-content-sending/popup-sentence?type=1&
+#    url: http://172.31.23.134:9090/backend-content-sending/popup-sentence?type=1&
     cycle_times: 1
-    keys: ['kb_lang','tag','duid']
+    keys: ['kb_lang','sentence','duid']
     data:
-      app: ['kika','ikey','pro']
-    #  app: ['ikey']
-      kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
-#      kb_lang : ['en_US', 'en_AU']
+#      app: ['kika','ikey','pro']
+      app: ['ikey']
+#      kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
+      kb_lang : ['en_US']
     #  kb_lang : ['pt_BR']
-      tag : ['ok']
+      sentence : ['awawad ok']
       duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
               '920b56e9cadd743bfbbcb4126937e789']
     #  算法duid
@@ -23,21 +23,21 @@ source:
     # 24e7edfba2194dc382288036b631ba44 有magictext 的情况 但是算法未处理1477的逻辑，暂时看无影响。
     #  duid : ['24e7edfba2194dc382288036b631ba44','6f033426b0b44ae2864a23f0ab164ba5','1d73d538d4dc999a1d1a082885de283d']
     # version可以通过对指定对象配置版本，最后一个&后填写版本之前的都是条件用&分隔
-#      version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1477','kika&920b56e9cadd743bfbbcb4126937e789&2371','pro&920b56e9cadd743bfbbcb4126937e789&350']
-    #  version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1477']
+      version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1478','kika&920b56e9cadd743bfbbcb4126937e789&2371','pro&920b56e9cadd743bfbbcb4126937e789&350']
+#      version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1478']
   ip:
     #test3
-#    url: http://34.214.222.244:9090/backend-content-sending/popup?type=0&
-    url: http://172.31.23.134:9090/backend-content-sending/popup?type=0&
+#    url: http://34.214.222.244:9090/backend-content-sending/popup-sentence?type=1&
+    url: http://172.31.23.134:9090/backend-content-sending/popup-sentence?type=1&
     cycle_times: 1
-    keys: ['kb_lang','tag','duid']
+    keys: ['kb_lang','sentence','duid']
     data:
-      app: ['kika','ikey','pro']
+      app: ['ikey']
     #  app: ['ikey']
-      kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
-#      kb_lang : ['en_US', 'en_AU']
+#      kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
+      kb_lang : ['en_US']
     #  kb_lang : ['pt_BR']
-      tag : ['ok']
+      sentence : ['awawad ok']
       duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
               '920b56e9cadd743bfbbcb4126937e789']
     #  算法duid
@@ -48,21 +48,21 @@ source:
     # 24e7edfba2194dc382288036b631ba44 有magictext 的情况 但是算法未处理1477的逻辑，暂时看无影响。
     #  duid : ['24e7edfba2194dc382288036b631ba44','6f033426b0b44ae2864a23f0ab164ba5','1d73d538d4dc999a1d1a082885de283d']
     # version可以通过对指定对象配置版本，最后一个&后填写版本之前的都是条件用&分隔
-#      version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1477','kika&920b56e9cadd743bfbbcb4126937e789&2371','pro&920b56e9cadd743bfbbcb4126937e789&350']
-    #  version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1477']
+      version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1478','kika&920b56e9cadd743bfbbcb4126937e789&2371','pro&920b56e9cadd743bfbbcb4126937e789&350']
+#      version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1478']
   online:
-    url: https://api.kikakeyboard.com/v1/stickers2/popup?type=0&
+    url: https://api.kikakeyboard.com/v1/stickers2/popup-sentence?type=1&
     #web0
-#    url: http://sticker.pre.kikakeyboard.com/backend-content-sending/popup?type=0&
+#    url: http://sticker.pre.kikakeyboard.com/backend-content-sending/popup-sentence?type=1&
     cycle_times: 1
-    keys: ['kb_lang','tag','duid']
+    keys: ['kb_lang','sentence','duid']
     data:
-      app: ['kika','ikey','pro']
-    #  app: ['ikey']
-      kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
-#      kb_lang : ['en_US', 'en_AU']
+#      app: ['kika','ikey','pro']
+      app: ['ikey']
+#      kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
+      kb_lang : ['en_US']
     #  kb_lang : ['pt_BR']
-      tag : ['ok']
+      sentence : ['awawad ok']
       duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
               '920b56e9cadd743bfbbcb4126937e789']
     #  算法duid
@@ -73,20 +73,20 @@ source:
     # 24e7edfba2194dc382288036b631ba44 有magictext 的情况 但是算法未处理1477的逻辑，暂时看无影响。
     #  duid : ['24e7edfba2194dc382288036b631ba44','6f033426b0b44ae2864a23f0ab164ba5','1d73d538d4dc999a1d1a082885de283d']
     # version可以通过对指定对象配置版本，最后一个&后填写版本之前的都是条件用&分隔
-#      version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1477','kika&920b56e9cadd743bfbbcb4126937e789&2370','pro&920b56e9cadd743bfbbcb4126937e789&490']
-    #  version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1477']
+      version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1478','kika&920b56e9cadd743bfbbcb4126937e789&2371','pro&920b56e9cadd743bfbbcb4126937e789&350']
+#      version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1478']
   web0:
     #web0
-    url: http://sticker.pre.kikakeyboard.com/backend-content-sending/popup?type=0&
+    url: http://sticker.pre.kikakeyboard.com/backend-content-sending/popup-sentence?type=1&
     cycle_times: 1
-    keys: ['kb_lang','tag','duid']
+    keys: ['kb_lang','sentence','duid']
     data:
-      app: ['kika','ikey','pro']
-    #  app: ['ikey']
+#      app: ['kika','ikey','pro']
+      app: ['ikey']
       kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
-#      kb_lang : ['en_US', 'en_AU']
+      kb_lang : ['en_US']
     #  kb_lang : ['pt_BR']
-      tag : ['ok']
+      sentence : ['awawad ok']
       duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
               '920b56e9cadd743bfbbcb4126937e789']
     #  算法duid
@@ -97,8 +97,8 @@ source:
     # 24e7edfba2194dc382288036b631ba44 有magictext 的情况 但是算法未处理1477的逻辑，暂时看无影响。
     #  duid : ['24e7edfba2194dc382288036b631ba44','6f033426b0b44ae2864a23f0ab164ba5','1d73d538d4dc999a1d1a082885de283d']
     # version可以通过对指定对象配置版本，最后一个&后填写版本之前的都是条件用&分隔
-#      version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1477','kika&920b56e9cadd743bfbbcb4126937e789&2370','pro&920b56e9cadd743bfbbcb4126937e789&490']
-    #  version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1477']
+      version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1478','kika&920b56e9cadd743bfbbcb4126937e789&2371','pro&920b56e9cadd743bfbbcb4126937e789&350']
+#      version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1478']
 assert:
 #  返回码(只能第一层)
   code : {'key':'errorCode','value':0}
@@ -122,24 +122,16 @@ assert:
                   # ikey sticker和magic展示时间判断
                   'ikey@1':'{"data&type":"sticker"}^{"data&popup_duration":"5000"}',
                   'ikey@2':'{"data&type":"magic"}^{"data&popup_duration":"0"}',
-#                  'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&extra":"~mptyBucket"}',
-                  'ikey&920b56e9cadd743bfbbcb4126937e789&en':'{"data&extra":"~IkeyEnEmptyScenario"}',
-                  'ikey&920b56e9cadd743bfbbcb4126937e789&pt':'{"data&extra":"~IkeyPtEmptyScenario"}',
-                  # ikey1477以下版本不支持magic
-#                  'ikey&1477':'{"data&type":"sticker"}',
+                  'ikey@3':'{"data&extra":"~IkeyEnSentenceScenario"}',
 #                  'ikey&1478':'{"data&type":"magic&sticker"}',
-                  # pro 350以下版本不支持magic
-#                  'pro&349':'{"data&type":"sticker"}',
-                  # kika 2371以下版本不支持magic
-#                  'kika&2370':'{"data&type":"sticker"}',
                   # kika pro 展示时间判断
-                  'kika@1':'{"data&type":"sticker"}^{"data&popup_duration":"5000"}',
-                  'kika@2':'{"data&type":"magic"}^{"data&popup_duration":"0"}',
-                  'pro@1':'{"data&type":"sticker"}^{"data&popup_duration":"5000"}',
-                  'pro@2':'{"data&type":"magic"}^{"data&popup_duration":"0"}',
-#                  'ikey@3':'{"data&type":"sticker"}^{"data&stickers&0&tags&0":"ok"}',
-#                  'kika@2':'{"data&stickers&0&tags&0":"ok"}',
-#                  'pro@@2':'{"data&stickers&0&tags&0":"ok"}'
+#                  'kika@1':'{"data&type":"sticker"}^{"data&popup_duration":"5000"}',
+#                  'kika@2':'{"data&type":"magic"}^{"data&popup_duration":"0"}',
+#                  'pro@1':'{"data&type":"sticker"}^{"data&sentence_duration":"5000"}',
+#                  'pro@2':'{"data&type":"magic"}^{"data&sentence_duration":"0"}',
+#                  'ikey@3':'{"data&type":"sticker"}^{"data&stickers&0&sentences&0":"awawad ok"}',
+#                  'kika@2':'{"data&stickers&0&sentences&0":"awawad ok"}',
+#                  'pro@@2':'{"data&stickers&0&sentences&0":"awawad ok"}'
                   }
 # response_header检查
 # 可根据前面的条件检查，条件能够用&关联

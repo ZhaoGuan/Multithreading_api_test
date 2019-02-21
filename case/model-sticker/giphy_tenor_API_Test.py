@@ -11,6 +11,9 @@ import sys
 PATH = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(PATH + '/../../')
 from base_function.golable_function import source_input
+from base_function.Inspection_method import Inspection_method
+
+config = ''
 
 
 # 获取数据库信息作为用例准备
@@ -148,14 +151,27 @@ def case_runner(test_case, url):
     try:
         response = json.loads(response.text)
         print(response)
+        # config_diff = Inspection_method().response_diff_list(config, response, diff)
+        # if config_diff == False:
+        #     print('数据结构有误')
+        #     print('失败')
         if response['extra']['scenario'] != test_case['result']['scenario']:
             print(test_case)
             print('失败')
             print('scenario错误 ' + '预期为 ' + test_case['result']['scenario'])
-            # if response['extra']['bucketName'] != test_case['result']['bucketName']:
-            #     print(test_case)
-            #     print(response)
-            #     print('bucketName错误 ' + '预期为 ' + test_case['result']['bucketName'])
+        if response['extra']['bucketName'] != test_case['result']['bucketName']:
+            print(test_case)
+            print(response)
+            print('bucketName错误 ' + '预期为 ' + test_case['result']['bucketName'])
+            print('失败')
+        # 与content-sending之间的关联主要有两个值一个是MD5(图片id)和score,如果有MD5会判断score的值如果大于等于limitScore(默认值为0.0，或者跟着传来的值)则会返回MD5值。否则会走随机逻辑
+        if response['score'] < 0:
+            print('score值小于0了')
+            print('失败')
+        if response['limitScore'] != 0.0:
+            print('limitscore不为0.0')
+            print('失败')
+
     except Exception as e:
         print(e)
         print('失败')
@@ -165,8 +181,8 @@ def case_runner(test_case, url):
 
 def request_test(test_case, source):
     # if source == 'test':
-        # 测试
-        # url = 'http://52.43.155.219:8080/model-sticker/recommend/maturity/popup?sessionId=123&tag=ok&'
+    # 测试
+    # url = 'http://52.43.155.219:8080/model-sticker/recommend/maturity/popup?sessionId=123&tag=ok&'
     # elif source == 'ip':
     #     url = 'http://172.31.23.134:8080/model-sticker/recommend/maturity/popup?sessionId=123&tag=ok&'
     # elif source == 'spring':
@@ -187,19 +203,22 @@ def request_test(test_case, source):
         # 线上
         # pt
         url = 'http://172.31.21.95:8080/recommend/maturity/popup?sessionId=123&tag=ok&'
-    elif source == 'en_online':
+    elif source == 'en_online0':
         # en
         # 0
-        url0 = 'http://172.31.17.179:8080/recommend/maturity/popup?sessionId=123&tag=ok&'
+        url = 'http://172.31.17.179:8080/recommend/maturity/popup?sessionId=123&tag=ok&'
+    elif source == 'en_online1':
         # 1
-        url1 = 'http://172.31.28.21:8080/recommend/maturity/popup?sessionId=123&tag=ok&'
+        url = 'http://172.31.28.21:8080/recommend/maturity/popup?sessionId=123&tag=ok&'
+    elif source == 'en_online2':
         # 2
-        url2 = 'http://172.31.18.118:8080/recommend/maturity/popup?sessionId=123&tag=ok&'
-        url = [url0, url1, url2]
+        url = 'http://172.31.18.118:8080/recommend/maturity/popup?sessionId=123&tag=ok&'
     elif source == 'kika_online':
         # kika
         # url = 'http://kika-en.recommend.model.intranet.com/recommend/popup?sessionId=123&tag=ok&'
         url = 'http://172.31.21.219:8080/recommend/maturity/popup?sessionId=123&tag=ok&'
+    elif source == 'business':
+        url = 'http://172.31.31.224:8080/recommend/maturity/popup?sessionId=123&tag=ok&'
     if isinstance(url, list):
         for url_ in url:
             case_runner(test_case, url_)

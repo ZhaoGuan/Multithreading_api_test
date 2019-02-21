@@ -27,10 +27,8 @@ class Http_Test:
         try:
             self.data = self.config['source'][source]['data']
             # 如果data中有为空的默认data为空
-            for key, value in self.data.iteams():
-                if value == None:
-                    self.data = None
-                    break
+            if 'None' in str(self.data):
+                self.data = None
         except:
             self.data = None
         # version处理
@@ -39,6 +37,10 @@ class Http_Test:
                 self.data.pop('version')
         except:
             pass
+        try:
+            self.check_way = self.config['source'][source]['check_way']
+        except:
+            self.check_way = None
         try:
             self.other = self.config['other']
         except:
@@ -84,6 +86,22 @@ class Http_Test:
         else:
             keys_data.update({'version': version_data})
 
+            # now_way
+
+    def check_the_way(self, all_data):
+        if (self.check_way == None) or (self.check_way == []):
+            return all_data
+        else:
+            temp = []
+            for check in self.check_way:
+                for data in all_data:
+                    if check in str(data):
+                        data.update({'check': 'new'})
+                        temp.append(data)
+                    else:
+                        temp.append(data)
+                return temp
+
     # url key 数据整理
     def url_keys_data(self):
         all_data = []
@@ -107,6 +125,7 @@ class Http_Test:
                     for g in temp:
                         temp_all.append(g)
                 all_data = temp_all
+        all_data = self.check_the_way(all_data)
         # 处理version
         temp_all_data = []
         for data in all_data:
@@ -125,22 +144,31 @@ class Http_Test:
         return all_data
 
     # url 重新拼接
-    def url_mosaic(self, data):
+    def url_mosaic(self, data, header):
         url = self.url
         keys = self.keys
-        if '&' != url[-1]:
+        print(keys)
+        if keys == None:
             pass
         else:
-            for i in keys:
-                if i != keys[-1]:
-                    url = url + i + '=' + data[i] + '&'
-                else:
-                    url = url + i + '=' + data[i]
-            if 'duid' in url:
-                sign = self.kika_request.get_sign(version=data['version'], duid=data['duid'], app=data['app'])
-                re_sign = 'sign=' + sign
-                duid = 'duid=' + data['duid']
-                url = url.replace(duid, re_sign)
+            if ('&' == url[-1]) or ('?' == url[-1]):
+                for i in keys:
+                    if i != keys[-1]:
+                        url = url + i + '=' + data[i] + '&'
+                    else:
+                        url = url + i + '=' + data[i]
+                if 'duid' in url:
+                    if ('check' in list(data.keys())):
+                        sign = self.kika_request.get_new_sign(version=data['version'], duid=data['duid'],
+                                                              app=data['app'],
+                                                              requestime=header['Request-Time'])
+                    else:
+                        sign = self.kika_request.get_sign(version=data['version'], duid=data['duid'], app=data['app'])
+                    re_sign = 'sign=' + sign
+                    duid = 'duid=' + data['duid']
+                    url = url.replace(duid, re_sign)
+            else:
+                pass
         # print(url)
         return url
 
@@ -254,12 +282,17 @@ class Http_Test:
                 android_level = int(data['android_level'])
             except:
                 android_level = 23
-            header = self.kika_request.set_header(duid, app=app, version=version, lang=lang, way=self.way,
-                                                  android_level=android_level)
-            url = self.url_mosaic(data)
+            if ('check' in list(data.keys())):
+                header = self.kika_request.set_new_header(duid, app=app, version=version, lang=lang, way=self.way,
+                                                          android_level=android_level)
+            else:
+                header = self.kika_request.set_header(duid, app=app, version=version, lang=lang, way=self.way,
+                                                      android_level=android_level)
+            url = self.url_mosaic(data, header)
             response = requests.request('get', url, headers=header)
         # print(url)
-        # print(response.text)
+        # print(header)
+        print(response.text)
         self.asser_api(data, response, fail)
         self.all_response(data, response, all_data_respone)
         if len(fail) == 0:
@@ -292,15 +325,20 @@ class Http_Test:
                 android_level = int(data['android_level'])
             except:
                 android_level = 23
-            header = self.kika_request.set_header(duid, app=app, version=version, lang=lang, way=self.way,
-                                                  android_level=android_level)
-            url = self.url_mosaic(data)
+            if ('check' in list(data.keys())):
+                header = self.kika_request.set_new_header(duid, app=app, version=version, lang=lang, way=self.way,
+                                                          android_level=android_level)
+            else:
+                header = self.kika_request.set_header(duid, app=app, version=version, lang=lang, way=self.way,
+                                                      android_level=android_level)
+            url = self.url_mosaic(data, header)
+            # print(url)
             # 为了package的临时方案
             if 'content=' in url:
-                url = url.replace('content=', '').replace('&', '?')
-            # print(url)
+                url = url.replace('content=', '').replace('&', '?').replace('/?', '/')
+            print(url)
             response = requests.request('get', url, headers=header)
-        # print(response.text)
+        print(response.text)
         self.asser_api(data, response, fail)
         self.all_response(data, response, all_data_respone)
         return response.text
@@ -318,6 +356,7 @@ def content_request(Path, source='online'):
     above_test = Http_Test(above_config, source)
     below_test = Http_Test(below_config, source)
     content = above_test.above_url_request(above_test.url_keys_data()[0], above_fail, above_all_data_respone)
+    # print(content)
     if len(above_fail) == 0:
         below = below_test.below_url_request(content, below_test.url_keys_data()[0], below_fail, below_all_data_respone)
         if len(below_fail) > 0:
@@ -333,6 +372,7 @@ def content_request(Path, source='online'):
 
 
 if __name__ == "__main__":
-    content_request('./case/backend-picture/sticker_case', 'online')
-    # content_request('./case/backend-picture/gif_case', 'test')
-    # content_request('./case/backend-picture/sticker2_package', 'online')
+    # content_request('./case/backend-picture/sticker_case', 'online')
+    # content_request('./case/backend-picture/gif_case_new.yml', 'test')
+    # content_request('./case/backend-picture/sticker2_all_new.yml', 'test')
+    content_request('./case/backend-picture/sticker2_package', 'online')

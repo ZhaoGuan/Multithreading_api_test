@@ -129,12 +129,10 @@ def constitute_test_case(data):
             temp['parameter'].update({'userId': duid})
             for key, value in parameter.items():
                 temp['parameter'].update({key: value})
-                if ('Giphy' in str(temp)) or ('Tenor' in str(temp)):
-                    pass
-                elif ('SilentUserBucket' in str(temp)) or ('sentence' in str(temp)):
-                    pass
-                else:
+                if 'SilentUserBucket' in str(temp):
                     test_case.append(temp)
+                else:
+                    pass
     print(test_case)
     # print(len(test_case))
     return test_case
@@ -147,6 +145,9 @@ def case_runner(test_case, url):
     url = url[:-1]
     print(url)
     response = requests.get(url)
+    print(response.text)
+    if response.text == '':
+        print('失败')
     try:
         response = json.loads(response.text)
         print(response)
@@ -170,21 +171,6 @@ def case_runner(test_case, url):
         if response['limitScore'] != 0.0:
             print('limitscore不为0.0')
             print('失败')
-        if 'taghit' in list(response['extra'].keys()):
-            if response['extra']['taghit'] == 'hit':
-                if 'rmd_hit' in list(response['extra'].keys()):
-                    if response['extra']['rmd_hit'] == '0':
-                        if response['md5'] != '':
-                            print('命中但md5为空')
-                            print('失败')
-                    else:
-                        if response['md5'] == '':
-                            print('md5不应该有返回')
-                            print('失败')
-                else:
-                    if response['md5'] == '':
-                        print('命中但md5为空')
-                        print('失败')
     except Exception as e:
         print(e)
         print('失败')
@@ -193,6 +179,15 @@ def case_runner(test_case, url):
 
 
 def request_test(test_case, source):
+    # if source == 'test':
+    # 测试
+    # url = 'http://52.43.155.219:8080/model-sticker/recommend/popup?sessionId=123&tag=ok&'
+    # elif source == 'ip':
+    #     url = 'http://172.31.23.134:8080/model-sticker/recommend/popup?sessionId=123&tag=ok&'
+    # elif source == 'spring':
+    #     url = 'http://172.31.23.134:10010/model-sticker/recommend/popup?sessionId=1&tag=ok&'
+    # else:
+    #     url = 'http://172.31.31.224:8080/model-sticker/recommend/popup?sessionId=1&tag=ok&'
     if source == 'test':
         # 测试
         # 外网

@@ -35,7 +35,6 @@ class ApiTest(unittest.TestCase):
             result = content_request(file_path, source)
             assert result
         else:
-            # result = os.popen('python3 ' + file_path + ' -s ' + source).read()
             p = subprocess.Popen('python3 ' + file_path + ' -s ' + source, shell=True, stdout=subprocess.PIPE,
                                  stderr=subprocess.STDOUT)
             result = str(p.stdout.read().decode())
@@ -50,7 +49,7 @@ class ApiTest(unittest.TestCase):
 def case_runner():
     # 编辑用例
     # unittest.main()
-    a = ApiTest()
+    ApiTest()
     suite = unittest.TestSuite()
     # DDT的坑
     discover = unittest.defaultTestLoader.discover(PATH, pattern='running_template.py', top_level_dir=None)

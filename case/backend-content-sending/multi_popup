@@ -2,15 +2,15 @@ operation_mode: sigle_request
 source:
   test:
     #test3
-    url: http://34.214.222.244:9090/backend-content-sending/popup?type=0&
-#    url: http://172.31.23.134:9090/backend-content-sending/popup?type=0&
+    url: http://34.214.222.244:9090/backend-content-sending/multi/popup?type=0&
+#    url: http://172.31.23.134:9090/backend-content-sending/multi/popup?type=0&
     cycle_times: 1
     keys: ['kb_lang','tag','duid']
     data:
       app: ['kika','ikey','pro']
-    #  app: ['ikey']
-      kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
-#      kb_lang : ['en_US', 'en_AU']
+#      app: ['ikey']
+#      kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
+      kb_lang : ['en_US']
     #  kb_lang : ['pt_BR']
       tag : ['ok']
       duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
@@ -27,8 +27,8 @@ source:
     #  version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1477']
   ip:
     #test3
-#    url: http://34.214.222.244:9090/backend-content-sending/popup?type=0&
-    url: http://172.31.23.134:9090/backend-content-sending/popup?type=0&
+#    url: http://34.214.222.244:9090/backend-content-sending/multi/popup?type=0&
+    url: http://172.31.23.134:9090/backend-content-sending/multi/popup?type=0&
     cycle_times: 1
     keys: ['kb_lang','tag','duid']
     data:
@@ -51,9 +51,9 @@ source:
 #      version: ['ikey&920b56e9cadd743bfbbcb4126937e789&1477','kika&920b56e9cadd743bfbbcb4126937e789&2371','pro&920b56e9cadd743bfbbcb4126937e789&350']
     #  version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1477']
   online:
-    url: https://api.kikakeyboard.com/v1/stickers2/popup?type=0&
+    url: https://api.kikakeyboard.com/v1/stickers2/multi/popup?type=0&
     #web0
-#    url: http://sticker.pre.kikakeyboard.com/backend-content-sending/popup?type=0&
+#    url: http://sticker.pre.kikakeyboard.com/backend-content-sending/multi/popup?type=0&
     cycle_times: 1
     keys: ['kb_lang','tag','duid']
     data:
@@ -77,7 +77,7 @@ source:
     #  version: ['ikey&d3aba2d3052aa2a9aaeaa4273c8859a0&1477']
   web0:
     #web0
-    url: http://sticker.pre.kikakeyboard.com/backend-content-sending/popup?type=0&
+    url: http://sticker.pre.kikakeyboard.com/backend-content-sending/multi/popup?type=0&
     cycle_times: 1
     keys: ['kb_lang','tag','duid']
     data:
@@ -86,7 +86,8 @@ source:
       kb_lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
 #      kb_lang : ['en_US', 'en_AU']
     #  kb_lang : ['pt_BR']
-      tag : ['ok']
+#      tag : ['ok']
+      tag : ['lol']
       duid : ['5a215835df204115ee3d2d4ec0c528aa', 'adad79631d9339915e3be1c9e783e82d', 'a2bb5434f3541bf5aa64186ec8c2b77f',
               '920b56e9cadd743bfbbcb4126937e789']
     #  算法duid
@@ -106,12 +107,9 @@ assert:
 # 多个返回可能的时候使用&连接可能性，使用@@@进行字段胡洛
 # 返回内容如果是个多级字段则为前置条件条件各级用&连接
 # $$$表示内容可以为null
-  data_format : {
-    '{"data&type":"sticker"}':{'data': {'popup_duration': 'Int', 'stickers': [{'package_id': 'Str&$$$', 'tags': ['@@@'], 'scale_type': 'Int', 'source_text': 'Str&$$$','caption':'Str&$$$','mp4': '$$$', 'name': '$$$', 'popup_duration': 'Int', 'icon_url': 'Str&$$$', 'image': {'height': 'Int', 'width': 'Int', 'url': 'Str', 'size':'Int' , 'md5':'Str'}, 'mark': 'Str&$$$', 'key': 'Str'}], 'magics': '$$$', 'extra': 'Str', 'type': 'Str'}, 'errorCode': 'Int', 'errorMsg': 'Str'},
-    '{"data&type":"magic"}':{'data': {'type': 'Str', 'magics': [{'key': 'Str', 'style': 'Str'}], 'stickers': '$$$', 'popup_duration': 'Int', 'extra': 'Str'}, 'errorMsg': 'Str', 'errorCode': 'Int'}
-    }
+  data_format : {'errorCode': 'Int', 'errorMsg': 'Str', 'data': {'popupList': ['@@@'], 'extra': '@@@', 'tag': 'Str', 'popupDuration': 'Int'}}
 # 数据检查
-# 前面的值是对应的维度，后面的字典内容({"key":"value"}key是对应值的路径，value是对应应该出现的值(如果值添加问#那么只坚持对应结构是否存在忽略其具体值）
+# 前面的值是对应的维度，后面的字典内容({"key":"value"}key是对应值的路径，value是对应应该出现的值(如果值添加问#那么只坚持对应结构是否存在忽略其具体值,#Str表明检查内容为str类型,#Int表明为int类型#Bool表明为bool类型,#Float表明为float类型）
 # 填写内容验证遵守json格式，数据使用""
 # 可以使用条件进行判断
 # eg:'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&popup_duration":"5000"}^{"data&popup_duration":"4000"}'
@@ -119,27 +117,10 @@ assert:
 # 在维度上有字段重复的时候使用"@数字"的形势进行区分
 # 多可能结果 eg:'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&popup_duration":"4000&500"}
   data_content : {
-                  # ikey sticker和magic展示时间判断
-                  'ikey@1':'{"data&type":"sticker"}^{"data&popup_duration":"5000"}',
-                  'ikey@2':'{"data&type":"magic"}^{"data&popup_duration":"0"}',
-#                  'ikey&920b56e9cadd743bfbbcb4126937e789':'{"data&extra":"~mptyBucket"}',
-                  'ikey&920b56e9cadd743bfbbcb4126937e789&en':'{"data&extra":"~IkeyEnEmptyScenario"}',
-                  'ikey&920b56e9cadd743bfbbcb4126937e789&pt':'{"data&extra":"~IkeyPtEmptyScenario"}',
-                  # ikey1477以下版本不支持magic
-#                  'ikey&1477':'{"data&type":"sticker"}',
-#                  'ikey&1478':'{"data&type":"magic&sticker"}',
-                  # pro 350以下版本不支持magic
-#                  'pro&349':'{"data&type":"sticker"}',
-                  # kika 2371以下版本不支持magic
-#                  'kika&2370':'{"data&type":"sticker"}',
-                  # kika pro 展示时间判断
-                  'kika@1':'{"data&type":"sticker"}^{"data&popup_duration":"5000"}',
-                  'kika@2':'{"data&type":"magic"}^{"data&popup_duration":"0"}',
-                  'pro@1':'{"data&type":"sticker"}^{"data&popup_duration":"5000"}',
-                  'pro@2':'{"data&type":"magic"}^{"data&popup_duration":"0"}',
-#                  'ikey@3':'{"data&type":"sticker"}^{"data&stickers&0&tags&0":"ok"}',
-#                  'kika@2':'{"data&stickers&0&tags&0":"ok"}',
-#                  'pro@@2':'{"data&stickers&0&tags&0":"ok"}'
+                  '*@1':'{"data&popupList&0&type":"sticker"}^{"data&popupList&0":{"magic": null, "type": "Str", "sticker": {"key": "Str", "sourceText": "Str", "iconUrl": "$$$&HTTP","image": {"width": "Int", "md5": "Str", "height": "Int", "url": "HTTP","size": "Int"}, "packageId": "$$$&Int&Str"}}}',
+                  '*@2':'{"data&popupList&1&type":"sticker"}^{"data&popupList&1":{"magic": null, "type": "Str", "sticker": {"key": "Str", "sourceText": "Str", "iconUrl": "$$$&HTTP","image": {"width": "Int", "md5": "Str", "height": "Int", "url": "HTTP","size": "Int"}, "packageId": "$$$&Int&Str"}}}',
+                  '*@3':'{"data&popupList&0&type":"magic"}^{"data&popupList&0":{"magic": {"key": "Str","style": "Str"}, "type": "Str", "sticker": null}}',
+                  '*@4':'{"data&popupList&1&type":"magic"}^{"data&popupList&1":{"magic": {"key": "Str","style": "Str"}, "type": "Str", "sticker": null}}'
                   }
 # response_header检查
 # 可根据前面的条件检查，条件能够用&关联

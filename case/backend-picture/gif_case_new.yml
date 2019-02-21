@@ -3,20 +3,22 @@ above:
   source:
     test:
       url: http://34.214.222.244:8080/backend-picture-api/v1/gif/tags?
-#        url: https://api-dev.kikakeyboard.com/v1/gif/tags?
+#      url: https://api-dev.kikakeyboard.com/v1/gif/tags?
       keys: ['duid']
       data:
         app: ['kika']
         kb_lang : ['en_US']
         duid : ['5a215835df204115ee3d2d4ec0c528aa']
+      check_way : ['5a215835df204115ee3d2d4ec0c528aa']
     ip:
       url: http://172.31.23.134:8080/backend-picture-api/v1/gif/tags?
-#        url: https://api-dev.kikakeyboard.com/v1/gif/tags?
+#      url: https://api-dev.kikakeyboard.com/v1/gif/tags?
       keys: ['duid']
       data:
         app: ['kika']
         kb_lang : ['en_US']
         duid : ['5a215835df204115ee3d2d4ec0c528aa']
+      check_way : ['5a215835df204115ee3d2d4ec0c528aa']
     online:
       url: https://api.kikakeyboard.com/v1/gif/tags?
       keys: ['duid']
@@ -24,6 +26,7 @@ above:
         app: ['kika']
         kb_lang : ['en_US']
         duid : ['5a215835df204115ee3d2d4ec0c528aa']
+      check_way : ['5a215835df204115ee3d2d4ec0c528aa']
   assert:
   #  返回码(只能第一层)
     code : {'key':'errorCode','value':0}
@@ -45,6 +48,7 @@ below:
         kb_lang : ['en_US']
         duid : ['5a215835df204115ee3d2d4ec0c528aa']
         query: ['content']
+      check_way : ['5a215835df204115ee3d2d4ec0c528aa']
     ip:
       url: http://172.31.23.134:8080/backend-picture-api/v1/gif/search?
 #      url: http://api-dev.kikakeyboard.com/v1/gif/search?
@@ -54,6 +58,7 @@ below:
         kb_lang : ['en_US']
         duid : ['5a215835df204115ee3d2d4ec0c528aa']
         query: ['content']
+      check_way : ['5a215835df204115ee3d2d4ec0c528aa']
     online:
       url: http://api.kikakeyboard.com/v1/gif/search?
       keys: ['duid','query']
@@ -62,11 +67,12 @@ below:
         kb_lang : ['en_US']
         duid : ['5a215835df204115ee3d2d4ec0c528aa']
         query: ['content']
+      check_way : ['5a215835df204115ee3d2d4ec0c528aa']
   assert:
   #  返回码(只能第一层)
     code : {'key':'errorCode','value':0}
 #    data_format : {'errorMsg': 'Str', 'errorCode': 'Int', 'data': {'resourceList': [{'tiny_gif': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'preview': 'HTTP', 'gif': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'source': 'Str', 'mp4': {'height': 'Int', 'width': 'Int', 'url': 'HTTP', 'duration': '@@@'}, 'source_id': 'Str', 'tinygif': {'height': 'Int', 'width': 'Int', 'url': 'HTTP'}, 'index': 'Int', 'title': 'Str', 'tags': ['@@@']}]}}
-    data_format : {'errorCode': 'Int', 'errorMsg': 'Str', 'data': {'resourceList': [{'preview': 'HTTP', 'tinygif': {'width': 'Int', 'height': 'Int', 'url': 'HTTP'}, 'tiny_gif': {'width': 'Int', 'height': 'Int', 'url': 'HTTP'}, 'gif': {'width': 'Int', 'height': 'Int', 'url': 'HTTP'}, 'source_id': 'Str', 'source': 'Str', 'mp4': {'width': 'Int', 'duration': 'Float', 'height': 'Int', 'url': 'HTTP'}, 'index': 'Int', 'title': '@@@', 'tags': ['@@@']}]}}
+    data_format : {'errorCode': 'Int', 'errorMsg': 'Str', 'data': {'resourceList': [{'preview': 'HTTP', 'tinygif': {'width': 'Int', 'height': 'Int', 'url': 'HTTP'}, 'tiny_gif': {'width': 'Int', 'height': 'Int', 'url': 'HTTP'}, 'gif': {'width': 'Int', 'height': 'Int', 'url': 'HTTP'}, 'source_id': 'Str', 'source': 'Str', 'mp4': {'width': 'Int', 'duration': '@@@', 'height': 'Int', 'url': 'HTTP'}, 'index': 'Int', 'title': '@@@', 'tags': ['@@@']}]}}
   other:
     way: online
     host:

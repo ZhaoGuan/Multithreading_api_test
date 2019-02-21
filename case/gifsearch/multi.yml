@@ -1,13 +1,13 @@
 operation_mode: sigle_request
 source:
   test:
-    url: http://34.214.222.244:808/backend-content-sending-gif-search/v1/gifsticker/search?offset=0&limite=10&
+    url: http://34.214.222.244:8080/backend-content-sending-gif-search/v1/gifsticker/search/multi?offset=0&limite=10&
     #test
-    #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
-    #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
+    #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search/multi?offset=0&limite=10&
+    #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search/multi?offset=0&limite=10&
     cycle_times: 1
     #web0
-    #url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
+    #url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/gifsticker/search/multi?offset=0&limite=10&
     keys: ['tag','lang']
     data:
       # 这里kb_lang,duid,app只是为了header
@@ -15,16 +15,17 @@ source:
       kb_lang : ['en_US']
       app: ['ikey']
       lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
-      tag : ['ok','lol','']
+      tag : ['ok','lol']
       version: ['1478']
+
   ip:
-    url: http://172.31.23.134:8080/backend-content-sending-gif-search/v1/gifsticker/search?offset=0&limite=10&
+    url: http://172.31.23.134:8080/backend-content-sending-gif-search/v1/gifsticker/search/multi?offset=0&limite=10&
     #test
-    #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
-    #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
+    #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search/multi?offset=0&limite=10&
+    #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search/multi?offset=0&limite=10&
     cycle_times: 1
     #web0
-    #url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
+    #url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/gifsticker/search/multi?offset=0&limite=10&
     keys: ['tag','lang']
     data:
       # 这里kb_lang,duid,app只是为了header
@@ -32,17 +33,17 @@ source:
       kb_lang : ['en_US']
       app: ['ikey']
       lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
-      tag : ['ok','lol','']
+      tag : ['ok','lol']
       version: ['1478']
 
   online:
-    url: https://api.kikakeyboard.com/v1/gifsticker/search?offset=0&limite=10&
+    url: https://api.kikakeyboard.com/v1/gifsticker/search/multi?offset=0&limite=10&
     #test
-    #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
-    #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
+    #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search/multi?offset=0&limite=10&
+    #url: http://34.214.222.244:9090/backend-content-sending/v1/gifsticker/search/multi?offset=0&limite=10&
     cycle_times: 1
     #web0
-    #url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/gifsticker/search?offset=0&limite=10&
+    #url: http://sticker.pre.kikakeyboard.com/backend-content-sending/v1/gifsticker/search/multi?offset=0&limite=10&
     keys: ['tag','lang']
     data:
       # 这里kb_lang,duid,app只是为了header
@@ -50,7 +51,7 @@ source:
       kb_lang : ['en_US']
       app: ['ikey']
       lang : ['en_US', 'en_AU', 'es_AR', 'pt_BR','in_ID','fr']
-      tag : ['ok','lol','']
+      tag : ['ok','lol']
       version: ['1478']
 assert:
 #  返回码(只能第一层)
@@ -59,7 +60,7 @@ assert:
 # 多个返回可能的时候使用&连接可能性，使用@@@进行字段胡洛
 # 返回内容如果是个多级字段则为前置条件条件各级用&连接
 #  data_format : { 'errorMsg': 'Str','errorCode': 'Int', 'data': {'infos': [{'picInfo': {'width': 'Int', 'url': 'HTTP', 'size': 'Int', 'height': 'Int'}, 'source': 'Str', 'id': 'Str', 'tinyInfo': {'width': 'Int', 'url': 'HTTP', 'size': 'Int', 'height': 'Int'}}], 'tag': 'Str'}}
-  data_format : {'data': {'tag': 'Str&$$$', 'infos': [{'magicText': ['@@@'], 'source': 'Str', 'tinyInfo': {'width': 'Int', 'height': 'Int', 'url': 'Str&HTTP&$$$', 'size': 'Int'}, 'type': 'Int', 'id': 'Str', 'picInfo': {'width': 'Int', 'height': 'Int', 'url': 'Str&HTTP&$$$', 'size': 'Int'}}]}, 'errorMsg': 'Str', 'errorCode': 'Int'}
+  data_format : {'data': {'tag': 'Str', 'infos': [{'magicText': ['@@@'], 'source': 'Str', 'tinyInfo': {'width': 'Int', 'height': 'Int', 'url': 'Str&HTTP&$$$', 'size': 'Int'}, 'type': 'Int', 'id': 'Str', 'picInfo': {'width': 'Int', 'height': 'Int', 'url': 'Str&HTTP&$$$', 'size': 'Int'}}]}, 'errorMsg': 'Str', 'errorCode': 'Int'}
 # 数据检查
 # 前面的值是对应的维度，后面的字典内容({"key":"value"}key是对应值的路径，value是对应应该出现的值(如果值添加问#那么只坚持对应结构是否存在忽略其具体值）
 # 填写内容验证遵守json格式，数据使用""
